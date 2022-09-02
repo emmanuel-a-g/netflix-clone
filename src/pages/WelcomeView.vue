@@ -10,7 +10,6 @@
           <button class="rightButton">Sign In</button>
         </div>
       </div>
-      <div class="gradientDiv"></div>
       <div class="contentDiv">
         <h1>Unlimited movies, TV shows, and more.</h1>
         <h3>Watch anywhere. Cancel anytime.</h3>
@@ -69,7 +68,10 @@ export default {
   display: flex;
   justify-content: center;
   align-content: center;
+  overflow-y: hidden;
+  width: 100%;
 }
+/* replace with a inset color overlay */
 .gradientDiv {
   z-index: 1;
   position: absolute;
@@ -79,11 +81,12 @@ export default {
 }
 .contentDiv {
   position: absolute;
-  width: 50vw;
-  left: 25vw;
-  top: 35vh;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
   font-size: 1.5rem;
   z-index: 3;
+  max-width: 600px;
 }
 .contentDiv h1,
 .contentDiv h3 {
@@ -111,7 +114,9 @@ export default {
 .leftNav {
   grid-column: 1 / span 1;
   height: inherit;
-  margin-top: -1vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .rightNav {
   grid-column: 3 / span 1;
@@ -139,6 +144,7 @@ export default {
   border-width: 0.7px;
 }
 .emailControl {
+  position: relative;
   display: flex;
   height: 70px;
 }
@@ -158,19 +164,56 @@ export default {
   .navDiv {
     grid-template-columns: 30% auto 40%;
   }
+  .contentDiv {
+    font-size: 1.2rem;
+  }
+  .emailControl {
+    font-size: 1.1rem;
+  }
 }
 @media only screen and (max-width: 550px) {
+  .contentDiv {
+    font-size: 1rem;
+    max-width: 470px;
+  }
   .navDiv {
     grid-template-columns: auto auto;
+  }
+  .navDiv img {
+    width: 100px;
   }
   .rightNav {
     grid-column: 2 / span 1;
   }
+  .rightNav button {
+    width: 80px;
+    height: 30px;
+  }
+  .emailControl {
+    font-size: 0.9rem;
+    height: 50px;
+  }
 }
 @media only screen and (max-height: 500px) {
+  .contentDiv {
+    font-size: 1rem;
+  }
   .navDiv img {
     width: 100px;
     height: auto;
+  }
+  .emailControl {
+    font-size: 1rem;
+    height: 40px;
+  }
+}
+@media only screen and (max-height: 350px) {
+  .contentDiv {
+    font-size: 0.75rem;
+  }
+  .emailControl {
+    font-size: 0.75rem;
+    height: 30px;
   }
 }
 </style>
