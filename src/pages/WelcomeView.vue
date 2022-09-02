@@ -18,7 +18,12 @@
           Ready to watch? Enter your email to create or restart your membership.
         </h5>
         <div class="emailControl">
-          <input type="text" placeholder="Email Address" v-model="email" />
+          <input
+            v-on:keyup.enter="submitEmail"
+            type="text"
+            placeholder="Email Address"
+            v-model="email"
+          />
           <button @click="submitEmail">Get Started</button>
         </div>
       </div>
@@ -36,7 +41,10 @@ export default {
   },
   methods: {
     submitEmail() {
-      console.log("Email: ", this.email);
+      const savedEmail = this.email;
+      //reset email
+      this.email = "";
+      alert(savedEmail);
       //reset email
       //process something...
     },
@@ -92,7 +100,7 @@ export default {
   padding: 0;
   margin: 0;
   display: grid;
-  grid-template-columns: 20% auto 24%;
+  grid-template-columns: 20% auto 25%;
   grid-template-rows: 1pt;
   z-index: 2;
 }
@@ -135,26 +143,34 @@ export default {
   height: 70px;
 }
 .emailControl input {
-  flex: 3;
+  flex: 2;
   font-size: 1.1rem;
-  border-top-left-radius: 2px;
-  border-bottom-left-radius: 2px;
 }
 .emailControl button {
   all: unset;
   flex: 1;
   font-size: 1.5rem;
+  padding: 0;
   color: white;
   background-color: #e50914;
-  border-top-right-radius: 2px;
-  border-bottom-right-radius: 2px;
 }
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 850px) {
+  .navDiv {
+    grid-template-columns: 30% auto 40%;
+  }
+}
+@media only screen and (max-width: 550px) {
   .navDiv {
     grid-template-columns: auto auto;
   }
   .rightNav {
     grid-column: 2 / span 1;
+  }
+}
+@media only screen and (max-height: 500px) {
+  .navDiv img {
+    width: 100px;
+    height: auto;
   }
 }
 </style>
