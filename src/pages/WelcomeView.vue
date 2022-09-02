@@ -87,7 +87,7 @@ export default {
   align-self: center;
   font-size: 1.5rem;
   z-index: 3;
-  max-width: 600px;
+  max-width: 630px;
 }
 .contentDiv h1,
 .contentDiv h3 {
@@ -95,7 +95,11 @@ export default {
   padding: 0;
 }
 .contentDiv h5 {
-  margin: 25px;
+  margin: 0;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  font-size: 1.1rem;
+  width: 100%;
 }
 .navDiv {
   width: 100%;
