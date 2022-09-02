@@ -1,6 +1,7 @@
 <template>
   <div class="loginDiv">
     <div class="imageDiv">
+      <img :src="'./images/netflix.png'" alt="netflix logo" />
       <div class="contentDiv">
         <login-form></login-form>
       </div>
@@ -24,6 +25,7 @@ loginDiv {
   padding: 0;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 .imageDiv {
   height: 140vh;
@@ -33,10 +35,17 @@ loginDiv {
   text-align: center;
   display: flex;
   justify-content: center;
-  /* align-content: center; */
   overflow-y: hidden;
   width: 100%;
-  box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.601);
+  box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.655);
+}
+.imageDiv img {
+  width: 200px;
+  height: auto;
+  position: absolute;
+  left: 1.2vw;
+  top: 0;
+  margin-top: -15px;
 }
 .contentDiv {
   position: absolute;
