@@ -54,4 +54,7 @@ textarea:focus,
 button:focus {
   outline: none;
 }
+button:hover {
+  cursor: pointer;
+}
 </style>

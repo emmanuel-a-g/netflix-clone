@@ -27,24 +27,60 @@
         </div>
       </div>
     </div>
+    <div class="blackLine"></div>
+    <banner-card
+      myHeight="60"
+      textSide="left"
+      imageSide="right"
+      imageName="tv"
+      :data="data[0]"
+    ></banner-card>
+    <div class="blackLine"></div>
+    <banner-card
+      myHeight="60"
+      textSide="right"
+      imageSide="left"
+      imageName="phone"
+      :data="data[1]"
+    ></banner-card>
+    <div class="blackLine"></div>
+    <banner-card
+      myHeight="70"
+      textSide="left"
+      imageSide="right"
+      imageName="tv"
+      :data="data[2]"
+    ></banner-card>
+    <div class="blackLine"></div>
+    <banner-card
+      myHeight="70"
+      textSide="right"
+      imageSide="left"
+      imageName="phone"
+      :data="data[3]"
+    ></banner-card>
+    <div class="blackLine"></div>
   </div>
 </template>
 
 <script>
-//import
+import BannerCard from "../components/BannerCard.vue";
+import { welcome } from "../store/static";
 export default {
+  components: {
+    BannerCard,
+  },
   data() {
     return {
       email: "",
+      data: welcome,
     };
   },
   methods: {
     submitEmail() {
       const savedEmail = this.email;
-      //reset email
       this.email = "";
       alert(savedEmail);
-      //reset email
       //process something...
     },
   },
@@ -164,6 +200,14 @@ export default {
   padding: 0;
   color: white;
   background-color: #e50914;
+}
+.emailControl button:hover {
+  cursor: pointer;
+}
+.blackLine {
+  height: 1vh;
+  width: 100%;
+  background-color: #222;
 }
 @media only screen and (max-width: 850px) {
   .navDiv {
