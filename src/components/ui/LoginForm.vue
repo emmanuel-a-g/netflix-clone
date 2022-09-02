@@ -103,7 +103,7 @@ export default {
 
 <style scoped>
 .loginDiv {
-  height: 100%;
+  height: 85vh;
   width: 100%;
 }
 .innerDiv {
@@ -111,6 +111,7 @@ export default {
   width: 420px;
   background-color: rgba(0, 0, 0, 0.7);
   display: flex;
+  flex-shrink: 0;
   justify-content: center;
 }
 .innerDiv input {
@@ -167,11 +168,11 @@ export default {
   text-decoration: underline;
 }
 form {
+  min-height: 410px;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   width: 80%;
-  height: 83%;
   display: flex;
   flex-direction: column;
 }
@@ -197,5 +198,21 @@ input {
 p {
   font-size: 1rem;
   color: var(--greyish);
+}
+@media only screen and (max-width: 740px) {
+  .innerDiv {
+    width: 100% !important;
+  }
+  form {
+    height: 510px;
+  }
+}
+@media only screen and (max-height: 550px) {
+  .innerDiv {
+    background-color: transparent;
+  }
+  form {
+    min-width: 400px !important;
+  }
 }
 </style>
