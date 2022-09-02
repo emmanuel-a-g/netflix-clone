@@ -16,7 +16,7 @@ const router = createRouter({
       name: "Login",
       component: LoginView,
     },
-    { path: "/:notFound(.*)", name: "Lost", component: NotFound },
+    { path: "/:notFound(.*)", name: "Not Found", component: NotFound },
   ],
 });
 router.beforeEach((to, _1, next) => {
