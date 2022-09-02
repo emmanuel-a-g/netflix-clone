@@ -16,15 +16,7 @@
         <h5>
           Ready to watch? Enter your email to create or restart your membership.
         </h5>
-        <div class="emailControl">
-          <input
-            v-on:keyup.enter="submitEmail"
-            type="text"
-            placeholder="Email Address"
-            v-model="email"
-          />
-          <button @click="submitEmail">Get Started</button>
-        </div>
+        <email-form @submit-email="submitEmail"> </email-form>
       </div>
     </div>
     <div class="blackLine"></div>
@@ -60,28 +52,34 @@
       :data="data[3]"
     ></banner-card>
     <div class="blackLine"></div>
+    <questions-comp
+      title="Frequently Asked Questions"
+      :data="questions"
+    ></questions-comp>
+    <div class="blackLine"></div>
   </div>
 </template>
 
 <script>
 import BannerCard from "../components/BannerCard.vue";
-import { welcome } from "../store/static";
+import QuestionsComp from "../components/QuestionsComp.vue";
+import EmailForm from "../components/ui/EmailForm.vue";
+import { welcome, questions } from "../store/static";
 export default {
   components: {
     BannerCard,
+    QuestionsComp,
+    EmailForm,
   },
   data() {
     return {
-      email: "",
       data: welcome,
+      questions,
     };
   },
   methods: {
-    submitEmail() {
-      const savedEmail = this.email;
-      this.email = "";
-      alert(savedEmail);
-      //process something...
+    submitEmail(email) {
+      alert("welcome view email: " + email);
     },
   },
 };
@@ -184,7 +182,7 @@ export default {
   border-color: black;
   border-width: 0.7px;
 }
-.emailControl {
+/* .emailControl {
   position: relative;
   display: flex;
   height: 70px;
@@ -203,7 +201,7 @@ export default {
 }
 .emailControl button:hover {
   cursor: pointer;
-}
+} */
 .blackLine {
   height: 1vh;
   width: 100%;
@@ -216,9 +214,9 @@ export default {
   .contentDiv {
     font-size: 1.2rem;
   }
-  .emailControl {
+  /* .emailControl {
     font-size: 1.1rem;
-  }
+  } */
 }
 @media only screen and (max-width: 550px) {
   .contentDiv {
@@ -238,10 +236,10 @@ export default {
     width: 80px;
     height: 30px;
   }
-  .emailControl {
+  /* .emailControl {
     font-size: 0.9rem;
     height: 50px;
-  }
+  } */
 }
 @media only screen and (max-height: 500px) {
   .contentDiv {
@@ -251,18 +249,18 @@ export default {
     width: 100px;
     height: auto;
   }
-  .emailControl {
+  /* .emailControl {
     font-size: 1rem;
     height: 40px;
-  }
+  } */
 }
 @media only screen and (max-height: 350px) {
   .contentDiv {
     font-size: 0.75rem;
   }
-  .emailControl {
+  /* .emailControl {
     font-size: 0.75rem;
     height: 30px;
-  }
+  } */
 }
 </style>
