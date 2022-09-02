@@ -82,4 +82,9 @@ export default {
   width: 60%;
   min-height: 55%;
 }
+@media only screen and (max-width: 750px) {
+  .innerDiv p {
+    font-size: 1rem;
+  }
+}
 </style>

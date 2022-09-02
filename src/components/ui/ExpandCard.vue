@@ -67,4 +67,9 @@ export default {
   background-color: #303030;
   border-bottom: 3px solid black;
 }
+@media only screen and (max-width: 750px) {
+  .question p {
+    font-size: 1rem;
+  }
+}
 </style>

@@ -59,20 +59,22 @@ export default {
 }
 @media only screen and (max-width: 550px) {
   .emailControl {
-    font-size: 0.9rem;
     height: 50px;
   }
-  @media only screen and (max-height: 500px) {
-    .emailControl {
-      font-size: 1rem;
-      height: 40px;
-    }
+  .emailControl button {
+    font-size: 0.9rem;
   }
-  @media only screen and (max-height: 350px) {
-    .emailControl {
-      font-size: 0.75rem;
-      height: 30px;
-    }
+}
+@media only screen and (max-height: 500px) {
+  .emailControl {
+    font-size: 1rem;
+    height: 40px;
+  }
+}
+@media only screen and (max-height: 350px) {
+  .emailControl {
+    font-size: 0.75rem;
+    height: 30px;
   }
 }
 </style>
