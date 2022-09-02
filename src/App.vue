@@ -32,6 +32,10 @@ export default {
   display: flex;
   flex-direction: column;
   color: white;
+  /* global variables */
+  --red: #e50914;
+  --grey: #333;
+  --greyish: #8c8c8c;
 }
 /*Main settings for HTML-Vue-app div */
 #app {

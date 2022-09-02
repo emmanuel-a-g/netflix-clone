@@ -2,7 +2,7 @@
   <div class="emailControl">
     <input
       v-on:keyup.enter="submitEmail"
-      type="text"
+      type="email"
       placeholder="Email Address"
       v-model="email"
     />
@@ -20,6 +20,10 @@ export default {
   },
   methods: {
     submitEmail() {
+      if (!this.email.includes("@")) {
+        alert("Not a valid email!");
+        return;
+      }
       const email = this.email;
       this.$emit("submit-email", email);
       setTimeout(() => {

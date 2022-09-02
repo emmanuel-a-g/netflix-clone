@@ -177,31 +177,11 @@ export default {
   border-width: 0.7px;
 }
 .rightButton {
-  background-color: #e50914;
+  background-color: var(--red);
   color: white;
   border-color: black;
   border-width: 0.7px;
 }
-/* .emailControl {
-  position: relative;
-  display: flex;
-  height: 70px;
-}
-.emailControl input {
-  flex: 2;
-  font-size: 1.1rem;
-}
-.emailControl button {
-  all: unset;
-  flex: 1;
-  font-size: 1.5rem;
-  padding: 0;
-  color: white;
-  background-color: #e50914;
-}
-.emailControl button:hover {
-  cursor: pointer;
-} */
 .blackLine {
   height: 1vh;
   width: 100%;
@@ -214,9 +194,6 @@ export default {
   .contentDiv {
     font-size: 1.2rem;
   }
-  /* .emailControl {
-    font-size: 1.1rem;
-  } */
 }
 @media only screen and (max-width: 550px) {
   .contentDiv {
@@ -236,10 +213,6 @@ export default {
     width: 80px;
     height: 30px;
   }
-  /* .emailControl {
-    font-size: 0.9rem;
-    height: 50px;
-  } */
 }
 @media only screen and (max-height: 500px) {
   .contentDiv {
@@ -249,18 +222,10 @@ export default {
     width: 100px;
     height: auto;
   }
-  /* .emailControl {
-    font-size: 1rem;
-    height: 40px;
-  } */
 }
 @media only screen and (max-height: 350px) {
   .contentDiv {
     font-size: 0.75rem;
   }
-  /* .emailControl {
-    font-size: 0.75rem;
-    height: 30px;
-  } */
 }
 </style>
