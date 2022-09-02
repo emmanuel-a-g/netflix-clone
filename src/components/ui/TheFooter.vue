@@ -1,5 +1,12 @@
 <template>
-  <div class="loginFooter">
+  <div
+    class="loginFooter"
+    :style="{
+      position: position,
+      'background-color': color ? color : 'black',
+      'border-top-color': topBorder ? topBorder : 'transparent',
+    }"
+  >
     <div>Questions? Call 1-123-456-789</div>
     <p><span>FAQ</span><span>Cookie Preferences</span></p>
     <p><span>Help Center</span><span>Corporate Information</span></p>
@@ -9,17 +16,24 @@
 </template>
 
 <script>
-export default {};
+export default {
+  props: ["position", "color", "topBorder"],
+  mounted() {
+    setTimeout(() => {
+      console.log(this.color, this.position);
+    }, 2000);
+  },
+};
 </script>
 
 <style scoped>
 .loginFooter {
+  /* position: absolute; */
+  /* background-color: #0000008e; */
   bottom: 0;
-  position: absolute;
   z-index: 4;
   height: 30vh;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.555);
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -45,7 +59,9 @@ export default {};
 @media only screen and (max-width: 740px) {
   .loginFooter {
     position: relative;
-    border-top: 1px var(--greyish) solid;
+    border-top-style: solid;
+    border-top-width: 1px;
+    /* border-top-color: 1px var(--greyish) solid; */
   }
   .loginFooter div {
     left: 8%;

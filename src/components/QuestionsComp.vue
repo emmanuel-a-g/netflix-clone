@@ -86,5 +86,9 @@ export default {
   .innerDiv p {
     font-size: 1rem;
   }
+  .formDiv h1 {
+    margin-top: 35px;
+    font-size: 1.5rem;
+  }
 }
 </style>

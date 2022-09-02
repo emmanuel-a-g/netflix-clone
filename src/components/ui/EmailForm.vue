@@ -62,7 +62,7 @@ export default {
     height: 50px;
   }
   .emailControl button {
-    font-size: 0.9rem;
+    font-size: 0.75rem;
   }
 }
 @media only screen and (max-height: 500px) {

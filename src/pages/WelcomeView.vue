@@ -57,6 +57,7 @@
       :data="questions"
     ></questions-comp>
     <div class="blackLine"></div>
+    <the-footer position="relative"></the-footer>
   </div>
 </template>
 
@@ -64,12 +65,14 @@
 import BannerCard from "../components/BannerCard.vue";
 import QuestionsComp from "../components/QuestionsComp.vue";
 import EmailForm from "../components/ui/EmailForm.vue";
+import TheFooter from "../components/ui/TheFooter.vue";
 import { welcome, questions } from "../store/static";
 export default {
   components: {
     BannerCard,
     QuestionsComp,
     EmailForm,
+    TheFooter,
   },
   data() {
     return {

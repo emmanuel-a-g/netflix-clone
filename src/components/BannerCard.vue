@@ -90,7 +90,6 @@ h4 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* height: 55vh; */
   font-size: 1.3rem;
   text-align: left;
 }
@@ -99,7 +98,6 @@ h4 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* height: 55vh; */
 }
 .right img {
   width: 480px;
@@ -110,5 +108,21 @@ h4 {
 }
 .rightColumn {
   grid-column: 2 / span 1;
+}
+@media only screen and (max-width: 740px) {
+  .left {
+    font-size: 1rem;
+  }
+  .right img {
+    width: 300px;
+  }
+}
+@media only screen and (max-width: 550px) {
+  .left {
+    font-size: 0.75rem;
+  }
+  .right img {
+    width: 210px;
+  }
 }
 </style>

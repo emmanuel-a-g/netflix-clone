@@ -5,7 +5,11 @@
       <div class="contentDiv">
         <login-form></login-form>
       </div>
-      <the-footer></the-footer>
+      <the-footer
+        position="absolute"
+        color="#0000008e"
+        topBorder="#8c8c8c"
+      ></the-footer>
     </div>
   </div>
 </template>
