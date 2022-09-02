@@ -70,6 +70,7 @@ export default {
   align-content: center;
   overflow-y: hidden;
   width: 100%;
+  box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.601);
 }
 /* replace with a inset color overlay */
 .gradientDiv {
