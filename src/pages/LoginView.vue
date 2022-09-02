@@ -23,7 +23,6 @@ export default {
 
 <style scoped>
 .loginDiv {
-  min-height: 100vh;
   margin: 0;
   padding: 0;
   display: flex;
@@ -85,7 +84,7 @@ p {
     height: auto;
     top: 5vh;
     left: 5vw;
-    margin: 0;
+    margin-top: 0;
   }
 }
 </style>
