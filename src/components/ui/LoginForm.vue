@@ -2,7 +2,7 @@
   <div class="loginDiv">
     <div class="innerDiv">
       <form @submit.prevent="submitLogin">
-        <h2 @click="signIn">Sign In</h2>
+        <h2>Sign In</h2>
         <input
           type="email"
           placeholder="Email or phone number"
@@ -100,10 +100,7 @@ export default {
     },
     signUpForward() {
       //make replace later on
-      this.$router.push("/signup");
-    },
-    signIn() {
-      this.$router.replace("/login");
+      this.$router.replace("/");
     },
   },
 };
