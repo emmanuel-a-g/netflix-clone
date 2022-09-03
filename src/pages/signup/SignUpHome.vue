@@ -29,7 +29,7 @@ export default {
 }
 .content {
   width: 100%;
-  height: 87vh;
+  min-height: 47vh;
   display: flex;
   justify-content: center;
 }

@@ -1,8 +1,8 @@
 <template>
   <div class="content">
-    <img :src="'./images/kids.png'" alt="netflix logo" />
+    <img :src="image" alt="devices logo" />
     <div>
-      <span>STEP 1 OF 3</span>
+      <span class="step">STEP 1 OF 3</span>
       <h2>Finish setting up your account</h2>
       <p>
         Netflix is personalized for you. Create a password to watch on any
@@ -14,7 +14,13 @@
 </template>
 
 <script>
+import image from "../../assets/devices.png";
 export default {
+  data() {
+    return {
+      image,
+    };
+  },
   methods: {
     nextTo() {
       this.$router.push("/signup/two");
@@ -24,6 +30,9 @@ export default {
 </script>
 
 <style scoped>
+.step {
+  font-size: 0.9rem;
+}
 .content {
   color: black;
   height: 87vh;
@@ -35,7 +44,7 @@ export default {
   width: 100%;
 }
 .content div {
-  width: 320px;
+  width: 350px;
   text-align: center;
   font-size: 1.1rem;
 }

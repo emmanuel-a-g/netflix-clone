@@ -1,7 +1,7 @@
 <template>
   <div class="loginDiv">
     <div class="imageDiv">
-      <img @click="goHome" :src="'./images/netflix.png'" alt="netflix logo" />
+      <img @click="goHome" :src="image" alt="netflix logo" />
       <div class="contentDiv">
         <login-form @submit-login="handleLogin"></login-form>
       </div>
@@ -15,6 +15,7 @@
 </template>
 
 <script>
+import image from "../assets/netflix.png";
 import LoginForm from "../components/ui/LoginForm.vue";
 import TheFooter from "../components/ui/TheFooter.vue";
 export default {
@@ -22,9 +23,14 @@ export default {
     LoginForm,
     TheFooter,
   },
+  data() {
+    return {
+      image,
+    };
+  },
   methods: {
-    handleLogin({ email, password }) {
-      console.log("Login details: ", email, password);
+    handleLogin({ email, password, remember }) {
+      console.log("Login details: ", email, password, remember);
     },
     goHome() {
       this.$router.replace("/");

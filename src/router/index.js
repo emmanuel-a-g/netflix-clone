@@ -6,6 +6,7 @@ import SignUpHome from "../pages/signup/SignUpHome.vue";
 // lazy loading...
 const SignUpOne = () => import("../pages/signup/SignUpOne.vue");
 const SignUpTwo = () => import("../pages/signup/SignUpTwo.vue");
+const SignUpThree = () => import("../pages/signup/SignUpThree.vue");
 
 const router = createRouter({
   history: createWebHistory(),
@@ -29,6 +30,7 @@ const router = createRouter({
           path: "two",
           component: SignUpTwo,
         },
+        { path: "three", component: SignUpThree },
       ],
     },
     { path: "/:notFound(.*)", name: "Not Found", component: NotFound },

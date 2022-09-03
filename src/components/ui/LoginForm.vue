@@ -2,7 +2,7 @@
   <div class="loginDiv">
     <div class="innerDiv">
       <form @submit.prevent="submitLogin">
-        <h2>Sign In</h2>
+        <h2 @click="signIn">Sign In</h2>
         <input
           type="email"
           placeholder="Email or phone number"
@@ -88,15 +88,20 @@ export default {
       this.$emit("submit-login", {
         email: this.email,
         password: this.password,
+        remember: this.rememberMe,
       });
       this.timer = setTimeout(() => {
         this.email = "";
         this.password = "";
+        this.rememberMe = false;
       }, 500);
     },
     signUpForward() {
       //make replace later on
       this.$router.push("/signup");
+    },
+    signIn() {
+      this.$router.replace("/login");
     },
   },
 };
