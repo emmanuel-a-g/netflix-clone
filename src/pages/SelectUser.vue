@@ -1,6 +1,6 @@
 <template>
   <div class="selectUserDiv">
-    <img :src="image" alt="netflix logo" />
+    <img :src="image" alt="netflix logo"/>
     <SelectProfile>
     </SelectProfile>
   </div>

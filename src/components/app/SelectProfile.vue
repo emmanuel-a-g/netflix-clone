@@ -103,5 +103,8 @@ button {
   .wrapper h1 {
     font-size: 1.5rem;
   }
+  .profiles {
+    width: 100%;
+  }
 }
 </style>

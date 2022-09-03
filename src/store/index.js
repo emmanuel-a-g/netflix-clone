@@ -9,6 +9,8 @@ const store = createStore({
       userId: null,
       email: "",
       password: "",
+      name: "",
+      //TODO: ARE USER AND NAME THE SAME??
     };
   },
   mutations: {
@@ -28,6 +30,9 @@ const store = createStore({
       state.email = null;
       state.password = null;
     },
+    changeName(state, payload) {
+      state.name = payload.name;
+    },
   },
   getters: {
     userId(state) {
@@ -39,6 +44,9 @@ const store = createStore({
     getEmail(state) {
       return state.email;
     },
+    getName(state) {
+      return state.name;
+    }
   },
   actions: {
     setDetails(context, payload) {
@@ -51,6 +59,11 @@ const store = createStore({
     },
     logOut(context) {
       context.commit("logOut");
+    },
+    changeName(context, payload) {
+      //TODO
+      //ALLOW to Choose between Users
+      context.commit("changeName", payload);
     },
   },
 });

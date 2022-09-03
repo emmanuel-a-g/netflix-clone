@@ -10,7 +10,7 @@
       </div>
       <div class="cardOne">
         <!-- create name or replace name -->
-        <input type="text" placeholder="Name" />
+        <input type="text" placeholder="Name" ref="name" @keyup="setName" />
         <p>Language:</p>
         <button>English &#8681;</button>
       </div>
@@ -32,7 +32,9 @@
       </div>
     </div>
     <div class="buttons">
-      <button @click="saveAndGoBack" :style="{ 'background-color': 'white' }">Save</button>
+      <button @click="saveAndGoBack" :style="{ 'background-color': 'white' }">
+        Save
+      </button>
       <button @click="cancelAndGoBack">Cancel</button>
     </div>
   </div>
@@ -44,18 +46,43 @@ import netflix from "../../assets/netflix.png";
 export default {
   data() {
     return {
+      name: "",
+      nameProvided: false,
       image,
       netflix,
     };
   },
   methods: {
+    setName() {
+      this.name = this.$refs.name.value;
+    },
+    changeName() {
+      //TODO
+      //send http request to change name
+      //HERE
+      //on success, change name here in VUEX
+      this.$store.dispatch("changeName", {
+        name: this.name,
+      });
+    },
     saveAndGoBack() {
-      //send put http request to name property
-      //move back
+      this.changeName();
       this.$router.replace("selectuser");
     },
-    cancelAndGoBack(){
+    cancelAndGoBack() {
       this.$router.replace("selectuser");
+    },
+    getTheName() {
+      return this.$store.getters.getName;
+    },
+  },
+  mounted() {
+    const name = this.$store.getters.getName;
+    if (name) {
+      this.$refs.name.value = name;
+      this.nameProvided = true;
+    } else {
+      this.nameProvided = false;
     }
   },
 };
