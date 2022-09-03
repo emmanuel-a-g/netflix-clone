@@ -54,6 +54,13 @@ const router = createRouter({
     },
     { path: "/:notFound(.*)", name: "Not Found", component: NotFound },
   ],
+  scrollBehavior(_1, _2, savedPosition) {
+    if (savedPosition) {
+      return savedPosition;
+    } else {
+      return { top: 0 };
+    }
+  },
 });
 router.beforeEach((to, _1, next) => {
   //process.env.VUE_TITLE

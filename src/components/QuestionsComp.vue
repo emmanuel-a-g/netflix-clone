@@ -30,6 +30,7 @@ import ExpandCard from "../components/ui/ExpandCard.vue";
 import EmailForm from "../components/ui/EmailForm.vue";
 export default {
   props: ["title", "data"],
+  emits: ["submit-email"],
   components: {
     ExpandCard,
     EmailForm,
@@ -44,7 +45,7 @@ export default {
       this.current = val;
     },
     submitEmail(email) {
-      alert("questions comp email: " + email);
+      this.$emit("submit-email", email);
     },
   },
   //IMPLEMENT FUNCTIONALITY TO CLOSE ALL OTHERS...

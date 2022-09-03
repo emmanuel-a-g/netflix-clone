@@ -12,10 +12,10 @@
       </div>
       <div class="contentDiv">
         <h1>Unlimited movies, TV shows, and more.</h1>
-        <h3>Watch anywhere. Cancel anytime.</h3>
-        <h5>
+        <p id="watch">Watch anywhere. Cancel anytime.</p>
+        <p>
           Ready to watch? Enter your email to create or restart your membership.
-        </h5>
+        </p>
         <email-form @submit-email="submitEmail"> </email-form>
       </div>
     </div>
@@ -55,6 +55,7 @@
     <questions-comp
       title="Frequently Asked Questions"
       :data="questions"
+      @submit-email="submitEmail"
     ></questions-comp>
     <div class="blackLine"></div>
     <the-footer position="relative"></the-footer>
@@ -138,17 +139,19 @@ export default {
   z-index: 3;
   max-width: 630px;
 }
-.contentDiv h1,
-.contentDiv h3 {
-  margin: 0;
-  padding: 0;
+#watch {
+  font-size: 1.7rem;
 }
-.contentDiv h5 {
+.contentDiv p {
+  margin: 15px;
+  padding: 0;
+  font-size: 1.1rem;
+  text-align: center;
+}
+.contentDiv h1 {
   margin: 0;
   margin-top: 25px;
-  margin-bottom: 25px;
-  font-size: 1.1rem;
-  width: 100%;
+  margin-bottom: 10px;
 }
 .navDiv {
   width: 100%;
