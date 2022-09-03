@@ -108,11 +108,12 @@ export default {
 }
 .innerDiv {
   height: 85vh;
-  width: 420px;
+  width: 450px;
   background-color: rgba(0, 0, 0, 0.7);
   display: flex;
   flex-shrink: 0;
   justify-content: center;
+  border-radius: 5px;
 }
 .innerDiv input {
   color: white;
@@ -172,7 +173,7 @@ form {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  width: 80%;
+  width: 75%;
   display: flex;
   flex-direction: column;
 }

@@ -82,7 +82,11 @@ export default {
   },
   methods: {
     submitEmail(email) {
-      alert("welcome view email: " + email);
+      //check email for users, forward to login
+      //if (!user)
+      //move on to next step
+      console.log(email);
+      this.$router.push("/login");
     },
   },
 };

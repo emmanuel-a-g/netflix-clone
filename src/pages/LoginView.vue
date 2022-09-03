@@ -61,7 +61,7 @@ export default {
   font-size: 1.5rem;
   z-index: 3;
   max-width: 630px;
-  min-height: 700px !important;
+  min-height: 650px;
 }
 p {
   color: black;
