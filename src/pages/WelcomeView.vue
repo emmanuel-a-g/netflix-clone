@@ -3,7 +3,7 @@
     <div class="welcomeImageDiv">
       <div class="navDiv">
         <div class="leftNav">
-          <img :src="'./images/netflix.png'" alt="netflix logo" />
+          <img :src="image" alt="netflix logo" />
         </div>
         <div class="rightNav">
           <button class="leftButton">English</button>
@@ -67,6 +67,7 @@ import QuestionsComp from "../components/QuestionsComp.vue";
 import EmailForm from "../components/ui/EmailForm.vue";
 import TheFooter from "../components/ui/TheFooter.vue";
 import { welcome, questions } from "../store/static";
+import image from "../assets/netflix.png";
 export default {
   components: {
     BannerCard,
@@ -78,6 +79,7 @@ export default {
     return {
       data: welcome,
       questions,
+      image,
     };
   },
   methods: {

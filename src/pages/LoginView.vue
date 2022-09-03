@@ -1,7 +1,7 @@
 <template>
   <div class="loginDiv">
     <div class="imageDiv">
-      <img :src="'./images/netflix.png'" alt="netflix logo" />
+      <img @click="goHome" :src="'./images/netflix.png'" alt="netflix logo" />
       <div class="contentDiv">
         <login-form @submit-login="handleLogin"></login-form>
       </div>
@@ -25,6 +25,9 @@ export default {
   methods: {
     handleLogin({ email, password }) {
       console.log("Login details: ", email, password);
+    },
+    goHome() {
+      this.$router.replace("/");
     },
   },
 };
@@ -57,6 +60,9 @@ export default {
   left: 1.2vw;
   top: 0;
   margin-top: -15px;
+}
+.imageDiv img:hover {
+  cursor: pointer;
 }
 .contentDiv {
   position: absolute;

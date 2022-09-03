@@ -92,6 +92,7 @@ h4 {
   align-items: center;
   font-size: 1.3rem;
   text-align: left;
+  z-index: 6;
 }
 .right {
   display: flex;
