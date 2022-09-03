@@ -24,15 +24,19 @@ export default {
       this.$router.replace("/");
     },
     logInOut() {
-      // if logged in, log out
-      // if logged out, log in
-      this.$router.replace("/login");
+      if (!this.loggedIn) {
+        this.$router.replace("/login");
+      } else {
+        this.$store.dispatch("logOut");
+        //1. log out 1. go back to home
+        this.$router.replace("/");
+      }
     },
   },
   computed: {
     theTitle() {
       if (this.loggedIn) {
-        return "Sign Out";
+        return "Log Out";
       } else {
         return "Sign In";
       }

@@ -6,7 +6,7 @@
           <img :src="image" alt="netflix logo" />
         </div>
         <div class="rightNav">
-          <button class="leftButton">English</button>
+          <button class="leftButton">English &#9660;</button>
           <button @click="forwardLogin" class="rightButton">Sign In</button>
         </div>
       </div>

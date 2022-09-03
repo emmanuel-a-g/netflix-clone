@@ -3,17 +3,17 @@
     <!-- logged in? show -->
     <!-- logged out? don't show -->
     <!-- I MIGHT NOT NEED THIS AFTER ALL -->
-    <the-navigation v-if="showNav"></the-navigation>
+    <!-- <the-navigation v-if="showNav"></the-navigation> -->
 
     <router-view></router-view>
   </div>
 </template>
 
 <script>
-import TheNavigation from "./layout/TheNavigation.vue";
+// import TheNavigation from "./layout/TheNavigation.vue";
 import { mapGetters } from "vuex";
 export default {
-  components: { TheNavigation },
+  // components: { TheNavigation },
   name: "App",
   data() {
     return {

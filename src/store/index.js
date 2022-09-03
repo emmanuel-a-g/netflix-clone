@@ -6,7 +6,7 @@ const store = createStore({
   state() {
     return {
       user: null,
-      userId: 1,
+      userId: null,
       email: "",
       password: "",
     };
@@ -16,11 +16,18 @@ const store = createStore({
       state.email = payload.email;
       state.password = payload.password;
       console.log("Setting details: ", payload);
+      //remove password from saved state once logged in!!
     },
     // temporary implementation!!!
     authenticate(state) {
       state.user = true;
-    }
+    },
+    logOut(state) {
+      state.user = null;
+      state.userId = null;
+      state.email = null;
+      state.password = null;
+    },
   },
   getters: {
     userId(state) {
@@ -36,11 +43,14 @@ const store = createStore({
   actions: {
     setDetails(context, payload) {
       //if valid then say authenticated
-      if (payload.email, payload.password) {
+      if ((payload.email, payload.password)) {
         //temporay implementation
         context.commit("authenticate");
       }
       context.commit("setDetails", payload);
+    },
+    logOut(context) {
+      context.commit("logOut");
     },
   },
 });

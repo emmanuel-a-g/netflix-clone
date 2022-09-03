@@ -6,7 +6,7 @@
       placeholder="Email Address"
       v-model="email"
     />
-    <button @click="submitEmail">Get Started</button>
+    <button @click="submitEmail">Get Started &#8250;</button>
   </div>
 </template>
 
