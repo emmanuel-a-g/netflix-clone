@@ -19,8 +19,9 @@ export default {
       //creat Avatar
       //OR
       //Start Streaming...
-    }
-  }
+      this.$router.push("/selectuser");
+    },
+  },
 };
 </script>
 

@@ -2,7 +2,7 @@
   <div class="app">
     <!-- logged in? show -->
     <!-- logged out? don't show -->
-    <the-navigation v-if="isUser"></the-navigation>
+    <the-navigation v-if="showNav"></the-navigation>
 
     <router-view></router-view>
   </div>
@@ -14,9 +14,17 @@ import { mapGetters } from "vuex";
 export default {
   components: { TheNavigation },
   name: "App",
+  data() {
+    return {
+      show: false,
+    };
+  },
   computed: {
     isUser() {
       return this.loggedIn;
+    },
+    showNav() {
+      return this.loggedIn && this.show;
     },
     ...mapGetters(["loggedIn"]),
   },
