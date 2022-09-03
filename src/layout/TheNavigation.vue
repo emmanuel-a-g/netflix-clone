@@ -7,6 +7,7 @@
           <li>login</li>
           <li>signup</li>
           <li>account</li>
+          <li>logout</li>
         </ul>
       </nav>
     </div>

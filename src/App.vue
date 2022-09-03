@@ -16,9 +16,9 @@ export default {
   name: "App",
   computed: {
     isUser() {
-      return this.user;
+      return this.loggedIn;
     },
-    ...mapGetters(["user"]),
+    ...mapGetters(["loggedIn"]),
   },
 };
 </script>

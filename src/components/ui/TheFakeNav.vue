@@ -3,12 +3,14 @@
     <nav>
       <!-- v-bind:src="require('images/rails.png')"  -->
       <img @click="goHome" :src="image" alt="netflix logo" />
-      <h2>{{ theTitle }}</h2>
+      <h2 @click="logInOut">{{ theTitle }}</h2>
     </nav>
   </div>
 </template>
 
 <script>
+// LOGGED IN OR LOGGED OUT DEPENDENT!!
+import { mapGetters } from "vuex";
 import image from "../../assets/netflix.png";
 export default {
   props: ["title", "color"],
@@ -21,15 +23,21 @@ export default {
     goHome() {
       this.$router.replace("/");
     },
+    logInOut() {
+      // if logged in, log out
+      // if logged out, log in
+      this.$router.replace("/login");
+    },
   },
   computed: {
     theTitle() {
-      if (this.title) {
-        return this.title;
+      if (this.loggedIn) {
+        return "Sign Out";
       } else {
         return "Sign In";
       }
     },
+    ...mapGetters(["loggedIn"]),
   },
 };
 </script>

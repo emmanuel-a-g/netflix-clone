@@ -5,9 +5,18 @@
       <span class="step">STEP 2 OF 3</span>
       <h2>Choose your plan.</h2>
       <div class="checks">
-        <p>No commitments, cancel anytime.</p>
-        <p>Everything on Netflix for one low price.</p>
-        <p>Unlimited viewing on all your devices.</p>
+        <p>
+          <span class="color">&#x2714;</span>&nbsp;No commitments, cancel
+          anytime.
+        </p>
+        <p>
+          <span class="color">&#x2714;</span>&nbsp;Everything on Netflix for one
+          low price.
+        </p>
+        <p>
+          <span class="color">&#x2714;</span>&nbsp;Unlimited viewing on all your
+          devices.
+        </p>
       </div>
     </div>
     <button @click="nextTo">Next</button>
@@ -44,6 +53,9 @@ export default {
 .step {
   font-size: 0.9rem;
 }
+.color {
+  color: var(--red);
+}
 .checks {
   display: flex;
   align-items: center;
@@ -71,7 +83,7 @@ export default {
   font-size: 1.25rem;
 }
 .content img {
-  width: 100px;
+  width: 90px;
   height: auto;
 }
 form {

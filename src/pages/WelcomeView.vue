@@ -87,8 +87,11 @@ export default {
       //check email for users, forward to login
       //if (!user)
       //move on to sign-up
-      console.log(email);
       this.$router.push("/signup");
+      this.$store.dispatch("setDetails", {
+        email: email,
+        password: "",
+      });
     },
     forwardLogin() {
       this.$router.push("/login");

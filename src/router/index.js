@@ -7,6 +7,8 @@ import SignUpHome from "../pages/signup/SignUpHome.vue";
 const SignUpOne = () => import("../pages/signup/SignUpOne.vue");
 const SignUpTwo = () => import("../pages/signup/SignUpTwo.vue");
 const SignUpThree = () => import("../pages/signup/SignUpThree.vue");
+const SignUpFour = () => import("../pages/signup/SignUpFour.vue");
+const SignUpFive = () => import("../pages/signup/SignUpFive.vue");
 
 const router = createRouter({
   history: createWebHistory(),
@@ -31,6 +33,8 @@ const router = createRouter({
           component: SignUpTwo,
         },
         { path: "three", component: SignUpThree },
+        { path: "four", component: SignUpFour },
+        { path: "five", component: SignUpFive },
       ],
     },
     { path: "/:notFound(.*)", name: "Not Found", component: NotFound },

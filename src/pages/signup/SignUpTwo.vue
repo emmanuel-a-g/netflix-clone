@@ -8,18 +8,21 @@
         We hate paperwork, too.
       </p>
       <form @submit.prevent="handleSubmit">
+        <input v-if="forwardEmail" type="email" :value="email" readonly />
         <input
+          v-else
           type="email"
-          required
           v-model="email"
-          placeholder="Enter your email"
+          placeholder="Place your email"
         />
+        <span v-if="emailAlert"></span>
         <input
           type="password"
           required
           v-model="password"
           placeholder="Add a password"
         />
+        <span v-if="passwordAlert"></span>
         <button>Next</button>
       </form>
     </div>
@@ -28,20 +31,25 @@
 
 <script>
 import image from "../../assets/logo.png";
+import { mapGetters } from "vuex";
 export default {
   data() {
     return {
       email: "",
       password: "",
+      emailAlert: null,
+      passwordAlert: null,
       image,
-      // emailAlert: null,
-      // passwordAlert: null,
+      forwardEmail: false,
     };
   },
   methods: {
     handleSubmit() {
       if (this.email.includes("@") && this.password.length >= 6) {
-        console.log(this.email, this.password);
+        this.$store.dispatch("setDetails", {
+          email: this.email,
+          password: this.password,
+        });
         this.nextTo();
       }
       setTimeout(() => {
@@ -52,6 +60,18 @@ export default {
     nextTo() {
       this.$router.push("/signup/three");
     },
+    setSavedEmail() {
+      this.email = this.getEmail;
+    },
+  },
+  computed: {
+    ...mapGetters(["getEmail"]),
+  },
+  mounted() {
+    if (this.getEmail) {
+      this.email = this.getEmail;
+      this.forwardEmail = true;
+    }
   },
 };
 </script>
