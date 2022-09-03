@@ -11,6 +11,7 @@ const SignUpFour = () => import("../pages/signup/SignUpFour.vue");
 const SignUpFive = () => import("../pages/signup/SignUpFive.vue");
 const SelectUser = () => import("../pages/SelectUser.vue");
 const ManageProfile = () => import("../pages/profile/ManageProfile.vue");
+const BrowseView = () => import("../pages/browse/BrowseView.vue");
 
 const router = createRouter({
   history: createWebHistory(),
@@ -46,6 +47,10 @@ const router = createRouter({
     {
       path: "/manageprofiles",
       component: ManageProfile,
+    },
+    {
+      path: "/browse",
+      component: BrowseView,
     },
     { path: "/:notFound(.*)", name: "Not Found", component: NotFound },
   ],

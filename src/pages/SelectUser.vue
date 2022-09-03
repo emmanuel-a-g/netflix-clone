@@ -2,7 +2,6 @@
   <div class="selectUserDiv">
     <img :src="image" alt="netflix logo" />
     <SelectProfile>
-      
     </SelectProfile>
   </div>
 </template>
@@ -10,6 +9,7 @@
 <script>
 import SelectProfile from "../components/app/SelectProfile.vue";
 import image from "../assets/netflix.png";
+// IMPLEMENT MANAGE PROFILES TO CHANGE NAME, ETC.
 export default {
   components: {
     SelectProfile,

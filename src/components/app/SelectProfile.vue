@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <h1>Who's watching?</h1>
+    <h1 @click="moveToBrowse">Who's watching?</h1>
     <div class="profiles">
       <div class="card">
         <img :src="image" alt="user image" />
@@ -23,7 +23,7 @@
         <p>Name</p>
       </div>
     </div>
-    <button @click="moveTo">Manage Profiles</button>
+    <button @click="moveToManage">Manage Profiles</button>
   </div>
 </template>
 
@@ -36,8 +36,13 @@ export default {
     };
   },
   methods: {
-    moveTo() {
+    moveToManage() {
       this.$router.push("/manageprofiles");
+    },
+    moveToBrowse() {
+      //optional argument of profile??
+      //or vue saved;
+      this.$router.replace("/browse");
     },
   },
 };

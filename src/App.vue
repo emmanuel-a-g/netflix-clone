@@ -2,6 +2,7 @@
   <div class="app">
     <!-- logged in? show -->
     <!-- logged out? don't show -->
+    <!-- I MIGHT NOT NEED THIS AFTER ALL -->
     <the-navigation v-if="showNav"></the-navigation>
 
     <router-view></router-view>

@@ -32,8 +32,8 @@
       </div>
     </div>
     <div class="buttons">
-      <button :style="{ 'background-color': 'white' }">Save</button>
-      <button>Cancel</button>
+      <button @click="saveAndGoBack" :style="{ 'background-color': 'white' }">Save</button>
+      <button @click="cancelAndGoBack">Cancel</button>
     </div>
   </div>
 </template>
@@ -48,8 +48,15 @@ export default {
       netflix,
     };
   },
-  computed: {
-    // theName() {}
+  methods: {
+    saveAndGoBack() {
+      //send put http request to name property
+      //move back
+      this.$router.replace("selectuser");
+    },
+    cancelAndGoBack(){
+      this.$router.replace("selectuser");
+    }
   },
 };
 </script>
