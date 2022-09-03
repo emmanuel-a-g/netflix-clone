@@ -110,12 +110,17 @@ h4 {
 .rightColumn {
   grid-column: 2 / span 1;
 }
+@media only screen and (max-width: 850px) {
+  .right img {
+    width: 260px;
+  }
+}
 @media only screen and (max-width: 740px) {
   .left {
     font-size: 1rem;
   }
   .right img {
-    width: 300px;
+    width: 220px;
   }
 }
 @media only screen and (max-width: 550px) {
@@ -123,7 +128,7 @@ h4 {
     font-size: 0.75rem;
   }
   .right img {
-    width: 210px;
+    width: 200px;
   }
 }
 </style>

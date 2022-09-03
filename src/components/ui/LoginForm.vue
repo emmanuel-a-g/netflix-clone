@@ -6,23 +6,25 @@
         <input
           type="email"
           placeholder="Email or phone number"
-          v-model="email"
+          v-model.trim="email"
           v-on:keydown="validateEmail"
           v-on:blur="reset('email')"
+          :class="{ highlight: alertEmail ? true : false }"
         />
-        <p class="alert" v-if="alertEmail">
-          Please enter a valid email or phone number.
-        </p>
+        <span class="alert" v-if="alertEmail">
+          Please enter a valid email.
+        </span>
         <input
           type="password"
           v-model="password"
           placeholder="Password"
           v-on:keydown="validatePassword"
           v-on:blur="reset('password')"
+          :class="{ highlight: alertPassword ? true : false }"
         />
-        <p class="alert" v-if="alertPassword">
+        <span class="alert" v-if="alertPassword">
           Your password must contain between 4 and 60 characters.
-        </p>
+        </span>
         <button>Sign In</button>
         <div class="help">
           <p>
@@ -129,6 +131,7 @@ export default {
   align-self: flex-start;
   margin: 0px;
   padding: 0px;
+  color: orange;
 }
 .info {
   display: flex;
@@ -205,6 +208,9 @@ input {
 p {
   font-size: 1rem;
   color: var(--greyish);
+}
+.highlight {
+  border-bottom: 1px orange solid;
 }
 @media only screen and (max-width: 740px) {
   .innerDiv {

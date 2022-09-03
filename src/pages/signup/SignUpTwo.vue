@@ -12,7 +12,7 @@
         <input
           v-else
           type="email"
-          v-model="email"
+          v-model.trim="email"
           placeholder="Place your email"
         />
         <span v-if="emailAlert"></span>
