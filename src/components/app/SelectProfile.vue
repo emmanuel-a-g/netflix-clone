@@ -64,10 +64,11 @@ export default {
 .profiles {
   width: 80%;
   max-width: 760px;
-  display: inline-flex;
-  flex-wrap: wrap;
+  display: flex;
   justify-content: space-evenly;
+  align-items: center;
   margin-bottom: 30px;
+  min-height: 150px;
 }
 button {
   width: 180px;
@@ -77,15 +78,26 @@ button {
   color: grey;
   border: 1px solid grey;
 }
-.card p {
+.card {
+  min-height: 140px;
   color: grey;
   text-align: center;
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.card:hover {
+  color: white;
+}
+.card img:hover {
+  border: 1px white solid;
 }
 .card img {
   width: 50px;
   height: auto;
-  border: 1px white solid;
-  padding: 5px;
+  padding: 14px;
 }
 @media only screen and (max-width: 700px) {
   .wrapper h1 {
