@@ -1,0 +1,162 @@
+<template>
+  <div class="wrapper">
+    <img class="logo" :src="netflix" alt="netflix logo" />
+    <div class="form">
+      <div class="cardTitle">
+        <h1>Edit Profile</h1>
+      </div>
+      <div class="cardImg">
+        <img class="userimg" :src="image" alt="user image" />
+      </div>
+      <div class="cardOne">
+        <!-- create name or replace name -->
+        <input type="text" placeholder="Name" />
+        <p>Language:</p>
+        <button>English &#8681;</button>
+      </div>
+      <div class="cardTwo">
+        <p :style="{ padding: '0' }">Maturity Settings:</p>
+        <span :style="{ 'font-size': '.8rem' }">MATURE</span>
+        <button :style="{ padding: '0' }">Edit</button>
+      </div>
+      <div class="cardThree">
+        <p>Autoplay Controls</p>
+        <label>
+          <input type="checkbox" />Autoplay next episode on a series of all
+          devices.</label
+        >
+        <label>
+          <input type="checkbox" />Autoplay previews while browsing all
+          devices.</label
+        >
+      </div>
+    </div>
+    <div class="buttons">
+      <button :style="{ 'background-color': 'white' }">Save</button>
+      <button>Cancel</button>
+    </div>
+  </div>
+</template>
+
+<script>
+import image from "../../assets/logo.png";
+import netflix from "../../assets/netflix.png";
+export default {
+  data() {
+    return {
+      image,
+      netflix,
+    };
+  },
+  computed: {
+    // theName() {}
+  },
+};
+</script>
+
+<style scoped>
+.wrapper {
+  min-height: 100vh;
+  width: 100%;
+  font-size: 1rem;
+  color: black;
+  background-color: #141414;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.form {
+  min-height: 500px;
+  width: 400px;
+  max-width: 660px;
+  display: grid;
+  grid-template-columns: 28% 72%;
+  grid-template-rows: 15% 28% 28% 28%;
+  color: white;
+}
+.logo {
+  position: absolute !important;
+  width: 130px;
+  height: auto;
+  left: 3vw;
+  top: 1vh;
+}
+.cardTitle h1 {
+  font-size: 2rem;
+  color: white;
+}
+.buttons {
+  width: 400px;
+  padding-top: 30px;
+  border-top: 0.25px grey solid;
+  display: flex;
+  justify-content: flex-start;
+}
+button {
+  width: 80px;
+  height: 35px;
+  background-color: transparent;
+  border: none;
+  color: grey;
+  border: 1px solid grey;
+  margin-right: 25px;
+}
+.cardTitle {
+  grid-row: 1 / span 1;
+  grid-column: 1 / span 4;
+  border-bottom: 0.25px grey solid;
+}
+.cardImg {
+  grid-row: 2 / span 1;
+  grid-column: 1 / span 1;
+}
+.cardOne {
+  grid-row: 2 / span 1;
+  grid-column: 2 / span 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.cardOne input {
+  width: 95%;
+  padding: 0;
+  height: 35px;
+  background-color: rgb(98, 98, 98);
+  border: none;
+  color: white;
+  font-size: 16px;
+  padding-left: 10px;
+}
+.cardOne input::placeholder {
+  color: rgb(175, 175, 175);
+}
+.cardTwo {
+  border-top: 0.25px grey solid;
+  grid-row: 3 / span 1;
+  grid-column: 2 / span 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.cardThree {
+  font-size: 0.75rem;
+  border-top: 0.25px grey solid;
+  grid-row: 4 / span 1;
+  grid-column: 2 / span 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.cardImg img {
+  width: 95px;
+  height: auto;
+  padding: 5px;
+}
+@media only screen and (max-width: 700px) {
+  .wrapper h1 {
+    font-size: 1.5rem;
+  }
+}
+</style>

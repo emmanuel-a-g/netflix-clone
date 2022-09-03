@@ -23,7 +23,7 @@
         <p>Name</p>
       </div>
     </div>
-    <button>Manage Profiles</button>
+    <button @click="moveTo">Manage Profiles</button>
   </div>
 </template>
 
@@ -34,6 +34,11 @@ export default {
     return {
       image,
     };
+  },
+  methods: {
+    moveTo() {
+      this.$router.push("/manageprofiles");
+    },
   },
 };
 </script>
