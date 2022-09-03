@@ -3,9 +3,9 @@
     <!-- logged in? show -->
     <!-- logged out? don't show -->
     <!-- I MIGHT NOT NEED THIS AFTER ALL -->
-    <!-- <the-navigation v-if="showNav"></the-navigation> -->
+    <!-- <the-navigation></the-navigation> -->
 
-    <router-view></router-view>
+    <router-view> </router-view>
   </div>
 </template>
 
@@ -24,11 +24,14 @@ export default {
     isUser() {
       return this.loggedIn;
     },
-    showNav() {
-      return this.loggedIn && this.show;
-    },
     ...mapGetters(["loggedIn"]),
   },
+  // beforeMount() {},
+  // mounted() {},
+  // beforeUpdate() {},
+  // updated() {},
+  // beforeUnmount(){},
+  // unmounted() {}
 };
 </script>
 
