@@ -1,5 +1,5 @@
 import { createStore } from "vuex";
-//different module for each section
+//IMPORT FIRESTORE!!
 
 const store = createStore({
   // modules: {},
