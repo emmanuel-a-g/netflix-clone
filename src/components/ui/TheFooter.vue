@@ -18,11 +18,6 @@
 <script>
 export default {
   props: ["position", "color", "topBorder"],
-  mounted() {
-    setTimeout(() => {
-      console.log(this.color, this.position);
-    }, 2000);
-  },
 };
 </script>
 

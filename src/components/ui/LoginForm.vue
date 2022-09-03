@@ -1,7 +1,7 @@
 <template>
   <div class="loginDiv">
     <div class="innerDiv">
-      <form>
+      <form @submit.prevent="submitLogin">
         <h2>Sign In</h2>
         <input
           type="email"
@@ -23,7 +23,7 @@
         <p class="alert" v-if="alertPassword">
           Your password must contain between 4 and 60 characters.
         </p>
-        <button @click="submitLogin">Sign In</button>
+        <button>Sign In</button>
         <div class="help">
           <p>
             <input type="checkbox" v-model="rememberMe" />
@@ -57,6 +57,7 @@ export default {
       alertEmail: null,
       alertPassword: null,
       rememberMe: false,
+      timer: null,
     };
   },
   methods: {
@@ -88,7 +89,7 @@ export default {
         email: this.email,
         password: this.password,
       });
-      setTimeout(() => {
+      this.timer = setTimeout(() => {
         this.email = "";
         this.password = "";
       }, 500);

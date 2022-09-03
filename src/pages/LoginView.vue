@@ -3,7 +3,7 @@
     <div class="imageDiv">
       <img :src="'./images/netflix.png'" alt="netflix logo" />
       <div class="contentDiv">
-        <login-form></login-form>
+        <login-form @submit-login="handleLogin"></login-form>
       </div>
       <the-footer
         position="absolute"
@@ -21,6 +21,11 @@ export default {
   components: {
     LoginForm,
     TheFooter,
+  },
+  methods: {
+    handleLogin({ email, password }) {
+      console.log("Login details: ", email, password);
+    },
   },
 };
 </script>

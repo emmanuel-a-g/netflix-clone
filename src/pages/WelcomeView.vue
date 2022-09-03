@@ -7,7 +7,7 @@
         </div>
         <div class="rightNav">
           <button class="leftButton">English</button>
-          <button class="rightButton">Sign In</button>
+          <button @click="forwardLogin" class="rightButton">Sign In</button>
         </div>
       </div>
       <div class="contentDiv">
@@ -84,8 +84,11 @@ export default {
     submitEmail(email) {
       //check email for users, forward to login
       //if (!user)
-      //move on to next step
+      //move on to sign-up
       console.log(email);
+      this.$router.push("/signup");
+    },
+    forwardLogin() {
       this.$router.push("/login");
     },
   },
@@ -174,8 +177,8 @@ export default {
 .rightNav button {
   width: 105px;
   height: 40px;
-  border-radius: 5px;
-  font-size: 1rem;
+  border-radius: 2px;
+  font-size: 0.9rem;
 }
 .leftButton {
   background-color: rgba(0, 0, 0, 0.738);
