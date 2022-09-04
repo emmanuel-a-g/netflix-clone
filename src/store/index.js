@@ -1,5 +1,8 @@
 import { createStore } from "vuex";
-//IMPORT FIRESTORE!!
+//FIRESTORE V6
+// import { auth } from "../firebase";
+// import { database as db } from "../firebase";
+// import { collection, getDocs } from "firebase/firestore/lite";
 
 const store = createStore({
   // modules: {},
@@ -46,7 +49,7 @@ const store = createStore({
     },
     getName(state) {
       return state.name;
-    }
+    },
   },
   actions: {
     setDetails(context, payload) {

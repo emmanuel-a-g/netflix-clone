@@ -39,7 +39,9 @@ export default {
   position: relative;
   display: flex;
   height: 70px;
+  margin: 0;
   margin-bottom: 15px;
+  background-color: red;
 }
 .emailControl input {
   flex: 2;
@@ -60,21 +62,16 @@ export default {
 @media only screen and (max-width: 550px) {
   .emailControl {
     height: 50px;
+    min-width: 300px;
   }
   .emailControl button {
-    font-size: 0.75rem;
+    font-size: 0.55rem;
   }
 }
 @media only screen and (max-height: 500px) {
   .emailControl {
     font-size: 1rem;
     height: 40px;
-  }
-}
-@media only screen and (max-height: 350px) {
-  .emailControl {
-    font-size: 0.75rem;
-    height: 30px;
   }
 }
 </style>
