@@ -67,4 +67,13 @@ h2 {
   box-shadow: 2px 4px 20px -8px white;
   font-size: 1.25rem;
 }
+@media only screen and (max-width: 700px) {
+  .content button {
+    width: 100%;
+    font-size: 1rem;
+  }
+  .imageDiv {
+    width: 100%;
+  }
+}
 </style>

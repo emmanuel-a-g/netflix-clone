@@ -14,7 +14,7 @@
     <div id="options">
       <div>Credit or Debit Card</div>
       <div>PayPal</div>
-      <div class="free" @click="freeSignUp">&#128521; Free</div>
+      <div class="free" @click="freeSignUp">Free</div>
     </div>
   </div>
 </template>
@@ -102,5 +102,13 @@ h2 {
   text-align: center;
   border-radius: 3px;
   border: 1.5px rgb(142, 140, 140) solid;
+}
+@media only screen and (max-width: 700px) {
+  .content {
+    width: 100%;
+  }
+  .content div {
+    width: 99%;
+  }
 }
 </style>
