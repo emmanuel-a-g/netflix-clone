@@ -201,6 +201,7 @@ input {
   border: none;
   border-radius: 5px;
   font-size: 1rem;
+  text-indent: 5px;
 }
 p {
   font-size: 1rem;

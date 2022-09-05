@@ -41,7 +41,6 @@ export default {
   height: 70px;
   margin: 0;
   margin-bottom: 15px;
-  background-color: red;
 }
 .emailControl input {
   flex: 2;
