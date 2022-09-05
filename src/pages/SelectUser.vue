@@ -19,7 +19,7 @@ export default {
   },
   data() {
     return {
-      editMode: true,
+      editMode: false,
       image,
     };
   },

@@ -8,7 +8,6 @@
         @click="handle(name)"
         :class="{ highlight: editMode, single: !editMode }"
       >
-        <!-- <span v-if="editMode">edit</span> -->
         <img :src="image" alt="user image" />
         <p>Emmanuel</p>
       </div>
@@ -18,7 +17,6 @@
         @click="handle(name)"
         :class="{ highlight: editMode, single: !editMode }"
       >
-        <!-- <span v-if="editMode">edit</span> -->
         <img :src="image" alt="user image" />
         <p>Veronica</p>
       </div>
@@ -28,7 +26,6 @@
         @click="handle(name)"
         :class="{ highlight: editMode, single: !editMode }"
       >
-        <!-- <span v-if="editMode">edit</span> -->
         <img :src="image" alt="user image" />
         <p>Arturo</p>
       </div>
@@ -38,7 +35,6 @@
         @click="handle(name)"
         :class="{ highlight: editMode, single: !editMode }"
       >
-        <!-- <span v-if="editMode">edit</span> -->
         <img :src="image" alt="user image" />
         <p>Michael</p>
       </div>
@@ -48,7 +44,6 @@
         @click="handle(name)"
         :class="{ highlight: editMode, single: !editMode }"
       >
-        <!-- <span v-if="editMode">edit</span> -->
         <img :src="image" alt="user image" />
         <p>Wendy</p>
       </div>
@@ -144,10 +139,6 @@ button {
   width: 50px;
   height: auto;
   padding: 14px;
-}
-.card span {
-  position: absolute;
-  color: white;
 }
 .highlight {
   border: 1px white solid;

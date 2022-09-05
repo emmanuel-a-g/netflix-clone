@@ -10,7 +10,13 @@
       </div>
       <div class="cardOne">
         <!-- create name or replace name -->
-        <input type="text" placeholder="Name" ref="name" @keyup="setName" />
+        <input
+          type="text"
+          placeholder="Name"
+          ref="name"
+          @keyup="setName"
+          maxlength="15"
+        />
         <p>Language:</p>
         <button>English &#8681;</button>
       </div>
