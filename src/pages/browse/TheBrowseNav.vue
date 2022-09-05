@@ -1,16 +1,25 @@
 <template>
   <div class="content">
     <div class="imgDiv">
+      <aside
+        @click="toggleMenu"
+        :class="{ activeSide: openMenu, side: !openMenu }"
+      ></aside>
+      <p v-if="mobileView">
+        <img class="menu" :src="menu" alt="menu" @click="toggleMenu" />
+      </p>
       <div>
-        <img :src="logo" alt="netflix logo" />
+        <img class="logo" :src="logo" alt="netflix logo" />
       </div>
     </div>
-    <div class="navBar">
+    <div class="searchBar" v-if="mobileView">
+      <input type="text" placeholder="search" />
+    </div>
+    <div class="navBar" v-if="!mobileView">
       <ul>
         <li @click="switchUser">Switch Profiles</li>
         <li @click="account">Account</li>
         <li>{{ name }}</li>
-        <li><img :src="menu" alt="menu" /></li>
       </ul>
     </div>
   </div>
@@ -24,6 +33,9 @@ export default {
     return {
       logo,
       menu,
+      mobileView: false,
+      openMenu: false,
+      handleResize: null,
     };
   },
   computed: {
@@ -43,29 +55,67 @@ export default {
     switchUser() {
       this.$router.push("/selectuser");
     },
+    toggleMenu() {
+      this.openMenu = !this.openMenu;
+    },
+    setWidth() {
+      const breakpoint = 650;
+      this.mobileView = window.innerWidth < breakpoint;
+    },
+  },
+  mounted() {
+    const breakpoint = 650;
+    const mobileView = window.innerWidth < breakpoint;
+    this.mobileView = mobileView;
+    this.handleResize = () => this.setWidth();
+    window.addEventListener("resize", this.handleResize);
+  },
+  beforeUnmount() {
+    window.removeEventListener("resize", this.handleResize);
   },
 };
 </script>
 
 <style scoped>
+.side {
+  width: 70%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  right: 200%;
+  transition: 300ms;
+  background-color: transparent;
+  z-index: 199;
+}
+.activeSide {
+  width: 30%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  right: 70%;
+  background-color: aqua;
+  transition: 200ms;
+  z-index: 200;
+}
 .content {
   min-height: 8vh;
   display: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   display: grid;
-  grid-template-columns: 12% auto 30%;
+  grid-template-columns: 30% auto 30%;
   grid-template-rows: 1pt;
+  background-color: aquamarine;
 }
 .navBar {
   grid-column: 3 / span 1;
-  width: 100%;
-  height: 8vh;
+  min-height: 8vh;
 }
 .navBar li {
   list-style: none;
-  /* flex: 1; */
   text-align: center;
   cursor: pointer;
 }
@@ -78,36 +128,49 @@ export default {
   height: 100%;
   justify-content: space-evenly;
 }
-.navBar img {
-  width: 25px;
-  margin-bottom: -5px;
-}
 .imgDiv {
   grid-column: 1 / span 1;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
+  background-color: blue;
 }
 .imgDiv div {
   height: 100%;
 }
-.imgDiv img {
+.logo {
   width: 140px;
   height: auto;
   margin-top: -2vh;
 }
-@media only screen and (max-width: 700px) {
+.menu {
+  width: 20px;
+  height: 20px;
+}
+.searchBar {
+  min-height: 8vh;
+  background-color: yellow;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.searchBar input {
+  height: 23px;
+  border: 1px solid grey;
+  margin-right: 10px;
+}
+@media only screen and (max-width: 650px) {
   .content {
-    display: grid;
-    grid-template-columns: 25% auto;
-    grid-template-rows: 1pt;
+    display: flex;
+    max-height: 8vh;
+    justify-content: space-between;
   }
-  .imgDiv img {
+  .logo {
     width: 100px;
     height: auto;
     margin-top: -5px;
   }
-  .navBar {
-    grid-column: 2 / span 1;
+  .imgDiv {
+    margin-left: 8px;
   }
 }
 @media only screen and (max-width: 950px) {
