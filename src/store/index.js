@@ -8,7 +8,7 @@ const store = createStore({
   // modules: {},
   state() {
     return {
-      user: null,
+      user: "emm",
       userId: null,
       email: "",
       password: "",
@@ -54,7 +54,7 @@ const store = createStore({
   actions: {
     setDetails(context, payload) {
       //if valid then say authenticated
-      if ((payload.email, payload.password)) {
+      if (payload.email && payload.password) {
         //temporay implementation
         context.commit("authenticate");
       }

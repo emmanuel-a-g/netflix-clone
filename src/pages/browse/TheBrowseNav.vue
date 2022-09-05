@@ -7,9 +7,10 @@
     </div>
     <div class="navBar">
       <ul>
-        <li>Home</li>
-        <li>Account</li>
+        <li @click="switchUser">Switch Profiles</li>
+        <li @click="account">Account</li>
         <li>{{ name }}</li>
+        <li><img :src="menu" alt="menu" /></li>
       </ul>
     </div>
   </div>
@@ -17,10 +18,12 @@
 
 <script>
 import logo from "../../assets/netflix.png";
+import menu from "../../assets/menu.png";
 export default {
   data() {
     return {
       logo,
+      menu,
     };
   },
   computed: {
@@ -31,6 +34,14 @@ export default {
       } else {
         return "Visitor";
       }
+    },
+  },
+  methods: {
+    account() {
+      this.$router.push("/account");
+    },
+    switchUser() {
+      this.$router.push("/selectuser");
     },
   },
 };
@@ -54,8 +65,9 @@ export default {
 }
 .navBar li {
   list-style: none;
-  flex: 1;
+  /* flex: 1; */
   text-align: center;
+  cursor: pointer;
 }
 .navBar ul {
   padding: 0;
@@ -65,6 +77,10 @@ export default {
   width: 100%;
   height: 100%;
   justify-content: space-evenly;
+}
+.navBar img {
+  width: 25px;
+  margin-bottom: -5px;
 }
 .imgDiv {
   grid-column: 1 / span 1;

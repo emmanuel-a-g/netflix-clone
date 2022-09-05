@@ -1,7 +1,7 @@
 <template>
   <div class="accountDiv">
     <div class="nav">
-      <NetflixLogo> </NetflixLogo>
+      <NetflixLogo @click="moveHome"> </NetflixLogo>
     </div>
     <div class="content">
       <h1>Account</h1>
@@ -68,7 +68,11 @@ export default {
     NetflixLogo,
     TheFooter,
   },
-  data() {},
+  methods: {
+    moveHome() {
+      this.$router.replace("/browse");
+    }
+  }
 };
 </script>
 
@@ -98,10 +102,12 @@ export default {
   text-align: left;
   min-width: 500px;
   margin-bottom: 0px;
+  font-size: 2.25rem;
 }
 .member {
   text-align: left;
   min-width: 500px;
+  margin: 12px 0px;
 }
 .nav {
   height: 8vh;

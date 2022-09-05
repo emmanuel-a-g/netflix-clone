@@ -6,13 +6,13 @@
       <p>and newly released</p>
       <h2>Netflix Originals!</h2>
       <br />
-      <input
+      <!-- <input
         type="text"
-        placeholder="Set a user account name"
+        placeholder="Set a user profile name"
         ref="name"
         @keyup="setName"
         maxlength="10"
-      />
+      /> -->
     </div>
     <button @click="startStreaming">Start Streaming</button>
   </div>
@@ -85,7 +85,7 @@ h2 {
   height: 50px;
   border-radius: 5px;
   color: white;
-  box-shadow: 2px 4px 20px -6px white;
+  /* box-shadow: 2px 4px 20px -6px white; */
   font-size: 1.25rem;
 }
 input {

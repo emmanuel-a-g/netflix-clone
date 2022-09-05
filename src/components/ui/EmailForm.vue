@@ -45,6 +45,7 @@ export default {
 .emailControl input {
   flex: 2;
   font-size: 1.1rem;
+  text-indent: 5px;
 }
 .emailControl button {
   all: unset;
