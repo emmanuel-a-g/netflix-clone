@@ -2,16 +2,16 @@
   <div class="content">
     <div class="imageDiv">
       <span class="step">Welcome!</span>
-      <h2>To thousands of on demand Shows and Movies!</h2>
+      <h2>Watch on demand Shows and Movies!</h2>
       <p>and newly released</p>
       <h2>Netflix Originals!</h2>
       <br />
       <input
         type="text"
-        placeholder="Set a user name"
+        placeholder="Set a user account name"
         ref="name"
         @keyup="setName"
-        maxlength="15"
+        maxlength="10"
       />
     </div>
     <button @click="startStreaming">Start Streaming</button>
@@ -20,18 +20,27 @@
 
 <script>
 export default {
+  data() {
+    return {
+      name: "",
+    };
+  },
   methods: {
     startStreaming() {
       //check for logged in?
       //take to USERS page...
       //creat Avatar
       //OR
+      this.submitName({ name: this.name });
       //Start Streaming...
       this.$router.push("/selectuser");
     },
     setName() {
       const name = this.$refs.name.value;
-      console.log(name);
+      this.name = name;
+    },
+    submitName(obj) {
+      this.$store.dispatch("changeName", obj);
     },
   },
 };
@@ -76,7 +85,7 @@ h2 {
   height: 50px;
   border-radius: 5px;
   color: white;
-  box-shadow: 2px 4px 20px -8px white;
+  box-shadow: 2px 4px 20px -6px white;
   font-size: 1.25rem;
 }
 input {
@@ -88,6 +97,7 @@ input {
   color: black;
   font-size: 16px;
   padding-left: 10px;
+  border-radius: 3px;
 }
 @media only screen and (max-width: 700px) {
   .content button {

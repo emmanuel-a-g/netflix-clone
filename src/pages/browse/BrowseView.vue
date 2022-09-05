@@ -21,4 +21,7 @@ export default {
   /* temporary */
   position: relative;
 }
+.browseDiv h1 {
+  text-align: center;
+}
 </style>

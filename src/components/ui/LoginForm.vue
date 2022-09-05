@@ -5,7 +5,7 @@
         <h2>Sign In</h2>
         <input
           type="email"
-          placeholder="Email or phone number"
+          placeholder="Email"
           v-model.trim="email"
           v-on:keydown="validateEmail"
           v-on:blur="reset('email')"
