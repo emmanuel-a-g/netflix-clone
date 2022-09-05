@@ -1,8 +1,11 @@
 <template>
   <div class="selectUserDiv">
-    <img :src="image" alt="netflix logo"/>
-    <SelectProfile>
-    </SelectProfile>
+    <img :src="image" alt="netflix logo" />
+    <SelectProfile
+      @edit-user="editThisUser"
+      @manage="manageMode"
+      :editMode="editMode"
+    ></SelectProfile>
   </div>
 </template>
 
@@ -16,9 +19,19 @@ export default {
   },
   data() {
     return {
-      name: "",
+      editMode: true,
       image,
     };
+  },
+  methods: {
+    manageMode() {
+      //TO-DO
+      //render according to id
+      this.editMode = !this.editMode;
+    },
+    editThisUser(name) {
+      this.$router.push(`/manageprofiles/${name}`);
+    },
   },
 };
 </script>

@@ -84,4 +84,9 @@ export default {
     grid-column: 2 / span 1;
   }
 }
+@media only screen and (max-width: 950px) {
+  .content {
+    grid-template-columns: 20% auto;
+  }
+}
 </style>

@@ -1,48 +1,94 @@
 <template>
   <div class="wrapper">
-    <h1 @click="moveToBrowse">Who's watching?</h1>
+    <h1>Who's watching?</h1>
     <div class="profiles">
-      <div class="card">
+      <div
+        class="card"
+        name="Emmanuel"
+        @click="handle(name)"
+        :class="{ highlight: editMode, single: !editMode }"
+      >
+        <!-- <span v-if="editMode">edit</span> -->
         <img :src="image" alt="user image" />
-        <p>Name</p>
+        <p>Emmanuel</p>
       </div>
-      <div class="card">
+      <div
+        class="card"
+        name="Veronica"
+        @click="handle(name)"
+        :class="{ highlight: editMode, single: !editMode }"
+      >
+        <!-- <span v-if="editMode">edit</span> -->
         <img :src="image" alt="user image" />
-        <p>Name</p>
+        <p>Veronica</p>
       </div>
-      <div class="card">
+      <div
+        class="card"
+        name="Arturo"
+        @click="handle(name)"
+        :class="{ highlight: editMode, single: !editMode }"
+      >
+        <!-- <span v-if="editMode">edit</span> -->
         <img :src="image" alt="user image" />
-        <p>Name</p>
+        <p>Arturo</p>
       </div>
-      <div class="card">
+      <div
+        class="card"
+        name="Michael"
+        @click="handle(name)"
+        :class="{ highlight: editMode, single: !editMode }"
+      >
+        <!-- <span v-if="editMode">edit</span> -->
         <img :src="image" alt="user image" />
-        <p>Name</p>
+        <p>Michael</p>
       </div>
-      <div class="card">
+      <div
+        class="card"
+        name="Wendy"
+        @click="handle(name)"
+        :class="{ highlight: editMode, single: !editMode }"
+      >
+        <!-- <span v-if="editMode">edit</span> -->
         <img :src="image" alt="user image" />
-        <p>Name</p>
+        <p>Wendy</p>
       </div>
     </div>
-    <button @click="moveToManage">Manage Profiles</button>
+    <button
+      :class="{ highlightButton: editMode, single: !editMode }"
+      @click="manageToggle"
+    >
+      Manage Profiles
+    </button>
   </div>
 </template>
 
 <script>
 import image from "../../assets/logo.png";
 export default {
+  props: ["editMode"],
+  emits: ["manage", "editUser"],
   data() {
     return {
       image,
+      name: "emmanuel",
     };
   },
   methods: {
-    moveToManage() {
-      this.$router.push("/manageprofiles");
+    manageToggle() {
+      this.$emit("manage");
     },
     moveToBrowse() {
       //optional argument of profile??
       //or vue saved;
       this.$router.replace("/browse");
+    },
+    handle(name) {
+      if (this.editMode) {
+        this.$emit("editUser", name);
+      } else {
+        // TO-DO save choosen name in VUEX
+        this.$router.push("/browse");
+      }
     },
   },
 };
@@ -91,7 +137,7 @@ button {
 .card:hover {
   color: white;
 }
-.card img:hover {
+.single:hover {
   border: 1px white solid;
 }
 .card img {
@@ -99,12 +145,22 @@ button {
   height: auto;
   padding: 14px;
 }
+.card span {
+  position: absolute;
+  color: white;
+}
+.highlight {
+  border: 1px white solid;
+}
+.highlightButton {
+  border: 1px solid white;
+}
 @media only screen and (max-width: 700px) {
   .wrapper h1 {
     font-size: 1.5rem;
   }
   .profiles {
-    width: 100%;
+    width: 95%;
   }
 }
 </style>

@@ -67,10 +67,10 @@ export default {
     },
     saveAndGoBack() {
       this.changeName();
-      this.$router.replace("selectuser");
+      this.$router.push("/selectuser");
     },
     cancelAndGoBack() {
-      this.$router.replace("selectuser");
+      this.$router.replace("/selectuser");
     },
     getTheName() {
       return this.$store.getters.getName;

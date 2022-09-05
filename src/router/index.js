@@ -45,7 +45,7 @@ const router = createRouter({
       component: SelectUser,
     },
     {
-      path: "/manageprofiles",
+      path: "/manageprofiles/:name",
       component: ManageProfile,
     },
     {
