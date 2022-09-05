@@ -1,5 +1,6 @@
 <template>
   <div class="notFound">
+    <NetflixLogo></NetflixLogo>
     <div>
       <h1>Lost your way?</h1>
       <p>Sorry we can't find that page. Explore our home page instead.</p>
@@ -9,7 +10,12 @@
 </template>
 
 <script>
-export default {};
+import NetflixLogo from "../components/logo/NetflixLogo.vue";
+export default {
+  components: {
+    NetflixLogo,
+  },
+};
 </script>
 
 <style scoped>
