@@ -5,6 +5,14 @@
       <h2>To thousands of on demand Shows and Movies!</h2>
       <p>and newly released</p>
       <h2>Netflix Originals!</h2>
+      <br />
+      <input
+        type="text"
+        placeholder="Set a user name"
+        ref="name"
+        @keyup="setName"
+        maxlength="15"
+      />
     </div>
     <button @click="startStreaming">Start Streaming</button>
   </div>
@@ -20,6 +28,10 @@ export default {
       //OR
       //Start Streaming...
       this.$router.push("/selectuser");
+    },
+    setName() {
+      const name = this.$refs.name.value;
+      console.log(name);
     },
   },
 };
@@ -66,6 +78,16 @@ h2 {
   color: white;
   box-shadow: 2px 4px 20px -8px white;
   font-size: 1.25rem;
+}
+input {
+  align-self: center;
+  width: 350px;
+  height: 35px;
+  background-color: white;
+  border: none;
+  color: black;
+  font-size: 16px;
+  padding-left: 10px;
 }
 @media only screen and (max-width: 700px) {
   .content button {

@@ -9,7 +9,7 @@
       <ul>
         <li>Home</li>
         <li>Account</li>
-        <li>Image</li>
+        <li>{{ name }}</li>
       </ul>
     </div>
   </div>
@@ -22,6 +22,16 @@ export default {
     return {
       logo,
     };
+  },
+  computed: {
+    name() {
+      const name = this.$store.getters.getName;
+      if (name) {
+        return name;
+      } else {
+        return "Visitor";
+      }
+    },
   },
 };
 </script>
