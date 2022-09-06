@@ -63,6 +63,7 @@ export default {
   overflow: hidden;
   position: relative;
   min-height: 15vh;
+
 }
 .inner {
   white-space: nowrap;

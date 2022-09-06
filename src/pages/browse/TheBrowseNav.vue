@@ -5,21 +5,42 @@
         @click="toggleMenu"
         :class="{ activeSide: openMenu, side: !openMenu }"
       ></aside>
-      <p v-if="mobileView">
-        <img class="menu" :src="menu" alt="menu" @click="toggleMenu" />
-      </p>
       <div>
         <img class="logo" :src="logo" alt="netflix logo" />
       </div>
+      <p v-if="mobileView">
+        <span>Browse</span>
+        <span id="down">&#9660;</span>
+        <!-- <img class="menu" :src="menu" alt="menu" @click="toggleMenu" /> -->
+      </p>
+    </div>
+    <div class="middleMenu" v-if="!mobileView">
+      <li>Home</li>
+      <li>TV Shows</li>
+      <li>Movies</li>
+      <li>New & Popular</li>
+      <li>My List</li>
     </div>
     <div class="searchBar" v-if="mobileView">
       <input type="text" placeholder="search" />
     </div>
     <div class="navBar" v-if="!mobileView">
       <ul>
-        <li @click="switchUser">Switch Profiles</li>
+        <li @click="openInput" @mouseleave="closeInput">
+          <div :class="{ openDiv: searchInput, closeDiv: !searchInput }">
+            <img id="search" :src="lupa" alt="search icon" />
+            <input
+              ref="searchRef"
+              type="text"
+              placeholder="Titles, genres"
+              v-model="search"
+              :class="{ invisible: !searchInput, visible: searchInput }"
+            />
+          </div>
+        </li>
+        <li>Kids</li>
         <li @click="account">Account</li>
-        <li>{{ name }}</li>
+        <li @click="switchUser">{{ name }}</li>
       </ul>
     </div>
   </div>
@@ -28,14 +49,18 @@
 <script>
 import logo from "../../assets/netflix.png";
 import menu from "../../assets/menu.png";
+import lupa from "../../assets/lupa.png";
 export default {
   data() {
     return {
-      logo,
-      menu,
       mobileView: false,
       openMenu: false,
       handleResize: null,
+      searchInput: false,
+      search: "",
+      lupa,
+      menu,
+      logo,
     };
   },
   computed: {
@@ -61,6 +86,16 @@ export default {
     setWidth() {
       const breakpoint = 650;
       this.mobileView = window.innerWidth < breakpoint;
+    },
+    openInput() {
+      if (!this.searchInput) {
+        this.searchInput = true;
+        this.$refs.searchRef.focus();
+      }
+    },
+    closeInput() {
+      this.searchInput = false;
+      this.search = "";
     },
   },
   mounted() {
@@ -106,18 +141,38 @@ export default {
   display: absolute;
   width: 100%;
   display: grid;
-  grid-template-columns: 30% auto 30%;
+  grid-template-columns: 15% auto 35%;
   grid-template-rows: 1pt;
-  background-color: aquamarine;
+  background-color: grey;
+}
+.middleMenu {
+  grid-column: 2 / span 1;
+  background-color: rosybrown;
+  min-height: 8vh;
+  display: flex;
+  align-items: center;
+  width: 60%;
+  height: 100%;
+  justify-content: space-evenly;
+}
+.middleMenu li {
+  list-style: none;
+  text-align: center;
+  cursor: pointer;
+  font-size: 0.9rem;
 }
 .navBar {
   grid-column: 3 / span 1;
   min-height: 8vh;
+  background-color: chartreuse;
+  padding-right: 20px;
 }
 .navBar li {
   list-style: none;
   text-align: center;
   cursor: pointer;
+  font-size: 0.9rem;
+  padding: 10px;
 }
 .navBar ul {
   padding: 0;
@@ -126,16 +181,43 @@ export default {
   align-items: center;
   width: 100%;
   height: 100%;
-  justify-content: space-evenly;
+  justify-content: flex-end;
+  background-color: coral;
+}
+.navBar input::placeholder {
+  color: grey;
+}
+.invisible {
+  width: 0%;
+  background-color: transparent;
+  margin: 0 5px;
+  border: none;
+  height: 35px;
+  color: white;
+  font-size: 16px;
+}
+.visible {
+  /* visibility: visible; */
+  font-size: 16px;
+  width: 100%;
+  color: white;
+  margin: 0 5px;
+  border: none;
+  height: 35px;
+  background-color: transparent;
 }
 .imgDiv {
   grid-column: 1 / span 1;
   display: flex;
   justify-content: space-evenly;
-  background-color: blue;
 }
 .imgDiv div {
   height: 100%;
+}
+.imgDiv span {
+  font-size: 0.75rem;
+  color: white;
+  font-weight: bold;
 }
 .logo {
   width: 140px;
@@ -158,6 +240,38 @@ export default {
   border: 1px solid grey;
   margin-right: 10px;
 }
+#down {
+  font-size: 0.75rem;
+}
+#search {
+  width: 20px;
+  height: 20px;
+  z-index: 212;
+}
+/* search input transition */
+.closeDiv {
+  padding: 0px 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 0px;
+  height: 6vh;
+  transition: 300ms;
+  background-color: transparent;
+  z-index: 210;
+}
+.openDiv {
+  padding: 0px 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 260px;
+  height: 6vh;
+  transition: 200ms;
+  background-color: black;
+  z-index: 211;
+  border: 1px solid white;
+}
 @media only screen and (max-width: 650px) {
   .content {
     display: flex;
@@ -174,8 +288,18 @@ export default {
   }
 }
 @media only screen and (max-width: 950px) {
+  .navBar li {
+    font-size: 0.8rem;
+    color: black;
+  }
   .content {
-    grid-template-columns: 20% auto;
+    grid-template-columns: 20% auto 30%;
+  }
+  .middleMenu {
+    width: 90%;
+  }
+  .navBar {
+    padding-right: 5px;
   }
 }
 </style>

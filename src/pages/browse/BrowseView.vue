@@ -18,6 +18,7 @@ export default {
 </script>
 
 <style scoped>
+/* background-color: #141414 */
 .browseDiv {
   min-height: 100vh;
   background-color: #141414;

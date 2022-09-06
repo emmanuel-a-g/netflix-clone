@@ -9,6 +9,7 @@
         :class="{ highlight: editMode, single: !editMode }"
       >
         <img :src="image" alt="user image" />
+        <span v-if="editMode"> &#10000; </span>
         <p>Emmanuel</p>
       </div>
       <div
@@ -18,6 +19,7 @@
         :class="{ highlight: editMode, single: !editMode }"
       >
         <img :src="image" alt="user image" />
+        <span v-if="editMode"> &#10000; </span>
         <p>Veronica</p>
       </div>
       <div
@@ -27,6 +29,7 @@
         :class="{ highlight: editMode, single: !editMode }"
       >
         <img :src="image" alt="user image" />
+        <span v-if="editMode"> &#10000; </span>
         <p>Arturo</p>
       </div>
       <div
@@ -36,6 +39,7 @@
         :class="{ highlight: editMode, single: !editMode }"
       >
         <img :src="image" alt="user image" />
+        <span v-if="editMode"> &#10000; </span>
         <p>Michael</p>
       </div>
       <div
@@ -45,6 +49,7 @@
         :class="{ highlight: editMode, single: !editMode }"
       >
         <img :src="image" alt="user image" />
+        <span v-if="editMode">&#10000; </span>
         <p>Wendy</p>
       </div>
     </div>
@@ -128,6 +133,7 @@ button {
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
+  font-size: 1rem;
 }
 .card:hover {
   color: white;
@@ -139,6 +145,12 @@ button {
   width: 50px;
   height: auto;
   padding: 14px;
+}
+.card span {
+  position: absolute;
+  color: white;
+  /* relative size */
+  height: 0px;
 }
 .highlight {
   border: 1px white solid;
@@ -152,6 +164,10 @@ button {
   }
   .profiles {
     width: 95%;
+  }
+  .card {
+    width: 85px;
+    font-size: 0.9rem;
   }
 }
 </style>
