@@ -2,17 +2,17 @@
   <div class="browseDiv">
     <TheBrowseNav></TheBrowseNav>
     <h1>Currently working on it....</h1>
-    <TheCarousel> </TheCarousel>
+    <!-- <TheCarousel> </TheCarousel> -->
   </div>
 </template>
 
 <script>
 import TheBrowseNav from "./TheBrowseNav.vue";
-import TheCarousel from "../../components/ui/TheCarousel.vue";
+// import TheCarousel from "../../components/ui/TheCarousel.vue";
 export default {
   components: {
     TheBrowseNav,
-    TheCarousel,
+    // TheCarousel,
   },
 };
 </script>

@@ -31,6 +31,7 @@
               type="text"
               placeholder="Titles, genres"
               v-model="search"
+              @keypress.enter="handleSearch"
               :class="{ invisible: !searchInput, visible: searchInput }"
             />
           </div>
@@ -96,6 +97,9 @@ export default {
     closeInput() {
       this.searchInput = false;
       this.search = "";
+    },
+    handleSearch() {
+      console.log(this.search);
     },
   },
   mounted() {
@@ -299,7 +303,7 @@ export default {
 }
 @media only screen and (max-width: 1150px) {
   .middleMenu {
-    width: 100%
+    width: 100%;
   }
 }
 </style>

@@ -5,7 +5,7 @@
     </div>
     <div class="content">
       <h1>Account</h1>
-      <p class="member">Member Since {{ date ? date : "2022" }}</p>
+      <p class="member">Member Since 2022</p>
       <form>
         <div class="inner">
           <p>MEMBERSHIP & BILLING</p>
@@ -71,8 +71,8 @@ export default {
   methods: {
     moveHome() {
       this.$router.replace("/browse");
-    }
-  }
+    },
+  },
 };
 </script>
 
