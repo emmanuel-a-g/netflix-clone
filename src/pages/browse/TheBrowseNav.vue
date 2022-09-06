@@ -21,10 +21,10 @@
       <li>New & Popular</li>
       <li>My List</li>
     </div>
-    <div class="searchBar" v-if="mobileView">
+    <!-- <div class="searchBar" v-if="mobileView">
       <input type="text" placeholder="search" />
-    </div>
-    <div class="navBar" v-if="!mobileView">
+    </div> -->
+    <div class="navBar">
       <ul>
         <li @click="openInput" @mouseleave="closeInput">
           <div :class="{ openDiv: searchInput, closeDiv: !searchInput }">
@@ -61,6 +61,7 @@ export default {
       lupa,
       menu,
       logo,
+      superSmall: false,
     };
   },
   computed: {
@@ -84,8 +85,10 @@ export default {
       this.openMenu = !this.openMenu;
     },
     setWidth() {
-      const breakpoint = 650;
+      const breakpoint = 800;
+      const small = 550;
       this.mobileView = window.innerWidth < breakpoint;
+      this.superSmall = window.innerWidth < small;
     },
     openInput() {
       if (!this.searchInput) {
@@ -99,9 +102,10 @@ export default {
     },
   },
   mounted() {
-    const breakpoint = 650;
-    const mobileView = window.innerWidth < breakpoint;
-    this.mobileView = mobileView;
+    const breakpoint = 800;
+    const small = 550;
+    this.superSmall = window.innerWidth < small;
+    this.mobileView = window.innerWidth < breakpoint;
     this.handleResize = () => this.setWidth();
     window.addEventListener("resize", this.handleResize);
   },
@@ -138,7 +142,6 @@ export default {
 }
 .content {
   min-height: 8vh;
-  display: absolute;
   width: 100%;
   display: grid;
   grid-template-columns: 15% auto 35%;
@@ -272,7 +275,7 @@ export default {
   z-index: 211;
   border: 1px solid white;
 }
-@media only screen and (max-width: 650px) {
+@media only screen and (max-width: 800px) {
   .content {
     display: flex;
     max-height: 8vh;
@@ -285,6 +288,15 @@ export default {
   }
   .imgDiv {
     margin-left: 8px;
+  }
+  .navBar {
+    background-color: pink;
+    padding-right: 0px;
+  }
+}
+@media only screen and (max-width: 550px) {
+  .openDiv {
+    width: 110px;
   }
 }
 @media only screen and (max-width: 950px) {
