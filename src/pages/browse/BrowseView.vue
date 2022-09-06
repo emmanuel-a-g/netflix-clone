@@ -2,17 +2,20 @@
   <div class="browseDiv">
     <TheBrowseNav></TheBrowseNav>
     <h1>Currently working on it....</h1>
-    <!-- <TheCarousel> </TheCarousel> -->
+    <div class="wrapper">
+      <h2>Movies</h2>
+      <TheCarousel> </TheCarousel>
+    </div>
   </div>
 </template>
 
 <script>
 import TheBrowseNav from "./TheBrowseNav.vue";
-// import TheCarousel from "../../components/ui/TheCarousel.vue";
+import TheCarousel from "../../components/ui/TheCarousel.vue";
 export default {
   components: {
     TheBrowseNav,
-    // TheCarousel,
+    TheCarousel,
   },
 };
 </script>
@@ -28,5 +31,16 @@ export default {
 }
 .browseDiv h1 {
   text-align: center;
+}
+.wrapper {
+  min-height: 1vh;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+}
+.wrapper h2 {
+  padding-left: 60px;
+  margin: 5px 0px;
 }
 </style>

@@ -17,7 +17,7 @@ export default {
   align-items: center;
   justify-content: center;
   height: 15vh;
-  background-color: red;
-  color: black;
+  background-color: transparent;
+  color: white;
 }
 </style>

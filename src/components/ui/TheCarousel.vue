@@ -1,16 +1,22 @@
 <template>
   <div class="carousel">
-    <div class="inner" :style="{ transform: `translateX(-${index * 100}%)` }">
-      <ItemCarousel v-for="item in list" :key="item" width="100%">{{
-        item
-      }}</ItemCarousel>
+    <div class="inner" :style="{ transform: `translateX(-${index * 90}%)` }">
+      <ItemCarousel v-for="item in list" :key="item" width="90%">
+        <div class="line">
+          <div id="special">{{ item }} something 1</div>
+          <div>{{ item }} something 2</div>
+          <div>{{ item }} something 3</div>
+          <div>{{ item }} something 4</div>
+          <div>{{ item }} something 5</div>
+        </div>
+      </ItemCarousel>
     </div>
-    <button class="prev" @click="prev">
+    <div v-if="leftArrow" class="prev" @click="prev">
       <img :src="icon" alt="left arrow" />
-    </button>
-    <button class="next" @click="next">
+    </div>
+    <div class="next" @click="next">
       <img :src="icon" alt="right arrow" width="16px" height="16px" />
-    </button>
+    </div>
   </div>
 </template>
 
@@ -24,7 +30,8 @@ export default {
   data() {
     return {
       index: 0,
-      list: ["Emmanuel", "Arturo", "Veronica", "Michael", "Wendy"],
+      leftArrow: false,
+      list: ["Emmanuel", "Arturo", "Veronica", "Michael"],
       icon,
       timer: null,
     };
@@ -34,6 +41,9 @@ export default {
       this.updateIndex(this.index - 1);
     },
     next() {
+      if (!this.leftArrow) {
+        this.leftArrow = true;
+      }
       this.updateIndex(this.index + 1);
     },
     updateIndex(newIndex) {
@@ -47,13 +57,13 @@ export default {
   },
   mounted() {
     //start slider with setTimeout
-    this.timer = setInterval(() => {
-      this.next();
-    }, 3000);
-    return () => clearInterval();
+    // this.timer = setInterval(() => {
+    //   this.next();
+    // }, 3000);
+    // return () => clearInterval();
   },
   beforeUnmount() {
-    clearInterval(this.timer);
+    // clearInterval(this.timer);
   },
 };
 </script>
@@ -61,13 +71,17 @@ export default {
 <style scoped>
 .carousel {
   overflow: hidden;
+  /* overflow-x: visible; */
+  /* scroll-behavior: unset; */
   position: relative;
   min-height: 15vh;
-
+  /* background-color: white; */
+  width: 100vw;
 }
 .inner {
   white-space: nowrap;
   transition: transform 0.5s;
+  margin-left: 60px;
 }
 .active {
   color: white;
@@ -75,8 +89,15 @@ export default {
 .prev {
   all: unset;
   position: absolute;
-  left: 6vw;
-  top: 6vh;
+  /* left: 6vw; */
+  left: 0;
+  top: 0;
+  min-height: 15vh;
+  width: 60px;
+  background-color: rgba(0, 0, 0, 0.438);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .prev img {
   height: 20px;
@@ -88,8 +109,14 @@ export default {
 .next {
   all: unset;
   position: absolute;
-  left: 92vw;
-  top: 6vh;
+  right: 0;
+  top: 0;
+  min-height: 15vh;
+  width: 60px;
+  background-color: rgba(0, 0, 0, 0.438);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   /* transform: translateY(-90%); */
 }
 .next:hover {
@@ -98,5 +125,20 @@ export default {
 .next img {
   height: 20px;
   width: 20px;
+}
+/* made up */
+#special {
+  background-color: red;
+}
+.line {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  text-align: center;
+}
+.line div {
+  background-color: indianred;
+  width: 20%;
+  border: 1px solid white;
 }
 </style>
