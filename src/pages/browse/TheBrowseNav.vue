@@ -21,9 +21,6 @@
       <li>New & Popular</li>
       <li>My List</li>
     </div>
-    <!-- <div class="searchBar" v-if="mobileView">
-      <input type="text" placeholder="search" />
-    </div> -->
     <div class="navBar">
       <ul>
         <li @click="openInput" @mouseleave="closeInput">
@@ -136,7 +133,7 @@ export default {
   position: fixed;
   top: 0;
   right: 70%;
-  background-color: aqua;
+  /* background-color: aqua; */
   transition: 200ms;
   z-index: 200;
 }
@@ -146,11 +143,11 @@ export default {
   display: grid;
   grid-template-columns: 15% auto 35%;
   grid-template-rows: 1pt;
-  background-color: grey;
+  background-color: transparent;
 }
 .middleMenu {
   grid-column: 2 / span 1;
-  background-color: rosybrown;
+  /* background-color: rosybrown; */
   min-height: 8vh;
   display: flex;
   align-items: center;
@@ -167,7 +164,7 @@ export default {
 .navBar {
   grid-column: 3 / span 1;
   min-height: 8vh;
-  background-color: chartreuse;
+  /* background-color: chartreuse; */
   padding-right: 20px;
 }
 .navBar li {
@@ -185,7 +182,7 @@ export default {
   width: 100%;
   height: 100%;
   justify-content: flex-end;
-  background-color: coral;
+  /* background-color: coral; */
 }
 .navBar input::placeholder {
   color: grey;
@@ -230,18 +227,6 @@ export default {
 .menu {
   width: 20px;
   height: 20px;
-}
-.searchBar {
-  min-height: 8vh;
-  background-color: yellow;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.searchBar input {
-  height: 23px;
-  border: 1px solid grey;
-  margin-right: 10px;
 }
 #down {
   font-size: 0.75rem;
@@ -290,7 +275,6 @@ export default {
     margin-left: 8px;
   }
   .navBar {
-    background-color: pink;
     padding-right: 0px;
   }
 }
@@ -302,7 +286,6 @@ export default {
 @media only screen and (max-width: 950px) {
   .navBar li {
     font-size: 0.8rem;
-    color: black;
   }
   .content {
     grid-template-columns: 20% auto 30%;
@@ -312,6 +295,11 @@ export default {
   }
   .navBar {
     padding-right: 5px;
+  }
+}
+@media only screen and (max-width: 1150px) {
+  .middleMenu {
+    width: 100%
   }
 }
 </style>
