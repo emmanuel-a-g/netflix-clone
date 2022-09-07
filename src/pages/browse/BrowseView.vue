@@ -1,10 +1,25 @@
 <template>
   <div class="browseDiv">
     <TheBrowseNav></TheBrowseNav>
-    <h1>Currently working on it....</h1>
-    <div class="wrapper">
-      <h2>Movies</h2>
-      <TheCarousel> </TheCarousel>
+    <h1>Sign in and sign up....</h1>
+    <div class="wrapperCarousel">
+      <div class="headerCarousel">
+        <h2>Movies</h2>
+        <div
+          class="label"
+          :style="{ visibility: showIndicators ? 'visible' : 'hidden' }"
+        >
+          <p v-for="(item, idx) in list" :key="item">
+            <span :class="{ activeLabel: index === idx }">&#9866;</span>
+          </p>
+        </div>
+      </div>
+      <TheCarousel
+        @updateIdx="updateIdx"
+        :showIndicators="showIndicators"
+        @mouseenter="show"
+        @mouseleave="unshow"
+      ></TheCarousel>
     </div>
   </div>
 </template>
@@ -16,6 +31,24 @@ export default {
   components: {
     TheBrowseNav,
     TheCarousel,
+  },
+  data() {
+    return {
+      index: 0,
+      showIndicators: false,
+      list: ["Action", "Comedy", "Horror", "Suspense"],
+    };
+  },
+  methods: {
+    updateIdx(newIndex) {
+      this.index = newIndex;
+    },
+    show() {
+      this.showIndicators = true;
+    },
+    unshow() {
+      this.showIndicators = false;
+    },
   },
 };
 </script>
@@ -32,15 +65,37 @@ export default {
 .browseDiv h1 {
   text-align: center;
 }
-.wrapper {
+.wrapperCarousel {
   min-height: 1vh;
   background-color: transparent;
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
 }
-.wrapper h2 {
-  padding-left: 60px;
+.headerCarousel h2 {
   margin: 5px 0px;
+}
+.headerCarousel {
+  display: flex;
+  justify-content: space-between;
+  margin: 0px 60px;
+}
+/* show progress */
+.label {
+  display: flex;
+  width: 80px;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.label p {
+  font-size: 2rem;
+  color: grey;
+  padding: 0;
+  margin: 0;
+}
+.activeLabel {
+  font-size: 2rem;
+  padding: 0;
+  margin: 0;
+  color: white;
 }
 </style>

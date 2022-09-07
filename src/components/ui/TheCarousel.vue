@@ -14,10 +14,10 @@
         </div>
       </ItemCarousel>
     </div>
-    <div v-if="leftArrow" class="prev" @click="prev">
+    <div v-if="showIndicators" class="prev" @click="prev">
       <img :src="icon" alt="left arrow" />
     </div>
-    <div class="next" @click="next">
+    <div v-if="showIndicators" class="next" @click="next">
       <img :src="icon" alt="right arrow" width="16px" height="16px" />
     </div>
   </div>
@@ -30,6 +30,8 @@ export default {
   components: {
     ItemCarousel,
   },
+  emits: ["updateIdx"],
+  props: ["showIndicators"],
   data() {
     return {
       index: 0,
@@ -56,6 +58,7 @@ export default {
         newIndex = 0;
       }
       this.index = newIndex;
+      this.$emit("updateIdx", newIndex);
     },
   },
   mounted() {
@@ -79,7 +82,7 @@ export default {
 }
 .inner {
   white-space: nowrap;
-  transition: transform 0.5s;
+  transition: transform 0.75s;
   margin-left: 60px;
 }
 .active {
@@ -103,6 +106,8 @@ export default {
 }
 .prev:hover {
   cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.651);
+  scale: 1.1;
 }
 .next {
   all: unset;
@@ -118,6 +123,8 @@ export default {
 }
 .next:hover {
   cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.651);
+  scale: 1.1;
 }
 .next img {
   height: 20px;
