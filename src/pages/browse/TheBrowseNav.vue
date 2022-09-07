@@ -286,6 +286,9 @@ export default {
   .openDiv {
     width: 110px;
   }
+  .openDiv {
+    height: 4.5vh;
+  }
 }
 @media only screen and (max-width: 950px) {
   .navBar li {

@@ -3,6 +3,9 @@
     <div class="inner" :style="{ transform: `translateX(-${index * 90}%)` }">
       <ItemCarousel v-for="item in list" :key="item" width="90%">
         <div class="line">
+          <!-- get list of 20 items -->
+          <!-- divide them into 4 lists of 5 movies -->
+          <!-- item has [0], [1], [2], [3], [4] -->
           <div id="special">{{ item }} something 1</div>
           <div>{{ item }} something 2</div>
           <div>{{ item }} something 3</div>
@@ -56,10 +59,9 @@ export default {
     },
   },
   mounted() {
-    //start slider with setTimeout
     // this.timer = setInterval(() => {
     //   this.next();
-    // }, 3000);
+    // }, 3500);
     // return () => clearInterval();
   },
   beforeUnmount() {
@@ -71,11 +73,8 @@ export default {
 <style scoped>
 .carousel {
   overflow: hidden;
-  /* overflow-x: visible; */
-  /* scroll-behavior: unset; */
   position: relative;
   min-height: 15vh;
-  /* background-color: white; */
   width: 100vw;
 }
 .inner {
@@ -89,7 +88,6 @@ export default {
 .prev {
   all: unset;
   position: absolute;
-  /* left: 6vw; */
   left: 0;
   top: 0;
   min-height: 15vh;
@@ -117,7 +115,6 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  /* transform: translateY(-90%); */
 }
 .next:hover {
   cursor: pointer;
@@ -126,10 +123,9 @@ export default {
   height: 20px;
   width: 20px;
 }
-/* made up */
+/*1 div of each */
 #special {
-  /* background-color: red; */
-  /* margin-left: -12px; */
+  background-color: grey;
 }
 .line {
   display: flex;
