@@ -37,7 +37,9 @@
           </div>
         </li>
         <li>Kids</li>
-        <li @click="account">Account</li>
+        <li @click="account">
+          <img id="bell" :src="bell" alt="bell icon" />
+        </li>
         <li @click="switchUser">{{ name }}</li>
       </ul>
     </div>
@@ -48,6 +50,7 @@
 import logo from "../../assets/netflix.png";
 import menu from "../../assets/menu.png";
 import lupa from "../../assets/lupa.png";
+import bell from "../../assets/bellWhite.png";
 export default {
   data() {
     return {
@@ -60,6 +63,7 @@ export default {
       menu,
       logo,
       superSmall: false,
+      bell,
     };
   },
   computed: {
@@ -239,6 +243,12 @@ export default {
   width: 20px;
   height: 20px;
   z-index: 212;
+}
+#bell {
+  width: 22px;
+  height: 23px;
+  z-index: 213;
+  margin-top: 3px;
 }
 /* search input transition */
 .closeDiv {
