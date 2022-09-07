@@ -31,7 +31,7 @@ export default {
     return {
       index: 0,
       leftArrow: false,
-      list: ["Emmanuel", "Arturo", "Veronica", "Michael"],
+      list: ["Action", "Comedy", "Horror", "Suspense"],
       icon,
       timer: null,
     };
@@ -128,11 +128,12 @@ export default {
 }
 /* made up */
 #special {
-  background-color: red;
+  /* background-color: red; */
+  /* margin-left: -12px; */
 }
 .line {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   width: 100%;
   text-align: center;
 }
@@ -140,5 +141,7 @@ export default {
   background-color: indianred;
   width: 20%;
   border: 1px solid white;
+  min-height: 15vh;
 }
+/* inner div of each one for spacing */
 </style>
