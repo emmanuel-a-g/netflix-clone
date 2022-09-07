@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <h1>Who's watching?</h1>
+    <h1>{{ editMode ? "Manage profiles:" : "Who's watching?" }}</h1>
     <div class="profiles">
       <div
         class="card"
@@ -9,7 +9,7 @@
         :class="{ highlight: editMode, single: !editMode }"
       >
         <img :src="image" alt="user image" />
-        <span v-if="editMode"> &#10000; </span>
+        <span v-if="editMode"> &#9998; </span>
         <p>Emmanuel</p>
       </div>
       <div
@@ -19,7 +19,7 @@
         :class="{ highlight: editMode, single: !editMode }"
       >
         <img :src="image" alt="user image" />
-        <span v-if="editMode"> &#10000; </span>
+        <span v-if="editMode"> &#9998; </span>
         <p>Veronica</p>
       </div>
       <div
@@ -29,7 +29,7 @@
         :class="{ highlight: editMode, single: !editMode }"
       >
         <img :src="image" alt="user image" />
-        <span v-if="editMode"> &#10000; </span>
+        <span v-if="editMode"> &#9998; </span>
         <p>Arturo</p>
       </div>
       <div
@@ -39,7 +39,7 @@
         :class="{ highlight: editMode, single: !editMode }"
       >
         <img :src="image" alt="user image" />
-        <span v-if="editMode"> &#10000; </span>
+        <span v-if="editMode"> &#9998;</span>
         <p>Michael</p>
       </div>
       <div
@@ -49,7 +49,7 @@
         :class="{ highlight: editMode, single: !editMode }"
       >
         <img :src="image" alt="user image" />
-        <span v-if="editMode">&#10000; </span>
+        <span v-if="editMode">&#9998; </span>
         <p>Wendy</p>
       </div>
     </div>
@@ -57,7 +57,7 @@
       :class="{ highlightButton: editMode, single: !editMode }"
       @click="manageToggle"
     >
-      Manage Profiles
+      {{ editMode ? "Done" : "Manage Profiles" }}
     </button>
   </div>
 </template>
@@ -149,8 +149,8 @@ button {
 .card span {
   position: absolute;
   color: white;
-  /* relative size */
   height: 0px;
+  transform: rotateY(180deg);
 }
 .highlight {
   border: 1px white solid;
