@@ -12,6 +12,8 @@
 <script>
 // import TheNavigation from "./layout/TheNavigation.vue";
 import { mapGetters } from "vuex";
+import { auth } from "./firebase";
+import { onAuthStateChanged } from "firebase/auth";
 export default {
   // components: { TheNavigation },
   name: "App",
@@ -25,6 +27,15 @@ export default {
       return this.loggedIn;
     },
     ...mapGetters(["loggedIn"]),
+  },
+  mounted() {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        console.log("Signed in user: ", user);
+      } else {
+        console.log("No user signed in");
+      }
+    });
   },
   // beforeMount() {},
   // mounted() {},

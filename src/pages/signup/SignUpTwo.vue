@@ -52,13 +52,19 @@ export default {
     };
   },
   methods: {
-    handleSubmit() {
+    async handleSubmit() {
       if (this.email.includes("@") && this.password.length >= 6) {
-        this.$store.dispatch("setDetails", {
+        // this.$store.dispatch("setDetails", {
+        //   email: this.email,
+        //   password: this.password,
+        // });
+        this.$store.dispatch("signUp", {
           email: this.email,
           password: this.password,
-        });
-        this.nextTo();
+        }).then((res) => {
+          // this.nextTo();
+          console.log(res);
+        })
       }
       setTimeout(() => {
         this.email = "";

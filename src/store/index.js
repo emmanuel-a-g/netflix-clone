@@ -1,6 +1,7 @@
 import { createStore } from "vuex";
-//FIRESTORE V6
-// import { auth } from "../firebase";
+//FIRESTORE V9
+import { auth } from "../firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 // import { database as db } from "../firebase";
 // import { collection, getDocs } from "firebase/firestore/lite";
 
@@ -24,8 +25,8 @@ const store = createStore({
       //remove password from saved state once logged in!!
     },
     // temporary implementation!!!
-    authenticate(state) {
-      state.user = true;
+    authenticate(state, payload) {
+      state.user = payload.user ? payload.user : true;
     },
     logOut(state) {
       state.user = null;
@@ -52,6 +53,18 @@ const store = createStore({
     },
   },
   actions: {
+    async signUp(_1, payload) {
+      return new Promise((resolve, reject) => {
+        createUserWithEmailAndPassword(auth, payload.email, payload.password)
+          .then((userCredential) => {
+            this.commit("authenticate", { user: userCredential });
+            resolve("Success");
+          })
+          .catch((err) => {
+            reject(err);
+          });
+      });
+    },
     setDetails(context, payload) {
       //if valid then say authenticated
       if (payload.email && payload.password) {
