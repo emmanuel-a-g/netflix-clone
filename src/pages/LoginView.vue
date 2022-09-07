@@ -30,7 +30,18 @@ export default {
   },
   methods: {
     handleLogin({ email, password, remember }) {
-      console.log("Login details: ", email, password, remember);
+      this.$store
+        .dispatch("login", {
+          email,
+          password,
+          remember,
+        })
+        .then(() => {
+          this.goHome();
+        })
+        .catch((err) => {
+          console.log("Failure login: ", err);
+        });
     },
     goHome() {
       this.$router.replace("/");

@@ -4,7 +4,7 @@ import NotFound from "../pages/NotFound.vue";
 import LoginView from "../pages/LoginView.vue";
 import SignUpHome from "../pages/signup/SignUpHome.vue";
 import store from "../store/index";
-// lazy loading...
+//Lazy Loading...
 const SignUpOne = () => import("../pages/signup/SignUpOne.vue");
 const SignUpTwo = () => import("../pages/signup/SignUpTwo.vue");
 const SignUpThree = () => import("../pages/signup/SignUpThree.vue");
@@ -20,7 +20,7 @@ const router = createRouter({
   routes: [
     {
       path: "/",
-      name: "Home",
+      name: "Welcome",
       component: WelcomeView,
     },
     {
@@ -31,6 +31,7 @@ const router = createRouter({
     {
       path: "/signup",
       component: SignUpHome,
+      meta: { ifUserRedirect: true },
       children: [
         { path: "", component: SignUpOne },
         {
@@ -44,21 +45,25 @@ const router = createRouter({
     },
     {
       path: "/selectuser",
+      name: "Select User",
       component: SelectUser,
       meta: { requiresAuth: true },
     },
     {
       path: "/manageprofiles/:name",
+      name: "Manage Profile",
       component: ManageProfile,
       meta: { requiresAuth: true },
     },
     {
       path: "/browse",
+      name: "Home",
       component: BrowseView,
       meta: { requiresAuth: true },
     },
     {
       path: "/account",
+      name: "Account Settings",
       component: AccountView,
       meta: { requiresAuth: true },
     },

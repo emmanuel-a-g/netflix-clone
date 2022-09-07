@@ -1,7 +1,14 @@
 import { createStore } from "vuex";
 //FIRESTORE V9
 import { auth } from "../firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  setPersistence,
+  browserSessionPersistence,
+  browserLocalPersistence,
+  signOut,
+} from "firebase/auth";
 // import { database as db } from "../firebase";
 // import { collection, getDocs } from "firebase/firestore/lite";
 
@@ -9,10 +16,9 @@ const store = createStore({
   // modules: {},
   state() {
     return {
-      user: "emm",
+      user: "",
       userId: null,
       email: "",
-      password: "",
       name: "",
       //TODO: ARE USER AND NAME THE SAME??
     };
@@ -26,13 +32,14 @@ const store = createStore({
     },
     // temporary implementation!!!
     authenticate(state, payload) {
-      state.user = payload.user ? payload.user : true;
+      state.user = payload.user ? payload.user : false;
+      state.userId = payload.uid;
     },
     logOut(state) {
       state.user = null;
       state.userId = null;
       state.email = null;
-      state.password = null;
+      state.name = null;
     },
     changeName(state, payload) {
       state.name = payload.name;
@@ -53,33 +60,82 @@ const store = createStore({
     },
   },
   actions: {
-    async signUp(_1, payload) {
+    async signUp(context, payload) {
       return new Promise((resolve, reject) => {
         createUserWithEmailAndPassword(auth, payload.email, payload.password)
           .then((userCredential) => {
-            this.commit("authenticate", { user: userCredential });
-            resolve("Success");
+            context.commit("authenticate", { user: userCredential });
+            // save uid
+            // maybe set up  name in sign up 4
+            // save email
+            // enable set up remember me functionality ;)))
+            resolve("Success signed up");
           })
           .catch((err) => {
             reject(err);
           });
       });
     },
-    setDetails(context, payload) {
-      //if valid then say authenticated
-      if (payload.email && payload.password) {
-        //temporay implementation
-        context.commit("authenticate");
-      }
-      context.commit("setDetails", payload);
+    async login(context, payload) {
+      return new Promise((resolve, reject) => {
+        if (payload.remember) {
+          setPersistence(auth, browserLocalPersistence)
+            .then(() => {
+              return signInWithEmailAndPassword(
+                auth,
+                payload.email,
+                payload.password
+              );
+            })
+            .then((userCredential) => {
+              context.commit("authenticate", { user: userCredential });
+            })
+            .catch((err) => {
+              reject(err);
+            });
+        } else {
+          setPersistence(auth, browserSessionPersistence)
+            .then(() => {
+              return signInWithEmailAndPassword(
+                auth,
+                payload.email,
+                payload.password
+              );
+            })
+            .then((userCredential) => {
+              context.commit("authenticate", { user: userCredential });
+            })
+            .catch((err) => {
+              reject(err);
+            });
+        }
+      });
     },
-    logOut(context) {
-      context.commit("logOut");
+    async logOut(context) {
+      return new Promise((resolve, reject) => {
+        signOut(auth)
+          .then(() => {
+            context.commit("logOut");
+            resolve("sucess logout");
+          })
+          .catch((err) => {
+            reject(`Failed logout: ${err}`);
+          });
+      });
     },
     changeName(context, payload) {
-      //TODO
       //ALLOW to Choose between Users
       context.commit("changeName", payload);
+    },
+    authenticate(context, payload) {
+      return new Promise((resolve, reject) => {
+        if (payload.user) {
+          context.commit("authenticate", { user: payload.user });
+          resolve("Sucess auth");
+        } else {
+          reject("Error in auth");
+        }
+      });
     },
   },
 });

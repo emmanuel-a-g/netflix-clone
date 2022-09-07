@@ -1,43 +1,28 @@
 <template>
   <div class="app">
-    <!-- logged in? show -->
-    <!-- logged out? don't show -->
-    <!-- I MIGHT NOT NEED THIS AFTER ALL -->
-    <!-- <the-navigation></the-navigation> -->
-
     <router-view> </router-view>
   </div>
 </template>
 
 <script>
-// import TheNavigation from "./layout/TheNavigation.vue";
-import { mapGetters } from "vuex";
 import { auth } from "./firebase";
 import { onAuthStateChanged } from "firebase/auth";
 export default {
-  // components: { TheNavigation },
   name: "App",
   data() {
-    return {
-      show: false,
-    };
+    return {};
   },
-  computed: {
-    isUser() {
-      return this.loggedIn;
-    },
-    ...mapGetters(["loggedIn"]),
-  },
-  mounted() {
+  beforeCreate() {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        console.log("Signed in user: ", user);
+        this.$store.dispatch("authenticate", { user: user });
+        console.log("User: ", user);
+        this.$router.replace("/selectuser");
       } else {
-        console.log("No user signed in");
+        console.log("No user.");
       }
     });
   },
-  // beforeMount() {},
   // mounted() {},
   // beforeUpdate() {},
   // updated() {},

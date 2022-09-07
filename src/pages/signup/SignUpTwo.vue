@@ -54,17 +54,18 @@ export default {
   methods: {
     async handleSubmit() {
       if (this.email.includes("@") && this.password.length >= 6) {
-        // this.$store.dispatch("setDetails", {
-        //   email: this.email,
-        //   password: this.password,
-        // });
-        this.$store.dispatch("signUp", {
-          email: this.email,
-          password: this.password,
-        }).then((res) => {
-          // this.nextTo();
-          console.log(res);
-        })
+        this.$store
+          .dispatch("signUp", {
+            email: this.email,
+            password: this.password,
+          })
+          .then((res) => {
+            console.log("Success sign up:", res);
+            this.nextTo();
+          })
+          .catch((err) => {
+            console.log("Error sign up:", err);
+          });
       }
       setTimeout(() => {
         this.email = "";
@@ -73,9 +74,6 @@ export default {
     },
     nextTo() {
       this.$router.push("/signup/three");
-    },
-    setSavedEmail() {
-      this.email = this.getEmail;
     },
   },
   computed: {
