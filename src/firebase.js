@@ -11,13 +11,13 @@ import { getFirestore } from 'firebase/firestore/lite';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  // process.env.API_KEY
-  apiKey: process.env.API_KEY,
-  authDomain: process.env.AUTH_DOMAIN,
-  projectId: process.env.PROJECT_ID,
-  storageBucket: process.env.STORAGE_BUCKET,
-  messagingSenderId: process.env.MESSAGING_SENDER_ID,
-  appId: process.env.APP_ID,
+  apiKey: process.env.VUE_APP_API_KEY,
+  authDomain: process.env.VUE_APP_AUTH_DOMAIN,
+  databaseURL: process.env.VUE_APP_DATABASE_URL,
+  projectId: process.env.VUE_APP_PROJECT_ID,
+  storageBucket: process.env.VUE_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.VUE_APP_MESSAGE_ID,
+  appId: process.env.VUE_APP_APP_ID,
 };
 
 //Initialize APP
@@ -26,5 +26,5 @@ const app = initializeApp(firebaseConfig);
 //GET AUTHENTICATION
 export const auth = getAuth(app);
 //GET FIRESTORE DATABASE
-export const database = getFirestore(app);
+export const db = getFirestore(app);
 export default app;
