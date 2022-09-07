@@ -7,9 +7,16 @@
         Just a few more steps and you're done! <br />
         We hate paperwork, too.
       </p>
-      <form @submit.prevent="handleSubmit">
-        <input v-if="forwardEmail" type="email" :value="email" readonly />
+      <form class="theForm" @submit.prevent="handleSubmit">
         <input
+          class="two"
+          v-if="forwardEmail"
+          type="email"
+          :value="email"
+          readonly
+        />
+        <input
+          class="two"
           v-else
           type="email"
           v-model.trim="email"
@@ -17,6 +24,7 @@
         />
         <span v-if="emailAlert"></span>
         <input
+          class="two"
           type="password"
           required
           v-model="password"
@@ -115,7 +123,7 @@ form {
   height: 100%;
   height: 250px;
 }
-input {
+.two {
   width: 98%;
   height: 45px;
   background-color: transparent;
@@ -123,6 +131,7 @@ input {
   font-size: 1rem;
   color: black;
   border: 1px solid black;
+  text-indent: 5px;
 }
 h2 {
   font-size: 1.8rem;
