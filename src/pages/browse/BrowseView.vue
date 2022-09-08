@@ -12,23 +12,7 @@
         </div>
       </div>
       <div class="wrapperCarousel">
-        <div class="headerCarousel">
-          <h2>Movies</h2>
-          <div
-            class="label"
-            :style="{ visibility: showIndicators ? 'visible' : 'hidden' }"
-          >
-            <p v-for="(item, idx) in list" :key="item">
-              <span :class="{ activeLabel: index === idx }">&#9866;</span>
-            </p>
-          </div>
-        </div>
-        <TheCarousel
-          @updateIdx="updateIdx"
-          :showIndicators="showIndicators"
-          @mouseenter="show"
-          @mouseleave="unshow"
-        ></TheCarousel>
+        <TheCarouselComp></TheCarouselComp>
         <div class="moreContent"></div>
       </div>
     </div>
@@ -37,32 +21,20 @@
 
 <script>
 import TheBrowseNav from "./TheBrowseNav.vue";
-import TheCarousel from "../../components/ui/TheCarousel.vue";
 import wallpaper from "../../assets/wallpaper.webp";
+import TheCarouselComp from "../../components/app/TheCarouselComp.vue";
 export default {
   components: {
     TheBrowseNav,
-    TheCarousel,
+    TheCarouselComp,
   },
   data() {
     return {
-      index: 0,
-      showIndicators: false,
-      list: ["Action", "Comedy", "Horror", "Suspense"],
       wallpaper,
       vingetteHeight: undefined,
     };
   },
   methods: {
-    updateIdx(newIndex) {
-      this.index = newIndex;
-    },
-    show() {
-      this.showIndicators = true;
-    },
-    unshow() {
-      this.showIndicators = false;
-    },
     setHeightImage() {
       let idealHeight = this.$refs.imageRef.clientHeight;
       this.vingetteHeight = idealHeight + "px";
@@ -138,24 +110,5 @@ export default {
   background-color: transparent;
   display: flex;
   flex-direction: column;
-}
-/* show progress */
-.label {
-  display: flex;
-  width: 80px;
-  justify-content: space-evenly;
-  align-items: center;
-}
-.label p {
-  font-size: 2rem;
-  color: grey;
-  padding: 0;
-  margin: 0;
-}
-.activeLabel {
-  font-size: 2rem;
-  padding: 0;
-  margin: 0;
-  color: white;
 }
 </style>

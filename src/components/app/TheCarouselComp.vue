@@ -21,7 +21,11 @@
 </template>
 
 <script>
+import TheCarousel from "../../components/ui/TheCarousel.vue";
 export default {
+  components: {
+    TheCarousel,
+  },
   data() {
     return {
       index: 0,
@@ -44,12 +48,14 @@ export default {
 </script>
 
 <style scoped>
+/* unique nowrap */
 .noWrap {
   margin: 0;
   padding: 0;
   height: 100%;
   width: 100%;
 }
+/* unique nowrap */
 .headerCarousel {
   display: flex;
   justify-content: space-between;
