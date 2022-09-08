@@ -1,16 +1,13 @@
 <template>
   <div class="carousel">
     <div class="inner" :style="{ transform: `translateX(-${index * 90}%)` }">
-      <ItemCarousel v-for="item in list" :key="item" width="90%">
+      <!-- RENDER ACCORDING TO INNER-WIDTH -->
+      <ItemCarousel v-for="item in bigList" :key="item" width="90%">
         <div class="line">
-          <!-- get list of 20 items -->
-          <!-- divide them into 4 lists of 5 movies -->
-          <!-- item has [0], [1], [2], [3], [4] -->
-          <div id="special">{{ item }} something 1</div>
-          <div>{{ item }} something 2</div>
-          <div>{{ item }} something 3</div>
-          <div>{{ item }} something 4</div>
-          <div>{{ item }} something 5</div>
+          <!-- render according to innerWidth!!! -->
+          <div v-for="(mov, indexTwo) in item" :key="mov">
+            something {{ indexTwo + 1 }}
+          </div>
         </div>
       </ItemCarousel>
     </div>
@@ -31,14 +28,12 @@ export default {
     ItemCarousel,
   },
   emits: ["updateIdx"],
-  props: ["showIndicators"],
+  props: ["showIndicators", "list", "bigList"],
   data() {
     return {
       index: 0,
       leftArrow: false,
-      list: ["Action", "Comedy", "Horror", "Suspense"],
       icon,
-      timer: null,
     };
   },
   methods: {
@@ -61,14 +56,8 @@ export default {
       this.$emit("updateIdx", newIndex);
     },
   },
-  mounted() {
-    // this.timer = setInterval(() => {
-    //   this.next();
-    // }, 3500);
-    // return () => clearInterval();
-  },
-  beforeUnmount() {
-    // clearInterval(this.timer);
+  computed: {
+    // something
   },
 };
 </script>
@@ -83,6 +72,7 @@ export default {
 .inner {
   white-space: nowrap;
   transition: transform 0.75s;
+  margin: 0;
   margin-left: 60px;
   background-color: transparent;
 }
@@ -135,20 +125,21 @@ export default {
 .next img:hover {
   scale: 1.2;
 }
-/*1 div of each */
-#special {
-  /* background-color: grey; */
-}
 .line {
+  margin: 0px 8px 0px 0px;
+  gap: 8px;
   display: flex;
   justify-content: space-evenly;
   width: 100%;
+  min-height: 15vh;
   text-align: center;
 }
 .line div {
-  background-color: indianred;
-  width: 20%;
-  min-height: 15vh;
+  background-color: transparent;
+  /* IMPORTANT CHECK */
+  flex: 1;
+  min-height: 14.9vh;
+  border: 1px solid white;
 }
 /* inner div of each one for spacing */
 </style>

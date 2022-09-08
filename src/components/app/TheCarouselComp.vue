@@ -12,6 +12,8 @@
       </div>
     </div>
     <TheCarousel
+      :list="list"
+      :bigList="bigList"
       @updateIdx="updateIdx"
       :showIndicators="showIndicators"
       @mouseenter="show"
@@ -22,6 +24,7 @@
 
 <script>
 import TheCarousel from "../../components/ui/TheCarousel.vue";
+import { divideListEquallyBy } from "../../utils/index";
 export default {
   components: {
     TheCarousel,
@@ -30,7 +33,8 @@ export default {
     return {
       index: 0,
       showIndicators: false,
-      list: ["Action", "Comedy", "Horror", "Suspense"],
+      list: ["Action", "Comedy", "Horror", "Suspense", "Documentary"],
+      bigList: [],
     };
   },
   methods: {
@@ -43,6 +47,18 @@ export default {
     unshow() {
       this.showIndicators = false;
     },
+  },
+  beforeMount() {
+    let list = [
+      1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+    ];
+    //create an equally divided list of lists
+    let divisor = 5;
+    const indicatorsList = new Array(divisor).fill(0)
+    this.list = indicatorsList;
+    const dividedList = divideListEquallyBy(list, divisor);
+    //save to state
+    this.bigList = dividedList;
   },
 };
 </script>
