@@ -50,7 +50,7 @@ export default {
       showIndicators: false,
       list: ["Action", "Comedy", "Horror", "Suspense"],
       wallpaper,
-      vingetteHeight: null,
+      vingetteHeight: undefined,
     };
   },
   methods: {

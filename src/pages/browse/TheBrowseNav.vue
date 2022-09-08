@@ -46,6 +46,12 @@
         </li>
         <li @mouseenter="toggleAccount">
           {{ name }}
+          <span class="arrow">
+            <img
+              :src="arrow"
+              :class="{ movingArrowUp: showAccount }"
+              alt="arrow account"
+          /></span>
           <TheBox :show="showAccount"></TheBox>
         </li>
       </ul>
@@ -59,6 +65,7 @@ import menu from "../../assets/menu.png";
 import lupa from "../../assets/lupa.png";
 import bell from "../../assets/bellWhite.png";
 import TheBox from "../../components/ui/TheBox.vue";
+import arrow from "../../assets/arrow.png";
 import TheNotifications from "../../components/ui/TheNotifications.vue";
 export default {
   components: {
@@ -80,6 +87,7 @@ export default {
       logo,
       superSmall: false,
       bell,
+      arrow,
     };
   },
   computed: {
@@ -116,6 +124,7 @@ export default {
       if (!this.searchInput) {
         this.searchInput = true;
         this.$refs.searchRef.focus();
+        this.handleCloseToggles();
       }
     },
     closeInput() {
@@ -222,6 +231,8 @@ export default {
   cursor: pointer;
   font-size: 0.9rem;
   padding: 0px 10px;
+  /* New property learned */
+  white-space: nowrap;
 }
 .navBar ul {
   padding: 0;
@@ -298,10 +309,9 @@ export default {
   justify-content: center;
   align-items: center;
   width: 0px;
-  height: 6vh;
+  height: 5vh;
   transition: 300ms;
   background-color: transparent;
-  z-index: 210;
 }
 .openDiv {
   padding: 0px 5px;
@@ -309,11 +319,25 @@ export default {
   justify-content: center;
   align-items: center;
   width: 260px;
-  height: 6vh;
+  height: 5vh;
   transition: 200ms;
   background-color: black;
-  z-index: 211;
   border: 1px solid white;
+}
+.arrow {
+  color: white;
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+}
+.arrow img {
+  width: 10px;
+  height: 10px;
+  transform: rotate(0deg);
+  transition: all 200ms ease-out;
+}
+.arrow img:hover {
+  transform: rotate(180deg);
 }
 @media only screen and (max-width: 800px) {
   .content {

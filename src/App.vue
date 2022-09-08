@@ -17,7 +17,7 @@ export default {
       if (user) {
         this.$store.dispatch("authenticate", { user: user });
         console.log("User: ", user);
-        this.$router.replace("/selectuser");
+        this.$router.replace("/browse");
       } else {
         console.log("No user.");
       }
