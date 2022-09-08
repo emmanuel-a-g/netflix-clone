@@ -1,25 +1,27 @@
 <template>
   <div class="browseDiv">
     <TheBrowseNav></TheBrowseNav>
-    <h1>Movies....</h1>
-    <div class="wrapperCarousel">
-      <div class="headerCarousel">
-        <h2>Movies</h2>
-        <div
-          class="label"
-          :style="{ visibility: showIndicators ? 'visible' : 'hidden' }"
-        >
-          <p v-for="(item, idx) in list" :key="item">
-            <span :class="{ activeLabel: index === idx }">&#9866;</span>
-          </p>
+    <div class="inner">
+      <h1>Movies....</h1>
+      <div class="wrapperCarousel">
+        <div class="headerCarousel">
+          <h2>Movies</h2>
+          <div
+            class="label"
+            :style="{ visibility: showIndicators ? 'visible' : 'hidden' }"
+          >
+            <p v-for="(item, idx) in list" :key="item">
+              <span :class="{ activeLabel: index === idx }">&#9866;</span>
+            </p>
+          </div>
         </div>
+        <TheCarousel
+          @updateIdx="updateIdx"
+          :showIndicators="showIndicators"
+          @mouseenter="show"
+          @mouseleave="unshow"
+        ></TheCarousel>
       </div>
-      <TheCarousel
-        @updateIdx="updateIdx"
-        :showIndicators="showIndicators"
-        @mouseenter="show"
-        @mouseleave="unshow"
-      ></TheCarousel>
     </div>
   </div>
 </template>
@@ -56,11 +58,14 @@ export default {
 <style scoped>
 /* background-color: #141414 */
 .browseDiv {
-  min-height: 100vh;
+  min-height: 110vh;
   background-color: #141414;
   min-width: 350px;
   /* temporary */
   position: relative;
+}
+.inner {
+  padding-top: 10vh !important;
 }
 .browseDiv h1 {
   text-align: center;

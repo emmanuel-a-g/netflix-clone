@@ -1,5 +1,8 @@
 <template>
-  <div class="content">
+  <div
+    class="content"
+    :style="{ 'background-color': atTop ? 'transparent' : 'black' }"
+  >
     <div class="imgDiv">
       <aside
         @click="toggleMenu"
@@ -67,6 +70,7 @@ export default {
       mobileView: false,
       openMenu: false,
       handleResize: null,
+      scrollPosition: 0,
       searchInput: false,
       search: "",
       showAccount: false,
@@ -87,6 +91,13 @@ export default {
         return "Visitor";
       }
     },
+    atTop() {
+      if (this.scrollPosition === 0) {
+        return true;
+      } else {
+        return false;
+      }
+    },
   },
   methods: {
     toggleMenu() {
@@ -97,6 +108,9 @@ export default {
       const small = 550;
       this.mobileView = window.innerWidth < breakpoint;
       this.superSmall = window.innerWidth < small;
+    },
+    setScroll() {
+      this.scrollPosition = window.top.scrollY;
     },
     openInput() {
       if (!this.searchInput) {
@@ -127,6 +141,7 @@ export default {
     },
   },
   mounted() {
+    window.addEventListener("scroll", this.setScroll);
     const breakpoint = 800;
     const small = 550;
     this.superSmall = window.innerWidth < small;
@@ -136,6 +151,7 @@ export default {
   },
   beforeUnmount() {
     window.removeEventListener("resize", this.handleResize);
+    window.removeEventListener("scroll", this.setScroll);
   },
 };
 </script>
@@ -161,21 +177,22 @@ export default {
   position: fixed;
   top: 0;
   right: 70%;
-  /* background-color: aqua; */
   transition: 200ms;
   z-index: 200;
 }
 .content {
-  min-height: 9vh;
+  z-index: 2;
+  position: fixed;
+  min-height: 10vh;
   width: 100%;
   display: grid;
   grid-template-columns: 15% auto 35%;
   grid-template-rows: 1pt;
+  transition: 500ms;
 }
 .middleMenu {
   grid-column: 2 / span 1;
-  /* background-color: rosybrown; */
-  min-height: 9vh;
+  min-height: 10vh;
   display: flex;
   align-items: center;
   width: 60%;
@@ -190,8 +207,7 @@ export default {
 }
 .navBar {
   grid-column: 3 / span 1;
-  min-height: 9vh;
-  /* background-color: chartreuse; */
+  min-height: 10vh;
   padding-right: 3.5vw;
 }
 .navBar li {
@@ -296,7 +312,7 @@ export default {
 @media only screen and (max-width: 800px) {
   .content {
     display: flex;
-    max-height: 8vh;
+    /* max-height: 8vh; */
     justify-content: space-between;
   }
   .logo {

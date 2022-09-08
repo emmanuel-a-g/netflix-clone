@@ -63,12 +63,15 @@ export default {
   margin: 0;
   padding: 5px 0px;
 }
+.theBox li:hover {
+  text-decoration: underline;
+}
 .visibleClass {
   position: absolute;
   background-color: rgba(0, 0, 0, 0.95);
   height: 340px;
   width: 220px;
-  top: 7vh;
+  top: 10.5vh;
   right: 4vw;
   visibility: visible;
   /* transition: 200ms; */
@@ -78,7 +81,7 @@ export default {
   position: absolute;
   height: 340px;
   width: 220px;
-  top: 7vh;
+  top: 10.5vh;
   right: 4vw;
   background-color: transparent;
   visibility: hidden;
