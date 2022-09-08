@@ -2,8 +2,8 @@
   <div class="browseDiv">
     <TheBrowseNav></TheBrowseNav>
     <div class="heroImageWrapper">
-      <div class="vingete"></div>
-      <img :src="wallpaper" alt="hero image" />
+      <div class="vingete" :style="{ height: idealHeight }"></div>
+      <img ref="imageRef" :src="wallpaper" alt="hero image" />
     </div>
     <div class="inner">
       <div class="fillContainer">
@@ -50,6 +50,7 @@ export default {
       showIndicators: false,
       list: ["Action", "Comedy", "Horror", "Suspense"],
       wallpaper,
+      vingetteHeight: null,
     };
   },
   methods: {
@@ -62,6 +63,22 @@ export default {
     unshow() {
       this.showIndicators = false;
     },
+    setHeightImage() {
+      let idealHeight = this.$refs.imageRef.clientHeight;
+      this.vingetteHeight = idealHeight + "px";
+    },
+  },
+  computed: {
+    idealHeight() {
+      if (!this.vingetteHeight) {
+        return "57vw";
+      } else {
+        return this.vingetteHeight;
+      }
+    },
+  },
+  mounted() {
+    window.addEventListener("resize", this.setHeightImage);
   },
 };
 </script>
@@ -76,13 +93,9 @@ export default {
 }
 .vingete {
   position: absolute;
-  /* todo fix calculation to go with image only */
-  /* fucking my colors shit up */
-  /* padding: 0;
-  margin: 0;
   width: 100%;
-  min-height: 100vh;
-  background: linear-gradient(77deg, rgba(0, 0, 0, 0.6), transparent 85%); */
+  /* important */
+  background: linear-gradient(77deg, rgba(0, 0, 0, 0.6), transparent 85%);
 }
 .heroImageWrapper img {
   width: 100%;

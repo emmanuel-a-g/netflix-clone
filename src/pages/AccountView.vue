@@ -75,7 +75,7 @@ export default {
     },
     logout() {
       this.$store.dispatch("logOut");
-      this.$router.replace("/");
+      this.$router.replace("/login");
     },
   },
 };
