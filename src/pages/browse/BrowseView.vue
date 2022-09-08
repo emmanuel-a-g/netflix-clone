@@ -2,7 +2,11 @@
   <div class="browseDiv">
     <TheBrowseNav></TheBrowseNav>
     <div class="inner">
+      <div class="heroImageWrapper">
+        <img :src="wallpaper" alt="hero image" />
+      </div>
       <h1>Movies....</h1>
+
       <div class="wrapperCarousel">
         <div class="headerCarousel">
           <h2>Movies</h2>
@@ -29,6 +33,7 @@
 <script>
 import TheBrowseNav from "./TheBrowseNav.vue";
 import TheCarousel from "../../components/ui/TheCarousel.vue";
+import wallpaper from "../../assets/wallpaper.webp";
 export default {
   components: {
     TheBrowseNav,
@@ -39,6 +44,7 @@ export default {
       index: 0,
       showIndicators: false,
       list: ["Action", "Comedy", "Horror", "Suspense"],
+      wallpaper,
     };
   },
   methods: {
@@ -57,15 +63,20 @@ export default {
 
 <style scoped>
 /* background-color: #141414 */
+.heroImageWrapper {
+  min-height: 100vh;
+  background-color: black;
+}
+.heroImageWrapper img {
+  width: 100%;
+  height: auto;
+}
 .browseDiv {
   min-height: 110vh;
   background-color: #141414;
   min-width: 350px;
   /* temporary */
   position: relative;
-}
-.inner {
-  padding-top: 10vh !important;
 }
 .browseDiv h1 {
   text-align: center;

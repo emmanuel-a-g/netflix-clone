@@ -25,7 +25,7 @@
       <li>My List</li>
     </div>
     <div class="navBar">
-      <ul>
+      <ul @mouseleave="handleCloseToggles">
         <li @click="openInput" @mouseleave="closeInput">
           <div :class="{ openDiv: searchInput, closeDiv: !searchInput }">
             <img id="search" :src="lupa" alt="search icon" />
@@ -40,11 +40,11 @@
           </div>
         </li>
         <li>Kids</li>
-        <li @mouseenter="toggleAlert" @mouseleave="handleCloseToggles">
+        <li @mouseenter="toggleAlert">
           <img id="bell" :src="bell" alt="bell icon" />
           <TheNotifications :show="showAlert"></TheNotifications>
         </li>
-        <li @mouseenter="toggleAccount" @mouseleave="handleCloseToggles">
+        <li @mouseenter="toggleAccount">
           {{ name }}
           <TheBox :show="showAccount"></TheBox>
         </li>
@@ -128,10 +128,16 @@ export default {
     toggleAccount() {
       if (!this.showAlert) {
         this.showAccount = true;
+      } else {
+        this.handleCloseToggles();
+        this.showAccount = true;
       }
     },
     toggleAlert() {
       if (!this.showAccount) {
+        this.showAlert = true;
+      } else {
+        this.handleCloseToggles();
         this.showAlert = true;
       }
     },
@@ -215,7 +221,7 @@ export default {
   text-align: center;
   cursor: pointer;
   font-size: 0.9rem;
-  padding: 10px;
+  padding: 0px 10px;
 }
 .navBar ul {
   padding: 0;
