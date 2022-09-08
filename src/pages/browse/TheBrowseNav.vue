@@ -49,7 +49,7 @@
           <span class="arrow">
             <img
               :src="arrow"
-              :class="{ movingArrowUp: showAccount }"
+              :class="{ arrow: !showAccount, arrowUp: showAccount }"
               alt="arrow account"
           /></span>
           <TheBox :show="showAccount"></TheBox>
@@ -329,15 +329,20 @@ export default {
   font-weight: bold;
   margin: 0;
   padding: 0;
+  transform: rotate(0deg);
+  transition-duration: 200ms;
+}
+.arrowUp {
+  color: white;
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+  transform: rotate(180deg);
+  transition-duration: 200ms;
 }
 .arrow img {
   width: 10px;
   height: 10px;
-  transform: rotate(0deg);
-  transition: all 200ms ease-out;
-}
-.arrow img:hover {
-  transform: rotate(180deg);
 }
 @media only screen and (max-width: 800px) {
   .content {
