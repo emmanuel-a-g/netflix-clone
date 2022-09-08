@@ -37,10 +37,14 @@
           </div>
         </li>
         <li>Kids</li>
-        <li @click="account">
+        <li @mouseenter="toggleAlert" @mouseleave="handleCloseToggles">
           <img id="bell" :src="bell" alt="bell icon" />
+          <TheNotifications :show="showAlert"></TheNotifications>
         </li>
-        <li @click="switchUser">{{ name }}</li>
+        <li @mouseenter="toggleAccount" @mouseleave="handleCloseToggles">
+          {{ name }}
+          <TheBox :show="showAccount"></TheBox>
+        </li>
       </ul>
     </div>
   </div>
@@ -51,7 +55,13 @@ import logo from "../../assets/netflix.png";
 import menu from "../../assets/menu.png";
 import lupa from "../../assets/lupa.png";
 import bell from "../../assets/bellWhite.png";
+import TheBox from "../../components/ui/TheBox.vue";
+import TheNotifications from "../../components/ui/TheNotifications.vue";
 export default {
+  components: {
+    TheBox,
+    TheNotifications,
+  },
   data() {
     return {
       mobileView: false,
@@ -59,6 +69,8 @@ export default {
       handleResize: null,
       searchInput: false,
       search: "",
+      showAccount: false,
+      showAlert: false,
       lupa,
       menu,
       logo,
@@ -77,12 +89,6 @@ export default {
     },
   },
   methods: {
-    account() {
-      this.$router.push("/account");
-    },
-    switchUser() {
-      this.$router.push("/selectuser");
-    },
     toggleMenu() {
       this.openMenu = !this.openMenu;
     },
@@ -104,6 +110,20 @@ export default {
     },
     handleSearch() {
       console.log(this.search);
+    },
+    toggleAccount() {
+      if (!this.showAlert) {
+        this.showAccount = true;
+      }
+    },
+    toggleAlert() {
+      if (!this.showAccount) {
+        this.showAlert = true;
+      }
+    },
+    handleCloseToggles() {
+      this.showAccount = false;
+      this.showAlert = false;
     },
   },
   mounted() {
@@ -146,17 +166,16 @@ export default {
   z-index: 200;
 }
 .content {
-  min-height: 8vh;
+  min-height: 9vh;
   width: 100%;
   display: grid;
   grid-template-columns: 15% auto 35%;
   grid-template-rows: 1pt;
-  background-color: transparent;
 }
 .middleMenu {
   grid-column: 2 / span 1;
   /* background-color: rosybrown; */
-  min-height: 8vh;
+  min-height: 9vh;
   display: flex;
   align-items: center;
   width: 60%;
@@ -171,9 +190,9 @@ export default {
 }
 .navBar {
   grid-column: 3 / span 1;
-  min-height: 8vh;
+  min-height: 9vh;
   /* background-color: chartreuse; */
-  padding-right: 20px;
+  padding-right: 3.5vw;
 }
 .navBar li {
   list-style: none;
@@ -190,7 +209,6 @@ export default {
   width: 100%;
   height: 100%;
   justify-content: flex-end;
-  /* background-color: coral; */
 }
 .navBar input::placeholder {
   color: grey;
@@ -218,6 +236,7 @@ export default {
   grid-column: 1 / span 1;
   display: flex;
   justify-content: space-evenly;
+  /* min-height: 9vh; */
 }
 .imgDiv div {
   height: 100%;

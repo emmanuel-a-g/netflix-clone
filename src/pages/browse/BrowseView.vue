@@ -1,7 +1,7 @@
 <template>
   <div class="browseDiv">
     <TheBrowseNav></TheBrowseNav>
-    <h1>Sign in and sign up....</h1>
+    <h1>Movies....</h1>
     <div class="wrapperCarousel">
       <div class="headerCarousel">
         <h2>Movies</h2>
