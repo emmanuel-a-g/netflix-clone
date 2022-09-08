@@ -1,12 +1,15 @@
 <template>
   <div class="browseDiv">
     <TheBrowseNav></TheBrowseNav>
+    <div class="heroImageWrapper">
+      <img :src="wallpaper" alt="hero image" />
+    </div>
     <div class="inner">
-      <div class="heroImageWrapper">
-        <img :src="wallpaper" alt="hero image" />
+      <div class="fillContainer">
+        <div class="fillContent">
+          <h1>hello world title</h1>
+        </div>
       </div>
-      <h1>Movies....</h1>
-
       <div class="wrapperCarousel">
         <div class="headerCarousel">
           <h2>Movies</h2>
@@ -64,12 +67,35 @@ export default {
 <style scoped>
 /* background-color: #141414 */
 .heroImageWrapper {
-  min-height: 100vh;
+  height: 100vh;
   background-color: black;
+  position: absolute;
+  width: 100%;
 }
 .heroImageWrapper img {
   width: 100%;
   height: auto;
+}
+.fillContainer {
+  min-height: 45vw;
+  max-height: 46vw;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  /* background-color: rgba(255, 0, 0, 0.254); */
+}
+.fillContent {
+  /* background-color: rgba(127, 255, 212, 0.374); */
+  margin-left: 3vw;
+}
+.inner {
+  /* background-color: rgba(255, 255, 255, 0.245); */
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 .browseDiv {
   min-height: 110vh;
