@@ -78,11 +78,13 @@ export default {
   overflow: hidden;
   position: relative;
   min-height: 15vh;
+  background-color: transparent;
 }
 .inner {
   white-space: nowrap;
   transition: transform 0.75s;
   margin-left: 60px;
+  background-color: transparent;
 }
 .active {
   color: white;
@@ -106,7 +108,9 @@ export default {
 .prev:hover {
   cursor: pointer;
   background-color: rgba(0, 0, 0, 0.651);
-  scale: 1.1;
+}
+.prev img:hover {
+  scale: 1.2;
 }
 .next {
   all: unset;
@@ -123,15 +127,17 @@ export default {
 .next:hover {
   cursor: pointer;
   background-color: rgba(0, 0, 0, 0.651);
-  scale: 1.1;
 }
 .next img {
   height: 20px;
   width: 20px;
 }
+.next img:hover {
+  scale: 1.2;
+}
 /*1 div of each */
 #special {
-  background-color: grey;
+  /* background-color: grey; */
 }
 .line {
   display: flex;
@@ -142,7 +148,6 @@ export default {
 .line div {
   background-color: indianred;
   width: 20%;
-  border: 1px solid white;
   min-height: 15vh;
 }
 /* inner div of each one for spacing */
