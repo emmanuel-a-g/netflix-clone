@@ -135,18 +135,9 @@ export default {
   text-align: center;
 }
 .wrapperCarousel {
-  min-height: 1vh;
   background-color: transparent;
   display: flex;
   flex-direction: column;
-}
-.headerCarousel h2 {
-  margin: 5px 0px;
-}
-.headerCarousel {
-  display: flex;
-  justify-content: space-between;
-  margin: 0px 60px;
 }
 /* show progress */
 .label {
