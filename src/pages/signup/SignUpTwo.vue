@@ -39,7 +39,6 @@
 
 <script>
 import image from "../../assets/logo.png";
-import { mapGetters } from "vuex";
 export default {
   data() {
     return {
@@ -76,14 +75,15 @@ export default {
       this.$router.push("/signup/three");
     },
   },
-  computed: {
-    ...mapGetters(["getEmail"]),
-  },
   mounted() {
-    if (this.getEmail) {
-      this.email = this.getEmail;
+    const email = this.$store.getters.returnEmail;
+    if (email) {
+      this.email = email;
       this.forwardEmail = true;
     }
+    setTimeout(() => {
+      console.log("Email saved: ",this.$store.getters.returnEmail);
+    }, 3000)
   },
 };
 </script>

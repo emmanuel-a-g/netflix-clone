@@ -85,14 +85,9 @@ export default {
   },
   methods: {
     submitEmail(email) {
-      //check email for users, forward to login
-      //if (!user)
-      //move on to sign-up
+      //If email already user? forward to login.
+      this.$store.dispatch("actionEmail", email);
       this.$router.push("/signup");
-      this.$store.dispatch("setDetails", {
-        email: email,
-        password: "",
-      });
     },
     forwardLogin() {
       this.$router.push("/login");

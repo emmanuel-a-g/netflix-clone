@@ -33,7 +33,7 @@ export default {
     return {
       index: 0,
       showIndicators: false,
-      list: ["Action", "Comedy", "Horror", "Suspense", "Documentary"],
+      list: [],
       bigList: [],
     };
   },
@@ -54,7 +54,8 @@ export default {
     ];
     //create an equally divided list of lists
     let divisor = 5;
-    const indicatorsList = new Array(divisor).fill(0)
+    let lists = list.length / divisor;
+    const indicatorsList = new Array(lists).fill(0)
     this.list = indicatorsList;
     const dividedList = divideListEquallyBy(list, divisor);
     //save to state

@@ -16,7 +16,7 @@ export default {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         this.$store.dispatch("authenticate", { user: user });
-        console.log("User: ", user);
+        console.log("User: ", user.email);
         this.$router.replace("/browse");
       } else {
         console.log("No user.");

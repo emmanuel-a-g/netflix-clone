@@ -138,7 +138,7 @@ export default {
   background-color: transparent;
   /* IMPORTANT CHECK */
   flex: 1;
-  min-height: 14.9vh;
+  min-height: 14.5vh;
   border: 1px solid white;
 }
 /* inner div of each one for spacing */

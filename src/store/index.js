@@ -13,24 +13,15 @@ import {
 // import { collection, getDocs } from "firebase/firestore/lite";
 
 const store = createStore({
-  // modules: {},
   state() {
     return {
       user: "",
       userId: null,
       email: "",
       name: "",
-      //TODO: ARE USER AND NAME THE SAME??
     };
   },
   mutations: {
-    setDetails(state, payload) {
-      state.email = payload.email;
-      state.password = payload.password;
-      console.log("Setting details: ", payload);
-      //remove password from saved state once logged in!!
-    },
-    // temporary implementation!!!
     authenticate(state, payload) {
       state.user = payload.user ? payload.user : false;
       state.userId = payload.uid;
@@ -44,6 +35,9 @@ const store = createStore({
     changeName(state, payload) {
       state.name = payload.name;
     },
+    emailChange(state, payload) {
+      state.email = payload;
+    },
   },
   getters: {
     userId(state) {
@@ -52,7 +46,7 @@ const store = createStore({
     loggedIn(state) {
       return !!state.user;
     },
-    getEmail(state) {
+    returnEmail(state) {
       return state.email;
     },
     getName(state) {
@@ -66,9 +60,8 @@ const store = createStore({
           .then((userCredential) => {
             context.commit("authenticate", { user: userCredential });
             // save uid
-            // maybe set up  name in sign up 4
-            // save email
-            // enable set up remember me functionality ;)))
+            // maybe set up name in sign up 4
+            // save email maybe?
             resolve("Success signed up");
           })
           .catch((err) => {
@@ -136,6 +129,9 @@ const store = createStore({
           reject("Error in auth");
         }
       });
+    },
+    actionEmail(context, payload) {
+      context.commit("emailChange", payload);
     },
   },
 });
