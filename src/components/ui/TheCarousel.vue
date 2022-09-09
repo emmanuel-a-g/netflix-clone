@@ -1,19 +1,18 @@
 <template>
   <div class="carousel">
     <div class="inner" :style="{ transform: `translateX(-${index * 90}%)` }">
-      <!-- RENDER ACCORDING TO INNER-WIDTH -->
       <ItemCarousel v-for="item in bigList" :key="item" width="90%">
         <div class="line">
-          <!-- render according to innerWidth!!! -->
-          <!-- something {{ indexTwo + 1 }} -->
           <div
             class="card"
-            v-for="(mov, indexTwo) in item"
+            v-for="mov in item"
             :key="mov"
             :class="{ hide: mov === 'blank' }"
+            :style="{
+              'background-image': `url(${mov.imageUrl})`,
+            }"
           >
-            <span>{{ indexTwo + 1 }}</span>
-            <!-- <img class="cardImage" src="https://res.cloudinary.com/milito/image/fetch/https://res.cloudinary.com/milito/image/upload/v1662708770/netflix/spiderman3.webp" alt="image"> -->
+            <!-- <p>{{ mov.title }}</p> -->
           </div>
         </div>
       </ItemCarousel>
@@ -63,9 +62,6 @@ export default {
       this.$emit("updateIdx", newIndex);
     },
   },
-  computed: {
-    // something
-  },
 };
 </script>
 
@@ -73,12 +69,8 @@ export default {
 .carousel {
   overflow: hidden;
   position: relative;
-  /* pixels?? */
-  /* min-height: 16vh; */
   height: 130px;
-  /* background-color: transparent; */
-  /* background-color: transparent; */
-  background-color: rgba(255, 0, 0, 0.156);
+  background-color: transparent;
 }
 .inner {
   white-space: nowrap;
@@ -96,7 +88,6 @@ export default {
   position: absolute;
   left: 0;
   top: 0;
-  /* min-height: 16vh; */
   height: 128px;
   width: 60px;
   background-color: rgba(0, 0, 0, 0.438);
@@ -120,7 +111,6 @@ export default {
   position: absolute;
   right: 0;
   top: 0;
-  /* min-height: 16vh; */
   height: 128px;
   width: 60px;
   background-color: rgba(0, 0, 0, 0.438);
@@ -145,26 +135,25 @@ export default {
   display: flex;
   justify-content: space-evenly;
   width: 100%;
-  /* min-height: 15vh; */
   height: 128px;
   text-align: center;
 }
 /* Styling for movie card */
 .card {
-  background: url(https://res.cloudinary.com/milito/image/fetch/https://res.cloudinary.com/milito/image/upload/v1662708770/netflix/spiderman3.webp)
-    no-repeat;
   background-position: center;
-  background-size: contain;
+  background-size: cover;
   background-color: transparent;
+  background-repeat: no-repeat;
   flex: 1;
   height: 126px;
-  border: 1px solid white;
   padding: 0;
   margin: 0;
+  border-radius: 4px;
 }
 .card span {
   position: absolute;
 }
+/* class for empty movies */
 .hide {
   border: 1px solid red;
   visibility: hidden;
