@@ -51,10 +51,10 @@ export default {
   beforeMount() {
     // TO-DO FILL IN THE EMPTY ONES OF UNEVEN PAIRS!!!
     let list = [
-      1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 
+      1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
     ];
     //create an equally divided list of lists
-    let divisor = 6;
+    let divisor = 5;
     let lists = Math.ceil(list.length / divisor);
     const indicatorsList = new Array(lists).fill(0);
     this.list = indicatorsList;

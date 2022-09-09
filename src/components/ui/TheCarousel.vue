@@ -6,8 +6,13 @@
         <div class="line">
           <!-- render according to innerWidth!!! -->
           <!-- something {{ indexTwo + 1 }} -->
-          <div class="card" v-for="(mov, indexTwo) in item" :key="mov">
-            <span>{{ indexTwo }}</span>
+          <div
+            class="card"
+            v-for="(mov, indexTwo) in item"
+            :key="mov"
+            :class="{ hide: mov === 'blank' }"
+          >
+            <span>{{ indexTwo + 1 }}</span>
             <!-- <img class="cardImage" src="https://res.cloudinary.com/milito/image/fetch/https://res.cloudinary.com/milito/image/upload/v1662708770/netflix/spiderman3.webp" alt="image"> -->
           </div>
         </div>
@@ -70,9 +75,9 @@ export default {
   position: relative;
   /* pixels?? */
   /* min-height: 16vh; */
-  min-height: 130px;
+  height: 130px;
   /* background-color: transparent; */
-  background-color: transparent;
+  /* background-color: transparent; */
   background-color: rgba(255, 0, 0, 0.156);
 }
 .inner {
@@ -81,7 +86,7 @@ export default {
   margin: 0;
   margin-left: 60px;
   background-color: transparent;
-  height: 125px;
+  height: 128px;
 }
 .active {
   color: white;
@@ -92,7 +97,7 @@ export default {
   left: 0;
   top: 0;
   /* min-height: 16vh; */
-  height: 121px;
+  height: 128px;
   width: 60px;
   background-color: rgba(0, 0, 0, 0.438);
   display: flex;
@@ -116,7 +121,7 @@ export default {
   right: 0;
   top: 0;
   /* min-height: 16vh; */
-  height: 121px;
+  height: 128px;
   width: 60px;
   background-color: rgba(0, 0, 0, 0.438);
   display: flex;
@@ -141,7 +146,7 @@ export default {
   justify-content: space-evenly;
   width: 100%;
   /* min-height: 15vh; */
-  height: 125px;
+  height: 128px;
   text-align: center;
 }
 /* Styling for movie card */
@@ -152,7 +157,7 @@ export default {
   background-size: contain;
   background-color: transparent;
   flex: 1;
-  height: 120px;
+  height: 126px;
   border: 1px solid white;
   padding: 0;
   margin: 0;
@@ -160,5 +165,8 @@ export default {
 .card span {
   position: absolute;
 }
-/* inner div of each one for spacing */
+.hide {
+  border: 1px solid red;
+  visibility: hidden;
+}
 </style>

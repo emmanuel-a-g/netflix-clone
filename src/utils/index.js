@@ -1,17 +1,20 @@
 export function divideListEquallyBy(list, desired) {
+  // pluck?;)
   let result = [];
   let temp = [];
-  let curr = 0;
-  for (let x = 0; x <= list.length; x++) {
-    if (curr < desired) {
-      curr++;
-      temp.push(list[x]);
+  let currIdx = 0;
+  let iterationTotal = Math.ceil(list.length / desired) * desired;
+  for (let x = 0; x <= iterationTotal; x++) {
+    let currentItem = x < list.length ? list[x] : "blank";
+    if (currIdx < desired) {
+      currIdx++;
+      temp.push(currentItem);
     } else {
       result.push(temp);
       temp = [];
-      curr = 0;
-      curr++;
-      temp.push(list[x]);
+      currIdx = 0;
+      currIdx++;
+      temp.push(currentItem);
     }
   }
   return result;
