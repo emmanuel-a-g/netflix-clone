@@ -8,15 +8,16 @@
     <div class="inner">
       <div class="fillContainer">
         <div class="fillContent">
-          <h1>Movie Title Here</h1>
+          <h1>The Diary of a</h1>
+          <h1>Gigolo</h1>
         </div>
       </div>
       <div class="wrapperCarousel">
-        <TheCarouselComp></TheCarouselComp>
-        <TheCarouselComp></TheCarouselComp>
-        <TheCarouselComp></TheCarouselComp>
-        <div class="moreContent">
-        </div>
+        <TheCarouselComp :listNumber="1"></TheCarouselComp>
+        <TheCarouselComp :listNumber="2"></TheCarouselComp>
+        <TheCarouselComp :listNumber="1"></TheCarouselComp>
+        <TheCarouselComp :listNumber="2"></TheCarouselComp>
+        <div class="moreContent"></div>
       </div>
     </div>
   </div>
@@ -46,7 +47,7 @@ export default {
   computed: {
     idealHeight() {
       if (!this.vingetteHeight) {
-        return "57vw";
+        return "55.7vw";
       } else {
         return this.vingetteHeight;
       }

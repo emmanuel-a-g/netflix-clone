@@ -1,7 +1,7 @@
 <template>
   <div class="noWrap">
     <div class="headerCarousel">
-      <h2>Movies</h2>
+      <h2>Recently Added</h2>
       <div
         class="label"
         :style="{ visibility: showIndicators ? 'visible' : 'hidden' }"
@@ -25,8 +25,9 @@
 <script>
 import TheCarousel from "../../components/ui/TheCarousel.vue";
 import { divideListEquallyBy } from "../../utils/index";
-import { data } from "../../store/data";
+import { data, data2 } from "../../store/data";
 export default {
+  props: ["listNumber"],
   components: {
     TheCarousel,
   },
@@ -51,7 +52,12 @@ export default {
   },
   beforeMount() {
     // TO-DO FILL IN THE EMPTY ONES OF UNEVEN PAIRS!!!
-    const list = data;
+    let list;
+    if (!this.listNumber || this.listNumber === 1) {
+      list = data;
+    } else {
+      list = data2;
+    }
     //create an equally divided list of lists
     let divisor = 5;
     let lists = Math.ceil(list.length / divisor);
@@ -80,6 +86,7 @@ export default {
 }
 .headerCarousel h2 {
   margin: 5px 0px;
+  font-size: 1.3rem;
 }
 /* show progress */
 .label {

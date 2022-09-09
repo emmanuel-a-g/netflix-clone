@@ -32,7 +32,6 @@ function mixUpMovies(list) {
       a.genre !== b.genre ? (a.genre < b.genre ? 1 : -1) : 0
     );
   } else if (mix === 2) {
-    // do nothing
     list.sort((a, b) =>
       a.title !== b.title ? (a.title < b.title ? 1 : -1) : 0
     );
