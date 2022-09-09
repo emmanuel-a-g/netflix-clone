@@ -69,7 +69,7 @@ export default {
 .carousel {
   overflow: hidden;
   position: relative;
-  height: 130px;
+  height: 165px;
   background-color: transparent;
 }
 .inner {
@@ -157,5 +157,10 @@ export default {
 .hide {
   border: 1px solid red;
   visibility: hidden;
+}
+@media only screen and (max-width: 500px) {
+  .carousel {
+    height: 136px;
+  }
 }
 </style>

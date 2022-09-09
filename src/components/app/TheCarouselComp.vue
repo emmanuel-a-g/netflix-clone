@@ -1,7 +1,7 @@
 <template>
   <div class="noWrap">
     <div class="headerCarousel">
-      <h2>Recently Added</h2>
+      <h2>{{title}}</h2>
       <div
         class="label"
         :style="{ visibility: showIndicators ? 'visible' : 'hidden' }"
@@ -27,7 +27,7 @@ import TheCarousel from "../../components/ui/TheCarousel.vue";
 import { divideListEquallyBy } from "../../utils/index";
 import { data, data2 } from "../../store/data";
 export default {
-  props: ["listNumber"],
+  props: ["listNumber", "title"],
   components: {
     TheCarousel,
   },
@@ -106,5 +106,10 @@ export default {
   padding: 0;
   margin: 0;
   color: white;
+}
+@media only screen and (max-width: 500px) {
+  .headerCarousel h2 {
+    font-size: .8rem;
+  }
 }
 </style>
