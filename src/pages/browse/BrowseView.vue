@@ -13,7 +13,8 @@
       </div>
       <div class="wrapperCarousel">
         <TheCarouselComp></TheCarouselComp>
-        <div class="moreContent"></div>
+        <div class="moreContent">
+        </div>
       </div>
     </div>
   </div>

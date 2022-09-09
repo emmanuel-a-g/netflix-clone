@@ -5,8 +5,10 @@
       <ItemCarousel v-for="item in bigList" :key="item" width="90%">
         <div class="line">
           <!-- render according to innerWidth!!! -->
-          <div v-for="(mov, indexTwo) in item" :key="mov">
-            something {{ indexTwo + 1 }}
+          <!-- something {{ indexTwo + 1 }} -->
+          <div class="card" v-for="(mov, indexTwo) in item" :key="mov">
+            <span>{{ indexTwo }}</span>
+            <!-- <img class="cardImage" src="https://res.cloudinary.com/milito/image/fetch/https://res.cloudinary.com/milito/image/upload/v1662708770/netflix/spiderman3.webp" alt="image"> -->
           </div>
         </div>
       </ItemCarousel>
@@ -66,8 +68,12 @@ export default {
 .carousel {
   overflow: hidden;
   position: relative;
-  min-height: 15vh;
+  /* pixels?? */
+  /* min-height: 16vh; */
+  min-height: 130px;
+  /* background-color: transparent; */
   background-color: transparent;
+  background-color: rgba(255, 0, 0, 0.156);
 }
 .inner {
   white-space: nowrap;
@@ -75,6 +81,7 @@ export default {
   margin: 0;
   margin-left: 60px;
   background-color: transparent;
+  height: 125px;
 }
 .active {
   color: white;
@@ -84,7 +91,8 @@ export default {
   position: absolute;
   left: 0;
   top: 0;
-  min-height: 15vh;
+  /* min-height: 16vh; */
+  height: 121px;
   width: 60px;
   background-color: rgba(0, 0, 0, 0.438);
   display: flex;
@@ -107,7 +115,8 @@ export default {
   position: absolute;
   right: 0;
   top: 0;
-  min-height: 15vh;
+  /* min-height: 16vh; */
+  height: 121px;
   width: 60px;
   background-color: rgba(0, 0, 0, 0.438);
   display: flex;
@@ -131,15 +140,25 @@ export default {
   display: flex;
   justify-content: space-evenly;
   width: 100%;
-  min-height: 15vh;
+  /* min-height: 15vh; */
+  height: 125px;
   text-align: center;
 }
-.line div {
+/* Styling for movie card */
+.card {
+  background: url(https://res.cloudinary.com/milito/image/fetch/https://res.cloudinary.com/milito/image/upload/v1662708770/netflix/spiderman3.webp)
+    no-repeat;
+  background-position: center;
+  background-size: contain;
   background-color: transparent;
-  /* IMPORTANT CHECK */
   flex: 1;
-  min-height: 14.5vh;
+  height: 120px;
   border: 1px solid white;
+  padding: 0;
+  margin: 0;
+}
+.card span {
+  position: absolute;
 }
 /* inner div of each one for spacing */
 </style>

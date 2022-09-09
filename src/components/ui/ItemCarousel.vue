@@ -16,8 +16,8 @@ export default {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 15vh;
   background-color: transparent;
   color: white;
+  height: 100%;
 }
 </style>
