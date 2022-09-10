@@ -1,47 +1,37 @@
 <template>
-  <div class="browseDiv">
-    <TheBrowseNav></TheBrowseNav>
-    <BrowseHero></BrowseHero>
-    <div class="inner">
-      <BrowseTop></BrowseTop>
-      <div class="wrapperCarousel">
-        <TheCarouselComp
-          title="Recently Added"
-          :listNumber="1"
-        ></TheCarouselComp>
-        <TheCarouselComp
-          title="Continue Watching"
-          :listNumber="2"
-        ></TheCarouselComp>
-        <TheCarouselComp title="Trending Now" :listNumber="1"></TheCarouselComp>
-        <TheCarouselComp
-          title="Watch It Again"
-          :listNumber="2"
-        ></TheCarouselComp>
-        <div class="moreContent"></div>
+  <div class="wrapper">
+    <div class="fillContainer">
+      <div class="fillContent">
+        <img
+          id="heroTitle"
+          src="https://res.cloudinary.com/milito/image/upload/v1662756497/netflix/nolimit_title.webp"
+          alt="hero title"
+        />
+        <p>
+          He's an alluring famouse driver. She's a rising star. Their love is as
+          deep as the ocean - and just as dangerous once she comes for his world
+          record.
+        </p>
+        <div id="buttonDiv">
+          <button id="playButton">
+            <img :src="play" alt="play icon" /> Play
+          </button>
+          <button id="infoButton">
+            <img :src="info" alt="info icon" />More Info
+          </button>
+        </div>
+        <span id="rating">TV-MA</span>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import TheCarouselComp from "../../components/app/TheCarouselComp.vue";
-import wallpaper from "../../assets/wallpaper.webp";
-import TheBrowseNav from "./TheBrowseNav.vue";
-import BrowseHero from "./BrowseHero.vue";
-import BrowseTop from "./BrowseTop.vue";
 import play from "../../assets/play.png";
 import info from "../../assets/info.png";
 export default {
-  components: {
-    TheBrowseNav,
-    TheCarouselComp,
-    BrowseHero,
-    BrowseTop,
-  },
   data() {
     return {
-      wallpaper,
       play,
       info,
     };
@@ -51,6 +41,10 @@ export default {
 
 <style scoped>
 /* background-color: #141414 */
+.wrapper {
+  height: 100%;
+  width: 100%;
+}
 #heroTitle {
   position: absolute;
   /* top: 22vh; */
@@ -140,7 +134,6 @@ export default {
   align-items: center;
   font-weight: bold;
 }
-/* HERO WALLPAER TITLE OR DESCRIPTION */
 .inner {
   min-height: 100vh;
   position: relative;

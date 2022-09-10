@@ -34,6 +34,10 @@ export default {
 <style>
 /*Main app div*/
 .app {
+  /* NEW */
+  min-width: 300px;
+  resize: vertical;
+  /* NEW */
   min-height: 100vh;
   padding: 0;
   margin: 0;
