@@ -14,6 +14,7 @@ const SelectUser = () => import("../pages/SelectUser.vue");
 const ManageProfile = () => import("../pages/profile/ManageProfile.vue");
 const BrowseView = () => import("../pages/browse/BrowseView.vue");
 const AccountView = () => import("../pages/AccountView.vue");
+const TheEmail = () => import("../pages/account/TheEmail.vue");
 
 const router = createRouter({
   history: createWebHistory(),
@@ -66,6 +67,10 @@ const router = createRouter({
       name: "Account Settings",
       component: AccountView,
       meta: { requiresAuth: true },
+    },
+    {
+      path: "/email",
+      component: TheEmail,
     },
     { path: "/:notFound(.*)", name: "Not Found", component: NotFound },
   ],

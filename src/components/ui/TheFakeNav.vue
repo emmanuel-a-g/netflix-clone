@@ -3,7 +3,9 @@
     <nav>
       <!-- v-bind:src="require('images/rails.png')"  -->
       <img @click="goHome" :src="image" alt="netflix logo" />
-      <h2 @click="logInOut">{{ theTitle }}</h2>
+      <h2 :style="{ color: textColor ? textColor : 'black' }" @click="logInOut">
+        {{ theTitle }}
+      </h2>
     </nav>
   </div>
 </template>
@@ -13,7 +15,7 @@
 import { mapGetters } from "vuex";
 import image from "../../assets/netflix.png";
 export default {
-  props: ["title", "color"],
+  props: ["title", "color", "textColor"],
   data() {
     return {
       image,

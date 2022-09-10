@@ -8,8 +8,9 @@ import {
   browserSessionPersistence,
   browserLocalPersistence,
   signOut,
+  updateProfile,
 } from "firebase/auth";
-// import { database as db } from "../firebase";
+// import { db } from "../firebase";
 // import { collection, getDocs } from "firebase/firestore/lite";
 
 const store = createStore({
@@ -133,6 +134,26 @@ const store = createStore({
     actionEmail(context, payload) {
       context.commit("emailChange", payload);
     },
+    updateProfileName(context, payload) {
+      return new Promise((resolve, reject) => {
+        updateProfile(auth, {
+          displayName: payload.name,
+          photoURL: payload.photoURL || "",
+        })
+          .then(() => {
+            context.commit("setName", payload.name);
+            resolve("updated name");
+          })
+          .catch((err) => {
+            reject(err);
+          });
+      });
+    },
+    // async addNameToDatabase(context, payload) {
+    //   //Name and user's UID
+    //   // set locally the name in vuex
+    //   // context.commit("")
+    // },
   },
 });
 

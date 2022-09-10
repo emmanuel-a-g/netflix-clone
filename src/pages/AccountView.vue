@@ -15,7 +15,7 @@
           <p>Password: *********</p>
           <p>Phone: 123456789</p>
           <div class="actions">
-            <p>Change email</p>
+            <p @click="toEmail">Change email</p>
             <p>Change password</p>
             <p>Change phone number</p>
           </div>
@@ -76,6 +76,9 @@ export default {
     logout() {
       this.$store.dispatch("logOut");
       this.$router.replace("/login");
+    },
+    toEmail() {
+      this.$router.push("/email");
     },
   },
 };

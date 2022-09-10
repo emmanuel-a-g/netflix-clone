@@ -32,6 +32,8 @@ export default {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  border-top-style: solid;
+  border-top-width: 0.5px;
 }
 .loginFooter p {
   color: var(--greyish);
