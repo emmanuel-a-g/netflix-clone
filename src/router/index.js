@@ -4,6 +4,7 @@ import NotFound from "../pages/NotFound.vue";
 import LoginView from "../pages/LoginView.vue";
 import SignUpHome from "../pages/signup/SignUpHome.vue";
 import store from "../store/index";
+import { checkAuth } from "../store/index";
 //Lazy Loading...
 const SignUpOne = () => import("../pages/signup/SignUpOne.vue");
 const SignUpTwo = () => import("../pages/signup/SignUpTwo.vue");
@@ -24,6 +25,7 @@ const router = createRouter({
       path: "/",
       name: "Welcome",
       component: WelcomeView,
+      meta: { isHome: true },
     },
     {
       path: "/login",
@@ -32,14 +34,11 @@ const router = createRouter({
     },
     {
       path: "/signup",
+      meta: { notUser: true },
       component: SignUpHome,
-      meta: { ifUserRedirect: true },
       children: [
         { path: "", component: SignUpOne },
-        {
-          path: "two",
-          component: SignUpTwo,
-        },
+        { path: "two", component: SignUpTwo },
         { path: "three", component: SignUpThree },
         { path: "four", component: SignUpFour },
         { path: "five", component: SignUpFive },
@@ -89,18 +88,38 @@ const router = createRouter({
     }
   },
 });
-router.beforeEach((to, _1, next) => {
+
+router.beforeEach((to, from, next) => {
   //process.env.VUE_TITLE
   if (to.name) {
     document.title = `Netflix Clone - ${to.name}`;
   } else {
     document.title = `Netflix Clone`;
   }
-  //dynamic route w/ different posts
-  if (to.meta.requiresAuth && store.getters.loggedIn) {
+
+  const loggedIn = store.getters.loggedIn;
+  if (to.meta.isHome || to.meta.notUser) {
+    checkAuth()
+      .then((res) => {
+        if (res) {
+          next("/browse");
+        }
+      })
+      .catch(() => {
+        next();
+      });
+  } else if (to.meta.requiresAuth && loggedIn) {
     next();
-  } else if (to.meta.requiresAuth && !store.getters.loggedIn) {
-    next("/login");
+  } else if (to.meta.requiresAuth && !loggedIn) {
+    checkAuth()
+      .then((res) => {
+        if (res) {
+          next();
+        }
+      })
+      .catch(() => {
+        next("/login");
+      });
   } else {
     next();
   }

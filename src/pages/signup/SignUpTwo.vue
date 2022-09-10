@@ -81,9 +81,6 @@ export default {
       this.email = email;
       this.forwardEmail = true;
     }
-    setTimeout(() => {
-      console.log("Email saved: ",this.$store.getters.returnEmail);
-    }, 3000)
   },
 };
 </script>

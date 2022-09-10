@@ -10,6 +10,7 @@ import {
   signOut,
   updateProfile,
   updateEmail,
+  onAuthStateChanged,
 } from "firebase/auth";
 // import { db } from "../firebase";
 // import { collection, getDocs } from "firebase/firestore/lite";
@@ -84,6 +85,7 @@ const store = createStore({
             })
             .then((userCredential) => {
               context.commit("authenticate", userCredential);
+              resolve(true);
             })
             .catch((err) => {
               reject(err);
@@ -99,6 +101,7 @@ const store = createStore({
             })
             .then((userCredential) => {
               context.commit("authenticate", userCredential);
+              resolve(true);
             })
             .catch((err) => {
               reject(err);
@@ -127,9 +130,6 @@ const store = createStore({
           reject("Error in auth");
         }
       });
-    },
-    changeWatcherName() {
-
     },
     actionEmail(context, payload) {
       context.commit("emailChange", payload);
@@ -163,5 +163,17 @@ const store = createStore({
     },
   },
 });
+export async function checkAuth() {
+  return new Promise((resolve, reject) => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        resolve(true);
+      } else {
+        console.log("no-user");
+        reject(false);
+      }
+    });
+  });
+}
 
 export default store;

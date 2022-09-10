@@ -10,16 +10,17 @@ import { onAuthStateChanged } from "firebase/auth";
 export default {
   name: "App",
   data() {
-    return {};
+    return {
+      user: "",
+    };
   },
   beforeCreate() {
     onAuthStateChanged(auth, (user) => {
       if (user) {
+        this.user = user.uid;
         this.$store.dispatch("authenticate", { user: user });
-        console.log("User: ", user.email);
-        // this.$router.replace("/browse");
       } else {
-        console.log("No user.");
+        console.log("app: no-user");
       }
     });
   },
@@ -35,8 +36,7 @@ export default {
 /*Main app div*/
 .app {
   /* NEW */
-  min-width: 300px;
-  resize: vertical;
+  /* min-width: 300px; */
   /* NEW */
   min-height: 100vh;
   padding: 0;
@@ -48,6 +48,7 @@ export default {
   --red: #e50914;
   --grey: #333;
   --greyish: #8c8c8c;
+  background-color: black;
 }
 /*Main settings for HTML-Vue-app div */
 #app {

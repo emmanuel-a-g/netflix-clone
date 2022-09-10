@@ -1,7 +1,7 @@
 <template>
   <div class="loginDiv">
     <div class="imageDiv">
-      <img @click="goHome" :src="image" alt="netflix logo" />
+      <img @click="goWelcome" :src="image" alt="netflix logo" />
       <div class="contentDiv">
         <login-form @submit-login="handleLogin"></login-form>
       </div>
@@ -37,14 +37,14 @@ export default {
           remember,
         })
         .then(() => {
-          this.goHome();
+          this.$router.replace("/browse");
         })
         .catch((err) => {
-          console.log("Failure login: ", err);
+          console.log("login failed: ", err);
         });
     },
-    goHome() {
-      this.$router.replace("/");
+    goWelcome() {
+      this.$router.push("/");
     },
   },
 };

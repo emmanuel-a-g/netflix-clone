@@ -13,23 +13,9 @@
 
 <script>
 export default {
-  data() {
-    return {
-      name: "",
-    };
-  },
   methods: {
     startStreaming() {
-      this.submitName({ name: this.name });
-      //Start Streaming...
       this.$router.push("/selectuser");
-    },
-    setName() {
-      const name = this.$refs.name.value;
-      this.name = name;
-    },
-    submitName(obj) {
-      this.$store.dispatch("changeName", obj);
     },
   },
 };

@@ -26,6 +26,7 @@ export default {
 <style scoped>
 .signUpOne {
   min-height: 100vh;
+  background-color: white;
 }
 .content {
   width: 100%;
