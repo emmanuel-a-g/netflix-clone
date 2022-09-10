@@ -55,7 +55,6 @@
           </div>
         </div>
       </form>
-      <button @click="logout">Sign out of Netflix</button>
     </div>
     <TheFooter position="relative" color="white"></TheFooter>
   </div>
@@ -72,10 +71,6 @@ export default {
   methods: {
     moveHome() {
       this.$router.replace("/browse");
-    },
-    logout() {
-      this.$store.dispatch("logOut");
-      this.$router.replace("/login");
     },
     toEmail() {
       this.$router.push("/email");

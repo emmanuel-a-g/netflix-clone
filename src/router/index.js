@@ -71,6 +71,7 @@ const router = createRouter({
     {
       path: "/email",
       component: TheEmail,
+      meta: { requiresAuth: true },
     },
     { path: "/:notFound(.*)", name: "Not Found", component: NotFound },
   ],

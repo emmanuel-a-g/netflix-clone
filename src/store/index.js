@@ -9,6 +9,7 @@ import {
   browserLocalPersistence,
   signOut,
   updateProfile,
+  updateEmail,
 } from "firebase/auth";
 // import { db } from "../firebase";
 // import { collection, getDocs } from "firebase/firestore/lite";
@@ -20,12 +21,15 @@ const store = createStore({
       userId: null,
       email: "",
       name: "",
+      requiresAuthAgain: false,
     };
   },
   mutations: {
     authenticate(state, payload) {
       state.user = payload.user ? payload.user : false;
-      state.userId = payload.uid;
+      state.userId = payload.user.uid;
+      state.email = payload.user.email;
+      state.name = payload.user.displayName;
     },
     logOut(state) {
       state.user = null;
@@ -59,10 +63,7 @@ const store = createStore({
       return new Promise((resolve, reject) => {
         createUserWithEmailAndPassword(auth, payload.email, payload.password)
           .then((userCredential) => {
-            context.commit("authenticate", { user: userCredential });
-            // save uid
-            // maybe set up name in sign up 4
-            // save email maybe?
+            context.commit("authenticate", userCredential);
             resolve("Success signed up");
           })
           .catch((err) => {
@@ -82,7 +83,7 @@ const store = createStore({
               );
             })
             .then((userCredential) => {
-              context.commit("authenticate", { user: userCredential });
+              context.commit("authenticate", userCredential);
             })
             .catch((err) => {
               reject(err);
@@ -97,7 +98,7 @@ const store = createStore({
               );
             })
             .then((userCredential) => {
-              context.commit("authenticate", { user: userCredential });
+              console.log(userCredential);
             })
             .catch((err) => {
               reject(err);
@@ -136,7 +137,7 @@ const store = createStore({
     },
     updateProfileName(context, payload) {
       return new Promise((resolve, reject) => {
-        updateProfile(auth, {
+        updateProfile(context.state.user, {
           displayName: payload.name,
           photoURL: payload.photoURL || "",
         })
@@ -149,11 +150,18 @@ const store = createStore({
           });
       });
     },
-    // async addNameToDatabase(context, payload) {
-    //   //Name and user's UID
-    //   // set locally the name in vuex
-    //   // context.commit("")
-    // },
+    async updateEmail(context, payload) {
+      return new Promise((resolve, reject) => {
+        updateEmail(context.state.user, payload.email)
+          .then(() => {
+            context.commit("emailChange", payload.email);
+            resolve("Sucess updated email");
+          })
+          .catch((err) => {
+            reject(err);
+          });
+      });
+    },
   },
 });
 
