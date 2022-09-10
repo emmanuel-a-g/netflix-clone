@@ -57,6 +57,7 @@ export default {
   justify-content: space-evenly;
   height: 100%;
   width: 100%;
+  border: 1px solid rgb(47, 47, 47);
 }
 .theBox li {
   list-style: none;

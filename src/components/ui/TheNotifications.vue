@@ -31,6 +31,7 @@ export default {
   text-align: left;
 }
 .theBox ul {
+  border: 1px solid rgb(47, 47, 47);
   list-style: none;
   background-color: rgba(0, 0, 0, 0.85);
   margin: 0;
