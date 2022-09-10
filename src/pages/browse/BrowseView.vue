@@ -26,12 +26,9 @@
 
 <script>
 import TheCarouselComp from "../../components/app/TheCarouselComp.vue";
-import wallpaper from "../../assets/wallpaper.webp";
 import TheBrowseNav from "./TheBrowseNav.vue";
 import BrowseHero from "./BrowseHero.vue";
 import BrowseTop from "./BrowseTop.vue";
-import play from "../../assets/play.png";
-import info from "../../assets/info.png";
 export default {
   components: {
     TheBrowseNav,
@@ -40,11 +37,7 @@ export default {
     BrowseTop,
   },
   data() {
-    return {
-      wallpaper,
-      play,
-      info,
-    };
+    return {};
   },
 };
 </script>

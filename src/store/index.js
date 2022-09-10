@@ -118,10 +118,6 @@ const store = createStore({
           });
       });
     },
-    changeName(context, payload) {
-      //ALLOW to Choose between Users
-      context.commit("changeName", payload);
-    },
     authenticate(context, payload) {
       return new Promise((resolve, reject) => {
         if (payload.user) {
@@ -132,17 +128,20 @@ const store = createStore({
         }
       });
     },
+    changeWatcherName() {
+
+    },
     actionEmail(context, payload) {
       context.commit("emailChange", payload);
     },
-    updateProfileName(context, payload) {
+    async updateProfileName(context, payload) {
       return new Promise((resolve, reject) => {
         updateProfile(context.state.user, {
           displayName: payload.name,
           photoURL: payload.photoURL || "",
         })
           .then(() => {
-            context.commit("changeName", payload.name);
+            context.commit("changeName", payload);
             resolve("updated name");
           })
           .catch((err) => {

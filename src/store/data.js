@@ -89,7 +89,7 @@ export const data = [
   },
   {
     title: "Quantum of Solace: 007",
-    genre: "action",
+    genre: "movie",
     id: 15,
     imageUrl:
       "https://res.cloudinary.com/milito/image/upload/v1662743230/netflix/quantum.webp",

@@ -22,9 +22,11 @@
             :value="newName"
             placeholder="New Name"
             @keyup="setName"
+            required
+            :disabled="disableSave"
           />
         </div>
-        <div class="buttons">
+        <div class="buttons" v-if="!disableSave">
           <button @click.prevent="save">Save</button>
           <button @click.prevent="cancel">Cancel</button>
         </div>
@@ -52,6 +54,7 @@ export default {
       newName: "",
       error: "",
       message: "",
+      disableSave: false,
     };
   },
   methods: {
@@ -66,6 +69,7 @@ export default {
         .dispatch("updateProfileName", { name: this.newName })
         .then(() => {
           this.message = "Success name has been changed."
+          this.disableSave = true;
           this.dispatchGoBack();
         })
         .catch((err) => {
