@@ -27,7 +27,9 @@
             <button id="playButton">
               <img :src="play" alt="play icon" /> Play
             </button>
-            <button id="infoButton">&#8505; More Info</button>
+            <button id="infoButton">
+              <img :src="info" alt="info icon" />More Info
+            </button>
           </div>
           <span id="rating">TV-MA</span>
         </div>
@@ -57,6 +59,7 @@ import TheBrowseNav from "./TheBrowseNav.vue";
 import wallpaper from "../../assets/wallpaper.webp";
 import TheCarouselComp from "../../components/app/TheCarouselComp.vue";
 import play from "../../assets/play.png";
+import info from "../../assets/info.png";
 export default {
   components: {
     TheBrowseNav,
@@ -66,6 +69,7 @@ export default {
     return {
       wallpaper,
       play,
+      info,
       vingetteHeight: undefined,
       wallpaperRef: null,
     };
@@ -150,7 +154,7 @@ export default {
   display: flex;
   background-color: transparent;
   justify-content: space-between;
-  min-width: 20.5vw;
+  min-width: 19.5vw;
 }
 #buttonDiv button {
   border: none;
@@ -171,10 +175,17 @@ export default {
   height: auto;
 }
 #infoButton {
-  min-width: 11vw;
+  min-width: 10vw;
   color: white;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
   padding: 8px;
   background-color: rgba(100, 100, 100, 0.364);
+}
+#infoButton img {
+  width: 1.6vw;
+  height: auto;
 }
 #rating {
   position: absolute;
@@ -252,11 +263,15 @@ export default {
   #buttonDiv {
     top: 38vw;
     left: 60px;
-    min-width: 130px;
+    min-width: 160px;
   }
   #buttonDiv button {
     font-size: 0.7rem;
     min-height: 1.7vw;
+    min-width: 60px;
+  }
+  #infoButton {
+    width: 90px;
   }
 }
 </style>
