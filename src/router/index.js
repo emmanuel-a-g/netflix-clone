@@ -15,6 +15,7 @@ const ManageProfile = () => import("../pages/profile/ManageProfile.vue");
 const BrowseView = () => import("../pages/browse/BrowseView.vue");
 const AccountView = () => import("../pages/AccountView.vue");
 const TheEmail = () => import("../pages/account/TheEmail.vue");
+const TheName = () => import("../pages/account/TheName.vue");
 
 const router = createRouter({
   history: createWebHistory(),
@@ -71,6 +72,11 @@ const router = createRouter({
     {
       path: "/email",
       component: TheEmail,
+      meta: { requiresAuth: true },
+    },
+    {
+      path: "/name",
+      component: TheName,
       meta: { requiresAuth: true },
     },
     { path: "/:notFound(.*)", name: "Not Found", component: NotFound },

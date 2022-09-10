@@ -4,18 +4,24 @@
       <NetflixLogo @click="moveHome"> </NetflixLogo>
     </div>
     <div class="content">
-      <h1>Account</h1>
-      <p class="member">Member Since 2022</p>
+      <div class="header">
+        <h1>Account</h1>
+        <p class="member">Member Since 2022</p>
+      </div>
       <form>
         <div class="inner">
           <p>MEMBERSHIP & BILLING</p>
-          <p>
-            <strong>someEmail@gmail.com</strong>
-          </p>
-          <p>Password: *********</p>
-          <p>Phone: 123456789</p>
+          <div>
+            <p>
+              <strong>{{ email }}</strong>
+            </p>
+            <p v-if="name">{{ name }}</p>
+            <p>Password: *********</p>
+            <p>Phone: 123456789</p>
+          </div>
           <div class="actions">
             <p @click="toEmail">Change email</p>
+            <p @click="toName">Change account name</p>
             <p>Change password</p>
             <p>Change phone number</p>
           </div>
@@ -68,6 +74,12 @@ export default {
     NetflixLogo,
     TheFooter,
   },
+  data() {
+    return {
+      email: "",
+      name: "",
+    };
+  },
   methods: {
     moveHome() {
       this.$router.replace("/browse");
@@ -75,13 +87,25 @@ export default {
     toEmail() {
       this.$router.push("/email");
     },
+    toName() {
+      this.$router.push("/name");
+    },
+  },
+  mounted() {
+    this.email = this.$store.getters.returnEmail;
+    this.name = this.$store.getters.getName;
   },
 };
 </script>
 
 <style scoped>
+.header {
+  align-self: center;
+  min-width: 70vw;
+  text-align: left;
+}
 .accountDiv {
-  background-color: rgb(208, 207, 207);
+  background-color: #f3f3f3;
   min-height: 100vh;
 }
 .content {
@@ -94,23 +118,12 @@ export default {
 }
 .content form {
   border: 1px black solid;
-  min-width: 500px;
+  min-width: 70vw;
   display: flex;
   justify-content: center;
   background-color: white;
   margin-top: 10px;
   margin-bottom: 10px;
-}
-.content h1 {
-  text-align: left;
-  min-width: 500px;
-  margin-bottom: 0px;
-  font-size: 2.25rem;
-}
-.member {
-  text-align: left;
-  min-width: 500px;
-  margin: 12px 0px;
 }
 .nav {
   height: 8vh;
@@ -133,5 +146,10 @@ export default {
 }
 .inner {
   width: 90%;
+}
+@media only screen and (max-width: 700px) {
+  .inner {
+    width: 90%;
+  }
 }
 </style>

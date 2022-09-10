@@ -1,25 +1,27 @@
 <template>
   <div class="mainDiv">
     <TheFakeNav color="black" textColor="white"></TheFakeNav>
-    <div class="emailDiv">
+    <div class="nameDiv">
       <form>
-        <h1>Change Email</h1>
+        <h1>Change Name</h1>
         <div class="inputDiv">
-          <p v-if="message" class="message">{{ message }}</p>
-          <p v-if="error" class="error">{{ error }}</p>
+          <p v-if="message" class="message">{{message}}</p>
+          <p v-if="error" class="error">{{error}}</p>
           <input
-            :value="email"
-            class="currEmail"
+            v-if="name"
+            :value="name"
+            class="currName"
             type="text"
             readonly
             disabled
           />
           <input
-            class="newEmail"
-            type="email"
-            :value="newEmail"
-            placeholder="New Email"
-            @keyup="setEmail"
+            class="newName"
+            type="text"
+            maxlength="12"
+            :value="newName"
+            placeholder="New Name"
+            @keyup="setName"
           />
         </div>
         <div class="buttons">
@@ -46,33 +48,29 @@ export default {
   },
   data() {
     return {
-      email: "",
-      newEmail: "",
+      name: "",
+      newName: "",
       error: "",
       message: "",
     };
   },
   methods: {
-    setEmail(e) {
-      this.newEmail = e.currentTarget.value;
+    setName(e) {
+      this.newName = e.currentTarget.value;
     },
     save() {
+      // reset err or message?
+      this.message = "";
+      this.error = "";
       this.$store
-        .dispatch("updateEmail", { email: this.newEmail })
+        .dispatch("updateProfileName", { name: this.newName })
         .then(() => {
-          this.message = "Success email has been changed.";
+          this.message = "Success name has been changed."
           this.dispatchGoBack();
         })
         .catch((err) => {
+          this.error = err.code;
           console.log(err);
-          let requiresAuth = "auth/requires-recent-login";
-          if (err.code === requiresAuth) {
-            this.error =
-              "Auth / requires recent login. You will now be re-directed to log in again.";
-            this.dispatchLogout();
-          } else {
-            this.error = err.code;
-          }
         });
     },
     cancel() {
@@ -81,25 +79,19 @@ export default {
     dispatchGoBack() {
       setTimeout(() => {
         this.$router.push("/account");
-      }, 4500);
-    },
-    dispatchLogout() {
-      setTimeout(() => {
-        this.$store.dispatch("logOut");
-        window.location.reload();
-      }, 5000);
+      }, 4500)
     },
   },
   mounted() {
-    const email = this.$store.getters.returnEmail;
-    if (email) {
-      this.email = email;
-      this.newEmail = email;
+    const name = this.$store.getters.getName;
+    if (name) {
+      this.name = name;
+      this.newName = name;
     }
-    if (!email) {
+    if (!name) {
       setTimeout(() => {
-        this.email = this.$store.getters.returnEmail;
-        this.newEmail = this.$store.getters.returnEmail;
+        this.name = this.$store.getters.getName;
+        this.newName = this.$store.getters.getName;
       }, 1000);
     }
   },
@@ -130,7 +122,7 @@ export default {
 .mainDiv {
   background-color: #f3f3f3;
 }
-.emailDiv {
+.nameDiv {
   padding-top: 30px;
   min-height: 65vh;
   color: black;
@@ -140,7 +132,7 @@ export default {
   align-items: flex-start;
   padding-left: 240px;
 }
-.currEmail {
+.currName {
   font-size: 1rem;
   width: 400px;
   height: 44px;
@@ -149,7 +141,7 @@ export default {
   text-indent: 5px;
   font-size: 1rem;
 }
-.newEmail {
+.newName {
   width: 400px;
   height: 44px;
   border: 1px solid grey;
@@ -168,11 +160,5 @@ export default {
   padding: 0;
   margin: 0;
   font-weight: bold;
-}
-.message {
-  color: rgb(0, 79, 0);
-}
-.error {
-  color: red;
 }
 </style>

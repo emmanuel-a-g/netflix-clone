@@ -6,13 +6,6 @@
       <p>and newly released</p>
       <h2>Netflix Originals!</h2>
       <br />
-      <!-- <input
-        type="text"
-        placeholder="Set a user profile name"
-        ref="name"
-        @keyup="setName"
-        maxlength="10"
-      /> -->
     </div>
     <button @click="startStreaming">Start Streaming</button>
   </div>
@@ -27,10 +20,6 @@ export default {
   },
   methods: {
     startStreaming() {
-      //check for logged in?
-      //take to USERS page...
-      //creat Avatar
-      //OR
       this.submitName({ name: this.name });
       //Start Streaming...
       this.$router.push("/selectuser");
@@ -49,7 +38,7 @@ export default {
 <style scoped>
 .content {
   color: black;
-  height: 87vh;
+  height: 97vh;
   background-color: white;
   display: flex;
   flex-direction: column;
@@ -74,6 +63,7 @@ h2 {
   font-size: 1.8rem;
   padding: 7px;
   margin: 0;
+  font-style: italic;
 }
 .step {
   font-size: 1rem;

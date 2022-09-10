@@ -98,7 +98,7 @@ const store = createStore({
               );
             })
             .then((userCredential) => {
-              console.log(userCredential);
+              context.commit("authenticate", userCredential);
             })
             .catch((err) => {
               reject(err);
@@ -142,7 +142,7 @@ const store = createStore({
           photoURL: payload.photoURL || "",
         })
           .then(() => {
-            context.commit("setName", payload.name);
+            context.commit("changeName", payload.name);
             resolve("updated name");
           })
           .catch((err) => {
