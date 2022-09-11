@@ -12,8 +12,8 @@ import {
   updateEmail,
   onAuthStateChanged,
 } from "firebase/auth";
-// import { db } from "../firebase";
-// import { collection, getDocs } from "firebase/firestore/lite";
+import { db } from "../firebase";
+import { doc, setDoc } from "firebase/firestore";
 
 const store = createStore({
   state() {
@@ -65,6 +65,8 @@ const store = createStore({
         createUserWithEmailAndPassword(auth, payload.email, payload.password)
           .then((userCredential) => {
             context.commit("authenticate", userCredential);
+            // ADD TO DATABASE
+            context.dispatch("addProfileUsers", userCredential.user.uid);
             resolve("Success signed up");
           })
           .catch((err) => {
@@ -160,6 +162,21 @@ const store = createStore({
             reject(err);
           });
       });
+    },
+    async addProfileUsers(_, payload) {
+      try {
+        await setDoc(doc(db, "users", payload), {
+          profiles: {
+            one: "",
+            two: "",
+            three: "",
+            four: "",
+            five: "",
+          },
+        });
+      } catch (e) {
+        console.log("did not add users", e);
+      }
     },
   },
 });

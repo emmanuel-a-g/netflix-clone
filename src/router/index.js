@@ -98,7 +98,7 @@ router.beforeEach((to, from, next) => {
   }
 
   const loggedIn = store.getters.loggedIn;
-  if (to.meta.isHome || to.meta.notUser) {
+  if (to.meta.isHome) {
     checkAuth()
       .then((res) => {
         if (res) {

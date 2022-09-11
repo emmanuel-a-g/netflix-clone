@@ -58,12 +58,12 @@ export default {
             email: this.email,
             password: this.password,
           })
-          .then((res) => {
-            console.log("Success sign up:", res);
+          .then(() => {
+            console.log("signed up.",);
             this.nextTo();
           })
           .catch((err) => {
-            console.log("Error sign up:", err);
+            console.log("error sign up.", err);
           });
       }
       setTimeout(() => {
