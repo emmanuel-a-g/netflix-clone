@@ -106,15 +106,13 @@ export default {
       this.$emit("manage");
     },
     moveToBrowse() {
-      //optional argument of profile??
-      //or vue saved;
       this.$router.replace("/browse");
     },
     handle(name, displayName) {
       if (this.editMode) {
         this.$emit("editUser", name, displayName);
       } else {
-        // TO-DO save choosen name in VUEX
+        this.$store.dispatch("currentProfile", displayName);
         this.$router.push("/browse");
       }
     },

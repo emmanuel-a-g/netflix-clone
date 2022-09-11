@@ -45,7 +45,7 @@
           <TheNotifications :show="showAlert"></TheNotifications>
         </li>
         <li @mouseenter="toggleAccount">
-          {{ name }}
+          {{ theName }}
           <span class="arrow">
             <img
               :src="arrow"
@@ -74,6 +74,7 @@ export default {
   },
   data() {
     return {
+      name: "",
       mobileView: false,
       openMenu: false,
       handleResize: null,
@@ -91,12 +92,14 @@ export default {
     };
   },
   computed: {
-    name() {
+    theName() {
       const name = this.$store.getters.getName;
-      if (name) {
+      if (this.name) {
+        return this.name;
+      } else if (name) {
         return name;
       } else {
-        return "Visitor";
+        return "visitor";
       }
     },
     atTop() {
@@ -156,6 +159,10 @@ export default {
     },
   },
   mounted() {
+    const profile = this.$store.getters.getCurrentProfile;
+    if (profile) {
+      this.name = profile;
+    }
     window.addEventListener("scroll", this.setScroll);
     const breakpoint = 800;
     const small = 550;

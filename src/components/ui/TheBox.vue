@@ -31,7 +31,6 @@ export default {
       this.$router.push("/selectuser");
     },
   },
-  // computed: {},
 };
 </script>
 

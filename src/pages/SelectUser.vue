@@ -16,6 +16,7 @@
 
 <script>
 import SelectProfile from "../components/app/SelectProfile.vue";
+import { onUpdateProfiles } from "../store/index";
 import image from "../assets/netflix.png";
 export default {
   components: {
@@ -55,6 +56,12 @@ export default {
         });
     }
   },
+  updated() {
+    onUpdateProfiles()
+    .then((res) => {
+      this.data = res;
+    })
+  }
 };
 </script>
 

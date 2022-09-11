@@ -14,8 +14,8 @@ import {
 } from "firebase/auth";
 import { db } from "../firebase";
 // onSnapshot
-import { doc, setDoc, updateDoc, getDoc } from "firebase/firestore";
-
+import { doc, setDoc, updateDoc, getDoc, onSnapshot } from "firebase/firestore";
+let userId;
 const store = createStore({
   state() {
     return {
@@ -23,6 +23,7 @@ const store = createStore({
       userId: null,
       email: "",
       name: "",
+      currentProfile: "",
       requiresAuthAgain: false,
     };
   },
@@ -47,6 +48,9 @@ const store = createStore({
     },
     setProfiles(state, payload) {
       state.profiles = payload;
+    },
+    setCurrentProfile(state, payload) {
+      state.currentProfile = payload;
     }
   },
   getters: {
@@ -64,6 +68,9 @@ const store = createStore({
     },
     getProfiles(state) {
       return state.profiles;
+    },
+    getCurrentProfile(state) {
+      return state.currentProfile;
     }
   },
   actions: {
@@ -217,17 +224,30 @@ const store = createStore({
         return new Error("db error profiles");
       }
     },
+    currentProfile(context, payload) {
+      context.commit("setCurrentProfile", payload);
+    }
   },
 });
 export async function checkAuth() {
   return new Promise((resolve, reject) => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
+        userId = user.uid;
         resolve(true);
       } else {
         console.log("no-user");
         reject(false);
       }
+    });
+  });
+}
+export async function onUpdateProfiles() {
+  return new Promise((resolve) => {
+    // const unsub = 
+    onSnapshot(doc(db, "users", userId), (doc) => {
+      let data = doc.data();
+      resolve(data.profiles);
     });
   });
 }
