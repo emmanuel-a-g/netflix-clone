@@ -13,7 +13,8 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 import { db } from "../firebase";
-import { doc, setDoc } from "firebase/firestore";
+// onSnapshot
+import { doc, setDoc, updateDoc, getDoc } from "firebase/firestore";
 
 const store = createStore({
   state() {
@@ -44,6 +45,9 @@ const store = createStore({
     emailChange(state, payload) {
       state.email = payload;
     },
+    setProfiles(state, payload) {
+      state.profiles = payload;
+    }
   },
   getters: {
     userId(state) {
@@ -58,6 +62,9 @@ const store = createStore({
     getName(state) {
       return state.name;
     },
+    getProfiles(state) {
+      return state.profiles;
+    }
   },
   actions: {
     async signUp(context, payload) {
@@ -173,9 +180,41 @@ const store = createStore({
             four: "",
             five: "",
           },
+          mylist: {
+            one: [],
+            two: [],
+            three: [],
+            four: [],
+            five: [],
+          },
         });
       } catch (e) {
         console.log("did not add users", e);
+      }
+    },
+    async addNameToProfile(context, payload) {
+      const id = context.getters.userId;
+      try {
+        const usersProfileDoc = doc(db, "users", id);
+        let dbPath = `profiles.${payload.profile}`;
+        await updateDoc(usersProfileDoc, {
+          [dbPath]: payload.name,
+        });
+      } catch (e) {
+        console.log("error: ", e);
+      }
+    },
+    async profileNames(context) {
+      const id = context.getters.userId;
+      const usersRef = doc(db, "users", id);
+      const docSnap = await getDoc(usersRef);
+      if (docSnap.exists()) {
+        let data = docSnap.data();
+        context.commit("setProfiles", data.profiles);
+        return data;
+      } else {
+        // doc.data() will be undefined in this case
+        return new Error("db error profiles");
       }
     },
   },

@@ -4,53 +4,53 @@
     <div class="profiles">
       <div
         class="card"
-        name="Emmanuel"
-        @click="handle(name)"
+        name="one"
+        @click="handle('one', nameOne)"
         :class="{ highlight: editMode, single: !editMode }"
       >
         <img :src="image" alt="user image" />
         <span v-if="editMode"> &#9998; </span>
-        <p>Emmanuel</p>
+        <p>{{ nameOne }}</p>
       </div>
       <div
         class="card"
-        name="Veronica"
-        @click="handle(name)"
+        name="two"
+        @click="handle('two', nameTwo)"
         :class="{ highlight: editMode, single: !editMode }"
       >
         <img :src="image" alt="user image" />
         <span v-if="editMode"> &#9998; </span>
-        <p>Veronica</p>
+        <p>{{ nameTwo }}</p>
       </div>
       <div
         class="card"
-        name="Arturo"
-        @click="handle(name)"
+        name="three"
+        @click="handle('three', nameThree)"
         :class="{ highlight: editMode, single: !editMode }"
       >
         <img :src="image" alt="user image" />
         <span v-if="editMode"> &#9998; </span>
-        <p>Arturo</p>
+        <p>{{ nameThree }}</p>
       </div>
       <div
         class="card"
-        name="Michael"
-        @click="handle(name)"
+        name="four"
+        @click="handle('four', nameFour)"
         :class="{ highlight: editMode, single: !editMode }"
       >
         <img :src="image" alt="user image" />
         <span v-if="editMode"> &#9998;</span>
-        <p>Michael</p>
+        <p>{{ nameFour }}</p>
       </div>
       <div
         class="card"
-        name="Wendy"
-        @click="handle(name)"
+        name="five"
+        @click="handle('five', nameFive)"
         :class="{ highlight: editMode, single: !editMode }"
       >
         <img :src="image" alt="user image" />
         <span v-if="editMode">&#9998; </span>
-        <p>Wendy</p>
+        <p>{{ nameFive }}</p>
       </div>
     </div>
     <button
@@ -65,13 +65,41 @@
 <script>
 import image from "../../assets/logo.png";
 export default {
-  props: ["editMode"],
+  props: [
+    "editMode",
+    "profileOne",
+    "profileTwo",
+    "profileThree",
+    "profileFour",
+    "profileFive",
+  ],
   emits: ["manage", "editUser"],
   data() {
     return {
       image,
-      name: "emmanuel",
+      one: "",
+      two: "",
+      three: "",
+      four: "",
+      five: "",
     };
+  },
+  computed: {
+    nameOne() {
+      return this.profileOne || "Create";
+    },
+    nameTwo() {
+      return this.profileTwo || "Create";
+    },
+    nameThree() {
+      return this.profileThree || "Create";
+    },
+    nameFour() {
+      return this.profileFour || "Create";
+    },
+    nameFive() {
+      return this.profileFive || "Create";
+    },
   },
   methods: {
     manageToggle() {
@@ -82,9 +110,9 @@ export default {
       //or vue saved;
       this.$router.replace("/browse");
     },
-    handle(name) {
+    handle(name, displayName) {
       if (this.editMode) {
-        this.$emit("editUser", name);
+        this.$emit("editUser", name, displayName);
       } else {
         // TO-DO save choosen name in VUEX
         this.$router.push("/browse");

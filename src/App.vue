@@ -19,6 +19,7 @@ export default {
       if (user) {
         this.user = user.uid;
         this.$store.dispatch("authenticate", { user: user });
+        this.$store.dispatch("profileNames");
       } else {
         console.log("app: no-user");
       }

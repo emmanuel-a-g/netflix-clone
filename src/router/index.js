@@ -51,7 +51,7 @@ const router = createRouter({
       meta: { requiresAuth: true },
     },
     {
-      path: "/manageprofiles/:name",
+      path: "/manageprofiles/:profile/:name",
       name: "Manage Profile",
       component: ManageProfile,
       meta: { requiresAuth: true },

@@ -53,6 +53,7 @@ export default {
   data() {
     return {
       name: "",
+      profile: "",
       nameProvided: false,
       image,
       netflix,
@@ -62,33 +63,31 @@ export default {
     setName() {
       this.name = this.$refs.name.value;
     },
-    changeName() {
+    saveAndGoBack() {
       //TODO
       //send http request to change name
       //HERE
-      //on success, change name here in VUEX
-      this.$store.dispatch("changeName", {
+      this.$store.dispatch("addNameToProfile", {
+        profile: this.profile,
         name: this.name,
       });
-    },
-    saveAndGoBack() {
-      this.changeName();
       this.$router.push("/selectuser");
     },
     cancelAndGoBack() {
       this.$router.replace("/selectuser");
     },
-    getTheName() {
-      return this.$store.getters.getName;
-    },
   },
   mounted() {
-    const name = this.$store.getters.getName;
-    if (name) {
+    const profile = this.$route.params.profile;
+    const name = this.$route.params.name;
+    // CALL DATABASE TO GET THE NAME FOR PROFILE ONE
+    if (profile) {
       this.$refs.name.value = name;
       this.nameProvided = true;
+      this.profile = profile;
     } else {
       this.nameProvided = false;
+      this.profile = profile;
     }
   },
 };

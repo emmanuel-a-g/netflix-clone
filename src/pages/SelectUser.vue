@@ -5,6 +5,11 @@
       @edit-user="editThisUser"
       @manage="manageMode"
       :editMode="editMode"
+      :profileOne="data['one']"
+      :profileTwo="data['two']"
+      :profileThree="data['three']"
+      :profileFour="data['four']"
+      :profileFive="data['five']"
     ></SelectProfile>
   </div>
 </template>
@@ -12,7 +17,6 @@
 <script>
 import SelectProfile from "../components/app/SelectProfile.vue";
 import image from "../assets/netflix.png";
-// IMPLEMENT MANAGE PROFILES TO CHANGE NAME, ETC.
 export default {
   components: {
     SelectProfile,
@@ -21,17 +25,35 @@ export default {
     return {
       editMode: false,
       image,
+      data: [],
     };
   },
   methods: {
     manageMode() {
-      //TO-DO
-      //render according to id
       this.editMode = !this.editMode;
     },
-    editThisUser(name) {
-      this.$router.push(`/manageprofiles/${name}`);
+    editThisUser(name, displayName) {
+      if (displayName) {
+        this.$router.push(`/manageprofiles/${name}/${displayName}`);
+      } else {
+        this.$router.push(`/manageprofiles/${name}/undefined`);
+      }
     },
+  },
+  mounted() {
+    const profiles = this.$store.getters.getProfiles;
+    if (profiles) {
+      this.data = profiles;
+    } else {
+      this.$store
+        .dispatch("profileNames")
+        .then((res) => {
+          this.data = res.profiles;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   },
 };
 </script>
