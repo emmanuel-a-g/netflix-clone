@@ -3,10 +3,11 @@
     <ul>
       <li class="action">alert one</li>
       <li class="action">alert two</li>
-      <li class="action">alert threee</li>
+      <li class="action">alert three</li>
       <li class="action">alert four</li>
-      <li class="action">alert four</li>
-      <li class="action">alert four</li>
+      <li class="action">alert five</li>
+      <li class="action">alert six</li>
+      <li class="action">alert seven</li>
     </ul>
   </div>
 </template>
@@ -39,7 +40,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  height: 100%;
+  min-height: 440px;
   width: 100%;
   overflow-y: scroll;
 }
@@ -47,7 +48,6 @@ export default {
   list-style: none;
   margin: 0;
   padding: 5px 0px;
-  min-height: 80px;
 }
 .visibleClass {
   position: absolute;
