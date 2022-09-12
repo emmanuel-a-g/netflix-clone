@@ -9,11 +9,11 @@
             :key="mov"
             :class="{ hide: mov === 'blank' }"
             :style="{
-              'background-image': `url(${mov.imageUrl})`,
+              'background-image': mov.imageUrl
+                ? `url(${mov.imageUrl})`
+                : 'none',
             }"
-          >
-            <!-- <p>{{ mov.title }}</p> -->
-          </div>
+          ></div>
         </div>
       </ItemCarousel>
     </div>

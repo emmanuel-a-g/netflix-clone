@@ -26,9 +26,10 @@
             :disabled="disableSave"
           />
         </div>
-        <div class="buttons" v-if="!disableSave">
-          <button @click.prevent="save">Save</button>
-          <button @click.prevent="cancel">Cancel</button>
+        <div class="buttons">
+          <button @click.prevent="save" v-if="!disableSave">Save</button>
+          <button @click.prevent="cancel" v-if="!disableSave">Cancel</button>
+          <button @click.prevent="returnToAccount" v-if="message">Return</button>
         </div>
       </form>
     </div>
@@ -58,11 +59,13 @@ export default {
     };
   },
   methods: {
+    returnToAccount() {
+      this.$router.push("account");
+    },
     setName(e) {
       this.newName = e.currentTarget.value;
     },
     save() {
-      // reset err or message?
       this.message = "";
       this.error = "";
       this.$store
@@ -70,7 +73,6 @@ export default {
         .then(() => {
           this.message = "Success name has been changed."
           this.disableSave = true;
-          this.dispatchGoBack();
         })
         .catch((err) => {
           this.error = err.code;
@@ -79,11 +81,6 @@ export default {
     },
     cancel() {
       this.$router.push("/account");
-    },
-    dispatchGoBack() {
-      setTimeout(() => {
-        this.$router.push("/account");
-      }, 4500)
     },
   },
   mounted() {

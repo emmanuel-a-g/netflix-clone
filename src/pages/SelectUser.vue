@@ -46,7 +46,7 @@ export default {
       if (displayName) {
         this.$router.push(`/manageprofiles/${name}/${displayName}`);
       } else {
-        this.$router.push(`/manageprofiles/${name}/undefined`);
+        this.$router.push(`/manageprofiles/${name}/visitor`);
       }
     },
     fetchNewProfileNames() {

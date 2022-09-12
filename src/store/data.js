@@ -283,12 +283,13 @@ export const profileImages = [
   },
   {
     id: 2,
+    name: "tokyo",
     imageUrl:
       "https://res.cloudinary.com/milito/image/upload/v1662997890/netflix/tokyoProfile_q2bukk.png",
   },
   {
     id: 3,
-    title: "elite",
+    name: "elite",
     imageUrl:
       "https://res.cloudinary.com/milito/image/upload/v1662997890/netflix/eliteProfile_ouycek.png",
   },

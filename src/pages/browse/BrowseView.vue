@@ -36,9 +36,6 @@ export default {
     BrowseHero,
     BrowseTop,
   },
-  data() {
-    return {};
-  },
 };
 </script>
 

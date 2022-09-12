@@ -59,7 +59,7 @@ export default {
       list = data2;
     }
     //create an equally divided list of lists
-    let divisor = 6;
+    let divisor = 5;
     let lists = Math.ceil(list.length / divisor);
     const indicatorsList = new Array(lists).fill(0);
     this.list = indicatorsList;

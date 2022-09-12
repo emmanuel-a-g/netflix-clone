@@ -114,13 +114,13 @@ export default {
       return "https://res.cloudinary.com/milito/image/upload/v1662997890/netflix/tokyoProfile_q2bukk.png";
     },
     imageThree() {
-      return "https://res.cloudinary.com/milito/image/upload/v1662997890/netflix/maskProfile_xx1z4x.png";
+      return "https://res.cloudinary.com/milito/image/upload/v1662997890/netflix/eliteProfile_ouycek.png";
     },
     imageFour() {
-      return "https://res.cloudinary.com/milito/image/upload/v1662997890/netflix/tokyoProfile_q2bukk.png";
+      return "https://res.cloudinary.com/milito/image/upload/v1662997889/netflix/enchanmentProfile_c6ybpd.png";
     },
     imageFive() {
-      return "https://res.cloudinary.com/milito/image/upload/v1662997890/netflix/maskProfile_xx1z4x.png";
+      return "https://res.cloudinary.com/milito/image/upload/v1662997890/netflix/strangerProfile_kz4yjg.png";
     },
   },
   methods: {
@@ -134,7 +134,7 @@ export default {
       if (this.editMode) {
         this.$emit("editUser", name, displayName);
       } else {
-        this.$store.dispatch("currentProfile", displayName);
+        this.$store.dispatch("currentProfile", {name, displayName});
         this.$router.push("/browse");
       }
     },

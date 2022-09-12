@@ -22,9 +22,12 @@
             @keyup="setEmail"
           />
         </div>
-        <div class="buttons" v-if="!submitted">
-          <button @click.prevent="save">Save</button>
-          <button @click.prevent="cancel">Cancel</button>
+        <div class="buttons">
+          <button @click.prevent="save" v-if="!submitted">Save</button>
+          <button @click.prevent="cancel" v-if="!submitted">Cancel</button>
+          <button @click.prevent="returnToAccount" v-if="message">
+            Return
+          </button>
         </div>
       </form>
     </div>
@@ -54,6 +57,9 @@ export default {
     };
   },
   methods: {
+    returnToAccount() {
+      this.$router.push("/account");
+    },
     setEmail(e) {
       this.newEmail = e.currentTarget.value;
     },
@@ -63,10 +69,9 @@ export default {
         .dispatch("updateEmail", { email: this.newEmail })
         .then(() => {
           this.message = "Success email has been changed.";
-          this.dispatchGoBack();
         })
         .catch((err) => {
-          console.log(err);
+          console.log(err.code);
           let requiresAuth = "auth/requires-recent-login";
           if (err.code === requiresAuth) {
             this.error =
@@ -81,11 +86,6 @@ export default {
     },
     cancel() {
       this.$router.push("/account");
-    },
-    dispatchGoBack() {
-      setTimeout(() => {
-        this.$router.push("/account");
-      }, 4500);
     },
     dispatchLogout() {
       setTimeout(() => {

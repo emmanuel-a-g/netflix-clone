@@ -32,7 +32,7 @@ const store = createStore({
       userId: null,
       email: "",
       name: "",
-      currentProfile: "",
+      currentProfile: {name: "", displayName: ""},
       redirectAuth: false,
       notification: "",
       profiles: null,

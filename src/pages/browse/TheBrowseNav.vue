@@ -41,9 +41,13 @@
           <img id="bell" :src="bell" alt="bell icon" />
           <TheNotifications :show="showAlert"></TheNotifications>
         </li>
-        <li @mouseenter="toggleAccount">
+        <li class="profileItem" @mouseenter="toggleAccount">
           <span @click="toAccount">
-            {{ theName }}
+            <img
+              class="profileImage"
+              :src="determineProfile"
+              alt="profile image"
+            />
           </span>
           <span class="arrow">
             <img
@@ -66,6 +70,7 @@ import bell from "../../assets/bellWhite.png";
 import TheBox from "../../components/ui/TheBox.vue";
 import arrow from "../../assets/arrow.png";
 import TheNotifications from "../../components/ui/TheNotifications.vue";
+import { profileImages } from "../../store/data";
 export default {
   components: {
     TheBox,
@@ -106,6 +111,22 @@ export default {
         return true;
       } else {
         return false;
+      }
+    },
+    determineProfile() {
+      const curr = this.$store.getters.getCurrentProfile;
+      if (curr.name === "one") {
+        return profileImages[0].imageUrl;
+      } else if (curr.name === "two") {
+        return profileImages[1].imageUrl;
+      } else if (curr.name === "three") {
+        return profileImages[2].imageUrl;
+      } else if (curr.name === "four") {
+        return profileImages[4].imageUrl;
+      } else if (curr.name === "five") {
+        return profileImages[5].imageUrl;
+      } else {
+        return profileImages[3].imageUrl;
       }
     },
   },
@@ -161,9 +182,9 @@ export default {
     },
   },
   mounted() {
-    const profile = this.$store.getters.getCurrentProfile;
-    if (profile || profile.length > 1) {
-      this.name = profile;
+    const currentProfile = this.$store.getters.getCurrentProfile;
+    if (currentProfile.displayName) {
+      this.name = currentProfile.displayName;
     }
     window.addEventListener("scroll", this.setScroll);
     const breakpoint = 800;
@@ -228,6 +249,15 @@ export default {
   width: 100%;
   height: 100%;
   justify-content: flex-end;
+}
+.profileItem {
+  display: flex;
+  align-items: center;
+}
+.profileImage {
+  width: 32px;
+  height: auto;
+  border-radius: 4px;
 }
 .navBar input::placeholder {
   color: grey;
@@ -329,8 +359,8 @@ export default {
   transition-duration: 200ms;
 }
 .arrow img {
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
 }
 @media only screen and (max-width: 800px) {
   .content {
