@@ -63,6 +63,7 @@ const store = createStore({
       state.currentProfile = payload;
     },
     setRedirectAuth(state, payload = null) {
+      console.log("Set redirectauth",payload);
       if (payload) {
         state.redirectAuth = false;
       } else {
@@ -103,7 +104,7 @@ const store = createStore({
             //dispatch delete document
             deleteDoc(doc(db, "users", user))
               .then(() => {
-                console.log("deleted document: ");
+                console.log("deleted document.");
               })
               .catch((err) => {
                 console.log("error document delete: ", err);
@@ -278,6 +279,7 @@ const store = createStore({
       context.commit("setCurrentProfile", payload);
     },
     redirectUserToAccount(context, payload) {
+      console.log("action redirectToAuth", payload);
       context.commit("setRedirectAuth", payload);
     },
   },

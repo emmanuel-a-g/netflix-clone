@@ -56,7 +56,7 @@ export default {
   },
   mounted() {
     const isRedirect = this.$store.getters.getRedirectAuth;
-    console.log("isRedirect? ", isRedirect);
+    console.log("redirect: ", isRedirect);
     if (isRedirect || isRedirect.length > 1) {
       this.redirect = isRedirect;
     }

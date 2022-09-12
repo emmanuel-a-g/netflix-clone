@@ -8,6 +8,7 @@
         We hate paperwork, too.
       </p>
       <form class="theForm" @submit.prevent="handleSubmit">
+        <p v-if="error" class="error">{{error}}</p>
         <input
           class="two"
           v-if="forwardEmail"
@@ -27,10 +28,13 @@
           class="two"
           type="password"
           required
-          v-model="password"
+          :value="password"
+          @keyup="setPassword"
           placeholder="Add a password"
+          minlength="6"
+          :class="{ inputAlert: passwordAlert }"
         />
-        <span v-if="passwordAlert"></span>
+        <span class="alert" v-if="passwordAlert">{{ passwordAlert }}</span>
         <button>Next</button>
       </form>
     </div>
@@ -42,15 +46,27 @@ import image from "../../assets/logo.png";
 export default {
   data() {
     return {
+      error: "",
       email: "",
       password: "",
       emailAlert: null,
-      passwordAlert: null,
+      passwordAlert: "",
       image,
       forwardEmail: false,
     };
   },
   methods: {
+    setPassword(e) {
+      this.password = e.target.value;
+      this.validatePassword(e.target.value);
+    },
+    validatePassword(password) {
+      if (password.length < 6) {
+        this.passwordAlert = "Password must be at least 6 characters long";
+      } else {
+        this.passwordAlert = "";
+      }
+    },
     async handleSubmit() {
       if (this.email.includes("@") && this.password.length >= 6) {
         this.$store
@@ -59,10 +75,10 @@ export default {
             password: this.password,
           })
           .then(() => {
-            console.log("signed up.",);
             this.nextTo();
           })
           .catch((err) => {
+            this.error = err.code;
             console.log("error sign up.", err);
           });
       }
@@ -136,5 +152,20 @@ form {
 }
 h2 {
   font-size: 1.8rem;
+}
+.alert {
+  font-size: 0.8rem;
+  align-self: flex-start;
+  margin: 0px;
+  padding: 0px;
+  color: orange;
+}
+.inputAlert {
+  border-bottom: 1px orange solid;
+}
+.error {
+  color: red;
+  font-size: .9rem;
+  font-weight: bold;
 }
 </style>

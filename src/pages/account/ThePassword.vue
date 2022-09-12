@@ -144,6 +144,7 @@ export default {
     dispatchLogout() {
       setTimeout(() => {
         this.$store.dispatch("logOut");
+        this.$router.push("/login");
       }, 5000);
     },
   },

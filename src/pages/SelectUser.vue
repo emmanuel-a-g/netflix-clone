@@ -58,7 +58,7 @@ export default {
           this.data = res.profiles;
         })
         .catch((err) => {
-          console.log(err);
+          console.log("Profile names error", err);
         });
     }
   },
@@ -68,7 +68,7 @@ export default {
       this.data = res;
     })
     .catch((err) => {
-      console.log(err);
+      console.log("On update profile name error",err);
     })
   }
 };
