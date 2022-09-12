@@ -9,7 +9,6 @@
         <img class="userimg" :src="image" alt="user image" />
       </div>
       <div class="cardOne">
-        <!-- create name or replace name -->
         <input
           type="text"
           placeholder="Name"
@@ -64,6 +63,10 @@ export default {
       this.name = this.$refs.name.value;
     },
     saveAndGoBack() {
+      if (!this.name || this.name.length <= 1) {
+        this.cancelAndGoBack();
+        return;
+      }
       this.$store.dispatch("addNameToProfile", {
         profile: this.profile,
         name: this.name,

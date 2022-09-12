@@ -6,15 +6,22 @@
       <li class="profile">{{ profiles.three || "+ profile" }}</li>
       <li class="profile">{{ profiles.four || "+ profile" }}</li>
       <li class="profile">{{ profiles.five || "+ profile" }}</li>
-      <li class="action" @click="handleSelectuser">manage profiles</li>
-      <li class="action" @click="handleAccount">account</li>
-      <li class="action">help center</li>
+      <li class="action" @click="handleSelectuser">
+        <img :src="pencil" alt="edit logo" />manage profiles
+      </li>
+      <li class="action" @click="handleAccount">
+        <img :src="user" alt="user logo" />account
+      </li>
+      <li class="action"><img :src="help" alt="help logo" />help center</li>
       <li class="signout" @click="handleLogout">Sign out of Netflix</li>
     </ul>
   </div>
 </template>
 
 <script>
+import user from "../../assets/user.png";
+import help from "../../assets/help.png";
+import pencil from "../../assets/pencil.png";
 export default {
   data() {
     return {
@@ -25,6 +32,9 @@ export default {
         four: "",
         five: "",
       },
+      user,
+      help,
+      pencil,
     };
   },
   props: ["show", "width", "height", "top", "right"],
@@ -60,14 +70,11 @@ export default {
 
 <style scoped>
 .profile {
+  width: 82%;
   text-align: left;
-  text-indent: 20px;
-}
-.signout {
-  border-top: 1px solid white;
 }
 .action {
-  text-indent: 20px;
+  width: 82%;
   text-align: left;
 }
 .theBox ul {
@@ -78,6 +85,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  align-items: center;
   height: 100%;
   width: 100%;
   border: 1px solid rgb(47, 47, 47);
@@ -109,6 +117,15 @@ export default {
   right: 4vw;
   background-color: transparent;
   visibility: hidden;
+}
+.action img {
+  width: 16px;
+  height: 16px;
+  margin: 0px 10px 0px 0px;
+}
+.signout {
+  width: 100%;
+  border-top: 1px solid rgb(148, 148, 148);
 }
 @media only screen and (max-width: 800px) {
   .visibleClass {

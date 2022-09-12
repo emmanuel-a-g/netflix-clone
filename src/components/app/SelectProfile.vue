@@ -128,10 +128,9 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: 1rem;
 }
 .wrapper h1 {
-  font-size: 2.5rem;
+  font-size: 3rem;
 }
 .profiles {
   width: 80%;
@@ -144,11 +143,12 @@ export default {
 }
 button {
   width: 180px;
-  height: 35px;
+  height: 38px;
   background-color: transparent;
   border: none;
   color: grey;
   border: 1px solid grey;
+  font-size: 1rem;
 }
 .card {
   min-height: 140px;
@@ -159,7 +159,7 @@ button {
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  font-size: 1rem;
+  font-size: 1.2rem;
 }
 .card:hover {
   color: white;
@@ -186,7 +186,7 @@ button {
 }
 @media only screen and (max-width: 700px) {
   .wrapper h1 {
-    font-size: 1.5rem;
+    font-size: 1.7rem;
   }
   .profiles {
     width: 95%;

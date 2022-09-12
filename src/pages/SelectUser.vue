@@ -86,9 +86,10 @@ export default {
   background-color: #141414;
 }
 .selectUserDiv img {
-  width: 100px;
+  width: 120px;
   height: auto;
   position: absolute;
-  left: 1vw;
+  top: 0;
+  left: 2vw;
 }
 </style>
