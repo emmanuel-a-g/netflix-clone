@@ -22,9 +22,9 @@
             <!-- <p>Phone: 123456789</p> -->
           </div>
           <div class="actions">
-            <p @click="toEmail">Change email</p>
-            <p @click="toName">Change account name</p>
-            <p @click="toPassword">Change password</p>
+            <p class="clickable" @click="toEmail">Change email</p>
+            <p class="clickable" @click="toName">Change account name</p>
+            <p class="clickable" @click="toPassword">Change password</p>
             <!-- <p>Change phone number</p> -->
           </div>
         </div>
@@ -38,15 +38,50 @@
           </div>
         </div>
       </form>
-      <form v-if="profiles">
+      <form>
         <div class="inner">
           <p>PROFILE & PARENTAL CONTROLS</p>
-          <div class="actions">
-            <p>{{profiles.one}}</p>
-            <p>{{profiles.two}}</p>
-            <p>{{profiles.three}}</p>
-            <p>{{profiles.four}}</p>
-            <p>{{profiles.five}}</p>
+          <div class="profiles">
+            <p>
+              <img
+                class="profile"
+                src="https://res.cloudinary.com/milito/image/upload/v1662997890/netflix/maskProfile_xx1z4x.png"
+                alt="user image"
+              />
+              {{ profiles.one || "..." }}
+            </p>
+            <p>
+              <img
+                class="profile"
+                src="https://res.cloudinary.com/milito/image/upload/v1662997890/netflix/tokyoProfile_q2bukk.png"
+                alt="user image"
+              />
+              {{ profiles.two || "..." }}
+            </p>
+            <p>
+              <img
+                class="profile"
+                src="https://res.cloudinary.com/milito/image/upload/v1662997890/netflix/eliteProfile_ouycek.png"
+                alt="user image"
+              />
+              {{ profiles.three || "..." }}
+            </p>
+            <p>
+              <img
+                class="profile"
+                src="https://res.cloudinary.com/milito/image/upload/v1662997889/netflix/enchanmentProfile_c6ybpd.png"
+                alt="user image"
+              />
+              {{ profiles.four || "..." }}
+            </p>
+            <p>
+              <img
+                class="profile"
+                src="https://res.cloudinary.com/milito/image/upload/v1662997890/netflix/strangerProfile_kz4yjg.png"
+                alt="user image"
+              />
+              {{ profiles.five || "..." }}
+            </p>
           </div>
         </div>
       </form>
@@ -58,9 +93,11 @@
             <p>Parental controls</p>
             <p>Test participation</p>
             <p>Manage download services</p>
-            <p>Sign out of all devices</p>
             <p>Download your personal information</p>
-            <p @click="deleteAccount"><strong> Delete </strong> your account</p>
+            <p class="clickable" @clicl="logout">Sign out of all devices</p>
+            <p class="clickable" @click="deleteAccount">
+              <strong> Delete </strong>&nbsp;your account
+            </p>
           </div>
         </div>
       </form>
@@ -83,10 +120,19 @@ export default {
       name: "",
       alert: null,
       message: null,
-      profiles: "",
+      profiles: {
+        one: "",
+        two: "",
+        three: "",
+        four: "",
+        five: "",
+      },
     };
   },
   methods: {
+    logout() {
+      this.$store.dispatch("logOut");
+    },
     moveHome() {
       this.$router.replace("/browse");
     },
@@ -119,7 +165,10 @@ export default {
             window.scrollTo({ top: 0, behavior: "smooth" });
             setTimeout(() => {
               this.$store.dispatch("logOut");
-              this.$router.push({path: "/login", query: {redirect: "account"}});
+              this.$router.push({
+                path: "/login",
+                query: { redirect: "account" },
+              });
             }, 4500);
           } else {
             this.alert = err;
@@ -186,13 +235,26 @@ export default {
   flex-direction: column;
   width: 100%;
 }
-.actions p {
+.profiles p {
+  padding: 10px 0px;
   border-top: 1px solid grey;
   text-align: left;
   min-height: 45px;
   width: 100%;
   margin: 0;
-  padding-top: 20px;
+  display: flex;
+  align-items: center;
+  text-indent: 10px;
+}
+.actions p {
+  padding: 10px 0px;
+  border-top: 1px solid grey;
+  text-align: left;
+  min-height: 45px;
+  width: 100%;
+  margin: 0;
+  display: flex;
+  align-items: center;
 }
 .inner {
   width: 90%;
@@ -206,6 +268,15 @@ export default {
   color: red;
   font-size: 1.1rem;
   font-weight: bold;
+}
+.clickable:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+.profile {
+  width: 60px;
+  height: auto;
+  border-radius: 5px;
 }
 @media only screen and (max-width: 700px) {
   .inner {

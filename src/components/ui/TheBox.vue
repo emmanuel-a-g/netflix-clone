@@ -37,7 +37,7 @@ export default {
       pencil,
     };
   },
-  props: ["show", "width", "height", "top", "right"],
+  props: ["show"],
   methods: {
     handleHover() {
       console.log("I was hovered");

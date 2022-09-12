@@ -21,10 +21,10 @@ import {
   setDoc,
   updateDoc,
   getDoc,
-  onSnapshot,
+  // onSnapshot,
   deleteDoc,
 } from "firebase/firestore";
-let userId;
+// let userId;
 const store = createStore({
   state() {
     return {
@@ -291,7 +291,6 @@ export async function checkAuth() {
   return new Promise((resolve, reject) => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        userId = user.uid;
         resolve(true);
       } else {
         console.log("no-user");
@@ -301,17 +300,17 @@ export async function checkAuth() {
   });
 }
 //DISABLED
-export async function onUpdateProfiles() {
-    return new Promise((resolve, reject) => {
-      onSnapshot(doc(db, "users", userId), (doc) => {
-        let data = doc.data();
-        if (data) {
-          resolve(data.profiles);
-        } else {
-          reject(false);
-        }
-      });
-    });
-}
+// export async function onUpdateProfiles() {
+//     return new Promise((resolve, reject) => {
+//       onSnapshot(doc(db, "users", userId), (doc) => {
+//         let data = doc.data();
+//         if (data) {
+//           resolve(data.profiles);
+//         } else {
+//           reject(false);
+//         }
+//       });
+//     });
+// }
 
 export default store;
