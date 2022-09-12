@@ -6,64 +6,71 @@
         class="card"
         name="one"
         @click="handle('one', nameOne)"
-        :class="{ highlight: editMode, single: !editMode }"
+        :class="{ highlight: editMode }"
       >
-        <img :src="image" alt="user image" />
-        <span v-if="editMode"> &#9998; </span>
+        <img class="profile" :src="imageOne" alt="user image" />
+        <span v-if="editMode"
+          ><img :src="pencil" alt="edit logo" class="pencil"
+        /></span>
         <p>{{ nameOne }}</p>
       </div>
       <div
         class="card"
         name="two"
         @click="handle('two', nameTwo)"
-        :class="{ highlight: editMode, single: !editMode }"
+        :class="{ highlight: editMode }"
       >
-        <img :src="image" alt="user image" />
-        <span v-if="editMode"> &#9998; </span>
+        <img class="profile" :src="imageTwo" alt="user image" />
+        <span v-if="editMode"
+          ><img :src="pencil" alt="edit logo" class="pencil"
+        /></span>
         <p>{{ nameTwo }}</p>
       </div>
       <div
         class="card"
         name="three"
         @click="handle('three', nameThree)"
-        :class="{ highlight: editMode, single: !editMode }"
+        :class="{ highlight: editMode }"
       >
-        <img :src="image" alt="user image" />
-        <span v-if="editMode"> &#9998; </span>
+        <img class="profile" :src="imageThree" alt="user image" />
+        <span v-if="editMode"
+          ><img :src="pencil" alt="edit logo" class="pencil"
+        /></span>
         <p>{{ nameThree }}</p>
       </div>
       <div
         class="card"
         name="four"
         @click="handle('four', nameFour)"
-        :class="{ highlight: editMode, single: !editMode }"
+        :class="{ highlight: editMode }"
       >
-        <img :src="image" alt="user image" />
-        <span v-if="editMode"> &#9998;</span>
+        <img class="profile" :src="imageFour" alt="user image" />
+        <span v-if="editMode"
+          ><img :src="pencil" alt="edit logo" class="pencil"
+        /></span>
         <p>{{ nameFour }}</p>
       </div>
       <div
         class="card"
         name="five"
         @click="handle('five', nameFive)"
-        :class="{ highlight: editMode, single: !editMode }"
+        :class="{ highlight: editMode }"
       >
-        <img :src="image" alt="user image" />
-        <span v-if="editMode">&#9998; </span>
+        <img class="profile" :src="imageFive" alt="user image" />
+        <span v-if="editMode"
+          ><img :src="pencil" alt="edit logo" class="pencil"
+        /></span>
         <p>{{ nameFive }}</p>
       </div>
     </div>
-    <button
-      :class="{ highlightButton: editMode, single: !editMode }"
-      @click="manageToggle"
-    >
+    <button :class="{ highlightButton: editMode }" @click="manageToggle">
       {{ editMode ? "Done" : "Manage Profiles" }}
     </button>
   </div>
 </template>
 
 <script>
-import image from "../../assets/logo.png";
+import pencil from "../../assets/pencil.png";
 export default {
   props: [
     "editMode",
@@ -76,7 +83,7 @@ export default {
   emits: ["manage", "editUser"],
   data() {
     return {
-      image,
+      pencil,
       one: "",
       two: "",
       three: "",
@@ -99,6 +106,21 @@ export default {
     },
     nameFive() {
       return this.profileFive || "New";
+    },
+    imageOne() {
+      return "https://res.cloudinary.com/milito/image/upload/v1662997890/netflix/maskProfile_xx1z4x.png";
+    },
+    imageTwo() {
+      return "https://res.cloudinary.com/milito/image/upload/v1662997890/netflix/tokyoProfile_q2bukk.png";
+    },
+    imageThree() {
+      return "https://res.cloudinary.com/milito/image/upload/v1662997890/netflix/maskProfile_xx1z4x.png";
+    },
+    imageFour() {
+      return "https://res.cloudinary.com/milito/image/upload/v1662997890/netflix/tokyoProfile_q2bukk.png";
+    },
+    imageFive() {
+      return "https://res.cloudinary.com/milito/image/upload/v1662997890/netflix/maskProfile_xx1z4x.png";
     },
   },
   methods: {
@@ -133,13 +155,12 @@ export default {
   font-size: 3rem;
 }
 .profiles {
-  width: 80%;
-  max-width: 760px;
+  width: 100%;
+  max-width: 800px;
   display: flex;
-  justify-content: space-evenly;
   align-items: center;
   margin-bottom: 30px;
-  min-height: 150px;
+  min-height: 160px;
 }
 button {
   width: 180px;
@@ -150,7 +171,12 @@ button {
   border: 1px solid grey;
   font-size: 1rem;
 }
+button:hover {
+  border: 1px solid white;
+  color: white;
+}
 .card {
+  flex: 1;
   min-height: 140px;
   color: grey;
   text-align: center;
@@ -164,25 +190,36 @@ button {
 .card:hover {
   color: white;
 }
-.single:hover {
-  border: 1px white solid;
-}
-.card img {
-  width: 50px;
+.profile {
+  width: 120px;
   height: auto;
-  padding: 14px;
+  border-radius: 5px;
+  /* life saver prevents border movement */
+  border: 1px solid transparent;
+}
+.profile:hover {
+  border: 1px solid white;
 }
 .card span {
-  position: absolute;
-  color: white;
-  height: 0px;
-  transform: rotateY(180deg);
+  position: relative;
 }
-.highlight {
-  border: 1px white solid;
+.pencil {
+  top: -70px;
+  left: -15px;
+  position: absolute;
+  width: 30px;
+  height: 30px;
 }
 .highlightButton {
-  border: 1px solid white;
+  background-color: white;
+  border: none;
+  color: black;
+  font-weight: bold;
+}
+.highlightButton:hover {
+  border: none;
+  background-color: #cc0000;
+  color: white;
 }
 @media only screen and (max-width: 700px) {
   .wrapper h1 {
@@ -194,6 +231,18 @@ button {
   .card {
     width: 85px;
     font-size: 0.9rem;
+  }
+  .profile {
+    width: 80px;
+    height: auto;
+    border-radius: 5px;
+    border: 1px solid transparent;
+  }
+  button {
+    font-size: 0.9rem;
+    width: 150px;
+    height: 38px;
+    text-align: center;
   }
 }
 </style>

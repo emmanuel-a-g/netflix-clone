@@ -50,6 +50,9 @@ const store = createStore({
       state.userId = null;
       state.email = null;
       state.name = null;
+      state.currentProfile = "";
+      state.notification = ""
+      state.profiles = null;
     },
     changeName(state, payload) {
       state.name = payload.name;

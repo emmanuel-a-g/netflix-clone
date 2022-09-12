@@ -162,7 +162,7 @@ export const data2 = [
   },
   {
     title: "6 Underground",
-    genre:"action",
+    genre: "action",
     imageUrl:
       "https://res.cloudinary.com/milito/image/upload/v1662749445/netflix/6_underground_ocwt6h.jpg",
     id: 25,
@@ -271,5 +271,43 @@ export const data2 = [
     imageUrl:
       "https://res.cloudinary.com/milito/image/upload/v1662749427/netflix/morbius_n38hzh.webp",
     id: 40,
+  },
+];
+
+export const profileImages = [
+  {
+    id: 1,
+    name: "mask",
+    imageUrl:
+      "https://res.cloudinary.com/milito/image/upload/v1662997890/netflix/maskProfile_xx1z4x.png",
+  },
+  {
+    id: 2,
+    imageUrl:
+      "https://res.cloudinary.com/milito/image/upload/v1662997890/netflix/tokyoProfile_q2bukk.png",
+  },
+  {
+    id: 3,
+    title: "elite",
+    imageUrl:
+      "https://res.cloudinary.com/milito/image/upload/v1662997890/netflix/eliteProfile_ouycek.png",
+  },
+  {
+    id: 4,
+    name: "squid",
+    imageUrl:
+      "https://res.cloudinary.com/milito/image/upload/v1662997889/netflix/squidProfile_ondg3d.png",
+  },
+  {
+    id: 5,
+    name: "enchanment",
+    imageUrl:
+      "https://res.cloudinary.com/milito/image/upload/v1662997889/netflix/enchanmentProfile_c6ybpd.png",
+  },
+  {
+    id: 6,
+    name: "stranger",
+    imageUrl:
+      "https://res.cloudinary.com/milito/image/upload/v1662997890/netflix/strangerProfile_kz4yjg.png",
   },
 ];

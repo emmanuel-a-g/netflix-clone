@@ -1,7 +1,7 @@
 <template>
   <div class="carousel">
-    <div class="inner" :style="{ transform: `translateX(-${index * 90}%)` }">
-      <ItemCarousel v-for="item in bigList" :key="item" width="90%">
+    <div class="inner" :style="{ transform: `translateX(-${index * 95}%)` }">
+      <ItemCarousel v-for="item in bigList" :key="item" width="95%">
         <div class="line">
           <div
             class="card"
@@ -90,12 +90,13 @@ export default {
   position: absolute;
   left: 0;
   top: 0;
-  height: 128px;
+  height: 126px;
   width: 60px;
-  background-color: rgba(0, 0, 0, 0.438);
+  /* background-color: rgba(0, 0, 0, 0.438); */
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 5px;
 }
 .prev img {
   height: 30px;
@@ -113,7 +114,7 @@ export default {
   position: absolute;
   right: 0;
   top: 0;
-  height: 128px;
+  height: 126px;
   width: 60px;
   background-color: rgba(0, 0, 0, 0.438);
   display: flex;

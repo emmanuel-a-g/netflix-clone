@@ -39,6 +39,7 @@ export default {
           remember,
         })
         .then(() => {
+          console.log("Redirect after login :", this.redirect);
           if (this.redirect) {
             this.$router.replace(`/${this.redirect}`);
           } else {
@@ -61,6 +62,10 @@ export default {
       this.redirect = isRedirect;
     }
   },
+  beforeUpdate() {
+    const isRedirect = this.$store.getters.getRedirectAuth;
+    console.log("redirect: ", isRedirect);
+  }
 };
 </script>
 
