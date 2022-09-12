@@ -1,6 +1,6 @@
 <template>
   <div class="selectUserDiv">
-    <img :src="image" alt="netflix logo" />
+    <img @click="toBrowse" :src="image" alt="netflix logo" />
     <SelectProfile
       @edit-user="editThisUser"
       @manage="manageMode"
@@ -36,6 +36,9 @@ export default {
     };
   },
   methods: {
+    toBrowse() {
+      this.$router.push("/browse");
+    },
     manageMode() {
       this.editMode = !this.editMode;
     },

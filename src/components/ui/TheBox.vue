@@ -7,12 +7,12 @@
       <li class="profile">{{ profiles.four || "+ profile" }}</li>
       <li class="profile">{{ profiles.five || "+ profile" }}</li>
       <li class="action" @click="handleSelectuser">
-        <img :src="pencil" alt="edit logo" />manage profiles
+        <img :src="pencil" alt="edit logo" />Manage profiles
       </li>
       <li class="action" @click="handleAccount">
-        <img :src="user" alt="user logo" />account
+        <img :src="user" alt="user logo" />Account
       </li>
-      <li class="action"><img :src="help" alt="help logo" />help center</li>
+      <li class="action"><img :src="help" alt="help logo" />Help Center</li>
       <li class="signout" @click="handleLogout">Sign out of Netflix</li>
     </ul>
   </div>

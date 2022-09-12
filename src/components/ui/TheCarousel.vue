@@ -18,17 +18,18 @@
       </ItemCarousel>
     </div>
     <div v-if="showIndicators" class="prev" @click="prev">
-      <img :src="icon" alt="left arrow" />
+      <img :src="left" alt="left arrow" />
     </div>
     <div v-if="showIndicators" class="next" @click="next">
-      <img :src="icon" alt="right arrow" width="16px" height="16px" />
+      <img :src="right" alt="right arrow" width="16px" height="16px" />
     </div>
   </div>
 </template>
 
 <script>
 import ItemCarousel from "./ItemCarousel.vue";
-import icon from "../../assets/logo.png";
+import right from "../../assets/rightArr.png";
+import left from "../../assets/leftArr.png";
 export default {
   components: {
     ItemCarousel,
@@ -39,7 +40,8 @@ export default {
     return {
       index: 0,
       leftArrow: false,
-      icon,
+      left,
+      right,
     };
   },
   methods: {
@@ -96,8 +98,8 @@ export default {
   justify-content: center;
 }
 .prev img {
-  height: 20px;
-  width: 20px;
+  height: 30px;
+  width: 30px;
 }
 .prev:hover {
   cursor: pointer;
@@ -123,8 +125,8 @@ export default {
   background-color: rgba(0, 0, 0, 0.651);
 }
 .next img {
-  height: 20px;
-  width: 20px;
+  height: 30px;
+  width: 30px;
 }
 .next img:hover {
   scale: 1.2;
@@ -140,9 +142,9 @@ export default {
 }
 /* Styling for movie card */
 .card {
+  background-color: rgb(96, 96, 96);
   background-position: center;
   background-size: cover;
-  background-color: transparent;
   background-repeat: no-repeat;
   flex: 1;
   height: 126px;
@@ -153,9 +155,9 @@ export default {
 .card span {
   position: absolute;
 }
-/* class for empty movies */
+/* CLASS FOR EMPTY MOVIES */
 .hide {
-  border: 1px solid red;
+  /* border: 1px solid red; */
   visibility: hidden;
 }
 @media only screen and (max-width: 500px) {

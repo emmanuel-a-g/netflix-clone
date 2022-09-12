@@ -117,6 +117,7 @@ export default {
 #infoButton img {
   width: 1.6vw;
   height: auto;
+  margin-right: 2px;
 }
 #rating {
   position: absolute;
