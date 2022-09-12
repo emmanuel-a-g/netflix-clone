@@ -26,6 +26,7 @@ export default {
   data() {
     return {
       image,
+      redirect: false,
     };
   },
   methods: {
@@ -37,7 +38,11 @@ export default {
           remember,
         })
         .then(() => {
-          this.$router.replace("/browse");
+          if (this.redirect) {
+            this.$router.replace("/account");
+          } else {
+            this.$router.replace("/browse");
+          }
         })
         .catch((err) => {
           console.log("login failed: ", err.code);
@@ -46,6 +51,12 @@ export default {
     goWelcome() {
       this.$router.push("/");
     },
+  },
+  mounted() {
+    const isRedirect = this.$store.getters.getRedirectAuth;
+    if (isRedirect) {
+      this.redirect = true;
+    }
   },
 };
 </script>

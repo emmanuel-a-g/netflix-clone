@@ -11,7 +11,7 @@ import {
   updateProfile,
   updateEmail,
   onAuthStateChanged,
-  deleteUser
+  deleteUser,
 } from "firebase/auth";
 import { db } from "../firebase";
 // onSnapshot
@@ -25,7 +25,8 @@ const store = createStore({
       email: "",
       name: "",
       currentProfile: "",
-      requiresAuthAgain: false,
+      redirectAuth: false,
+      notification: "",
     };
   },
   mutations: {
@@ -52,7 +53,10 @@ const store = createStore({
     },
     setCurrentProfile(state, payload) {
       state.currentProfile = payload;
-    }
+    },
+    setRedirectAuth(state) {
+      state.redirectAuth = !state.redirectAuth;
+    },
   },
   getters: {
     userId(state) {
@@ -72,19 +76,22 @@ const store = createStore({
     },
     getCurrentProfile(state) {
       return state.currentProfile;
-    }
+    },
+    getRedirectAuth(state) {
+      return state.redirectAuth;
+    },
   },
   actions: {
     async deleteTheAccount(context) {
       return new Promise((resolve, reject) => {
         deleteUser(context.state.user)
-        .then((res) => {
-          resolve(res);
-        })
-        .catch((err) => {
-          reject(err.code);
-        })
-      })
+          .then((res) => {
+            resolve(res);
+          })
+          .catch((err) => {
+            reject(err.code);
+          });
+      });
     },
     async signUp(context, payload) {
       return new Promise((resolve, reject) => {
@@ -237,7 +244,10 @@ const store = createStore({
     },
     currentProfile(context, payload) {
       context.commit("setCurrentProfile", payload);
-    }
+    },
+    redirectUserToAccount(context) {
+      context.commit("setRedirectAuth");
+    },
   },
 });
 //***********FREE FUNCTIONS***************
@@ -256,7 +266,7 @@ export async function checkAuth() {
 }
 export async function onUpdateProfiles() {
   return new Promise((resolve) => {
-    // const unsub = 
+    // const unsub =
     onSnapshot(doc(db, "users", userId), (doc) => {
       let data = doc.data();
       resolve(data.profiles);

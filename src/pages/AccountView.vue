@@ -25,7 +25,7 @@
             <p @click="toEmail">Change email</p>
             <p @click="toName">Change account name</p>
             <p>Change password</p>
-            <p>Change phone number</p>
+            <!-- <p>Change phone number</p> -->
           </div>
         </div>
       </form>
@@ -102,14 +102,14 @@ export default {
           this.message =
             "Success account has been deleted. Thank you! See you soon.";
           window.scrollTo({ top: 0, behavior: "smooth" });
-          // dispatch to go to login page
           setTimeout(() => {
-            this.$router.push("/login");
+            this.$router.replace("/login");
           }, 4500);
         })
         .catch((err) => {
           let errCode = "auth/requires-recent-login";
           if (errCode === err) {
+            this.$store.dispatch("redirectUserToAccount");
             this.alert =
               "Auth: requires recent login to delete. Redirecting you to sign in again...";
             window.scrollTo({ top: 0, behavior: "smooth" });
@@ -124,6 +124,10 @@ export default {
   mounted() {
     this.email = this.$store.getters.returnEmail;
     this.name = this.$store.getters.getName;
+    if (this.$store.getters.getRedirectAuth) {
+      this.message = "Successfully re-authenticated";
+      this.$store.dispatch("redirectUserToAccount");
+    }
   },
 };
 </script>
