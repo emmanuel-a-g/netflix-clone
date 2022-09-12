@@ -4,11 +4,11 @@
     :style="{ 'background-color': atTop ? 'transparent' : 'black' }"
   >
     <div class="imgDiv">
-      <aside
+      <!-- <aside
         @click="toggleMenu"
         :class="{ activeSide: openMenu, side: !openMenu }"
-      ></aside>
-      <div>
+      ></aside> -->
+      <div class="netflix">
         <img class="logo" :src="logo" alt="netflix logo" />
       </div>
       <p v-if="mobileView">
@@ -184,7 +184,7 @@ export default {
 </script>
 
 <style scoped>
-.side {
+/* .side {
   width: 70%;
   height: 100vh;
   display: flex;
@@ -206,7 +206,7 @@ export default {
   right: 70%;
   transition: 200ms;
   z-index: 200;
-}
+} */
 .content {
   z-index: 2;
   position: fixed;
@@ -281,9 +281,10 @@ export default {
   grid-column: 1 / span 1;
   display: flex;
   justify-content: space-evenly;
+  align-items: center;
   /* min-height: 9vh; */
 }
-.imgDiv div {
+.netflix {
   height: 100%;
 }
 .imgDiv span {
@@ -294,14 +295,14 @@ export default {
 .logo {
   width: 140px;
   height: auto;
-  margin-top: -2vh;
+  margin-top: -10px;
 }
 .menu {
   width: 20px;
   height: 20px;
 }
 #down {
-  font-size: 0.75rem;
+  font-size: 0.7rem;
 }
 #search {
   width: 20px;
@@ -361,15 +362,14 @@ export default {
 @media only screen and (max-width: 800px) {
   .content {
     display: flex;
-    /* max-height: 8vh; */
     justify-content: space-between;
   }
   .logo {
     width: 100px;
     height: auto;
-    margin-top: -5px;
   }
   .imgDiv {
+    width: 22%;
     margin-left: 8px;
   }
   .navBar {
@@ -379,9 +379,10 @@ export default {
 @media only screen and (max-width: 550px) {
   .openDiv {
     width: 110px;
-  }
-  .openDiv {
     height: 4.5vh;
+  }
+  #down {
+    font-size: 0.55rem;
   }
 }
 @media only screen and (max-width: 950px) {
@@ -396,6 +397,11 @@ export default {
   }
   .navBar {
     padding-right: 5px;
+  }
+  .logo {
+    width: 80px;
+    height: auto;
+    margin-top: 12px;
   }
 }
 @media only screen and (max-width: 1150px) {

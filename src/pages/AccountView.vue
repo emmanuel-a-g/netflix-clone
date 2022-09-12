@@ -19,7 +19,7 @@
             </p>
             <p v-if="name">{{ name }}</p>
             <p>Password: *********</p>
-            <p>Phone: 123456789</p>
+            <!-- <p>Phone: 123456789</p> -->
           </div>
           <div class="actions">
             <p @click="toEmail">Change email</p>
