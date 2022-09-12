@@ -118,6 +118,7 @@ export default {
             window.scrollTo({ top: 0, behavior: "smooth" });
             setTimeout(() => {
               this.$store.dispatch("logOut");
+              this.$router.push("/login");
             }, 4500);
           } else {
             this.alert = err;

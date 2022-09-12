@@ -102,11 +102,11 @@ const store = createStore({
             resolve(res);
             //dispatch delete document
             deleteDoc(doc(db, "users", user))
-              .then((res) => {
-                console.log("Deleted document: ", res);
+              .then(() => {
+                console.log("deleted document: ");
               })
               .catch((err) => {
-                console.log("Error document delete: ", err);
+                console.log("error document delete: ", err);
               });
           })
           .catch((err) => {
@@ -297,12 +297,16 @@ export async function checkAuth() {
   });
 }
 export async function onUpdateProfiles() {
-  return new Promise((resolve) => {
-    onSnapshot(doc(db, "users", userId), (doc) => {
-      let data = doc.data();
-      resolve(data.profiles);
-    })
-  });
+    return new Promise((resolve, reject) => {
+      onSnapshot(doc(db, "users", userId), (doc) => {
+        let data = doc.data();
+        if (data) {
+          resolve(data.profiles);
+        } else {
+          reject(false);
+        }
+      });
+    });
 }
 
 export default store;
