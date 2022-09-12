@@ -16,7 +16,7 @@
 
 <script>
 import SelectProfile from "../components/app/SelectProfile.vue";
-import { onUpdateProfiles } from "../store/index";
+// import { onUpdateProfiles } from "../store/index";
 import image from "../assets/netflix.png";
 export default {
   components: {
@@ -46,6 +46,16 @@ export default {
         this.$router.push(`/manageprofiles/${name}/undefined`);
       }
     },
+    fetchNewProfileNames() {
+      this.$store
+        .dispatch("profileNames")
+        .then((res) => {
+          this.data = res;
+        })
+        .catch((err) => {
+          console.log("Profile names error", err);
+        });
+    },
   },
   mounted() {
     const profiles = this.$store.getters.getProfiles;
@@ -55,7 +65,7 @@ export default {
       this.$store
         .dispatch("profileNames")
         .then((res) => {
-          this.data = res.profiles;
+          this.data = res;
         })
         .catch((err) => {
           console.log("Profile names error", err);
@@ -63,14 +73,8 @@ export default {
     }
   },
   updated() {
-    onUpdateProfiles()
-    .then((res) => {
-      this.data = res;
-    })
-    .catch((err) => {
-      console.log("On update profile name error",err);
-    })
-  }
+    this.fetchNewProfileNames();
+  },
 };
 </script>
 

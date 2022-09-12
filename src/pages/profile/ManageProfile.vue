@@ -64,9 +64,6 @@ export default {
       this.name = this.$refs.name.value;
     },
     saveAndGoBack() {
-      //TODO
-      //send http request to change name
-      //HERE
       this.$store.dispatch("addNameToProfile", {
         profile: this.profile,
         name: this.name,

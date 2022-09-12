@@ -35,6 +35,7 @@ const store = createStore({
       currentProfile: "",
       redirectAuth: false,
       notification: "",
+      profiles: null,
     };
   },
   mutations: {
@@ -104,7 +105,7 @@ const store = createStore({
             //dispatch delete document
             deleteDoc(doc(db, "users", user))
               .then(() => {
-                console.log("deleted document.");
+                console.log("deleted document");
               })
               .catch((err) => {
                 console.log("error document delete: ", err);
@@ -270,7 +271,7 @@ const store = createStore({
       if (docSnap.exists()) {
         let data = docSnap.data();
         context.commit("setProfiles", data.profiles);
-        return data;
+        return data.profiles;
       } else {
         return new Error("db error fetching profiles.");
       }

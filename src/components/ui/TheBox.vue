@@ -15,6 +15,17 @@
 
 <script>
 export default {
+  data() {
+    return {
+      profiles: {
+        one: "",
+        two: "",
+        three: "",
+        four: "",
+        five: "",
+      },
+    };
+  },
   props: ["show", "width", "height", "top", "right"],
   methods: {
     handleHover() {
@@ -30,6 +41,10 @@ export default {
     handleSelectuser() {
       this.$router.push("/selectuser");
     },
+  },
+  mounted() {
+    const profiles = this.$store.getters.getProfiles;
+    console.log(profiles);
   },
 };
 </script>
