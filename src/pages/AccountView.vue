@@ -38,15 +38,15 @@
           </div>
         </div>
       </form>
-      <form>
+      <form v-if="profiles">
         <div class="inner">
           <p>PROFILE & PARENTAL CONTROLS</p>
           <div class="actions">
-            <p>Emmanuel</p>
-            <p>Veronica</p>
-            <p>Sultan</p>
-            <p>Ninos</p>
-            <p>Wendy</p>
+            <p>{{profiles.one}}</p>
+            <p>{{profiles.two}}</p>
+            <p>{{profiles.three}}</p>
+            <p>{{profiles.four}}</p>
+            <p>{{profiles.five}}</p>
           </div>
         </div>
       </form>
@@ -83,6 +83,7 @@ export default {
       name: "",
       alert: null,
       message: null,
+      profiles: "",
     };
   },
   methods: {
@@ -118,7 +119,7 @@ export default {
             window.scrollTo({ top: 0, behavior: "smooth" });
             setTimeout(() => {
               this.$store.dispatch("logOut");
-              this.$router.push("/login");
+              this.$router.push({path: "/login", query: {redirect: "account"}});
             }, 4500);
           } else {
             this.alert = err;
@@ -129,9 +130,19 @@ export default {
   mounted() {
     this.email = this.$store.getters.returnEmail;
     this.name = this.$store.getters.getName;
+    const profiles = this.$store.getters.getProfiles;
+    if (profiles) {
+      this.profiles = profiles;
+    }
     if (this.$store.getters.getRedirectAuth) {
       this.message = "Successfully re-authenticated";
       this.$store.dispatch("redirectUserToAccount");
+    }
+  },
+  updated() {
+    const profiles = this.$store.getters.getProfiles;
+    if (profiles) {
+      this.profiles = profiles;
     }
   },
 };

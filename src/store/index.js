@@ -67,7 +67,6 @@ const store = createStore({
       state.currentProfile = payload;
     },
     setRedirectAuth(state, payload = null) {
-      console.log("Set redirectauth",payload);
       if (payload) {
         state.redirectAuth = false;
       } else {
@@ -283,7 +282,6 @@ const store = createStore({
       context.commit("setCurrentProfile", payload);
     },
     redirectUserToAccount(context, payload) {
-      console.log("action redirectToAuth", payload);
       context.commit("setRedirectAuth", payload);
     },
   },

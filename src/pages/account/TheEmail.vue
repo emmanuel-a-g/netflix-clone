@@ -90,7 +90,7 @@ export default {
     dispatchLogout() {
       setTimeout(() => {
         this.$store.dispatch("logOut");
-        this.$router.push("/login");
+        this.$router.push({path: "/login", query: {redirect : "email"}});
       }, 5000);
     },
   },

@@ -28,14 +28,17 @@
             v-on:blur="reset"
             required
           />
-          <span class="goodAlert" v-if="valid && !submitted"> Valid password </span>
+          <span class="goodAlert" v-if="valid && !submitted">
+            Valid password
+          </span>
           <span class="alert" v-if="alertPassword">
             {{ alertPassword }}
           </span>
         </div>
-        <div class="buttons" v-if="!submitted">
-          <button @click.prevent="save" >Confirm</button>
-          <button @click.prevent="cancel">Cancel</button>
+        <div class="buttons">
+          <button @click.prevent="save" v-if="!submitted">Confirm</button>
+          <button @click.prevent="cancel" v-if="!submitted">Cancel</button>
+          <button @click.prevent="goToAccount" v-if="message">Return</button>
         </div>
       </form>
     </div>
@@ -68,6 +71,9 @@ export default {
     };
   },
   methods: {
+    goToAccount() {
+      this.$router.push("/account");
+    },
     resetFields() {
       this.newPassword = "";
       this.confirmPassword = "";
@@ -118,7 +124,6 @@ export default {
         .dispatch("updateThePassword", this.confirmPassword)
         .then(() => {
           this.message = "Success password has been changed.";
-          this.dispatchGoBack();
         })
         .catch((err) => {
           let requiresAuth = "auth/requires-recent-login";
@@ -136,15 +141,10 @@ export default {
     cancel() {
       this.$router.push("/account");
     },
-    dispatchGoBack() {
-      setTimeout(() => {
-        this.$router.push("/account");
-      }, 4500);
-    },
     dispatchLogout() {
       setTimeout(() => {
         this.$store.dispatch("logOut");
-        this.$router.push("/login");
+        this.$router.push({ path: "/login", query: { redirect: "password" } });
       }, 5000);
     },
   },

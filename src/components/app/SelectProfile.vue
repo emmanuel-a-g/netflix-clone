@@ -8,7 +8,11 @@
         @click="handle('one', nameOne)"
         :class="{ highlight: editMode }"
       >
-        <img class="profile" :src="imageOne" alt="user image" />
+        <img
+          class="profile"
+          src="https://res.cloudinary.com/milito/image/upload/v1662997890/netflix/maskProfile_xx1z4x.png"
+          alt="user image"
+        />
         <span v-if="editMode"
           ><img :src="pencil" alt="edit logo" class="pencil"
         /></span>
@@ -20,7 +24,11 @@
         @click="handle('two', nameTwo)"
         :class="{ highlight: editMode }"
       >
-        <img class="profile" :src="imageTwo" alt="user image" />
+        <img
+          class="profile"
+          src="https://res.cloudinary.com/milito/image/upload/v1662997890/netflix/tokyoProfile_q2bukk.png"
+          alt="user image"
+        />
         <span v-if="editMode"
           ><img :src="pencil" alt="edit logo" class="pencil"
         /></span>
@@ -32,7 +40,11 @@
         @click="handle('three', nameThree)"
         :class="{ highlight: editMode }"
       >
-        <img class="profile" :src="imageThree" alt="user image" />
+        <img
+          class="profile"
+          src="https://res.cloudinary.com/milito/image/upload/v1662997890/netflix/eliteProfile_ouycek.png"
+          alt="user image"
+        />
         <span v-if="editMode"
           ><img :src="pencil" alt="edit logo" class="pencil"
         /></span>
@@ -44,7 +56,11 @@
         @click="handle('four', nameFour)"
         :class="{ highlight: editMode }"
       >
-        <img class="profile" :src="imageFour" alt="user image" />
+        <img
+          class="profile"
+          src="https://res.cloudinary.com/milito/image/upload/v1662997889/netflix/enchanmentProfile_c6ybpd.png"
+          alt="user image"
+        />
         <span v-if="editMode"
           ><img :src="pencil" alt="edit logo" class="pencil"
         /></span>
@@ -56,7 +72,11 @@
         @click="handle('five', nameFive)"
         :class="{ highlight: editMode }"
       >
-        <img class="profile" :src="imageFive" alt="user image" />
+        <img
+          class="profile"
+          src="https://res.cloudinary.com/milito/image/upload/v1662997890/netflix/strangerProfile_kz4yjg.png"
+          alt="user image"
+        />
         <span v-if="editMode"
           ><img :src="pencil" alt="edit logo" class="pencil"
         /></span>
@@ -107,21 +127,6 @@ export default {
     nameFive() {
       return this.profileFive || "New";
     },
-    imageOne() {
-      return "https://res.cloudinary.com/milito/image/upload/v1662997890/netflix/maskProfile_xx1z4x.png";
-    },
-    imageTwo() {
-      return "https://res.cloudinary.com/milito/image/upload/v1662997890/netflix/tokyoProfile_q2bukk.png";
-    },
-    imageThree() {
-      return "https://res.cloudinary.com/milito/image/upload/v1662997890/netflix/eliteProfile_ouycek.png";
-    },
-    imageFour() {
-      return "https://res.cloudinary.com/milito/image/upload/v1662997889/netflix/enchanmentProfile_c6ybpd.png";
-    },
-    imageFive() {
-      return "https://res.cloudinary.com/milito/image/upload/v1662997890/netflix/strangerProfile_kz4yjg.png";
-    },
   },
   methods: {
     manageToggle() {
@@ -134,7 +139,7 @@ export default {
       if (this.editMode) {
         this.$emit("editUser", name, displayName);
       } else {
-        this.$store.dispatch("currentProfile", {name, displayName});
+        this.$store.dispatch("currentProfile", { name, displayName });
         this.$router.push("/browse");
       }
     },
