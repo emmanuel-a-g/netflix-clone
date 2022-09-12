@@ -103,7 +103,7 @@ export default {
   background-color: rgba(0, 0, 0, 0.95);
   height: 340px;
   width: 220px;
-  top: 10.5vh;
+  top: 8.5vh;
   right: 4vw;
   visibility: visible;
   /* transition: 200ms; */
@@ -113,7 +113,7 @@ export default {
   position: absolute;
   height: 340px;
   width: 220px;
-  top: 10.5vh;
+  top: 8.5vh;
   right: 4vw;
   background-color: transparent;
   visibility: hidden;

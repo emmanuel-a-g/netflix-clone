@@ -226,7 +226,7 @@ button:hover {
     font-size: 1.7rem;
   }
   .profiles {
-    width: 95%;
+    width: 92%;
   }
   .card {
     width: 85px;

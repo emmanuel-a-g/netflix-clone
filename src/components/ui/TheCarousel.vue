@@ -1,7 +1,7 @@
 <template>
   <div class="carousel">
-    <div class="inner" :style="{ transform: `translateX(-${index * 95}%)` }">
-      <ItemCarousel v-for="item in bigList" :key="item" width="95%">
+    <div class="inner" :style="{ transform: `translateX(-${index * 90}%)` }">
+      <ItemCarousel v-for="item in bigList" :key="item" width="90%">
         <div class="line">
           <div
             class="card"
@@ -96,9 +96,11 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
-.prev img {
+.prev img,
+.next img {
   height: 30px;
   width: 30px;
 }
@@ -120,14 +122,12 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
 }
 .next:hover {
   cursor: pointer;
   background-color: rgba(0, 0, 0, 0.651);
-}
-.next img {
-  height: 30px;
-  width: 30px;
 }
 .next img:hover {
   scale: 1.2;
@@ -158,11 +158,25 @@ export default {
 }
 /* CLASS FOR EMPTY MOVIES */
 .hide {
-  /* border: 1px solid red; */
   visibility: hidden;
+}
+@media only screen and (max-width: 700px) {
+  .inner {
+    margin-left: 25px;
+  }
+  .prev,
+  .next {
+    width: 25px;
+  }
+  .prev img,
+  .next img {
+    height: 20px;
+    width: 20px;
+  }
 }
 @media only screen and (max-width: 500px) {
   .carousel {
+    /* changes text and sliders height only */
     height: 136px;
   }
 }

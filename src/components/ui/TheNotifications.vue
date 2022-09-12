@@ -53,7 +53,7 @@ export default {
   position: absolute;
   height: 440px;
   width: 350px;
-  top: 10.5vh;
+  top: 8.5vh;
   right: 8.5vw;
   visibility: visible;
   /* transition: 200ms; */
@@ -63,7 +63,7 @@ export default {
   position: absolute;
   height: 440px;
   width: 350px;
-  top: 10.5vh;
+  top: 8.5vh;
   right: 8.5vw;
   background-color: transparent;
   visibility: hidden;

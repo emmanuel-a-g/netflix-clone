@@ -47,10 +47,8 @@ export default {
 }
 #heroTitle {
   position: absolute;
-  /* top: 22vh; */
   top: 12.5vw;
   left: 60px;
-  /* width: 460px; */
   width: 32vw;
   height: auto;
 }
@@ -190,11 +188,16 @@ export default {
   }
   .fillContent p {
     font-size: 0.6rem;
+    /* IMPORTATNT */
+    left: 25px;
   }
   #buttonDiv {
     top: 38vw;
-    left: 60px;
+    left: 25px;
     min-width: 160px;
+  }
+  #heroTitle {
+    left: 25px;
   }
   #buttonDiv button {
     font-size: 0.7rem;

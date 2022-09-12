@@ -4,10 +4,6 @@
     :style="{ 'background-color': atTop ? 'transparent' : 'black' }"
   >
     <div class="imgDiv">
-      <!-- <aside
-        @click="toggleMenu"
-        :class="{ activeSide: openMenu, side: !openMenu }"
-      ></aside> -->
       <div class="netflix">
         <img class="logo" :src="logo" alt="netflix logo" />
       </div>
@@ -185,33 +181,10 @@ export default {
 </script>
 
 <style scoped>
-/* .side {
-  width: 70%;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  position: fixed;
-  top: 0;
-  right: 200%;
-  transition: 300ms;
-  background-color: transparent;
-  z-index: 199;
-}
-.activeSide {
-  width: 30%;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  position: fixed;
-  top: 0;
-  right: 70%;
-  transition: 200ms;
-  z-index: 200;
-} */
 .content {
   z-index: 2;
   position: fixed;
-  min-height: 10vh;
+  min-height: 8vh;
   width: 100%;
   display: grid;
   grid-template-columns: 15% auto 35%;
@@ -220,7 +193,7 @@ export default {
 }
 .middleMenu {
   grid-column: 2 / span 1;
-  min-height: 10vh;
+  min-height: 8vh;
   display: flex;
   align-items: center;
   width: 60%;
@@ -235,7 +208,7 @@ export default {
 }
 .navBar {
   grid-column: 3 / span 1;
-  min-height: 10vh;
+  min-height: 8vh;
   padding-right: 3.5vw;
 }
 .navBar li {
@@ -283,7 +256,6 @@ export default {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  /* min-height: 9vh; */
 }
 .netflix {
   height: 100%;
@@ -294,9 +266,9 @@ export default {
   font-weight: bold;
 }
 .logo {
-  width: 140px;
+  width: 130px;
   height: auto;
-  margin-top: -10px;
+  margin-top: -14px;
 }
 .menu {
   width: 20px;
@@ -370,8 +342,7 @@ export default {
     height: auto;
   }
   .imgDiv {
-    width: 22%;
-    margin-left: 8px;
+    margin-left: 15px;
   }
   .navBar {
     padding-right: 0px;
@@ -402,7 +373,7 @@ export default {
   .logo {
     width: 80px;
     height: auto;
-    margin-top: 12px;
+    margin-top: 3px;
   }
 }
 @media only screen and (max-width: 1150px) {
