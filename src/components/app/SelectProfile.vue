@@ -220,6 +220,7 @@ button:hover {
   border: none;
   color: black;
   font-weight: bold;
+  width: 120px;
 }
 .highlightButton:hover {
   border: none;
@@ -248,6 +249,15 @@ button:hover {
     width: 150px;
     height: 38px;
     text-align: center;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .profiles {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+  .wrapper h1 {
+    font-size: 1.7rem;
   }
 }
 </style>
