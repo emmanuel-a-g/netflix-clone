@@ -9,7 +9,6 @@
           v-model.trim="email"
           v-on:keydown="validateEmail"
           v-on:blur="reset('email')"
-          required
           :class="{ highlight: alertEmail ? true : false }"
         />
         <span class="alert" v-if="alertEmail">
@@ -21,11 +20,10 @@
           placeholder="Password"
           v-on:keydown="validatePassword"
           v-on:blur="reset('password')"
-          required
           :class="{ highlight: alertPassword ? true : false }"
         />
         <span class="alert" v-if="alertPassword">
-          Your password must contain between 4 and 60 characters.
+          Your password must contain between 6 and 60 characters.
         </span>
         <button>Sign In</button>
         <div class="help">
@@ -94,14 +92,8 @@ export default {
         password: this.password,
         remember: this.rememberMe,
       });
-      this.timer = setTimeout(() => {
-        this.email = "";
-        this.password = "";
-        this.rememberMe = false;
-      }, 500);
     },
     signUpForward() {
-      //make replace later on
       this.$router.replace("/");
     },
   },

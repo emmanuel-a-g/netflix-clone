@@ -40,7 +40,7 @@ export default {
           this.$router.replace("/browse");
         })
         .catch((err) => {
-          console.log("login failed: ", err);
+          console.log("login failed: ", err.code);
         });
     },
     goWelcome() {

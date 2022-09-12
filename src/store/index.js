@@ -11,6 +11,7 @@ import {
   updateProfile,
   updateEmail,
   onAuthStateChanged,
+  deleteUser
 } from "firebase/auth";
 import { db } from "../firebase";
 // onSnapshot
@@ -74,6 +75,17 @@ const store = createStore({
     }
   },
   actions: {
+    async deleteTheAccount(context) {
+      return new Promise((resolve, reject) => {
+        deleteUser(context.state.user)
+        .then((res) => {
+          resolve(res);
+        })
+        .catch((err) => {
+          reject(err.code);
+        })
+      })
+    },
     async signUp(context, payload) {
       return new Promise((resolve, reject) => {
         createUserWithEmailAndPassword(auth, payload.email, payload.password)
@@ -220,8 +232,7 @@ const store = createStore({
         context.commit("setProfiles", data.profiles);
         return data;
       } else {
-        // doc.data() will be undefined in this case
-        return new Error("db error profiles");
+        return new Error("db error fetching profiles.");
       }
     },
     currentProfile(context, payload) {
@@ -229,6 +240,7 @@ const store = createStore({
     }
   },
 });
+//***********FREE FUNCTIONS***************
 export async function checkAuth() {
   return new Promise((resolve, reject) => {
     onAuthStateChanged(auth, (user) => {

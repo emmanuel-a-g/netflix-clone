@@ -7,6 +7,8 @@
       <div class="header">
         <h1>Account</h1>
         <p class="member">Member Since 2022</p>
+        <p v-if="alert" class="alert">{{ alert }}</p>
+        <p v-if="message" class="message">{{ message }}</p>
       </div>
       <form>
         <div class="inner">
@@ -58,6 +60,7 @@
             <p>Manage download services</p>
             <p>Sign out of all devices</p>
             <p>Download your personal information</p>
+            <p @click="deleteAccount"><strong> Delete </strong> your account</p>
           </div>
         </div>
       </form>
@@ -78,6 +81,8 @@ export default {
     return {
       email: "",
       name: "",
+      alert: null,
+      message: null,
     };
   },
   methods: {
@@ -89,6 +94,31 @@ export default {
     },
     toName() {
       this.$router.push("/name");
+    },
+    deleteAccount() {
+      this.$store
+        .dispatch("deleteTheAccount")
+        .then(() => {
+          this.message =
+            "Success account has been deleted. Thank you! See you soon.";
+          window.scrollTo({ top: 0, behavior: "smooth" });
+          // dispatch to go to login page
+          setTimeout(() => {
+            this.$router.push("/login");
+          }, 4500);
+        })
+        .catch((err) => {
+          let errCode = "auth/requires-recent-login";
+          if (errCode === err) {
+            this.alert =
+              "Auth: requires recent login to delete. Redirecting you to sign in again...";
+            window.scrollTo({ top: 0, behavior: "smooth" });
+            setTimeout(() => {
+              this.$store.dispatch("logOut");
+              this.$router.push("/login");
+            }, 4500);
+          }
+        });
     },
   },
   mounted() {
@@ -146,6 +176,16 @@ export default {
 }
 .inner {
   width: 90%;
+}
+.message {
+  color: green;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+.alert {
+  color: red;
+  font-size: 1.1rem;
+  font-weight: bold;
 }
 @media only screen and (max-width: 700px) {
   .inner {
