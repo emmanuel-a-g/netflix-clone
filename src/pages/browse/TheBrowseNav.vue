@@ -33,7 +33,7 @@
               ref="searchRef"
               type="text"
               placeholder="Titles, genres"
-              maxlength="16"
+              maxlength="15"
               v-model="search"
               @keypress.enter="handleSearch"
               :class="{ invisible: !searchInput, visible: searchInput }"
