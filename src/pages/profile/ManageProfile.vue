@@ -6,7 +6,7 @@
         <h1>Edit Profile</h1>
       </div>
       <div class="cardImg">
-        <img class="userimg" :src="image" alt="user image" />
+        <img class="userimg" :src="computeProfileImage" alt="user image" />
       </div>
       <div class="cardOne">
         <input
@@ -46,17 +46,33 @@
 </template>
 
 <script>
-import image from "../../assets/logo.png";
 import netflix from "../../assets/netflix.png";
+import { profileImages } from "../../store/data";
 export default {
   data() {
     return {
       name: "",
       profile: "",
       nameProvided: false,
-      image,
       netflix,
+      profileImage: "",
     };
+  },
+  computed: {
+    computeProfileImage() {
+      let path = this.profileImage;
+      if (path === "one") {
+        return profileImages[0].imageUrl;
+      } else if (path === "two") {
+        return profileImages[1].imageUrl;
+      } else if (path === "three") {
+        return profileImages[2].imageUrl;
+      } else if (path === "four") {
+        return profileImages[4].imageUrl;
+      } else {
+        return profileImages[5].imageUrl;
+      }
+    },
   },
   methods: {
     setName() {
@@ -80,6 +96,7 @@ export default {
   mounted() {
     const profile = this.$route.params.profile;
     const name = this.$route.params.name;
+    this.profileImage = this.$route.params.profile;
     // CALL DATABASE TO GET THE NAME FOR PROFILE ONE
     if (profile) {
       this.$refs.name.value = name;

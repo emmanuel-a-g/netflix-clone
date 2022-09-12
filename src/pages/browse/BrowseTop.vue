@@ -208,4 +208,34 @@ export default {
     width: 90px;
   }
 }
+@media only screen and (max-width: 450px) {
+   #rating {
+    font-size: 0.5rem;
+  }
+  .fillContainer {
+    min-height: 58vw;
+    max-height: 65vw;
+  }
+  .fillContent p {
+    font-size: 0.5rem;
+    left: 25px;
+  }
+  #buttonDiv {
+    top: 45vw;
+    left: 25px;
+    min-width: 130px;
+  }
+  #heroTitle {
+    left: 25px;
+  }
+  #buttonDiv button {
+    font-size: 0.5rem;
+    height: 1.8vw;
+    min-width: 50px;
+    padding: 10px 0;
+  }
+  #infoButton {
+    width: 70px;
+  }
+}
 </style>
