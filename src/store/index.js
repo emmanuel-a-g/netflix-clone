@@ -126,7 +126,7 @@ const store = createStore({
             resolve("Success signed up");
           })
           .catch((err) => {
-            reject(err);
+            reject(err.code);
           });
       });
     },
@@ -299,6 +299,7 @@ export async function checkAuth() {
     });
   });
 }
+//DISABLED
 export async function onUpdateProfiles() {
     return new Promise((resolve, reject) => {
       onSnapshot(doc(db, "users", userId), (doc) => {

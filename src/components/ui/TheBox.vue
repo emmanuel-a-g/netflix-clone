@@ -1,10 +1,11 @@
 <template>
   <div class="theBox" :class="{ visibleClass: show, hiddenClass: !show }">
     <ul>
-      <li class="profile">verito</li>
-      <li class="profile">sultan</li>
-      <li class="profile">ninos</li>
-      <li class="profile">wendy</li>
+      <li class="profile">{{ profiles.one || "+ profile" }}</li>
+      <li class="profile">{{ profiles.two || "+ profile" }}</li>
+      <li class="profile">{{ profiles.three || "+ profile" }}</li>
+      <li class="profile">{{ profiles.four || "+ profile" }}</li>
+      <li class="profile">{{ profiles.five || "+ profile" }}</li>
       <li class="action" @click="handleSelectuser">manage profiles</li>
       <li class="action" @click="handleAccount">account</li>
       <li class="action">help center</li>
@@ -44,7 +45,15 @@ export default {
   },
   mounted() {
     const profiles = this.$store.getters.getProfiles;
-    console.log(profiles);
+    if (profiles) {
+      this.profiles = profiles;
+    }
+  },
+  beforeUpdate() {
+    const profiles = this.$store.getters.getProfiles;
+    if (profiles) {
+      this.profiles = profiles;
+    }
   },
 };
 </script>

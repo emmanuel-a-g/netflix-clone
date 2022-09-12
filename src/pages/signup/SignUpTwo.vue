@@ -8,7 +8,7 @@
         We hate paperwork, too.
       </p>
       <form class="theForm" @submit.prevent="handleSubmit">
-        <p v-if="error" class="error">{{error}}</p>
+        <p v-if="error" class="error">{{ error }}</p>
         <input
           class="two"
           v-if="forwardEmail"
@@ -78,8 +78,12 @@ export default {
             this.nextTo();
           })
           .catch((err) => {
-            this.error = err.code;
-            console.log("error sign up.", err);
+            console.log("error sign up :", err);
+            if (err === "auth/email-already-in-use") {
+              this.error = "Email already in use. Login instead.";
+            } else {
+              this.error = err;
+            }
           });
       }
       setTimeout(() => {
@@ -154,7 +158,7 @@ h2 {
   font-size: 1.8rem;
 }
 .alert {
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   align-self: flex-start;
   margin: 0px;
   padding: 0px;
@@ -165,7 +169,7 @@ h2 {
 }
 .error {
   color: red;
-  font-size: .9rem;
+  font-size: 0.9rem;
   font-weight: bold;
 }
 </style>
