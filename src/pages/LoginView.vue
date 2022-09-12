@@ -3,7 +3,7 @@
     <div class="imageDiv">
       <img @click="goWelcome" :src="image" alt="netflix logo" />
       <div class="contentDiv">
-        <login-form @submit-login="handleLogin"></login-form>
+        <LoginForm :error="error" @submit-login="handleLogin"></LoginForm>
       </div>
       <the-footer
         position="absolute"
@@ -27,6 +27,7 @@ export default {
     return {
       image,
       redirect: false,
+      error: "",
     };
   },
   methods: {
@@ -39,12 +40,13 @@ export default {
         })
         .then(() => {
           if (this.redirect) {
-            this.$router.replace("/account");
+            this.$router.replace(`/${this.redirect}`);
           } else {
             this.$router.replace("/browse");
           }
         })
         .catch((err) => {
+          this.error = err.code;
           console.log("login failed: ", err.code);
         });
     },
@@ -54,8 +56,9 @@ export default {
   },
   mounted() {
     const isRedirect = this.$store.getters.getRedirectAuth;
-    if (isRedirect) {
-      this.redirect = true;
+    console.log("isRedirect? ", isRedirect);
+    if (isRedirect || isRedirect.length > 1) {
+      this.redirect = isRedirect;
     }
   },
 };

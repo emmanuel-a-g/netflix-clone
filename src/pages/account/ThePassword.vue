@@ -1,29 +1,40 @@
 <template>
   <div class="mainDiv">
     <TheFakeNav color="black" textColor="white"></TheFakeNav>
-    <div class="emailDiv">
+    <div class="passwordDiv">
       <form>
-        <h1>Change Email</h1>
+        <h1>Change Password</h1>
         <div class="inputDiv">
           <p v-if="message" class="message">{{ message }}</p>
           <p v-if="error" class="error">{{ error }}</p>
           <input
-            :value="email"
-            class="currEmail"
-            type="text"
-            readonly
-            disabled
+            class="currPassword"
+            type="password"
+            placeholder="New Password"
+            :value="newPassword"
+            @keyup="setNewPassword"
+            minlength="6"
+            required
           />
+          <span class="alert" v-if="alertPasswordOne">
+            {{ alertPasswordOne }}
+          </span>
           <input
-            class="newEmail"
-            type="email"
-            :value="newEmail"
-            placeholder="New Email"
-            @keyup="setEmail"
+            class="newPassword"
+            type="password"
+            :value="confirmPassword"
+            placeholder="Confirm Password"
+            @keyup="setPasswordTwo"
+            v-on:blur="reset"
+            required
           />
+          <span class="goodAlert" v-if="valid && !submitted"> Valid password </span>
+          <span class="alert" v-if="alertPassword">
+            {{ alertPassword }}
+          </span>
         </div>
         <div class="buttons" v-if="!submitted">
-          <button @click.prevent="save">Save</button>
+          <button @click.prevent="save" >Confirm</button>
           <button @click.prevent="cancel">Cancel</button>
         </div>
       </form>
@@ -46,36 +57,79 @@ export default {
   },
   data() {
     return {
-      email: "",
-      newEmail: "",
+      newPassword: "",
+      confirmPassword: "",
       error: "",
       message: "",
+      alertPasswordOne: "",
+      alertPassword: "",
       submitted: false,
+      valid: false,
     };
   },
   methods: {
-    setEmail(e) {
-      this.newEmail = e.currentTarget.value;
+    resetFields() {
+      this.newPassword = "";
+      this.confirmPassword = "";
+    },
+    reset() {
+      if (this.alertPassword) {
+        this.confirmPassword = "";
+        this.alertPassword = "";
+      }
+    },
+    validateNewPassword(password) {
+      if (password.length < 6) {
+        this.alertPasswordOne = "Password must be more than 6 characters long";
+      } else {
+        this.alertPasswordOne = false;
+      }
+    },
+    validateConfirmPassword(password) {
+      if (password.length < 6) {
+        this.alertPassword = "Password must be more than 6 characters long";
+        this.valid = false;
+      } else if (this.newPassword !== password) {
+        this.alertPassword = "Passwords do not match";
+        this.valid = false;
+      } else {
+        this.alertPassword = false;
+        this.valid = true;
+      }
+    },
+    setNewPassword(e) {
+      const password = e.currentTarget.value;
+      this.validateNewPassword(password);
+      this.newPassword = password;
+    },
+    setPasswordTwo(e) {
+      const password = e.currentTarget.value;
+      this.validateConfirmPassword(password);
+      this.confirmPassword = password;
     },
     save() {
       this.submitted = true;
+      if (!this.valid) {
+        this.error = "Not a valid password update check for errors.";
+        this.submitted = false;
+        return;
+      }
       this.$store
-        .dispatch("updateEmail", { email: this.newEmail })
+        .dispatch("updateThePassword", this.confirmPassword)
         .then(() => {
-          this.message = "Success email has been changed.";
+          this.message = "Success password has been changed.";
           this.dispatchGoBack();
         })
         .catch((err) => {
-          console.log(err);
           let requiresAuth = "auth/requires-recent-login";
-          if (err.code === requiresAuth) {
+          if (err === requiresAuth) {
+            this.$store.dispatch("redirectUserToAccount", "password");
             this.error =
               "Auth / requires recent login. You will now be re-directed to log in again.";
-            this.$store.dispatch("redirectUserToAccount", "email");
             this.dispatchLogout();
           } else {
             this.submitted = false;
-            this.error = err.code;
+            this.error = err;
           }
         });
     },
@@ -94,20 +148,10 @@ export default {
     },
   },
   mounted() {
+    this.submitted = false;
     if (this.$store.getters.getRedirectAuth) {
       this.message = "Successfully re-authenticated";
       this.$store.dispatch("redirectUserToAccount");
-    }
-    const email = this.$store.getters.returnEmail;
-    if (email) {
-      this.email = email;
-      this.newEmail = email;
-    }
-    if (!email) {
-      setTimeout(() => {
-        this.email = this.$store.getters.returnEmail;
-        this.newEmail = this.$store.getters.returnEmail;
-      }, 1000);
     }
   },
 };
@@ -137,7 +181,7 @@ export default {
 .mainDiv {
   background-color: #f3f3f3;
 }
-.emailDiv {
+.passwordDiv {
   padding-top: 30px;
   min-height: 65vh;
   color: black;
@@ -147,7 +191,7 @@ export default {
   align-items: flex-start;
   padding-left: 240px;
 }
-.currEmail {
+.currPassword {
   font-size: 1rem;
   width: 400px;
   height: 44px;
@@ -156,7 +200,7 @@ export default {
   text-indent: 5px;
   font-size: 1rem;
 }
-.newEmail {
+.newPassword {
   width: 400px;
   height: 44px;
   border: 1px solid grey;
@@ -181,5 +225,21 @@ export default {
 }
 .error {
   color: red;
+}
+.alert {
+  font-size: 0.9rem;
+  align-self: flex-start;
+  margin: 0px;
+  padding: 0px;
+  color: rgb(255, 0, 51);
+  font-style: italic;
+}
+.goodAlert {
+  font-size: 0.9rem;
+  align-self: flex-start;
+  margin: 0px;
+  padding: 0px;
+  color: black;
+  font-style: italic;
 }
 </style>

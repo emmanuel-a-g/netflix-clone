@@ -3,6 +3,7 @@
     <div class="innerDiv">
       <form @submit.prevent="submitLogin">
         <h2>Sign In</h2>
+        <p v-if="error" class="error">{{ error }}</p>
         <input
           type="email"
           placeholder="Email"
@@ -51,6 +52,7 @@
 
 <script>
 export default {
+  props: ["error"],
   emits: ["submit-login"],
   data() {
     return {
@@ -200,6 +202,13 @@ input {
 p {
   font-size: 1rem;
   color: var(--greyish);
+}
+.error {
+  font-size: 1rem;
+  align-self: flex-start;
+  margin: 0;
+  padding: 0;
+  color: rgb(214, 5, 5);
 }
 .highlight {
   border-bottom: 1px orange solid;

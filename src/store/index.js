@@ -11,6 +11,7 @@ import {
   updateProfile,
   updateEmail,
   onAuthStateChanged,
+  updatePassword,
   deleteUser,
 } from "firebase/auth";
 import { db } from "../firebase";
@@ -54,8 +55,12 @@ const store = createStore({
     setCurrentProfile(state, payload) {
       state.currentProfile = payload;
     },
-    setRedirectAuth(state) {
-      state.redirectAuth = !state.redirectAuth;
+    setRedirectAuth(state, payload = null) {
+      if (payload) {
+        state.redirectAuth = false;
+      } else {
+        state.redirectAuth = payload;
+      }
     },
   },
   getters: {
@@ -196,6 +201,17 @@ const store = createStore({
           });
       });
     },
+    async updateThePassword(context, payload) {
+      return new Promise((resolve, reject) => {
+        updatePassword(context.state.user, payload)
+          .then(() => {
+            resolve("Success updated password");
+          })
+          .catch((err) => {
+            reject(err.code);
+          });
+      });
+    },
     async addProfileUsers(_, payload) {
       try {
         await setDoc(doc(db, "users", payload), {
@@ -245,8 +261,8 @@ const store = createStore({
     currentProfile(context, payload) {
       context.commit("setCurrentProfile", payload);
     },
-    redirectUserToAccount(context) {
-      context.commit("setRedirectAuth");
+    redirectUserToAccount(context, payload) {
+      context.commit("setRedirectAuth", payload);
     },
   },
 });

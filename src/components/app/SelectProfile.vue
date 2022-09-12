@@ -86,19 +86,19 @@ export default {
   },
   computed: {
     nameOne() {
-      return this.profileOne || "Create";
+      return this.profileOne || "New";
     },
     nameTwo() {
-      return this.profileTwo || "Create";
+      return this.profileTwo || "New";
     },
     nameThree() {
-      return this.profileThree || "Create";
+      return this.profileThree || "New";
     },
     nameFour() {
-      return this.profileFour || "Create";
+      return this.profileFour || "New";
     },
     nameFive() {
-      return this.profileFive || "Create";
+      return this.profileFive || "New";
     },
   },
   methods: {

@@ -24,7 +24,7 @@
           <div class="actions">
             <p @click="toEmail">Change email</p>
             <p @click="toName">Change account name</p>
-            <p>Change password</p>
+            <p @click="toPassword">Change password</p>
             <!-- <p>Change phone number</p> -->
           </div>
         </div>
@@ -95,6 +95,9 @@ export default {
     toName() {
       this.$router.push("/name");
     },
+    toPassword() {
+      this.$router.push("/password");
+    },
     deleteAccount() {
       this.$store
         .dispatch("deleteTheAccount")
@@ -109,14 +112,15 @@ export default {
         .catch((err) => {
           let errCode = "auth/requires-recent-login";
           if (errCode === err) {
-            this.$store.dispatch("redirectUserToAccount");
+            this.$store.dispatch("redirectUserToAccount", "account");
             this.alert =
               "Auth: requires recent login to delete. Redirecting you to sign in again...";
             window.scrollTo({ top: 0, behavior: "smooth" });
             setTimeout(() => {
               this.$store.dispatch("logOut");
-              this.$router.push("/login");
             }, 4500);
+          } else {
+            this.alert = err;
           }
         });
     },

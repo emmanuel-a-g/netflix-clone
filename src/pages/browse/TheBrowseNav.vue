@@ -45,7 +45,9 @@
           <TheNotifications :show="showAlert"></TheNotifications>
         </li>
         <li @mouseenter="toggleAccount">
-          {{ theName }}
+          <span @click="toAccount">
+            {{ theName }}
+          </span>
           <span class="arrow">
             <img
               :src="arrow"
@@ -111,6 +113,9 @@ export default {
     },
   },
   methods: {
+    toAccount() {
+      this.$router.push("/account");
+    },
     toggleMenu() {
       this.openMenu = !this.openMenu;
     },
@@ -335,6 +340,7 @@ export default {
   color: white;
   font-weight: bold;
   margin: 0;
+  margin-left: 2px;
   padding: 0;
   transform: rotate(0deg);
   transition-duration: 200ms;
@@ -343,6 +349,7 @@ export default {
   color: white;
   font-weight: bold;
   margin: 0;
+  margin-left: 2px;
   padding: 0;
   transform: rotate(180deg);
   transition-duration: 200ms;
