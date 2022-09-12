@@ -16,7 +16,14 @@ import {
 } from "firebase/auth";
 import { db } from "../firebase";
 // onSnapshot
-import { doc, setDoc, updateDoc, getDoc, onSnapshot } from "firebase/firestore";
+import {
+  doc,
+  setDoc,
+  updateDoc,
+  getDoc,
+  onSnapshot,
+  deleteDoc,
+} from "firebase/firestore";
 let userId;
 const store = createStore({
   state() {
@@ -88,10 +95,19 @@ const store = createStore({
   },
   actions: {
     async deleteTheAccount(context) {
+      const user = context.getters.userId;
       return new Promise((resolve, reject) => {
         deleteUser(context.state.user)
           .then((res) => {
             resolve(res);
+            //dispatch delete document
+            deleteDoc(doc(db, "users", user))
+              .then((res) => {
+                console.log("Deleted document: ", res);
+              })
+              .catch((err) => {
+                console.log("Error document delete: ", err);
+              });
           })
           .catch((err) => {
             reject(err.code);
@@ -282,11 +298,10 @@ export async function checkAuth() {
 }
 export async function onUpdateProfiles() {
   return new Promise((resolve) => {
-    // const unsub =
     onSnapshot(doc(db, "users", userId), (doc) => {
       let data = doc.data();
       resolve(data.profiles);
-    });
+    })
   });
 }
 

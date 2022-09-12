@@ -96,7 +96,7 @@ export default {
   computed: {
     theName() {
       const name = this.$store.getters.getName;
-      if (this.name !== "Create" && this.name.length > 1) {
+      if (this.name !== "New" && this.name.length > 1) {
         return this.name;
       } else if (name !== null && name.length > 1) {
         return name;

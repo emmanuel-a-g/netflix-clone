@@ -26,7 +26,13 @@ export default {
     return {
       editMode: false,
       image,
-      data: [],
+      data: {
+        one: "",
+        two: "",
+        three: "",
+        four: "",
+        five: "",
+      },
     };
   },
   methods: {
@@ -60,6 +66,9 @@ export default {
     onUpdateProfiles()
     .then((res) => {
       this.data = res;
+    })
+    .catch((err) => {
+      console.log(err);
     })
   }
 };
