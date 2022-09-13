@@ -64,12 +64,11 @@ export default {
 <style scoped>
 .theBox {
   height: 100%;
-  /* border: 1px solid white; */
   position: relative;
 }
 .visibleClass {
   position: absolute;
-  background-color: #141414;
+  background-color: #0f0f0f;
   visibility: visible;
   top: -70%;
   width: 282px;
