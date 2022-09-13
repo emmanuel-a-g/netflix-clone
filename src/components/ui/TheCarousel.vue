@@ -3,7 +3,13 @@
     <div class="inner" :style="{ transform: `translateX(-${index * 96}%)` }">
       <ItemCarousel v-for="item in bigList" :key="item" width="96%">
         <div class="line">
-          <TheCard v-for="(mov, idx) in item" :index="idx" :key="idx" :mov="mov"> </TheCard>
+          <TheCard
+            v-for="(mov, idx) in item"
+            :index="idx"
+            :key="idx"
+            :mov="mov"
+          >
+          </TheCard>
         </div>
       </ItemCarousel>
     </div>
@@ -60,10 +66,10 @@ export default {
 </script>
 
 <style scoped>
+/* overflow: hidden; */
+/* ^^REMOVED AND ADDED IN CAROUSELWRAPPER^^ */
 .carousel {
-  /* overflow: hidden; */
-  /* ^^REMOVED AND ADDED IN CAROUSELWRAPPER^^ */
-  position: relative; 
+  position: relative;
   background-color: transparent;
   height: 165px;
 }

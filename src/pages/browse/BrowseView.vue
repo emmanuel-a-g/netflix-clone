@@ -9,7 +9,8 @@
           title="Recently Added"
           :listNumber="1"
         ></TheCarouselComp>
-        <TheCarouselComp title="My List" :listNumber="2"></TheCarouselComp>
+        <TheCarouselComp title="My List" :listNumber="2">
+        </TheCarouselComp>
         <div class="moreContent"></div>
       </div>
     </div>

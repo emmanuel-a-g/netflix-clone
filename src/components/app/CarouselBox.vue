@@ -5,10 +5,20 @@
       left: theIdx === 0 ? '0%' : '-15%',
     }"
     :class="{ visibleClass: show, hiddenClass: !show }"
+    @mouseleave="handleDoubleClose"
   >
     <div class="insideBox">
-      <div class="movieDiv">
+      <div class="movieDiv" v-if="!showMovie" @mouseover="startTimer">
         <img :src="theMovie ? theMovie.imageUrl : ''" alt="hover image" />
+      </div>
+      <div v-if="showMovie" class="iframeContainer" @mouseout="handleClose">
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/wPosLpgMtTY?autoplay=1&modestbranding=1&rel=0&iv_load_policy=3&fs=0&color=white&controls=0&disablekb=1"
+          width="282"
+          height="200"
+          title="Spider-man 3"
+          frameborder="0"
+        ></iframe>
       </div>
       <div class="contentDiv">
         <div class="actions">
@@ -49,14 +59,44 @@ import like from "../../assets/like.png";
 import plus from "../../assets/plus.png";
 import downArr from "../../assets/downArr.png";
 export default {
-  props: ["show", "theIdx", "theMovie", "closeBox"],
+  props: ["show", "theIdx", "theMovie"],
+  emits: ["closeCard"],
   data() {
     return {
+      showMovie: false,
+      timer: null,
       play,
       like,
       plus,
       downArr,
     };
+  },
+  methods: {
+    handleOpen() {
+      this.showMovie = true;
+    },
+    handleClose() {
+      this.showMovie = false;
+      if (this.timer) {
+        clearTimeout(this.timer);
+        this.timer = null;
+      }
+    },
+    startTimer() {
+      if (!this.showMovie && !this.timer) {
+        this.timer = setTimeout(() => {
+          this.handleOpen();
+        }, 1000);
+      }
+    },
+    handleDoubleClose() {
+      this.showMovie = false;
+      if (this.timer) {
+        clearTimeout(this.timer);
+        this.timer = null;
+      }
+      this.$emit("closeCard");
+    },
   },
 };
 </script>
@@ -86,10 +126,6 @@ export default {
   background-color: #141414;
   visibility: hidden;
   border-radius: 4px;
-}
-.movieDiv {
-  width: 100%;
-  height: auto;
 }
 .contentDiv {
   /* flex: 1; */
@@ -199,5 +235,22 @@ export default {
   height: 100%;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
+}
+.movieDiv {
+  width: 100%;
+  height: auto;
+}
+/* IFRAME CSS */
+.iframeContainer {
+  position: relative;
+  width: 282px;
+  height: 200px;
+}
+.iframeContainer iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 </style>

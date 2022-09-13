@@ -9,9 +9,9 @@
     @mouseleave="handleClose"
   >
     <CarouselBox
+      @closeCard="handleClose"
       :theIdx="idx"
       :theMovie="movie"
-      :closeBox="handleClose"
       :show="show"
     ></CarouselBox>
   </div>
