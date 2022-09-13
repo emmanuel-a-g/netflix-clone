@@ -7,7 +7,6 @@
 <script>
 export default {
   props: ["width"],
-  // mounted() {},
 };
 </script>
 

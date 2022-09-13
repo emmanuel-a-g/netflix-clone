@@ -39,9 +39,6 @@ export default {
   },
   props: ["show"],
   methods: {
-    handleHover() {
-      console.log("I was hovered");
-    },
     handleAccount() {
       this.$router.push("/account");
     },

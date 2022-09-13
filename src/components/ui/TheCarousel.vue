@@ -1,19 +1,9 @@
 <template>
   <div class="carousel">
-    <div class="inner" :style="{ transform: `translateX(-${index * 90}%)` }">
-      <ItemCarousel v-for="item in bigList" :key="item" width="90%">
+    <div class="inner" :style="{ transform: `translateX(-${index * 96}%)` }">
+      <ItemCarousel v-for="item in bigList" :key="item" width="96%">
         <div class="line">
-          <div
-            class="card"
-            v-for="mov in item"
-            :key="mov"
-            :class="{ hide: mov === 'blank' }"
-            :style="{
-              'background-image': mov.imageUrl
-                ? `url(${mov.imageUrl})`
-                : 'none',
-            }"
-          ></div>
+          <TheCard v-for="(mov, idx) in item" :index="idx" :key="idx" :mov="mov"> </TheCard>
         </div>
       </ItemCarousel>
     </div>
@@ -28,11 +18,13 @@
 
 <script>
 import ItemCarousel from "./ItemCarousel.vue";
+import TheCard from "../app/TheCard.vue";
 import right from "../../assets/rightArr.png";
 import left from "../../assets/leftArr.png";
 export default {
   components: {
     ItemCarousel,
+    TheCard,
   },
   emits: ["updateIdx"],
   props: ["showIndicators", "list", "bigList"],
@@ -69,10 +61,11 @@ export default {
 
 <style scoped>
 .carousel {
-  overflow: hidden;
-  position: relative;
-  height: 165px;
+  /* overflow: hidden; */
+  /* ^^REMOVED AND ADDED IN CAROUSELWRAPPER^^ */
+  position: relative; 
   background-color: transparent;
+  height: 165px;
 }
 .inner {
   white-space: nowrap;
@@ -92,7 +85,7 @@ export default {
   top: 0;
   height: 126px;
   width: 60px;
-  /* background-color: rgba(0, 0, 0, 0.438); */
+  background-color: rgba(0, 0, 0, 0.438);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -140,25 +133,6 @@ export default {
   width: 100%;
   height: 128px;
   text-align: center;
-}
-/* Styling for movie card */
-.card {
-  background-color: rgb(96, 96, 96);
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  flex: 1;
-  height: 126px;
-  padding: 0;
-  margin: 0;
-  border-radius: 4px;
-}
-.card span {
-  position: absolute;
-}
-/* CLASS FOR EMPTY MOVIES */
-.hide {
-  visibility: hidden;
 }
 @media only screen and (max-width: 700px) {
   .inner {

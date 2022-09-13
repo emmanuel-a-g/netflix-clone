@@ -9,15 +9,7 @@
           title="Recently Added"
           :listNumber="1"
         ></TheCarouselComp>
-        <TheCarouselComp
-          title="Continue Watching"
-          :listNumber="2"
-        ></TheCarouselComp>
-        <TheCarouselComp title="Trending Now" :listNumber="1"></TheCarouselComp>
-        <TheCarouselComp
-          title="Watch It Again"
-          :listNumber="2"
-        ></TheCarouselComp>
+        <TheCarouselComp title="My List" :listNumber="2"></TheCarouselComp>
         <div class="moreContent"></div>
       </div>
     </div>
@@ -67,6 +59,12 @@ export default {
   background-color: transparent;
   display: flex;
   flex-direction: column;
+  /* EXTREMELY IMPORTANT FOR CAROUSEL */
+  overflow: hidden;
+  /* making space for box popover */
+  /* border-top: 1px solid red; */
+  padding-top: 50px;
+  /* making space for box popover */
 }
 /* @media only screen and (max-width: 1000px) {} */
 /* @media only screen and (max-width: 850px) {} */

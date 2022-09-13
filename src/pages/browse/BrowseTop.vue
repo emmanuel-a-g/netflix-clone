@@ -53,8 +53,12 @@ export default {
   height: auto;
 }
 .fillContainer {
-  min-height: 43vw;
-  max-height: 46vw;
+  /* smaller for inner padding */
+  /* min-height: 43vw; */
+  min-height: 39vw;
+  /* max-height: 46vw; */
+  max-height: 40vw;
+  /* smaller for inner padding */
   display: flex;
   justify-content: flex-start;
   align-items: center;

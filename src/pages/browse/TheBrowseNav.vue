@@ -10,15 +10,17 @@
       <p v-if="mobileView">
         <span>Browse</span>
         <span id="down">&#9660;</span>
-        <!-- <img class="menu" :src="menu" alt="menu" @click="toggleMenu" /> -->
       </p>
     </div>
     <div class="middleMenu" v-if="!mobileView">
-      <li>Home</li>
+      <li>
+        <strong> Home </strong>
+      </li>
       <li>TV Shows</li>
       <li>Movies</li>
       <li>New & Popular</li>
       <li>My List</li>
+      <li>Browse by Languages</li>
     </div>
     <div class="navBar">
       <ul @mouseleave="handleCloseToggles">
@@ -217,7 +219,7 @@ export default {
   min-height: 8vh;
   display: flex;
   align-items: center;
-  width: 60%;
+  width: 80%;
   height: 100%;
   justify-content: space-evenly;
 }
@@ -396,6 +398,9 @@ export default {
   }
   .middleMenu {
     width: 90%;
+  }
+  .middleMenu li {
+    font-size: 0.7rem;
   }
   .navBar {
     padding-right: 5px;
