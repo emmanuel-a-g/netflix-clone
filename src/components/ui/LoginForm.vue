@@ -20,13 +20,12 @@
           v-model="password"
           placeholder="Password"
           v-on:keydown="validatePassword"
-          v-on:blur="reset('password')"
           :class="{ highlight: alertPassword ? true : false }"
         />
         <span class="alert" v-if="alertPassword">
           Your password must contain between 6 and 60 characters.
         </span>
-        <button>Sign In</button>
+        <button class="theButton">Sign In</button>
         <div class="help">
           <p>
             <input type="checkbox" v-model="rememberMe" />
@@ -51,6 +50,7 @@
 </template>
 
 <script>
+// v-on:blur="reset('password')"
 export default {
   props: ["error"],
   emits: ["submit-login"],
@@ -182,13 +182,16 @@ form {
 h2 {
   align-self: flex-start;
 }
-button {
+.theButton {
+  padding: 0;
   background-color: var(--red);
   height: 45px;
-  width: 101%;
+  width: 100%;
   border: none;
   border-radius: 5px;
   color: white;
+  margin: 0;
+  justify-self: center;
 }
 input {
   width: 100%;
@@ -198,6 +201,8 @@ input {
   border-radius: 5px;
   font-size: 1rem;
   text-indent: 5px;
+  padding: 0;
+  margin: 0;
 }
 p {
   font-size: 1rem;

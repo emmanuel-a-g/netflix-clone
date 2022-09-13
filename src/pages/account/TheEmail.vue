@@ -90,7 +90,7 @@ export default {
     dispatchLogout() {
       setTimeout(() => {
         this.$store.dispatch("logOut");
-        this.$router.push({path: "/login", query: {redirect : "email"}});
+        this.$router.push({ path: "/login", query: { redirect: "email" } });
       }, 5000);
     },
   },
@@ -182,5 +182,15 @@ export default {
 }
 .error {
   color: red;
+}
+@media only screen and (max-width: 500px) {
+  .emailDiv {
+    padding-left: 0px;
+    align-items: center;
+  }
+  .newEmail,
+  .currEmail {
+    width: 100%;
+  }
 }
 </style>

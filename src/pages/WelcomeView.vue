@@ -188,6 +188,7 @@ export default {
   color: white;
   border-color: #ffffff;
   border-width: 0.7px;
+  white-space: nowrap;
 }
 .rightButton {
   background-color: var(--red);

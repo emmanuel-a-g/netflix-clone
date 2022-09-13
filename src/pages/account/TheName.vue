@@ -162,4 +162,14 @@ export default {
   margin: 0;
   font-weight: bold;
 }
+@media only screen and (max-width: 700px) {
+  .nameDiv {
+    padding-left: 0px;
+    align-items: center;
+  }
+  .currName,
+  .newName {
+    width: 100%;
+  }
+}
 </style>

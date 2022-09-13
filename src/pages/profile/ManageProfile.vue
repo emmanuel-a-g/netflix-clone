@@ -183,7 +183,7 @@ button {
   border: none;
   color: white;
   font-size: 16px;
-  padding-left: 10px;
+  text-indent: 10px;
 }
 .cardOne input::placeholder {
   color: rgb(175, 175, 175);
@@ -213,6 +213,11 @@ button {
 @media only screen and (max-width: 700px) {
   .wrapper h1 {
     font-size: 1.5rem;
+  }
+  .form {
+    min-width: none;
+    max-width: none;
+    width: 100%;
   }
 }
 </style>

@@ -102,6 +102,7 @@ export default {
   justify-content: space-evenly;
   align-items: center;
   padding: 8px;
+  color: black;
 }
 #playButton img {
   width: 1.4vw;

@@ -94,7 +94,7 @@
             <p>Test participation</p>
             <p>Manage download services</p>
             <p>Download your personal information</p>
-            <p class="clickable" @clicl="logout">Sign out of all devices</p>
+            <p class="clickable" @click="logout">Sign out of all devices</p>
             <p class="clickable" @click="deleteAccount">
               <strong> Delete </strong>&nbsp;your account
             </p>
@@ -132,6 +132,7 @@ export default {
   methods: {
     logout() {
       this.$store.dispatch("logOut");
+      this.$router.replace("/login");
     },
     moveHome() {
       this.$router.replace("/browse");

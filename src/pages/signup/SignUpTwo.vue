@@ -172,4 +172,9 @@ h2 {
   font-size: 0.9rem;
   font-weight: bold;
 }
+@media only screen and (max-width: 500px) {
+  .content div {
+    width: 100%;
+  }
+}
 </style>

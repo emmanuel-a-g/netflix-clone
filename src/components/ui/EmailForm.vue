@@ -46,6 +46,8 @@ export default {
   flex: 2;
   font-size: 1.1rem;
   text-indent: 5px;
+  padding: 0;
+  margin: 0;
 }
 .emailControl button {
   all: unset;
@@ -65,7 +67,7 @@ export default {
     min-width: 300px;
   }
   .emailControl button {
-    font-size: 0.55rem;
+    font-size: 0.6rem;
   }
 }
 @media only screen and (max-height: 500px) {

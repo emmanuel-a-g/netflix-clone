@@ -243,4 +243,14 @@ export default {
   color: black;
   font-style: italic;
 }
+@media only screen and (max-width: 500px) {
+  .passwordDiv {
+    padding-left: 0px;
+    align-items: center;
+  }
+  .currPassword,
+  .newPassword {
+    width: 100%;
+  }
+}
 </style>
