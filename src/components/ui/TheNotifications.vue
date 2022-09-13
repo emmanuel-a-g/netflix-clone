@@ -57,7 +57,8 @@ export default {
   right: 8.5vw;
   visibility: visible;
   /* transition: 200ms; */
-  z-index: 1;
+  /* Z-INDEX PLACEMENT */
+  z-index: 5;
 }
 .hiddenClass {
   position: absolute;

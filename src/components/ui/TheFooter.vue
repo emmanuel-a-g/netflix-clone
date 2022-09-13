@@ -26,6 +26,7 @@ export default {
   /* position: absolute; */
   /* background-color: #0000008e; */
   bottom: 0;
+  /* Z-INDEX PLACEMENT */
   z-index: 4;
   height: 30vh;
   width: 100%;

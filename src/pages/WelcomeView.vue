@@ -119,7 +119,7 @@ export default {
 }
 /* replace with a inset color overlay */
 .gradientDiv {
-  z-index: 1;
+  z-index: 12;
   position: absolute;
   width: 100%;
   height: 100%;
@@ -131,7 +131,7 @@ export default {
   flex-direction: column;
   align-self: center;
   font-size: 1.5rem;
-  z-index: 3;
+  z-index: 13;
   max-width: 630px;
 }
 #watch {
@@ -157,7 +157,7 @@ export default {
   display: grid;
   grid-template-columns: 20% auto 25%;
   grid-template-rows: 1pt;
-  z-index: 2;
+  z-index: 13;
 }
 .navDiv img {
   width: 180px;

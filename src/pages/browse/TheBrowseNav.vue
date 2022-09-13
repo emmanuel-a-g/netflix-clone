@@ -205,7 +205,7 @@ export default {
 
 <style scoped>
 .content {
-  z-index: 2;
+  z-index: 7;
   position: fixed;
   min-height: 8vh;
   width: 100%;
@@ -312,12 +312,12 @@ export default {
 #search {
   width: 20px;
   height: 20px;
-  z-index: 212;
+  z-index: 10;
 }
 #bell {
   width: 22px;
   height: 23px;
-  z-index: 213;
+  z-index: 9;
   margin-top: 3px;
 }
 /* search input transition */

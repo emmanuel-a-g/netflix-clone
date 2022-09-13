@@ -104,6 +104,7 @@ export default {
   right: 4vw;
   visibility: visible;
   /* transition: 200ms; */
+  /* Z-INDEX PLACEMENT */
   z-index: 1;
 }
 .hiddenClass {

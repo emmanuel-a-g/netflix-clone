@@ -13,11 +13,12 @@
       </div>
       <div v-if="showMovie" class="iframeContainer" @mouseout="handleClose">
         <iframe
-          src="https://www.youtube-nocookie.com/embed/wPosLpgMtTY?autoplay=1&modestbranding=1&rel=0&iv_load_policy=3&fs=0&color=white&controls=0&disablekb=1"
+          :src="`https://www.youtube-nocookie.com/embed/wPosLpgMtTY?autoplay=1&modestbranding=1&rel=0&iv_load_policy=3&fs=0&color=white&controls=0&disablekb=1${muteControl}`"
           width="282"
           height="200"
-          title="Spider-man 3"
+          title="Spider-Man 3"
           frameborder="0"
+          allow="autoplay"
         ></iframe>
       </div>
       <div class="contentDiv">
@@ -65,6 +66,7 @@ export default {
     return {
       showMovie: false,
       timer: null,
+      muteControl: "&muted=1",
       play,
       like,
       plus,
@@ -114,7 +116,8 @@ export default {
   width: 282px;
   height: 285px;
   transition: all 300ms ease;
-  z-index: 10;
+  /* Z INDEX PLACEMENT */
+  z-index: 20;
   border-radius: 4px;
 }
 .hiddenClass {
@@ -245,11 +248,17 @@ export default {
   position: relative;
   width: 282px;
   height: 200px;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
 }
 .iframeContainer iframe {
+  padding: 0;
+  margin: 0;
   position: absolute;
   top: 0;
   left: 0;
+  bottom: 50%;
   width: 100%;
   height: 100%;
 }

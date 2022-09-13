@@ -111,7 +111,7 @@ export default {
   flex-direction: column;
   top: 12vh;
   font-size: 1.5rem;
-  z-index: 3;
+  z-index: 11;
   max-width: 630px;
   min-height: 650px;
 }
