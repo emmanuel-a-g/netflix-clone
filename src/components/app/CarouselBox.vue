@@ -120,8 +120,8 @@ export default {
   margin: 0px 0px;
   display: flex;
   justify-content: space-between;
-  width: 85%;
-  margin-left: 22px;
+  width: 90%;
+  margin-left: 12px;
 }
 .actionsLeft {
   display: flex;
@@ -145,10 +145,10 @@ export default {
 .information {
   flex: 1;
   display: flex;
-  margin-left: 7px;
   width: 90%;
-  justify-content: space-evenly;
+  justify-content: space-around;
   align-items: center;
+  margin-left: 3px;
 }
 .information p {
   padding: 0;
@@ -175,10 +175,10 @@ export default {
 .tags {
   flex: 1;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   align-items: center;
   width: 75%;
-  margin-left: 20px;
+  margin-left: 12.5px;
 }
 .tags p {
   padding: 0;
