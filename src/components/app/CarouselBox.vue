@@ -16,22 +16,25 @@
       >
         <img :src="theMovie ? theMovie.imageUrl : ''" alt="hover image" />
       </div>
-      <div v-if="showMovie" class="iframeContainer">
+      <div v-if="showMovie" class="iframeContainer" @click="toWatch">
+        <div class="touchableOverlay"></div>
         <iframe
           id="existing-iframe-example"
-          :src="`https://www.youtube-nocookie.com/embed/${theMovieId}?start=5&end=35&autoplay=1&loop=1&modestbranding=1&rel=0&iv_load_policy=3&fs=0&color=white&controls=0&disablekb=1${muteControl}`"
-          width="280"
-          height="200"
+          :src="`https://www.youtube-nocookie.com/embed/${theMovieId}?start=5&end=35&autoplay=1&loop=1&modestbranding=1&autohide=1&showinfo=0rel=0&iv_load_policy=3&fs=0&color=white&controls=0&disablekb=1${muteControl}`"
+          width="410"
+          height="310"
           title=""
           allow="autoplay"
           frameborder="0"
         ></iframe>
       </div>
-      <div class="contentDiv" :style="{ height: showMovie ? '90px' : '115px' }">
+      <!-- :style="{ height: showMovie ? '100px' : '115px' }" -->
+      <div class="contentDiv" >
         <div class="actions">
           <div class="actionsLeft">
             <p
               :style="{ 'background-color': 'white', 'border-color': 'white' }"
+              @click="toWatch"
             >
               <img id="play" :src="play" alt="play button" />
             </p>
@@ -48,7 +51,7 @@
           <p>1h</p>
           <p class="hd">HD</p>
         </div>
-        <div class="tags" v-if="!showMovie">
+        <div class="tags" >
           <p>Exciting</p>
           &#8226;
           <p>Fun</p>
@@ -109,8 +112,10 @@ export default {
       }
       this.$emit("closeCard");
     },
+    toWatch() {
+      this.$router.push(`/watch/${this.theMovieId}`);
+    },
   },
-  mounted() {},
 };
 </script>
 
@@ -142,11 +147,15 @@ export default {
   border-radius: 4px;
 }
 .contentDiv {
-  /* flex: 1; */
-  /* margin-top: 10px; */
-  /* height: 115px; */
+  top: 158px;
+  width: 280px;
+  position: absolute;
   display: flex;
   flex-direction: column;
+  z-index: 15;
+  height: 120px;
+  left: 1px;
+  background-color: #0f0f0f;
 }
 #play {
   width: 17px;
@@ -169,6 +178,7 @@ export default {
   margin: 0px 0px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 90%;
   margin-left: 12px;
 }
@@ -261,16 +271,34 @@ export default {
   overflow: hidden;
   padding: 0;
   margin: 0;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
 }
-.iframeContainer iframe {
+.touchableOverlay {
   padding: 0;
   margin: 0;
   position: absolute;
   top: 0;
   left: 0;
-  bottom: 50%;
   width: 100%;
   height: 100%;
   border-radius: 4px;
+}
+.iframeContainer iframe {
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  top: -60%;
+  left: -10%;
+  /* width: 100%;
+  height: 100%; */
+  height: 410px;
+  width: 340px;
+  border-radius: 4px;
+  pointer-events: none;
+  z-index: 14;
+}
+.iframeContainer iframe:hover {
+  pointer-events: none !important;
 }
 </style>
