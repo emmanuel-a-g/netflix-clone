@@ -8,20 +8,26 @@
     @mouseleave="handleDoubleClose"
   >
     <div class="insideBox">
-      <div class="movieDiv" v-if="!showMovie" @mouseover="startTimer">
+      <div
+        class="movieDiv"
+        v-if="!showMovie"
+        @mouseover="startTimer"
+        @mouseout="cancelTimer"
+      >
         <img :src="theMovie ? theMovie.imageUrl : ''" alt="hover image" />
       </div>
-      <div v-if="showMovie" class="iframeContainer" @mouseout="handleClose">
+      <div v-if="showMovie" class="iframeContainer">
         <iframe
-          :src="`https://www.youtube-nocookie.com/embed/wPosLpgMtTY?autoplay=1&modestbranding=1&rel=0&iv_load_policy=3&fs=0&color=white&controls=0&disablekb=1${muteControl}`"
-          width="282"
+          id="existing-iframe-example"
+          :src="`https://www.youtube-nocookie.com/embed/${theMovieId}?start=5&end=35&autoplay=1&loop=1&modestbranding=1&rel=0&iv_load_policy=3&fs=0&color=white&controls=0&disablekb=1${muteControl}`"
+          width="280"
           height="200"
-          title="Spider-Man 3"
-          frameborder="0"
+          title=""
           allow="autoplay"
+          frameborder="0"
         ></iframe>
       </div>
-      <div class="contentDiv">
+      <div class="contentDiv" :style="{ height: showMovie ? '90px' : '115px' }">
         <div class="actions">
           <div class="actionsLeft">
             <p
@@ -42,7 +48,7 @@
           <p>1h</p>
           <p class="hd">HD</p>
         </div>
-        <div class="tags">
+        <div class="tags" v-if="!showMovie">
           <p>Exciting</p>
           &#8226;
           <p>Fun</p>
@@ -73,16 +79,20 @@ export default {
       downArr,
     };
   },
-  methods: {
-    handleOpen() {
-      this.showMovie = true;
+  computed: {
+    theMovieId() {
+      return this.theMovie ? this.theMovie.videoId : "";
     },
-    handleClose() {
-      this.showMovie = false;
-      if (this.timer) {
+  },
+  methods: {
+    cancelTimer() {
+      if (this.timer && !this.showMovie) {
         clearTimeout(this.timer);
         this.timer = null;
       }
+    },
+    handleOpen() {
+      this.showMovie = true;
     },
     startTimer() {
       if (!this.showMovie && !this.timer) {
@@ -100,6 +110,7 @@ export default {
       this.$emit("closeCard");
     },
   },
+  mounted() {},
 };
 </script>
 
@@ -133,7 +144,7 @@ export default {
 .contentDiv {
   /* flex: 1; */
   /* margin-top: 10px; */
-  height: 115px;
+  /* height: 115px; */
   display: flex;
   flex-direction: column;
 }
@@ -155,7 +166,6 @@ export default {
 }
 .actions {
   flex: 1;
-  /* margin: 10px 0px; */
   margin: 0px 0px;
   display: flex;
   justify-content: space-between;
@@ -261,5 +271,6 @@ export default {
   bottom: 50%;
   width: 100%;
   height: 100%;
+  border-radius: 4px;
 }
 </style>

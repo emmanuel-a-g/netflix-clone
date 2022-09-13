@@ -7,78 +7,91 @@ export const data = [
     genre: "action",
     id: 1,
     imageUrl: `${baseUrl}/spiderman3.webp`,
+    videoId: "wPosLpgMtTY",
   },
   {
     title: "Better Call Saul",
     genre: "show",
     id: 2,
     imageUrl: `${baseUrl}/saul_S.webp`,
+    videoId: "9q4qzYrHVmI",
   },
   {
     title: "Spider Man",
     genre: "hereo",
     id: 3,
     imageUrl: `${baseUrl}/spiderman_S.webp`,
+    videoId: "t06RUxPbp_c",
   },
   {
     title: "Troy",
     genre: "war",
     id: 4,
     imageUrl: `${baseUrl}/troy_S.webp`,
+    videoId: "6FG3BfPuwBA",
   },
   {
     title: "Squid Game",
     genre: "show",
     id: 5,
     imageUrl: `${baseUrl}/squidgame_S.jpg`,
+    videoId: "oqxAJKy0ii4",
   },
   {
     title: "I am Legend",
     genre: "suspense",
     id: 6,
     imageUrl: `${baseUrl}/legend_S.webp`,
+    videoId: "dtKMEAXyPkg",
   },
   {
     title: "Me time",
-    genre: "romance",
+    genre: "comedy",
     id: 7,
     imageUrl: `${baseUrl}/metime_S.jpg`,
+    videoId: "Mmq_NVwLN_g",
   },
   {
     title: "Scarface",
     genre: "crime",
     id: 8,
     imageUrl: `${baseUrl}/scarface_S.webp`,
+    videoId: "7pQQHnqBa2E",
   },
   {
     title: "Breaking Bad",
     genre: "show",
     id: 9,
     imageUrl: `${baseUrl}/breaking_S.webp`,
+    videoId: "HhesaQXLuRY",
   },
   {
     title: "Insidious 2",
     genre: "horror",
     id: 10,
     imageUrl: `${baseUrl}/insidious_S.webp`,
+    videoId: "5hvNMXh1GWw",
   },
   {
     title: "Snow White & Huntsman",
     genre: "family",
     id: 11,
     imageUrl: `${baseUrl}/huntsman_S.webp`,
+    videoId: "V4SQ9xBXMX0",
   },
   {
     title: "Despicable Me",
     genre: "kids",
     id: 12,
     imageUrl: `${baseUrl}/despicable_S.webp`,
+    videoId: "zzCZ1W_CUoI",
   },
   {
     title: "8 Mile",
     genre: "documentary",
     id: 13,
     imageUrl: `${baseUrl}/8mile_S.webp`,
+    videoId: "TRZXaEl9fPo",
   },
   {
     title: "Mind Hunter",
@@ -86,6 +99,7 @@ export const data = [
     id: 14,
     imageUrl:
       "https://res.cloudinary.com/milito/image/upload/v1662743230/netflix/mindhunter.jpg",
+    videoId: "oFlKiTwhd38",
   },
   {
     title: "Quantum of Solace: 007",
@@ -93,6 +107,7 @@ export const data = [
     id: 15,
     imageUrl:
       "https://res.cloudinary.com/milito/image/upload/v1662743230/netflix/quantum.webp",
+    videoId: "mkLcEGMkGMs",
   },
   {
     title: "Hyperdrive",
@@ -100,6 +115,7 @@ export const data = [
     id: 16,
     imageUrl:
       "https://res.cloudinary.com/milito/image/upload/v1662743229/netflix/hyperdrive.jpg",
+    videoId: "saXM2VOBI0M",
   },
   {
     title: "Love is Blind 2",
@@ -107,6 +123,7 @@ export const data = [
     id: 17,
     imageUrl:
       "https://res.cloudinary.com/milito/image/upload/v1662743229/netflix/loveisblind.jpg",
+    videoId: "8kjuzKitPRw",
   },
   {
     title: "House of Cards",
@@ -114,6 +131,7 @@ export const data = [
     id: 18,
     imageUrl:
       "https://res.cloudinary.com/milito/image/upload/v1662743229/netflix/house.jpg",
+    videoId: "8QnMmpfKWvo",
   },
   {
     title: "Constantine",
@@ -121,6 +139,7 @@ export const data = [
     id: 19,
     imageUrl:
       "https://res.cloudinary.com/milito/image/upload/v1662743229/netflix/constantine.webp",
+    videoId: "DEa508Xmmio",
   },
   {
     title: "The Perfect Date",
@@ -128,6 +147,7 @@ export const data = [
     id: 20,
     imageUrl:
       "https://res.cloudinary.com/milito/image/upload/v1662743229/netflix/perfectdate.jpg",
+    videoId: "Hld-7oBn3Rk",
   },
 ];
 
@@ -135,37 +155,42 @@ export const data2 = [
   {
     title: "The Bucket List",
     genre: "feelgood",
+    id: 21,
     imageUrl:
       "https://res.cloudinary.com/milito/image/upload/v1662749445/netflix/bucketlist_bcqu1j.webp",
-    id: 21,
+    videoId: "vc3mkG21ob4",
   },
   {
     title: "Blow",
     genre: "crime",
+    id: 22,
     imageUrl:
       "https://res.cloudinary.com/milito/image/upload/v1662749445/netflix/blow_gz7gt7.webp",
-    id: 22,
+    videoId: "scWkP1GdnuU",
   },
   {
     title: "Despicable Me 2",
     genre: "family",
+    id: 23,
     imageUrl:
       "https://res.cloudinary.com/milito/image/upload/v1662749445/netflix/despicable2_ktaxie.webp",
-    id: 23,
+    videoId: "6qsH_LFRr6k",
   },
   {
     title: "The Age of Adaline",
     genre: "romance",
+    id: 24,
     imageUrl:
       "https://res.cloudinary.com/milito/image/upload/v1662749445/netflix/ageofadeline_otx8ek.webp",
-    id: 24,
+    videoId: "g9-SnMldtGY",
   },
   {
     title: "6 Underground",
     genre: "action",
+    id: 25,
     imageUrl:
       "https://res.cloudinary.com/milito/image/upload/v1662749445/netflix/6_underground_ocwt6h.jpg",
-    id: 25,
+    videoId: "XcIuFTrLS6g",
   },
   {
     title: "Stranger Things",
@@ -173,20 +198,23 @@ export const data2 = [
     imageUrl:
       "https://res.cloudinary.com/milito/image/upload/v1662749429/netflix/strangerthings_qkaxio.jpg",
     id: 26,
+    videoId: "b9EkMc79ZSU",
   },
   {
     title: "Spoiled Brats",
     genre: "comedy",
+    id: 27,
     imageUrl:
       "https://res.cloudinary.com/milito/image/upload/v1662749429/netflix/spoiled_hbw8ps.jpg",
-    id: 27,
+    videoId: "tpfVdCz2RNg",
   },
   {
     title: "Seinfield",
     genre: "comedy",
+    id: 28,
     imageUrl:
       "https://res.cloudinary.com/milito/image/upload/v1662749428/netflix/seinfield_hqhkre.webp",
-    id: 28,
+    videoId: "hQXKyIG_NS4",
   },
   {
     title: "Peaky Blinders",
@@ -194,83 +222,95 @@ export const data2 = [
     imageUrl:
       "https://res.cloudinary.com/milito/image/upload/v1662749428/netflix/peaky_xqhzlm.jpg",
     id: 29,
+    videoId: "Ruyl8_PT_y8",
   },
   {
     title: "Skyfall",
     genre: "action",
+    id: 30,
     imageUrl:
       "https://res.cloudinary.com/milito/image/upload/v1662749428/netflix/skyfall_igfb4p.webp",
-    id: 30,
+    videoId: "24mTIE4D9JM",
   },
   {
     title: "Resident Evil Retribution",
     genre: "suspense",
+    id: 31,
     imageUrl:
       "https://res.cloudinary.com/milito/image/upload/v1662749428/netflix/residentevil_cxg0or.webp",
-    id: 31,
+    videoId: "USGM73rw9H4",
   },
   {
     title: "No Strings Attached",
     genre: "comedy",
+    id: 32,
     imageUrl:
       "https://res.cloudinary.com/milito/image/upload/v1662749428/netflix/nostrings_exyxsc.webp",
-    id: 32,
+    videoId: "XGmsRMvQ2AM",
   },
   {
     title: "Narcos Mexico",
     genre: "show",
+    id: 33,
     imageUrl:
       "https://res.cloudinary.com/milito/image/upload/v1662749428/netflix/narcosmexico_ut9jku.jpg",
-    id: 33,
+    videoId: "hhZBDO0CKJo",
   },
   {
     title: "Night Stalker",
     genre: "crime",
+    id: 34,
     imageUrl:
       "https://res.cloudinary.com/milito/image/upload/v1662749428/netflix/nightstalker_lf3fsx.jpg",
-    id: 34,
+    videoId: "Mva2nGveYss",
   },
   {
     title: "Grey's Anatomy",
     genre: "show",
+    id: 35,
     imageUrl:
       "https://res.cloudinary.com/milito/image/upload/v1662749427/netflix/greys_p5pkva.webp",
-    id: 35,
+    videoId: "4FC8krII948",
   },
   {
     title: "Mi Rey Palazuelos",
     genre: "reality",
+    id: 36,
     imageUrl:
       "https://res.cloudinary.com/milito/image/upload/v1662749427/netflix/mirey_qjfjpq.webp",
-    id: 36,
+    videoId: "WireIYL-U6Y",
   },
   {
     title: "Money Heist",
     genre: "show",
+    id: 37,
     imageUrl:
       "https://res.cloudinary.com/milito/image/upload/v1662749427/netflix/moneyheist_dmep4g.jpg",
-    id: 37,
+    videoId: "_InqQJRqGW4",
   },
   {
     title: "El Camino",
     genre: "suspense",
+    id: 38,
     imageUrl:
       "https://res.cloudinary.com/milito/image/upload/v1662749427/netflix/elcamino_og84g0.jpg",
-    id: 38,
+    videoId: "1JLUn2DFW4w",
   },
   {
     title: "Kate",
     genre: "action",
+    id: 39,
     imageUrl:
       "https://res.cloudinary.com/milito/image/upload/v1662749427/netflix/kate_gt14l7.jpg",
-    id: 39,
+    videoId: "MysGjRS9jFU",
   },
   {
     title: "Morbius",
     genre: "heroes",
+    id: 40,
     imageUrl:
       "https://res.cloudinary.com/milito/image/upload/v1662749427/netflix/morbius_n38hzh.webp",
-    id: 40,
+    videoId: "jLMBLuGJTsA",
   },
 ];
 
