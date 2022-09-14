@@ -8,11 +8,7 @@
         @click="handle('one', nameOne)"
         :class="{ highlight: editMode }"
       >
-        <img
-          class="profile"
-          src="https://res.cloudinary.com/milito/image/upload/v1662997890/netflix/maskProfile_xx1z4x.png"
-          alt="user image"
-        />
+        <img class="profile" :src="imageOne" alt="user image" />
         <span v-if="editMode"
           ><img :src="pencil" alt="edit logo" class="pencil"
         /></span>
@@ -24,11 +20,7 @@
         @click="handle('two', nameTwo)"
         :class="{ highlight: editMode }"
       >
-        <img
-          class="profile"
-          src="https://res.cloudinary.com/milito/image/upload/v1662997890/netflix/tokyoProfile_q2bukk.png"
-          alt="user image"
-        />
+        <img class="profile" :src="imageTwo" alt="user image" />
         <span v-if="editMode"
           ><img :src="pencil" alt="edit logo" class="pencil"
         /></span>
@@ -40,11 +32,7 @@
         @click="handle('three', nameThree)"
         :class="{ highlight: editMode }"
       >
-        <img
-          class="profile"
-          src="https://res.cloudinary.com/milito/image/upload/v1662997890/netflix/eliteProfile_ouycek.png"
-          alt="user image"
-        />
+        <img class="profile" :src="imageThree" alt="user image" />
         <span v-if="editMode"
           ><img :src="pencil" alt="edit logo" class="pencil"
         /></span>
@@ -56,11 +44,7 @@
         @click="handle('four', nameFour)"
         :class="{ highlight: editMode }"
       >
-        <img
-          class="profile"
-          src="https://res.cloudinary.com/milito/image/upload/v1662997889/netflix/enchanmentProfile_c6ybpd.png"
-          alt="user image"
-        />
+        <img class="profile" :src="imageFour" alt="user image" />
         <span v-if="editMode"
           ><img :src="pencil" alt="edit logo" class="pencil"
         /></span>
@@ -72,11 +56,7 @@
         @click="handle('five', nameFive)"
         :class="{ highlight: editMode }"
       >
-        <img
-          class="profile"
-          src="https://res.cloudinary.com/milito/image/upload/v1662997890/netflix/strangerProfile_kz4yjg.png"
-          alt="user image"
-        />
+        <img class="profile" :src="imageFive" alt="user image" />
         <span v-if="editMode"
           ><img :src="pencil" alt="edit logo" class="pencil"
         /></span>
@@ -91,41 +71,50 @@
 
 <script>
 import pencil from "../../assets/pencil.png";
+import { getProfileImage } from "../../store/data";
 export default {
-  props: [
-    "editMode",
-    "profileOne",
-    "profileTwo",
-    "profileThree",
-    "profileFour",
-    "profileFive",
-  ],
+  props: ["editMode", "profiles", "profileImages"],
   emits: ["manage", "editUser"],
   data() {
     return {
       pencil,
-      one: "",
-      two: "",
-      three: "",
-      four: "",
-      five: "",
     };
   },
   computed: {
     nameOne() {
-      return this.profileOne || "New";
+      return this.profiles["one"] || "New";
     },
     nameTwo() {
-      return this.profileTwo || "New";
+      return this.profiles["two"] || "New";
     },
     nameThree() {
-      return this.profileThree || "New";
+      return this.profiles["three"] || "New";
     },
     nameFour() {
-      return this.profileFour || "New";
+      return this.profiles["four"] || "New";
     },
     nameFive() {
-      return this.profileFive || "New";
+      return this.profiles["five"] || "New";
+    },
+    imageOne() {
+      let id = this.profileImages["one"];
+      return getProfileImage(id).imageUrl;
+    },
+    imageTwo() {
+      let id = this.profileImages["two"];
+      return getProfileImage(id).imageUrl;
+    },
+    imageThree() {
+      let id = this.profileImages["three"];
+      return getProfileImage(id).imageUrl;
+    },
+    imageFour() {
+      let id = this.profileImages["four"];
+      return getProfileImage(id).imageUrl;
+    },
+    imageFive() {
+      let id = this.profileImages["five"];
+      return getProfileImage(id).imageUrl;
     },
   },
   methods: {
@@ -136,8 +125,9 @@ export default {
       this.$router.replace("/browse");
     },
     handle(name, displayName) {
+      const imageId = this.profileImages[name];
       if (this.editMode) {
-        this.$emit("editUser", name, displayName);
+        this.$emit("editUser", name, displayName, imageId);
       } else {
         this.$store.dispatch("currentProfile", { name, displayName });
         this.$router.push("/browse");

@@ -11,7 +11,7 @@
             id="imgCard"
             @click="profileSelect"
             class="userimg"
-            :src="computeProfileImage"
+            :src="getImage"
             alt="user image"
           />
         </p>
@@ -55,30 +55,24 @@
 
 <script>
 import netflix from "../../assets/netflix.png";
-import { profileImages } from "../../store/data";
+import { getProfileImage } from "../../store/data";
 export default {
   data() {
     return {
       name: "",
       profile: "",
       nameProvided: false,
+      imageId: undefined,
       netflix,
-      profileImage: "",
     };
   },
   computed: {
-    computeProfileImage() {
-      let path = this.profileImage;
-      if (path === "one") {
-        return profileImages[0].imageUrl;
-      } else if (path === "two") {
-        return profileImages[1].imageUrl;
-      } else if (path === "three") {
-        return profileImages[2].imageUrl;
-      } else if (path === "four") {
-        return profileImages[4].imageUrl;
+    getImage() {
+      const id = +this.$route.query.id
+      if (!this.imageId) {
+        return getProfileImage(id).imageUrl;
       } else {
-        return profileImages[5].imageUrl;
+        return getProfileImage(this.imageId).imageUrl;
       }
     },
   },
@@ -109,11 +103,12 @@ export default {
       this.$router.replace("/selectuser");
     },
   },
+  beforeMount() {
+    this.imageId = +this.$route.query.id;
+  },
   mounted() {
     const profile = this.$route.params.profile;
     const name = this.$route.params.name;
-    this.profileImage = this.$route.params.profile;
-    // CALL DATABASE TO GET THE NAME FOR PROFILE ONE
     if (profile) {
       this.$refs.name.value = name;
       this.nameProvided = true;

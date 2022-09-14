@@ -32,10 +32,11 @@ const store = createStore({
       userId: null,
       email: "",
       name: "",
-      currentProfile: {name: "", displayName: ""},
+      currentProfile: { name: "", displayName: "" },
       redirectAuth: false,
       notification: "",
       profiles: null,
+      profileImages: { one: 1, two: 1, three: 1, four: 1, five: 1 },
     };
   },
   mutations: {
@@ -51,7 +52,7 @@ const store = createStore({
       state.email = null;
       state.name = null;
       state.currentProfile = "";
-      state.notification = ""
+      state.notification = "";
       state.profiles = null;
     },
     changeName(state, payload) {
@@ -61,7 +62,8 @@ const store = createStore({
       state.email = payload;
     },
     setProfiles(state, payload) {
-      state.profiles = payload;
+      state.profiles = payload.profiles;
+      state.profileImages = payload.images;
     },
     setCurrentProfile(state, payload) {
       state.currentProfile = payload;
@@ -89,6 +91,9 @@ const store = createStore({
     },
     getProfiles(state) {
       return state.profiles;
+    },
+    getProfileImages(state) {
+      return state.profileImages;
     },
     getCurrentProfile(state) {
       return state.currentProfile;
@@ -249,6 +254,13 @@ const store = createStore({
             four: [],
             five: [],
           },
+          profileImages: {
+            one: 1,
+            two: 1,
+            three: 1,
+            four: 1,
+            five: 1,
+          },
         });
       } catch (e) {
         console.log("did not add users", e);
@@ -266,14 +278,29 @@ const store = createStore({
         console.log("error: ", e);
       }
     },
+    async addProfile(context, payload) {
+      const id = context.getters.userId;
+      try {
+        const usersProfileDoc = doc(db, "users", id);
+        let dbPath = `profiles.${payload.profile}`;
+        await updateDoc(usersProfileDoc, {
+          [dbPath]: payload.name,
+        });
+      } catch (e) {
+        console.log("error: ", e);
+      }
+    },
     async profileNames(context) {
       const id = context.getters.userId;
       const usersRef = doc(db, "users", id);
       const docSnap = await getDoc(usersRef);
       if (docSnap.exists()) {
         let data = docSnap.data();
-        context.commit("setProfiles", data.profiles);
-        return data.profiles;
+        context.commit("setProfiles", {
+          profiles: data.profiles,
+          images: data.profileImages,
+        });
+        return { profiles: data.profiles, images: data.profileImages };
       } else {
         return new Error("db error fetching profiles.");
       }

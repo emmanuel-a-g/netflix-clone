@@ -19,7 +19,7 @@ const TheEmail = () => import("../pages/account/TheEmail.vue");
 const TheName = () => import("../pages/account/TheName.vue");
 const ThePassword = () => import("../pages/account/ThePassword.vue");
 const WatchView = () => import("../pages/watch/WatchView.vue");
-const SelectProfile = () => import("../pages/profile/SelectProfile.vue");
+const ProfileImage = () => import("../pages/profile/ProfileImage.vue");
 
 const router = createRouter({
   history: createWebHistory(),
@@ -62,7 +62,7 @@ const router = createRouter({
     {
       path: "/select",
       name: "Select Profile",
-      component: SelectProfile,
+      component: ProfileImage,
     },
     {
       path: "/browse",

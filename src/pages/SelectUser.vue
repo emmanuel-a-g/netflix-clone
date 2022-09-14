@@ -5,11 +5,8 @@
       @edit-user="editThisUser"
       @manage="manageMode"
       :editMode="editMode"
-      :profileOne="data['one']"
-      :profileTwo="data['two']"
-      :profileThree="data['three']"
-      :profileFour="data['four']"
-      :profileFive="data['five']"
+      :profiles="data"
+      :profileImages="profileImages"
     ></SelectProfile>
   </div>
 </template>
@@ -24,14 +21,9 @@ export default {
   data() {
     return {
       editMode: false,
+      data: {},
+      profileImages: { one: 1, two: 1, three: 1, four: 1, five: 1 },
       image,
-      data: {
-        one: "",
-        two: "",
-        three: "",
-        four: "",
-        five: "",
-      },
     };
   },
   methods: {
@@ -41,10 +33,11 @@ export default {
     manageMode() {
       this.editMode = !this.editMode;
     },
-    editThisUser(name, displayName) {
+    editThisUser(name, displayName, imageId) {
       if (displayName) {
         this.$router.push({
           path: `/manageprofiles/${name}/${displayName}`,
+          query: { id: imageId },
         });
       } else {
         this.$router.push(`/manageprofiles/${name}/visitor`);
@@ -54,7 +47,8 @@ export default {
       this.$store
         .dispatch("profileNames")
         .then((res) => {
-          this.data = res;
+          this.data = res.profiles;
+          this.profileImages = res.images;
         })
         .catch((err) => {
           console.log("Profile names error", err);
@@ -63,13 +57,16 @@ export default {
   },
   mounted() {
     const profiles = this.$store.getters.getProfiles;
-    if (profiles) {
+    const images = this.$store.getters.getProfileImages;
+    if (profiles && images) {
       this.data = profiles;
+      this.profileImages = images;
     } else {
       this.$store
         .dispatch("profileNames")
         .then((res) => {
-          this.data = res;
+          this.data = res.profiles;
+          this.profileImages = res.images;
         })
         .catch((err) => {
           console.log("Profile names error", err);

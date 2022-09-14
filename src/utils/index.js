@@ -21,6 +21,9 @@ function divideListEquallyNoMix(list, desired) {
   return result;
 }
 export function combineNew(list, desired) {
+  if (!desired) {
+    return list;
+  }
   let result = [];
   for (let x = 0; x < list.length; x++) {
     let miniList = list[x];
@@ -31,6 +34,9 @@ export function combineNew(list, desired) {
 }
 
 export function divideListEquallyBy(list, desired) {
+  if (!desired) {
+    return list;
+  }
   list = mixUpMovies(list);
   let result = [];
   let temp = [];
@@ -74,4 +80,29 @@ function mixUpMovies(list) {
     //do nothing
   }
   return list;
+}
+
+export function divide(list, desired) {
+  if (!desired) {
+    return list;
+  }
+  let result = [];
+  let temp = [];
+  let currIdx = 0;
+  let total = list.length;
+  let iterationTotal = Math.ceil(total / desired) * desired;
+  for (let x = 0; x <= iterationTotal; x++) {
+    let currentItem = x < total ? list[x] : "blank";
+    if (currIdx < desired) {
+      currIdx++;
+      temp.push(currentItem);
+    } else {
+      result.push(temp);
+      temp = [];
+      currIdx = 0;
+      currIdx++;
+      temp.push(currentItem);
+    }
+  }
+  return result;
 }
