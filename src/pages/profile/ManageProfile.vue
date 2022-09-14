@@ -187,6 +187,9 @@ button {
   text-align: center;
   position: relative;
 }
+.cardImg img:hover {
+  cursor: pointer;
+}
 .cardOne {
   grid-row: 2 / span 1;
   grid-column: 2 / span 1;

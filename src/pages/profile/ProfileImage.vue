@@ -27,8 +27,8 @@
     <div class="currentDiv">
       <div class="header">
         <div class="headerLeft">
-          <div class="icon">
-            <img @click="goBack" :src="leftArr" alt="arrow back" />
+          <div class="icon" @click="goBack">
+            <img :src="leftArr" alt="arrow back" />
           </div>
           <div>
             <h1>Edit Profile</h1>
@@ -185,6 +185,9 @@ export default {
   margin: 0 5px;
   width: 30px;
   height: 30px;
+}
+.icon:hover {
+  cursor: pointer;
 }
 .headerLeft h1 {
   padding: 0;
