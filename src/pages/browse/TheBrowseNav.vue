@@ -47,7 +47,7 @@
           <span @click="toAccount">
             <img
               class="profileImage"
-              :src="determineProfile"
+              :src="determineImage"
               alt="profile image"
             />
           </span>
@@ -72,7 +72,7 @@ import bell from "../../assets/bellWhite.png";
 import TheBox from "../../components/ui/TheBox.vue";
 import arrow from "../../assets/arrow.png";
 import TheNotifications from "../../components/ui/TheNotifications.vue";
-import { profileImages } from "../../store/data";
+import { getProfileImage } from "../../store/data";
 export default {
   components: {
     TheBox,
@@ -81,6 +81,7 @@ export default {
   data() {
     return {
       name: "",
+      identifier: "",
       mobileView: false,
       openMenu: false,
       handleResize: null,
@@ -115,20 +116,13 @@ export default {
         return false;
       }
     },
-    determineProfile() {
-      const curr = this.$store.getters.getCurrentProfile;
-      if (curr.name === "one") {
-        return profileImages[0].imageUrl;
-      } else if (curr.name === "two") {
-        return profileImages[1].imageUrl;
-      } else if (curr.name === "three") {
-        return profileImages[2].imageUrl;
-      } else if (curr.name === "four") {
-        return profileImages[4].imageUrl;
-      } else if (curr.name === "five") {
-        return profileImages[5].imageUrl;
+    determineImage() {
+      const imagesId = this.$store.getters.getProfileImages;
+      if (this.identifier) {
+        let id = imagesId[this.identifier];
+        return getProfileImage(+id).imageUrl;
       } else {
-        return profileImages[3].imageUrl;
+        return getProfileImage(1).imageUrl;
       }
     },
   },
@@ -183,11 +177,14 @@ export default {
       this.showAlert = false;
     },
   },
-  mounted() {
+  beforeMount() {
     const currentProfile = this.$store.getters.getCurrentProfile;
     if (currentProfile.displayName) {
       this.name = currentProfile.displayName;
+      this.identifier = currentProfile.name;
     }
+  },
+  mounted() {
     window.addEventListener("scroll", this.setScroll);
     const breakpoint = 800;
     const small = 550;

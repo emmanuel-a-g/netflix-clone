@@ -45,7 +45,7 @@
             <p>
               <img
                 class="profile"
-                src="https://res.cloudinary.com/milito/image/upload/v1662997890/netflix/maskProfile_xx1z4x.png"
+                :src="returnImageUrl('one')"
                 alt="user image"
               />
               {{ profiles.one || "..." }}
@@ -53,7 +53,7 @@
             <p>
               <img
                 class="profile"
-                src="https://res.cloudinary.com/milito/image/upload/v1662997890/netflix/tokyoProfile_q2bukk.png"
+                :src="returnImageUrl('two')"
                 alt="user image"
               />
               {{ profiles.two || "..." }}
@@ -61,7 +61,7 @@
             <p>
               <img
                 class="profile"
-                src="https://res.cloudinary.com/milito/image/upload/v1662997890/netflix/eliteProfile_ouycek.png"
+                :src="returnImageUrl('three')"
                 alt="user image"
               />
               {{ profiles.three || "..." }}
@@ -69,7 +69,7 @@
             <p>
               <img
                 class="profile"
-                src="https://res.cloudinary.com/milito/image/upload/v1662997889/netflix/enchanmentProfile_c6ybpd.png"
+                :src="returnImageUrl('four')"
                 alt="user image"
               />
               {{ profiles.four || "..." }}
@@ -77,7 +77,7 @@
             <p>
               <img
                 class="profile"
-                src="https://res.cloudinary.com/milito/image/upload/v1662997890/netflix/strangerProfile_kz4yjg.png"
+                :src="returnImageUrl('five')"
                 alt="user image"
               />
               {{ profiles.five || "..." }}
@@ -109,6 +109,7 @@
 <script>
 import NetflixLogo from "../components/logo/NetflixLogo.vue";
 import TheFooter from "../components/ui/TheFooter.vue";
+import { getProfileImage } from "../store/data";
 export default {
   components: {
     NetflixLogo,
@@ -120,6 +121,7 @@ export default {
       name: "",
       alert: null,
       message: null,
+      profileImages: {},
       profiles: {
         one: "",
         two: "",
@@ -130,6 +132,15 @@ export default {
     };
   },
   methods: {
+    returnImageUrl(identifier) {
+      let imagesId = this.profileImages;
+      let id = imagesId[identifier];
+      if (imagesId && identifier && id) {
+        return getProfileImage(+id).imageUrl;
+      } else {
+        return getProfileImage(1).imageUrl;
+      }
+    },
     logout() {
       this.$store.dispatch("logOut");
       this.$router.replace("/login");
@@ -177,9 +188,10 @@ export default {
         });
     },
   },
-  mounted() {
+  beforeMount() {
     this.email = this.$store.getters.returnEmail;
     this.name = this.$store.getters.getName;
+    this.profileImages = this.$store.getters.getProfileImages;
     const profiles = this.$store.getters.getProfiles;
     if (profiles) {
       this.profiles = profiles;

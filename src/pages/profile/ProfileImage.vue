@@ -116,7 +116,6 @@ export default {
       this.selectedImage = "";
     },
     submitProfile() {
-      console.log(this.identifier, this.selectedImage);
       this.$store.dispatch("addProfileImageId", {
         profile: this.identifier,
         imageId: this.selectedImage,

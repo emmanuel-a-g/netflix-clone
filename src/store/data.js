@@ -466,7 +466,7 @@ export const profileImages = [
       "https://res.cloudinary.com/milito/image/upload/v1663140262/profiles/classicThree_whvwxl.png",
   },
   {
-    id: 25,
+    id: 26,
     name: "classic one",
     imageUrl: "https://res.cloudinary.com/milito/image/upload/v1663140262/profiles/classicOne_pfwjtj.png",
   }
