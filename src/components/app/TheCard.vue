@@ -10,9 +10,10 @@
   >
     <CarouselBox
       @closeCard="handleClose"
-      :theIdx="idx"
-      :theMovie="movie"
+      :theIdx="index"
+      :theMovie="mov"
       :show="show"
+      :total="total"
     ></CarouselBox>
   </div>
 </template>
@@ -23,12 +24,10 @@ export default {
   components: {
     CarouselBox,
   },
-  props: ["mov", "index"],
+  props: ["mov", "index", "total"],
   data() {
     return {
       show: false,
-      idx: undefined,
-      movie: undefined,
       timer: null,
     };
   },
@@ -51,10 +50,6 @@ export default {
       }
     },
   },
-  mounted() {
-    this.idx = this.index;
-    this.movie = this.mov;
-  },
 };
 </script>
 
@@ -75,7 +70,6 @@ export default {
 .card:hover {
   cursor: pointer;
 }
-/* CLASS FOR EMPTY MOVIES */
 .hide {
   visibility: hidden;
 }

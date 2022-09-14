@@ -2,7 +2,8 @@
   <div
     class="theBox"
     :style="{
-      left: theIdx === 0 ? '0%' : '-15%',
+      left: theIdx === 0 ? '0%' : theIdx === total - 1 ? 'unset' : '-15%',
+      right: theIdx === total - 1 ? '0' : 'unset',
     }"
     :class="{ visibleClass: show, hiddenClass: !show }"
     @mouseleave="handleDoubleClose"
@@ -16,7 +17,7 @@
       >
         <img :src="theMovie ? theMovie.imageUrl : ''" alt="hover image" />
       </div>
-      <div v-if="showMovie" class="iframeContainer" @click="toWatch">
+      <div v-if="showMovie" class="iframeContainer" >
         <iframe
           :src="`https://www.youtube-nocookie.com/embed/${theMovieId}?start=5&end=38&autoplay=1&loop=1&modestbranding=1&autohide=1&showinfo=0rel=0&iv_load_policy=3&fs=0&color=white&controls=0&disablekb=1${muteControl}`"
           height="500"
@@ -26,7 +27,6 @@
           frameborder="0"
         ></iframe>
       </div>
-      <!-- :style="{ height: showMovie ? '100px' : '115px' }" -->
       <div class="contentDiv">
         <div class="actions">
           <div class="actionsLeft">
@@ -67,7 +67,7 @@ import like from "../../assets/like.png";
 import plus from "../../assets/plus.png";
 import downArr from "../../assets/downArr.png";
 export default {
-  props: ["show", "theIdx", "theMovie"],
+  props: ["show", "theIdx", "theMovie", "total"],
   emits: ["closeCard"],
   data() {
     return {

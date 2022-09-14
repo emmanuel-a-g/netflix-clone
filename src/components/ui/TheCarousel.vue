@@ -8,6 +8,7 @@
             :index="idx"
             :key="idx"
             :mov="mov"
+            :total="item.length"
           >
           </TheCard>
         </div>
@@ -33,7 +34,7 @@ export default {
     TheCard,
   },
   emits: ["updateIdx"],
-  props: ["showIndicators", "list", "bigList"],
+  props: ["showIndicators", "indicators", "bigList"],
   data() {
     return {
       index: 0,
@@ -53,15 +54,21 @@ export default {
       this.updateIndex(this.index + 1);
     },
     updateIndex(newIndex) {
+      console.log(newIndex);
       if (this.index < 0) {
-        newIndex = this.list.length - 1;
-      } else if (newIndex >= this.list.length) {
+        newIndex = this.indicators.length - 1;
+      } else if (newIndex >= this.indicators.length) {
         newIndex = 0;
       }
       this.index = newIndex;
       this.$emit("updateIdx", newIndex);
     },
   },
+  watch: {
+    bigList() {
+      this.index = 0;
+    }
+  }
 };
 </script>
 

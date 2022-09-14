@@ -8,8 +8,9 @@
         <TheCarouselComp
           title="Recently Added"
           :listNumber="1"
+          :cards="cardsNum"
         ></TheCarouselComp>
-        <TheCarouselComp title="My List" :listNumber="2">
+        <TheCarouselComp title="My List" :listNumber="2" :cards="cardsNum">
         </TheCarouselComp>
         <div class="moreContent"></div>
       </div>
@@ -18,6 +19,12 @@
 </template>
 
 <script>
+let breakpointSix = 1200;
+let breakpointFive = 1000;
+let breakpointFour = 700;
+let breakpointThree = 635;
+let breakpointTwo = 500;
+//DON'T SHOW video <330px
 import TheCarouselComp from "../../components/app/TheCarouselComp.vue";
 import TheBrowseNav from "./TheBrowseNav.vue";
 import BrowseHero from "./BrowseHero.vue";
@@ -28,6 +35,37 @@ export default {
     TheCarouselComp,
     BrowseHero,
     BrowseTop,
+  },
+  data() {
+    return {
+      //DEFAULT
+      cardsNum: 6,
+    };
+  },
+  methods: {
+    setMargins() {
+      //we dont change margins unless we have to!
+      let width = window.innerWidth;
+      if (width > breakpointSix && this.cardsNum === 6) {
+        return;
+      } else if (width < breakpointSix && width > breakpointFive && this.cardsNum !== 5) {
+        this.cardsNum = 5;
+      } else if (width < breakpointFive && width > breakpointFour && this.cardsNum !== 4) {
+        this.cardsNum = 4;
+      } else if (width < breakpointFour && width > breakpointThree && this.cardsNum !== 3) {
+        this.cardsNum = 3;
+      } else if (width < breakpointThree && width > breakpointTwo && this.cardsNum !== 2) {
+        this.cardsNum = 2;
+      } else if (width > breakpointSix && this.cardsNum !== 6) {
+        this.cardsNum = 6;
+      } else if (width < breakpointTwo && this.cardsNum !== 2) {
+        this.cardsNum = 2;
+      }
+    },
+  },
+  beforeMount() {
+    window.addEventListener("resize", this.setMargins);
+    this.setMargins();
   },
 };
 </script>
@@ -67,7 +105,5 @@ export default {
   padding-top: 50px;
   /* making space for box popover */
 }
-/* @media only screen and (max-width: 1000px) {} */
-/* @media only screen and (max-width: 850px) {} */
-/* @media only screen and (max-width: 700px) {} */
+
 </style>

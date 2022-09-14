@@ -1,5 +1,36 @@
+function divideListEquallyNoMix(list, desired) {
+  //filter the blank ones
+  list = list.filter(item => item !== "blank");
+  let result = [];
+  let temp = [];
+  let currIdx = 0;
+  let iterationTotal = Math.ceil(list.length / desired) * desired;
+  for (let x = 0; x <= iterationTotal; x++) {
+    let currentItem = x < list.length ? list[x] : "blank";
+    if (currIdx < desired) {
+      currIdx++;
+      temp.push(currentItem);
+    } else {
+      result.push(temp);
+      temp = [];
+      currIdx = 0;
+      currIdx++;
+      temp.push(currentItem);
+    }
+  }
+  return result;
+}
+export function combineNew(list, desired) {
+  let result = [];
+  for (let x = 0; x < list.length; x++) {
+    let miniList = list[x];
+    result = result.concat(miniList);
+  }
+  let divided = divideListEquallyNoMix(result, desired);
+  return divided;
+}
+
 export function divideListEquallyBy(list, desired) {
-  // mix at the beginnig
   list = mixUpMovies(list);
   let result = [];
   let temp = [];
@@ -40,7 +71,7 @@ function mixUpMovies(list) {
       a.title !== b.title ? (a.title < b.title ? -1 : 1) : 0
     );
   } else {
-    // do nothing
+    //do nothing
   }
   return list;
 }

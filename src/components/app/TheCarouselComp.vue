@@ -1,21 +1,21 @@
 <template>
   <div class="noWrap">
     <div class="headerCarousel">
-      <h2>{{title}}</h2>
+      <h2>{{ title }}</h2>
       <div
         class="label"
         :style="{ visibility: showIndicators ? 'visible' : 'hidden' }"
       >
-        <p v-for="(item, idx) in list" :key="item">
+        <p v-for="(item, idx) in indicators" :key="item">
           <span :class="{ activeLabel: index === idx }">&#9866;</span>
         </p>
       </div>
     </div>
     <TheCarousel
-      :list="list"
+      :indicators="indicators"
       :bigList="bigList"
-      @updateIdx="updateIdx"
       :showIndicators="showIndicators"
+      @updateIdx="updateIdx"
       @mouseenter="show"
       @mouseleave="unshow"
     ></TheCarousel>
@@ -24,10 +24,10 @@
 
 <script>
 import TheCarousel from "../../components/ui/TheCarousel.vue";
-import { divideListEquallyBy } from "../../utils/index";
+import { divideListEquallyBy, combineNew } from "../../utils/index";
 import { data, data2 } from "../../store/data";
 export default {
-  props: ["listNumber", "title"],
+  props: ["listNumber", "title", "cards"],
   components: {
     TheCarousel,
   },
@@ -35,7 +35,7 @@ export default {
     return {
       index: 0,
       showIndicators: false,
-      list: [],
+      indicators: [],
       bigList: [],
     };
   },
@@ -50,21 +50,26 @@ export default {
       this.showIndicators = false;
     },
   },
+  watch: {
+    cards(newDivisor) {
+      let totalMovies = 20;
+      let lists = Math.ceil(totalMovies / newDivisor);
+      this.indicators = new Array(lists).fill(0);
+      this.bigList = combineNew(this.bigList, newDivisor);
+    },
+  },
   beforeMount() {
-    // TO-DO FILL IN THE EMPTY ONES OF UNEVEN PAIRS!!!
     let list;
     if (!this.listNumber || this.listNumber === 1) {
       list = data;
     } else {
       list = data2;
     }
-    //create an equally divided list of lists
-    let divisor = 6;
+    let divisor = this.cards;
     let lists = Math.ceil(list.length / divisor);
     const indicatorsList = new Array(lists).fill(0);
-    this.list = indicatorsList;
+    this.indicators = indicatorsList;
     const dividedList = divideListEquallyBy(list, divisor);
-    //save to state
     this.bigList = dividedList;
   },
 };
@@ -107,7 +112,7 @@ export default {
 }
 @media only screen and (max-width: 500px) {
   .headerCarousel h2 {
-    font-size: .8rem;
+    font-size: 0.8rem;
   }
 }
 </style>
