@@ -54,7 +54,6 @@ export default {
       this.updateIndex(this.index + 1);
     },
     updateIndex(newIndex) {
-      console.log(newIndex);
       if (this.index < 0) {
         newIndex = this.indicators.length - 1;
       } else if (newIndex >= this.indicators.length) {
@@ -67,8 +66,8 @@ export default {
   watch: {
     bigList() {
       this.index = 0;
-    }
-  }
+    },
+  },
 };
 </script>
 
