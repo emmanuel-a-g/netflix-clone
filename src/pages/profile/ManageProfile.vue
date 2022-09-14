@@ -64,25 +64,29 @@ export default {
       nameProvided: false,
       imageId: undefined,
       netflix,
+      profileIdentifier: "",
     };
   },
   computed: {
     getImage() {
-      const id = +this.$route.query.id
-      if (!this.imageId) {
+      const id = +this.$route.query.id;
+      if (id) {
         return getProfileImage(id).imageUrl;
       } else {
-        return getProfileImage(this.imageId).imageUrl;
+        return getProfileImage(1).imageUrl;
       }
     },
   },
   methods: {
     profileSelect() {
       const profile = this.$route.params.profile;
-      const name = this.$route.params.name;
       this.$router.push({
         path: "/select",
-        query: { name: name, profile: profile },
+        query: {
+          name: this.profileIdentifier,
+          profile: profile,
+          id: this.imageId,
+        },
       });
     },
     setName() {
@@ -105,6 +109,7 @@ export default {
   },
   beforeMount() {
     this.imageId = +this.$route.query.id;
+    this.profileIdentifier = this.$route.params.name;
   },
   mounted() {
     const profile = this.$route.params.profile;

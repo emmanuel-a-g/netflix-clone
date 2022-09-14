@@ -290,6 +290,18 @@ const store = createStore({
         console.log("error: ", e);
       }
     },
+    async addProfileImageId(context, payload) {
+      const id = context.getters.userId;
+      try {
+        const usersProfileDoc = doc(db, "users", id);
+        let dbPath = `profileImages.${payload.profile}`;
+        await updateDoc(usersProfileDoc, {
+          [dbPath]: payload.imageId,
+        });
+      } catch (e) {
+        console.log("error: ", e);
+      }
+    },
     async profileNames(context) {
       const id = context.getters.userId;
       const usersRef = doc(db, "users", id);

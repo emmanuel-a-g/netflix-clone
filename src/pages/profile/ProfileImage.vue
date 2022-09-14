@@ -7,20 +7,14 @@
         <h2>Change profile icon?</h2>
         <div class="changeImage">
           <div>
-            <img
-              src="https://res.cloudinary.com/milito/image/upload/v1663140262/profiles/classicTwo_et85sp.png"
-              alt="current profile"
-            />
+            <img :src="getCurrentImage" alt="current profile" />
             <p>Current</p>
           </div>
           <div>
             <p><img id="arrow" :src="rightArr" alt="arrow" /></p>
           </div>
           <div>
-            <img
-              src="https://res.cloudinary.com/milito/image/upload/v1663140262/profiles/classicTwo_et85sp.png"
-              alt="selected profile"
-            />
+            <img :src="getSelectedImage" alt="selected profile" />
             <p>New</p>
           </div>
         </div>
@@ -42,11 +36,8 @@
           </div>
         </div>
         <div class="headerRight">
-          <p>EmmanuelG</p>
-          <img
-            src="https://res.cloudinary.com/milito/image/upload/v1663140262/profiles/classicTwo_et85sp.png"
-            alt="theImg"
-          />
+          <p>{{ getName }}</p>
+          <img :src="getCurrentImage" alt="theImg" />
         </div>
       </div>
       <div class="content" v-if="!open && bigList">
@@ -70,7 +61,7 @@
 </template>
 
 <script>
-import { profileImages } from "../../store/data";
+import { profileImages, getProfileImage } from "../../store/data";
 import { divide } from "../../utils/index";
 import netflix from "../../assets/netflix.png";
 import rightArr from "../../assets/rightArr.png";
@@ -78,30 +69,67 @@ import leftArr from "../../assets/leftArr.png";
 export default {
   data() {
     return {
+      bigList: [],
+      open: false,
+      selectedImage: "",
+      identifier: "",
+      profile: "",
+      imageId: "",
       netflix,
       rightArr,
       leftArr,
-      bigList: [],
-      open: false,
-      selectedProfile: "",
     };
+  },
+  computed: {
+    getCurrentImage() {
+      if (!this.imageId) {
+        return "";
+      } else {
+        return getProfileImage(this.imageId).imageUrl;
+      }
+    },
+    getName() {
+      if (!this.profile) {
+        return "New";
+      } else {
+        return this.profile;
+      }
+    },
+    getSelectedImage() {
+      if (!this.selectedImage) {
+        return "";
+      } else {
+        return getProfileImage(this.selectedImage).imageUrl;
+      }
+    },
   },
   methods: {
     toggleOpen(id) {
       this.open = true;
-      this.selectedProfile = id;
-      console.log(id);
+      this.selectedImage = id;
+      // dispatch update on submit
     },
     goBack() {
       this.$router.back();
     },
     toggleCancel() {
       this.open = false;
+      this.selectedImage = "";
     },
-    submitProfile() {},
+    submitProfile() {
+      console.log(this.identifier, this.selectedImage);
+      this.$store.dispatch("addProfileImageId", {
+        profile: this.identifier,
+        imageId: this.selectedImage,
+      })
+      this.$router.back();
+    },
   },
-  mounted() {
+  beforeMount() {
     this.bigList = divide(profileImages, 5);
+    this.identifier = this.$route.query.profile;
+    this.profile = this.$route.query.name;
+    this.imageId = +this.$route.query.id;
   },
 };
 </script>
@@ -348,7 +376,7 @@ export default {
   .headerRight p {
     font-size: 0.5rem;
   }
-   .headerRight img {
+  .headerRight img {
     width: 60px;
     height: auto;
     border-radius: 5px;
