@@ -107,7 +107,6 @@ export default {
     toggleOpen(id) {
       this.open = true;
       this.selectedImage = id;
-      // dispatch update on submit
     },
     goBack() {
       this.$router.back();
@@ -122,7 +121,7 @@ export default {
         profile: this.identifier,
         imageId: this.selectedImage,
       })
-      this.$router.back();
+      this.$router.replace("/selectuser");
     },
   },
   beforeMount() {

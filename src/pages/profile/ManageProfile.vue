@@ -6,14 +6,11 @@
         <h1>Edit Profile</h1>
       </div>
       <div class="cardImg">
-        <p>
-          <img
-            id="imgCard"
-            @click="profileSelect"
-            class="userimg"
-            :src="getImage"
-            alt="user image"
-          />
+        <p @click="profileSelect">
+          <img id="imgCard" class="userimg" :src="getImage" alt="user image" />
+        </p>
+        <p @click="profileSelect" id="editImage">
+          <img :src="pencil" alt="edit image" />
         </p>
       </div>
       <div class="cardOne">
@@ -55,6 +52,7 @@
 
 <script>
 import netflix from "../../assets/netflix.png";
+import pencil from "../../assets/pencil.png";
 import { getProfileImage } from "../../store/data";
 export default {
   data() {
@@ -63,8 +61,9 @@ export default {
       profile: "",
       nameProvided: false,
       imageId: undefined,
-      netflix,
       profileIdentifier: "",
+      netflix,
+      pencil,
     };
   },
   computed: {
@@ -184,7 +183,9 @@ button {
   grid-row: 2 / span 1;
   grid-column: 1 / span 1;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  position: relative;
 }
 .cardOne {
   grid-row: 2 / span 1;
@@ -233,6 +234,23 @@ button {
   border-radius: 5px;
   padding: 0;
   margin: 0;
+}
+#editImage {
+  position: absolute;
+  top: 48%;
+  left: 10%;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  background-color: rgba(0, 0, 0, 0.474);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+}
+#editImage img {
+  height: 20px;
+  width: 20px;
 }
 @media only screen and (max-width: 700px) {
   .wrapper h1 {
