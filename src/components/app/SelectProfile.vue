@@ -200,10 +200,10 @@ button:hover {
   height: auto;
   border-radius: 5px;
   /* life saver prevents border movement */
-  border: 1px solid transparent;
+  border: 2px solid transparent;
 }
 .profile:hover {
-  border: 1px solid white;
+  border: 2px solid white;
 }
 .card span {
   position: relative;

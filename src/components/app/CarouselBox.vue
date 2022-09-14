@@ -17,19 +17,17 @@
         <img :src="theMovie ? theMovie.imageUrl : ''" alt="hover image" />
       </div>
       <div v-if="showMovie" class="iframeContainer" @click="toWatch">
-        <div class="touchableOverlay"></div>
         <iframe
-          id="existing-iframe-example"
-          :src="`https://www.youtube-nocookie.com/embed/${theMovieId}?start=5&end=35&autoplay=1&loop=1&modestbranding=1&autohide=1&showinfo=0rel=0&iv_load_policy=3&fs=0&color=white&controls=0&disablekb=1${muteControl}`"
-          width="410"
-          height="310"
+          :src="`https://www.youtube-nocookie.com/embed/${theMovieId}?start=5&end=38&autoplay=1&loop=1&modestbranding=1&autohide=1&showinfo=0rel=0&iv_load_policy=3&fs=0&color=white&controls=0&disablekb=1${muteControl}`"
+          height="500"
+          width="400"
           title=""
           allow="autoplay"
           frameborder="0"
         ></iframe>
       </div>
       <!-- :style="{ height: showMovie ? '100px' : '115px' }" -->
-      <div class="contentDiv" >
+      <div class="contentDiv">
         <div class="actions">
           <div class="actionsLeft">
             <p
@@ -51,7 +49,7 @@
           <p>1h</p>
           <p class="hd">HD</p>
         </div>
-        <div class="tags" >
+        <div class="tags">
           <p>Exciting</p>
           &#8226;
           <p>Fun</p>
@@ -74,8 +72,9 @@ export default {
   data() {
     return {
       showMovie: false,
-      timer: null,
       muteControl: "&muted=1",
+      timer: null,
+      videoTimer: null,
       play,
       like,
       plus,
@@ -96,6 +95,7 @@ export default {
     },
     handleOpen() {
       this.showMovie = true;
+      this.startVideoTimer();
     },
     startTimer() {
       if (!this.showMovie && !this.timer) {
@@ -115,6 +115,20 @@ export default {
     toWatch() {
       this.$router.push(`/watch/${this.theMovieId}`);
     },
+    startVideoTimer() {
+      if (this.showMovie) {
+        this.videoTimer = setTimeout(() => {
+          this.cancelVideoTimer();
+        }, 31500);
+      }
+    },
+    cancelVideoTimer() {
+      if (this.videoTimer || this.showMovie) {
+        this.showMovie = false;
+        clearTimeout(this.videoTimer);
+        this.videoTimer = null;
+      }
+    },
   },
 };
 </script>
@@ -122,7 +136,6 @@ export default {
 <style scoped>
 .theBox {
   height: 100%;
-  position: relative;
 }
 .visibleClass {
   position: absolute;
@@ -148,14 +161,16 @@ export default {
 }
 .contentDiv {
   top: 158px;
-  width: 280px;
+  width: 282px;
   position: absolute;
   display: flex;
   flex-direction: column;
   z-index: 15;
   height: 120px;
-  left: 1px;
+  padding-top: 5px;
   background-color: #0f0f0f;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
 }
 #play {
   width: 17px;
@@ -250,6 +265,7 @@ export default {
   height: 100%;
   padding: 0;
   margin: 0;
+  width: 100%;
   border-radius: 4px;
   position: relative;
 }
@@ -265,16 +281,18 @@ export default {
 }
 /* IFRAME CSS */
 .iframeContainer {
+  /* background-color: aquamarine; */
+  /* border: 1px solid white; */
   position: relative;
   width: 282px;
-  height: 200px;
+  height: 158px;
   overflow: hidden;
   padding: 0;
   margin: 0;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
 }
-.touchableOverlay {
+/* .touchableOverlay {
   padding: 0;
   margin: 0;
   position: absolute;
@@ -283,17 +301,17 @@ export default {
   width: 100%;
   height: 100%;
   border-radius: 4px;
-}
+} */
 .iframeContainer iframe {
+  position: absolute;
   padding: 0;
   margin: 0;
-  position: absolute;
-  top: -60%;
-  left: -10%;
+  bottom: -168px;
+  left: -21%;
   /* width: 100%;
   height: 100%; */
-  height: 410px;
-  width: 340px;
+  height: 500px;
+  width: 400px;
   border-radius: 4px;
   /* MOBILE REQUIRED */
   pointer-events: none;
