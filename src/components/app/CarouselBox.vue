@@ -295,10 +295,12 @@ export default {
   height: 410px;
   width: 340px;
   border-radius: 4px;
+  /* MOBILE REQUIRED */
   pointer-events: none;
   z-index: 14;
 }
 .iframeContainer iframe:hover {
+  /* MOBILE REQUIRED */
   pointer-events: none !important;
 }
 </style>
