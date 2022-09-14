@@ -20,17 +20,29 @@
           />
         </div>
       </div>
+      <div class="content">
+        <div class="train">
+
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+// import { profileImages } from "../../store/data";
+// import {} from "../../utils/index";
 import netflix from "../../assets/netflix.png";
 export default {
   data() {
     return {
       netflix,
+      profiles: [],
     };
+  },
+  mounted() {
+    //divide it
+    // const divided = 
   },
 };
 </script>
@@ -107,5 +119,11 @@ export default {
   width: 100px;
   height: auto;
   border-radius: 5px;
+}
+.content {
+  background-color: blue;
+}
+.train {
+  background-color: red;
 }
 </style>
