@@ -319,36 +319,157 @@ export const profileImages = [
     id: 1,
     name: "mask",
     imageUrl:
-      "https://res.cloudinary.com/milito/image/upload/v1662997890/netflix/maskProfile_xx1z4x.png",
+      "https://res.cloudinary.com/milito/image/upload/v1662997890/profiles/maskProfile_xx1z4x.png",
   },
   {
     id: 2,
     name: "tokyo",
     imageUrl:
-      "https://res.cloudinary.com/milito/image/upload/v1662997890/netflix/tokyoProfile_q2bukk.png",
+      "https://res.cloudinary.com/milito/image/upload/v1662997890/profiles/tokyoProfile_q2bukk.png",
   },
   {
     id: 3,
     name: "elite",
     imageUrl:
-      "https://res.cloudinary.com/milito/image/upload/v1662997890/netflix/eliteProfile_ouycek.png",
+      "https://res.cloudinary.com/milito/image/upload/v1662997890/profiles/eliteProfile_ouycek.png",
   },
   {
     id: 4,
     name: "squid",
     imageUrl:
-      "https://res.cloudinary.com/milito/image/upload/v1662997889/netflix/squidProfile_ondg3d.png",
+      "https://res.cloudinary.com/milito/image/upload/v1662997889/profiles/squidProfile_ondg3d.png",
   },
   {
     id: 5,
     name: "enchanment",
     imageUrl:
-      "https://res.cloudinary.com/milito/image/upload/v1662997889/netflix/enchanmentProfile_c6ybpd.png",
+      "https://res.cloudinary.com/milito/image/upload/v1662997889/profiles/enchanmentProfile_c6ybpd.png",
   },
   {
     id: 6,
     name: "stranger",
     imageUrl:
-      "https://res.cloudinary.com/milito/image/upload/v1662997890/netflix/strangerProfile_kz4yjg.png",
+      "https://res.cloudinary.com/milito/image/upload/v1662997890/profiles/strangerProfile_kz4yjg.png",
   },
+  {
+    id: 7,
+    name: "squid one",
+    imageUrl:
+      "https://res.cloudinary.com/milito/image/upload/v1663140264/profiles/squidOne_vievck.png",
+  },
+  {
+    id: 8,
+    name: "strangers three",
+    imageUrl:
+      "https://res.cloudinary.com/milito/image/upload/v1663140264/profiles/strangersThree_rvpu0j.png",
+  },
+  {
+    id: 9,
+    name: "strangers one",
+    imageUrl:
+      "https://res.cloudinary.com/milito/image/upload/v1663140264/profiles/strangersOne_zzeh4a.png",
+  },
+  {
+    id: 10,
+    name: "strangers two",
+    imageUrl:
+      "https://res.cloudinary.com/milito/image/upload/v1663140264/profiles/strangersTwo_okzg3l.png",
+  },
+  {
+    id: 11,
+    name: "papel two",
+    imageUrl:
+      "https://res.cloudinary.com/milito/image/upload/v1663140263/profiles/papelTwo_ezrbex.png",
+  },
+  {
+    id: 12,
+    name: "squid two",
+    imageUrl:
+      "https://res.cloudinary.com/milito/image/upload/v1663140263/profiles/squidTwo_rdnfsh.png",
+  },
+  {
+    id: 13,
+    name: "strangers four",
+    imageUrl:
+      "https://res.cloudinary.com/milito/image/upload/v1663140263/profiles/strangersFour_h6gvrf.png",
+  },
+  {
+    id: 14,
+    name: "papel one",
+    imageUrl:
+      "https://res.cloudinary.com/milito/image/upload/v1663140263/profiles/papelOne_ehvzmt.png",
+  },
+  {
+    id: 15,
+    name: "elite two",
+    imageUrl:
+      "https://res.cloudinary.com/milito/image/upload/v1663140263/profiles/eliteTwo_jweb4f.png",
+  },
+  {
+    id: 16,
+    name: "cobra two",
+    imageUrl:
+      "https://res.cloudinary.com/milito/image/upload/v1663140263/profiles/cobraTwo_gn2ydd.png",
+  },
+  {
+    id: 17,
+    name: "enchantment two",
+    imageUrl:
+      "https://res.cloudinary.com/milito/image/upload/v1663140263/profiles/enchanmentTwo_z9pqcc.png",
+  },
+  {
+    id: 18,
+    name: "elite one",
+    imageUrl:
+      "https://res.cloudinary.com/milito/image/upload/v1663140263/profiles/eliteOne_g6zabd.png",
+  },
+  {
+    id: 19,
+    name: "elite four",
+    imageUrl:
+      "https://res.cloudinary.com/milito/image/upload/v1663140262/profiles/eliteFour_ukvotg.png",
+  },
+  {
+    id: 20,
+    name: "cobra one",
+    imageUrl:
+      "https://res.cloudinary.com/milito/image/upload/v1663140262/profiles/cobraOne_paqjrw.png",
+  },
+  {
+    id: 21,
+    name: "classic four",
+    imageUrl:
+      "https://res.cloudinary.com/milito/image/upload/v1663140262/profiles/classicFour_lh066t.png",
+  },
+  {
+    id: 22,
+    name: "bright two",
+    imageUrl:
+      "https://res.cloudinary.com/milito/image/upload/v1663140262/profiles/brightTwo_xy9skv.png",
+  },
+  {
+    id: 23,
+    name: "bright one",
+    imageUrl:
+      "https://res.cloudinary.com/milito/image/upload/v1663140262/profiles/brightOne_bnnvz9.png",
+  },
+  {
+    id: 24,
+    name: "classic two",
+    imageUrl:
+      "https://res.cloudinary.com/milito/image/upload/v1663140262/profiles/classicTwo_et85sp.png",
+  },
+  {
+    id: 25,
+    name: "classic three",
+    imageUrl:
+      "https://res.cloudinary.com/milito/image/upload/v1663140262/profiles/classicThree_whvwxl.png",
+  },
+  {
+    id: 26,
+    name: "classic three",
+    imageUrl:
+      "https://res.cloudinary.com/milito/image/upload/v1663140262/profiles/classicThree_whvwxl.png",
+  },
+  
 ];

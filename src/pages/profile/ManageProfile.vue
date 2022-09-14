@@ -6,7 +6,15 @@
         <h1>Edit Profile</h1>
       </div>
       <div class="cardImg">
-        <img class="userimg" :src="computeProfileImage" alt="user image" />
+        <p>
+          <img
+            id="imgCard"
+            @click="profileSelect"
+            class="userimg"
+            :src="computeProfileImage"
+            alt="user image"
+          />
+        </p>
       </div>
       <div class="cardOne">
         <input
@@ -75,6 +83,14 @@ export default {
     },
   },
   methods: {
+    profileSelect() {
+      const profile = this.$route.params.profile;
+      const name = this.$route.params.name;
+      this.$router.push({
+        path: "/select",
+        query: { name: name, profile: profile },
+      });
+    },
     setName() {
       this.name = this.$refs.name.value;
     },
@@ -167,6 +183,8 @@ button {
 .cardImg {
   grid-row: 2 / span 1;
   grid-column: 1 / span 1;
+  display: flex;
+  justify-content: center;
 }
 .cardOne {
   grid-row: 2 / span 1;
@@ -205,10 +223,16 @@ button {
   flex-direction: column;
   justify-content: space-evenly;
 }
-.cardImg img {
-  width: 95px;
+.cardImg p {
+  margin: 3px 0 0 0;
+  padding: 0;
+}
+#imgCard {
+  width: 98px;
   height: auto;
-  padding: 5px;
+  border-radius: 5px;
+  padding: 0;
+  margin: 0;
 }
 @media only screen and (max-width: 700px) {
   .wrapper h1 {

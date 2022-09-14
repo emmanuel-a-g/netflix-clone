@@ -19,6 +19,7 @@ const TheEmail = () => import("../pages/account/TheEmail.vue");
 const TheName = () => import("../pages/account/TheName.vue");
 const ThePassword = () => import("../pages/account/ThePassword.vue");
 const WatchView = () => import("../pages/watch/WatchView.vue");
+const SelectProfile = () => import("../pages/profile/SelectProfile.vue");
 
 const router = createRouter({
   history: createWebHistory(),
@@ -59,6 +60,11 @@ const router = createRouter({
       meta: { requiresAuth: true },
     },
     {
+      path: "/select",
+      name: "Select Profile",
+      component: SelectProfile,
+    },
+    {
       path: "/browse",
       name: "Home",
       component: BrowseView,
@@ -68,7 +74,7 @@ const router = createRouter({
       path: "/watch/:videoId",
       name: "Watch",
       component: WatchView,
-      meta: { requiresAuth: true},
+      meta: { requiresAuth: true },
     },
     {
       path: "/account",

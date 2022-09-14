@@ -16,7 +16,6 @@
 
 <script>
 import SelectProfile from "../components/app/SelectProfile.vue";
-// import { onUpdateProfiles } from "../store/index";
 import image from "../assets/netflix.png";
 export default {
   components: {
@@ -44,7 +43,9 @@ export default {
     },
     editThisUser(name, displayName) {
       if (displayName) {
-        this.$router.push(`/manageprofiles/${name}/${displayName}`);
+        this.$router.push({
+          path: `/manageprofiles/${name}/${displayName}`,
+        });
       } else {
         this.$router.push(`/manageprofiles/${name}/visitor`);
       }
