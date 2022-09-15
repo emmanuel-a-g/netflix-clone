@@ -337,7 +337,7 @@ const store = createStore({
         console.log("error: ", e);
       }
     },
-    async removeMyList(context, payload) {
+    async removeFromMyList(context, payload) {
       const id = context.getters.userId;
       try {
         const usersProfileDoc = doc(db, "users", id);

@@ -37,8 +37,15 @@
               <img id="play" :src="play" alt="play button" />
             </p>
             <p><img id="like" :src="like" alt="like button" /></p>
-            <p @click="addToMylist">
+            <p v-if="!liked" @click="addToMylist">
               <img id="more" :src="plus" alt="more button" />
+            </p>
+            <p v-else @click="removeFromMyList">
+              <img
+                id="like"
+                :src="whiteCheckmark"
+                alt="whiteCheckmark button"
+              />
             </p>
           </div>
           <div>
@@ -68,6 +75,7 @@ import play from "../../assets/play.png";
 import like from "../../assets/like.png";
 import plus from "../../assets/plus.png";
 import downArr from "../../assets/downArr.png";
+import whiteCheckmark from "../../assets/whiteCheckmark.png";
 export default {
   props: ["show", "theIdx", "theMovie", "total", "identifier"],
   emits: ["closeCard"],
@@ -77,10 +85,12 @@ export default {
       muteControl: "&muted=1",
       timer: null,
       videoTimer: null,
+      liked: false,
       play,
       like,
       plus,
       downArr,
+      whiteCheckmark,
     };
   },
   computed: {
@@ -89,7 +99,16 @@ export default {
     },
   },
   methods: {
+    removeFromMyList() {
+      this.liked = false;
+      this.$store.dispatch("removeFromMyList", {
+        profile: this.identifier,
+        movieId: this.theMovie.id,
+      })
+
+    },
     addToMylist() {
+      this.liked = true;
       if (!this.identifier) {
         this.$router.replace("/selectuser");
       } else {
