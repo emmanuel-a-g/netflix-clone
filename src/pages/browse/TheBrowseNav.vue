@@ -5,28 +5,42 @@
   >
     <div class="imgDiv">
       <div class="netflix">
-        <img class="logo" :src="logo" alt="netflix logo" />
+        <img @click="handleHome" class="logo" :src="logo" alt="netflix logo" />
       </div>
-      <p v-if="mobileView">
+      <p v-if="mobileView && showBrowse">
         <span>Browse</span>
         <span id="down">&#9660;</span>
       </p>
     </div>
     <div class="middleMenu" v-if="!mobileView">
-      <li>
-        <strong> Home </strong>
+      <li
+        @click="handleHome"
+        :style="{ 'font-weight': currPath === 'browse' ? 'bold' : 'normal' }"
+      >
+        Home
       </li>
       <li>TV Shows</li>
       <li>Movies</li>
       <li>New & Popular</li>
-      <li>My List</li>
+      <li
+        @click="handleMylist"
+        :style="{ 'font-weight': currPath === 'mylist' ? 'bold' : 'normal' }"
+      >
+        My List
+      </li>
       <li>Browse by Languages</li>
     </div>
     <div class="navBar">
       <ul @mouseleave="handleCloseToggles">
         <li @click="openInput" @mouseleave="closeInput">
           <div :class="{ openDiv: searchInput, closeDiv: !searchInput }">
-            <img id="search" :src="lupa" alt="search icon" />
+            <img
+              id="search"
+              width="20px"
+              height="20px"
+              :src="lupa"
+              alt="search icon"
+            />
             <input
               ref="searchRef"
               type="text"
@@ -40,7 +54,13 @@
         </li>
         <li>Kids</li>
         <li @mouseenter="toggleAlert">
-          <img id="bell" :src="bell" alt="bell icon" />
+          <img
+            id="bell"
+            width="22px"
+            height="22px"
+            :src="bell"
+            alt="bell icon"
+          />
           <TheNotifications :show="showAlert"></TheNotifications>
         </li>
         <li class="profileItem" @mouseenter="toggleAccount">
@@ -74,6 +94,7 @@ import arrow from "../../assets/arrow.png";
 import TheNotifications from "../../components/ui/TheNotifications.vue";
 import { getProfileImage } from "../../store/data";
 export default {
+  props: ["showBrowse"],
   components: {
     TheBox,
     TheNotifications,
@@ -82,6 +103,7 @@ export default {
     return {
       name: "",
       identifier: "",
+      currPath: "",
       mobileView: false,
       openMenu: false,
       handleResize: null,
@@ -176,6 +198,36 @@ export default {
       this.showAccount = false;
       this.showAlert = false;
     },
+    handleMylist() {
+      const currPath = this.$route.path.includes("mylist");
+      if (!this.identifier) {
+        this.$router.push({path: "/selectuser", query: {
+          redirect: "mylist"
+        }});
+      } else if (this.identifier && !currPath) {
+        this.$router.push({
+          path: "/mylist",
+          query: { identifier: this.identifier },
+        });
+      } else {
+        //do nothing.
+      }
+    },
+    handleHome() {
+      if (this.$route.path.includes("browse")) {
+        //donothing
+      } else {
+        this.$router.push("/browse");
+      }
+    },
+    checkCurrentPath() {
+      const currPath = this.$route.path;
+      if (currPath.includes("browse")) {
+        this.currPath = "browse";
+      } else if (currPath.includes("mylist")) {
+        this.currPath = "mylist";
+      }
+    },
   },
   beforeMount() {
     const currentProfile = this.$store.getters.getCurrentProfile;
@@ -192,10 +244,14 @@ export default {
     this.mobileView = window.innerWidth < breakpoint;
     this.handleResize = () => this.setWidth();
     window.addEventListener("resize", this.handleResize);
+    this.checkCurrentPath();
   },
   beforeUnmount() {
     window.removeEventListener("resize", this.handleResize);
     window.removeEventListener("scroll", this.setScroll);
+  },
+  updated() {
+    this.checkCurrentPath();
   },
 };
 </script>
@@ -286,13 +342,13 @@ export default {
   justify-content: space-evenly;
   align-items: center;
 }
-.netflix {
-  height: 100%;
-}
 .imgDiv span {
   font-size: 0.75rem;
   color: white;
   font-weight: bold;
+}
+.netflix {
+  height: 100%;
 }
 .logo {
   width: 130px;
@@ -313,7 +369,7 @@ export default {
 }
 #bell {
   width: 22px;
-  height: 23px;
+  height: 22px;
   z-index: 9;
   margin-top: 3px;
 }

@@ -106,3 +106,28 @@ export function divide(list, desired) {
   }
   return result;
 }
+
+export function divideMylist(list, desired) {
+  if (!desired) {
+    return list;
+  }
+  let result = [];
+  let temp = [];
+  let currIdx = 0;
+  let total = list.length;
+  let iterationTotal = Math.ceil(total / desired) * desired;
+  for (let x = 0; x <= iterationTotal; x++) {
+    let currentItem = x < total ? list[x] : "blank";
+    if (currIdx < desired) {
+      currIdx++;
+      temp.push(currentItem);
+    } else {
+      result.push(temp);
+      temp = [];
+      currIdx = 0;
+      currIdx++;
+      temp.push(currentItem);
+    }
+  }
+  return result;
+}

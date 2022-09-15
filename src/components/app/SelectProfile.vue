@@ -125,12 +125,18 @@ export default {
       this.$router.replace("/browse");
     },
     handle(name, displayName) {
+      //check for redirect query?
+      const redirectQuery = this.$route.query.redirect;
       const imageId = this.profileImages[name];
       if (this.editMode) {
         this.$emit("editUser", name, displayName, imageId);
       } else {
         this.$store.dispatch("currentProfile", { name, displayName });
-        this.$router.push("/browse");
+        if (redirectQuery === "mylist") {
+          this.$router.push("/mylist");
+        } else {
+          this.$router.push("/browse");
+        }
       }
     },
   },

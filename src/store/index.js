@@ -15,7 +15,6 @@ import {
   deleteUser,
 } from "firebase/auth";
 import { db } from "../firebase";
-// onSnapshot
 import {
   doc,
   setDoc,
@@ -349,6 +348,21 @@ const store = createStore({
         console.log("error: ", e);
       }
     },
+    async fetchMyList(context) {
+      //CALLED EVERY TIME I CLICK ON MY LIST
+      const id = context.getters.userId;
+      const usersRef = doc(db, "users", id);
+      const docSnap = await getDoc(usersRef);
+      if (docSnap.exists()) {
+        let data = docSnap.data();
+        // context.commit("setMylist", {
+        //   mylist: data.mylist,
+        // });
+        return { profiles: data.profiles, mylist: data.mylist };
+      } else {
+        return new Error("db error fetching profiles.");
+      }
+    },
     currentProfile(context, payload) {
       context.commit("setCurrentProfile", payload);
     },
@@ -373,18 +387,4 @@ export async function checkAuth() {
     });
   });
 }
-//DISABLED
-// export async function onUpdateProfiles() {
-//     return new Promise((resolve, reject) => {
-//       onSnapshot(doc(db, "users", userId), (doc) => {
-//         let data = doc.data();
-//         if (data) {
-//           resolve(data.profiles);
-//         } else {
-//           reject(false);
-//         }
-//       });
-//     });
-// }
-
 export default store;

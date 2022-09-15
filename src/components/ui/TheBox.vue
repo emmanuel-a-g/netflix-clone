@@ -7,12 +7,16 @@
       <li class="profile">{{ profiles.four || "+ profile" }}</li>
       <li class="profile">{{ profiles.five || "+ profile" }}</li>
       <li class="action" @click="handleSelectuser">
-        <img :src="pencil" alt="edit logo" />Manage profiles
+        <img width="16px" height="16px" :src="pencil" alt="edit logo" />Manage
+        profiles
       </li>
       <li class="action" @click="handleAccount">
-        <img :src="user" alt="user logo" />Account
+        <img width="16px" height="16px" :src="user" alt="user logo" />Account
       </li>
-      <li class="action"><img :src="help" alt="help logo" />Help Center</li>
+      <li class="action">
+        <img width="16px" height="16px" :src="help" alt="help logo" />Help
+        Center
+      </li>
       <li class="signout" @click="handleLogout">Sign out of Netflix</li>
     </ul>
   </div>

@@ -312,6 +312,29 @@ export const data2 = [
     videoId: "jLMBLuGJTsA",
   },
 ];
+export function getMyListMovies(listIds) {
+  if (!listIds.length) {
+    return [];
+  }
+  const entireMovies = data.concat(data2);
+  //best way to find the ids
+  //keep iterating while listIds has length
+  let myList = [];
+  //start with the first one
+  let currIdSearching = listIds[0];
+  while (listIds.length) {
+    for (let x = 0; x < entireMovies.length; x++) {
+      //get the movie data
+      let current = entireMovies[x];
+      if (current.id === currIdSearching) {
+        myList.push(current);
+        listIds.shift();
+        currIdSearching = listIds[0];
+      }
+    }
+  }
+  return myList;
+}
 
 export const profileImages = [
   {
@@ -535,6 +558,30 @@ const heroMaterial = [
       "https://res.cloudinary.com/milito/image/upload/v1663225714/netflix/goodgirlsHero_fr7c3s.webp",
     heroTitleImage:
       "https://res.cloudinary.com/milito/image/upload/v1663225714/netflix/goodgirlsHeroTitle_dkhi8g.webp",
+  },
+  {
+    title: "Bastard",
+    id: 6,
+    rating: "TV-MA",
+    videoId: "_Iqc-dG8peA",
+    description:
+      "When evil forces threaten to resurrect Anthrasax, the God of Destruction, the Kingdom of Meta-llicana calls on a volatile dark wizard for help.",
+    heroImage:
+      "https://res.cloudinary.com/milito/image/upload/v1663266054/netflix/bastardHero_jclvvp.webp",
+    heroTitleImage:
+      "https://res.cloudinary.com/milito/image/upload/v1663266054/netflix/bastardHeroTitle_wx3ztj.webp",
+  },
+  {
+    title: "Bastard",
+    id: 7,
+    rating: "TV-MA",
+    videoId: "27dMicaie5E",
+    description:
+      "He was known as the emperor. Before Fatih Terim became manager of Turkey's Galatasaray, they had never won a UEFA Cup. That was about to change.",
+    heroImage:
+      "https://res.cloudinary.com/milito/image/upload/v1663266529/netflix/terimHero_pqxipu.webp",
+    heroTitleImage:
+      "https://res.cloudinary.com/milito/image/upload/v1663266528/netflix/terimHeroTitle_jrydgr.webp",
   },
 ];
 export function getRandomMaterial() {
