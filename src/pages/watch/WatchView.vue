@@ -1,6 +1,14 @@
 <template>
   <div class="watchDiv">
-    <img @click="goBack" :src="arrVideo" alt="goBack" class="visibleClass" />
+    <img
+      v-if="showArrow"
+      @click="goBack"
+      :src="arrVideo"
+      alt="goBack"
+      class="arrow"
+    />
+    <div class="spaceLeft" @mouseenter="startArrowTimer"></div>
+    <div class="spaceRight" @mouseenter="startArrowTimer"></div>
     <div class="iframeContainer" v-if="show">
       <iframe
         ref="theIframe"
@@ -22,8 +30,9 @@ export default {
     return {
       videoId: "",
       show: true,
-      showArrow: true,
+      showArrow: false,
       videoTimer: null,
+      arrowTimer: null,
       fakeTimer: null,
       arrVideo,
     };
@@ -58,6 +67,29 @@ export default {
     goBack() {
       this.$router.back();
     },
+    //ARROW TIMERS
+    cancelArrowTimer() {
+      clearTimeout(this.arrowTimer);
+      this.arrowTimer = null;
+    },
+    startArrowTimer() {
+      if (!this.arrowTimer && !this.showArrow) {
+        this.showArrow = true;
+        this.arrowTimer = setTimeout(() => {
+          this.cancelArrowTimer();
+          this.showArrow = false;
+        }, 4000);
+      } else if (this.arrowTimer && this.showArrow) {
+        //cancel it and start it again
+        this.cancelArrowTimer();
+        this.arrowTimer = setTimeout(() => {
+          this.cancelArrowTimer();
+          this.showArrow = false;
+        }, 4000);
+      } else {
+        console.log("else arrow");
+      }
+    },
   },
   mounted() {
     //GET YOUTUBE ID
@@ -80,18 +112,34 @@ export default {
   background-color: black;
   position: relative;
 }
-.visibleClass {
+.arrow {
   position: absolute;
-  z-index: 21;
+  z-index: 24;
   top: 3%;
   left: 3%;
   height: 50px;
   width: 50px;
-  visibility: visible;
-  transition: all 300ms ease;
 }
-.visibleClass:hover {
+.arrow:hover {
   cursor: pointer;
+}
+.spaceLeft {
+  position: absolute;
+  z-index: 22;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 30%;
+  background-color: transparent;
+}
+.spaceRight {
+  position: absolute;
+  z-index: 23;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 30%;
+  background-color: transparent;
 }
 /* .hiddenClass {
   position: absolute;
