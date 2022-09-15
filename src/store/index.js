@@ -21,10 +21,10 @@ import {
   setDoc,
   updateDoc,
   getDoc,
-  // onSnapshot,
   deleteDoc,
+  arrayUnion,
+  arrayRemove
 } from "firebase/firestore";
-// let userId;
 const store = createStore({
   state() {
     return {
@@ -38,6 +38,7 @@ const store = createStore({
       profiles: null,
       profileImages: { one: 1, two: 1, three: 1, four: 1, five: 1 },
       heroMaterial: {},
+      mylist: { one: [], two: [], three: [], four: [], five: [] },
     };
   },
   mutations: {
@@ -78,7 +79,7 @@ const store = createStore({
     },
     setHeroMaterial(state, payload) {
       state.heroMaterial = payload;
-    }
+    },
   },
   getters: {
     userId(state) {
@@ -107,7 +108,7 @@ const store = createStore({
     },
     getHeroMaterial(state) {
       return state.heroMaterial;
-    }
+    },
   },
   actions: {
     async deleteTheAccount(context) {
@@ -304,7 +305,7 @@ const store = createStore({
         let dbPath = `profileImages.${payload.profile}`;
         await updateDoc(usersProfileDoc, {
           [dbPath]: payload.imageId,
-        })
+        });
       } catch (e) {
         console.log("error: ", e);
       }
@@ -324,6 +325,30 @@ const store = createStore({
         return new Error("db error fetching profiles.");
       }
     },
+    async addMyList(context, payload) {
+      const id = context.getters.userId;
+      try {
+        const usersProfileDoc = doc(db, "users", id);
+        let dbPath = `mylist.${payload.profile}`;
+        await updateDoc(usersProfileDoc, {
+          [dbPath]: arrayUnion(payload.movieId),
+        });
+      } catch (e) {
+        console.log("error: ", e);
+      }
+    },
+    async removeMyList(context, payload) {
+      const id = context.getters.userId;
+      try {
+        const usersProfileDoc = doc(db, "users", id);
+        let dbPath = `mylist.${payload.profile}`;
+        await updateDoc(usersProfileDoc, {
+          [dbPath]: arrayRemove(payload.movieId),
+        });
+      } catch (e) {
+        console.log("error: ", e);
+      }
+    },
     currentProfile(context, payload) {
       context.commit("setCurrentProfile", payload);
     },
@@ -332,7 +357,7 @@ const store = createStore({
     },
     putHeroMaterial(context, payload) {
       context.commit("setHeroMaterial", payload);
-    }
+    },
   },
 });
 //***********FREE FUNCTIONS***************

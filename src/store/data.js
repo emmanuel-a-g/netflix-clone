@@ -479,6 +479,7 @@ const heroMaterial = [
   {
     title: "No Limit",
     id: 1,
+    videoId: "mY7W7AY7GXk",
     description:
       "He's an alluring famouse driver. She's a rising star. Their love is as deep as the ocean and just as dangerous once she comes for his world record.",
     rating: "TV-MA",
@@ -490,6 +491,7 @@ const heroMaterial = [
   {
     title: "El Rey",
     id: 2,
+    videoId: "DeCJyzCv55g",
     description:
       "In this captivating period series, the life and career of Mexican singer Vicente Fernández is dramatized like never before.",
     rating: "TV-MA",
@@ -498,9 +500,45 @@ const heroMaterial = [
     heroTitleImage:
       "https://res.cloudinary.com/milito/image/upload/v1663199107/netflix/elreyTitleImage_cqcsuc.webp",
   },
+  {
+    title: "The Catholic School",
+    id: 3,
+    videoId: "6AczGC7NEig",
+    rating: "TV-MA",
+    description:
+      "In this unsettling drama, a student at an all-male Catholic high school in 1970s Rome observes the violence his classmates endure and inflict on others.",
+    heroImage:
+      "https://res.cloudinary.com/milito/image/upload/v1663211943/netflix/catholicHero_stfzfe.webp",
+    heroTitleImage:
+      "https://res.cloudinary.com/milito/image/upload/v1663211943/netflix/catholicHeroTitle_ayda8h.webp",
+  },
+  {
+    title: "Heart Break High",
+    id: 4,
+    rating: "TV-MA",
+    videoId: "dXpa5PrtuP0",
+    description:
+      "Somewhere at Hartley High, there is a mysterious sex map charts out everyone's dirty secrets: the good, the bad, and the ugly. No one is aware of its existence — until the new term begins.",
+    heroImage:
+      "https://res.cloudinary.com/milito/image/upload/v1663225252/netflix/heartbrakeHero_bdrh9a.webp",
+    heroTitleImage:
+      "https://res.cloudinary.com/milito/image/upload/v1663225251/netflix/heartbreakHeroTitle_lbtm5q.webp",
+  },
+  {
+    title: "Good Girls",
+    id: 5,
+    rating: "TV-MA",
+    videoId: "kesFgp_vNSc",
+    description:
+      "Three suburban moms orchestrate a local grocery store heist to escape financial ruin and establish independence -- together.",
+    heroImage:
+      "https://res.cloudinary.com/milito/image/upload/v1663225714/netflix/goodgirlsHero_fr7c3s.webp",
+    heroTitleImage:
+      "https://res.cloudinary.com/milito/image/upload/v1663225714/netflix/goodgirlsHeroTitle_dkhi8g.webp",
+  },
 ];
 export function getRandomMaterial() {
   const total = heroMaterial.length;
-  let random = Math.floor( Math.random() * total);
+  let random = Math.floor(Math.random() * total);
   return heroMaterial[random];
 }

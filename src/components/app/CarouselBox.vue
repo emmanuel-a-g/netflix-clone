@@ -37,7 +37,9 @@
               <img id="play" :src="play" alt="play button" />
             </p>
             <p><img id="like" :src="like" alt="like button" /></p>
-            <p><img id="more" :src="plus" alt="more button" /></p>
+            <p @click="addToMylist">
+              <img id="more" :src="plus" alt="more button" />
+            </p>
           </div>
           <div>
             <p><img id="down" :src="downArr" alt="info button" /></p>
@@ -67,7 +69,7 @@ import like from "../../assets/like.png";
 import plus from "../../assets/plus.png";
 import downArr from "../../assets/downArr.png";
 export default {
-  props: ["show", "theIdx", "theMovie", "total"],
+  props: ["show", "theIdx", "theMovie", "total", "identifier"],
   emits: ["closeCard"],
   data() {
     return {
@@ -87,6 +89,16 @@ export default {
     },
   },
   methods: {
+    addToMylist() {
+      if (!this.identifier) {
+        this.$router.replace("/selectuser");
+      } else {
+        this.$store.dispatch("addMyList", {
+          profile: this.identifier,
+          movieId: this.theMovie.id,
+        });
+      }
+    },
     cancelTimer() {
       if (this.timer && !this.showMovie) {
         clearTimeout(this.timer);

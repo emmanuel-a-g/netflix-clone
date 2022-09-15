@@ -5,7 +5,7 @@
         <img id="heroTitle" :src="getHeroTitleImage" alt="hero title image" />
         <p>{{ getHeroDescription }}</p>
         <div id="buttonDiv">
-          <button id="playButton">
+          <button id="playButton" @click="toWatch">
             <img :src="play" alt="play icon" /> Play
           </button>
           <button id="infoButton">
@@ -27,6 +27,7 @@ export default {
     return {
       play,
       info,
+      videoId: "",
     };
   },
   computed: {
@@ -39,6 +40,14 @@ export default {
     getHeroRating() {
       return this.hero ? this.hero.rating : "";
     },
+  },
+  methods: {
+    toWatch() {
+      this.$router.push(`/watch/${this.videoId}`);
+    },
+  },
+  mounted() {
+    this.videoId = this.hero.videoId;
   },
 };
 </script>

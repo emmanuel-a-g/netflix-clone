@@ -9,6 +9,7 @@
             :key="idx"
             :mov="mov"
             :total="item.length"
+            :identifier="identifier"
           >
           </TheCard>
         </div>
@@ -37,6 +38,7 @@ export default {
   props: ["showIndicators", "indicators", "bigList"],
   data() {
     return {
+      identifier: 1,
       index: 0,
       leftArrow: false,
       left,
@@ -67,6 +69,10 @@ export default {
     bigList() {
       this.index = 0;
     },
+  },
+  beforeMount() {
+    const { name } = this.$store.getters.getCurrentProfile;
+    this.identifier = name;
   },
 };
 </script>

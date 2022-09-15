@@ -14,6 +14,7 @@
       :theMovie="mov"
       :show="show"
       :total="total"
+      :identifier="identifier"
     ></CarouselBox>
   </div>
 </template>
@@ -24,7 +25,7 @@ export default {
   components: {
     CarouselBox,
   },
-  props: ["mov", "index", "total"],
+  props: ["mov", "index", "total", "identifier"],
   data() {
     return {
       show: false,
