@@ -330,7 +330,7 @@ const store = createStore({
         const usersProfileDoc = doc(db, "users", id);
         let dbPath = `mylist.${payload.profile}`;
         await updateDoc(usersProfileDoc, {
-          [dbPath]: arrayUnion(payload.movieId),
+          [dbPath]: arrayUnion(payload.videoId),
         });
       } catch (e) {
         console.log("error: ", e);
@@ -342,7 +342,7 @@ const store = createStore({
         const usersProfileDoc = doc(db, "users", id);
         let dbPath = `mylist.${payload.profile}`;
         await updateDoc(usersProfileDoc, {
-          [dbPath]: arrayRemove(payload.movieId),
+          [dbPath]: arrayRemove(payload.videoId),
         });
       } catch (e) {
         console.log("error: ", e);

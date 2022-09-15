@@ -89,6 +89,9 @@ export default {
       this.hero = this.$store.getters.getHeroMaterial;
     }
   },
+  beforeUnmount() {
+    window.removeEventListener("resize", this.setMargins);
+  }
 };
 </script>
 

@@ -5,28 +5,28 @@ export const data = [
     title: "Spider Man 3",
     genre: "action",
     id: 1,
-    imageUrl: `${baseUrl}/spiderman3.webp`,
+    imageUrl: `${baseUrl}/spiderman3.png`,
     videoId: "wPosLpgMtTY",
   },
   {
     title: "Better Call Saul",
     genre: "show",
     id: 2,
-    imageUrl: `${baseUrl}/saul_S.webp`,
+    imageUrl: `${baseUrl}/saul_S.png`,
     videoId: "9q4qzYrHVmI",
   },
   {
     title: "Spider Man",
     genre: "hereo",
     id: 3,
-    imageUrl: `${baseUrl}/spiderman_S.webp`,
+    imageUrl: `${baseUrl}/spiderman_S.png`,
     videoId: "t06RUxPbp_c",
   },
   {
     title: "Troy",
     genre: "war",
     id: 4,
-    imageUrl: `${baseUrl}/troy_S.webp`,
+    imageUrl: `${baseUrl}/troy_S.png`,
     videoId: "6FG3BfPuwBA",
   },
   {
@@ -40,7 +40,7 @@ export const data = [
     title: "I am Legend",
     genre: "suspense",
     id: 6,
-    imageUrl: `${baseUrl}/legend_S.webp`,
+    imageUrl: `${baseUrl}/legend_S.png`,
     videoId: "dtKMEAXyPkg",
   },
   {
@@ -54,42 +54,42 @@ export const data = [
     title: "Scarface",
     genre: "crime",
     id: 8,
-    imageUrl: `${baseUrl}/scarface_S.webp`,
+    imageUrl: `${baseUrl}/scarface_S.png`,
     videoId: "7pQQHnqBa2E",
   },
   {
     title: "Breaking Bad",
     genre: "show",
     id: 9,
-    imageUrl: `${baseUrl}/breaking_S.webp`,
+    imageUrl: `${baseUrl}/breaking_S.png`,
     videoId: "HhesaQXLuRY",
   },
   {
     title: "Insidious 2",
     genre: "horror",
     id: 10,
-    imageUrl: `${baseUrl}/insidious_S.webp`,
+    imageUrl: `${baseUrl}/insidious_S.png`,
     videoId: "5hvNMXh1GWw",
   },
   {
     title: "Snow White & Huntsman",
     genre: "family",
     id: 11,
-    imageUrl: `${baseUrl}/huntsman_S.webp`,
+    imageUrl: `${baseUrl}/huntsman_S.png`,
     videoId: "V4SQ9xBXMX0",
   },
   {
     title: "Despicable Me",
     genre: "kids",
     id: 12,
-    imageUrl: `${baseUrl}/despicable_S.webp`,
+    imageUrl: `${baseUrl}/despicable_S.png`,
     videoId: "zzCZ1W_CUoI",
   },
   {
     title: "8 Mile",
     genre: "documentary",
     id: 13,
-    imageUrl: `${baseUrl}/8mile_S.webp`,
+    imageUrl: `${baseUrl}/8mile_S.png`,
     videoId: "TRZXaEl9fPo",
   },
   {
@@ -105,7 +105,7 @@ export const data = [
     genre: "movie",
     id: 15,
     imageUrl:
-      "https://res.cloudinary.com/milito/image/upload/v1662743230/netflix/quantum.webp",
+      "https://res.cloudinary.com/milito/image/upload/v1662743230/netflix/quantum.png",
     videoId: "mkLcEGMkGMs",
   },
   {
@@ -137,7 +137,7 @@ export const data = [
     genre: "horror",
     id: 19,
     imageUrl:
-      "https://res.cloudinary.com/milito/image/upload/v1662743229/netflix/constantine.webp",
+      "https://res.cloudinary.com/milito/image/upload/v1662743229/netflix/constantine.png",
     videoId: "DEa508Xmmio",
   },
   {
@@ -156,7 +156,7 @@ export const data2 = [
     genre: "feelgood",
     id: 21,
     imageUrl:
-      "https://res.cloudinary.com/milito/image/upload/v1662749445/netflix/bucketlist_bcqu1j.webp",
+      "https://res.cloudinary.com/milito/image/upload/v1662749445/netflix/bucketlist_bcqu1j.png",
     videoId: "vc3mkG21ob4",
   },
   {
@@ -164,7 +164,7 @@ export const data2 = [
     genre: "crime",
     id: 22,
     imageUrl:
-      "https://res.cloudinary.com/milito/image/upload/v1662749445/netflix/blow_gz7gt7.webp",
+      "https://res.cloudinary.com/milito/image/upload/v1662749445/netflix/blow_gz7gt7.png",
     videoId: "scWkP1GdnuU",
   },
   {
@@ -172,7 +172,7 @@ export const data2 = [
     genre: "family",
     id: 23,
     imageUrl:
-      "https://res.cloudinary.com/milito/image/upload/v1662749445/netflix/despicable2_ktaxie.webp",
+      "https://res.cloudinary.com/milito/image/upload/v1662749445/netflix/despicable2_ktaxie.png",
     videoId: "6qsH_LFRr6k",
   },
   {
@@ -180,7 +180,7 @@ export const data2 = [
     genre: "romance",
     id: 24,
     imageUrl:
-      "https://res.cloudinary.com/milito/image/upload/v1662749445/netflix/ageofadeline_otx8ek.webp",
+      "https://res.cloudinary.com/milito/image/upload/v1662749445/netflix/ageofadeline_otx8ek.png",
     videoId: "g9-SnMldtGY",
   },
   {
@@ -212,7 +212,7 @@ export const data2 = [
     genre: "comedy",
     id: 28,
     imageUrl:
-      "https://res.cloudinary.com/milito/image/upload/v1662749428/netflix/seinfield_hqhkre.webp",
+      "https://res.cloudinary.com/milito/image/upload/v1662749428/netflix/seinfield_hqhkre.png",
     videoId: "hQXKyIG_NS4",
   },
   {
@@ -228,7 +228,7 @@ export const data2 = [
     genre: "action",
     id: 30,
     imageUrl:
-      "https://res.cloudinary.com/milito/image/upload/v1662749428/netflix/skyfall_igfb4p.webp",
+      "https://res.cloudinary.com/milito/image/upload/v1662749428/netflix/skyfall_igfb4p.png",
     videoId: "24mTIE4D9JM",
   },
   {
@@ -236,7 +236,7 @@ export const data2 = [
     genre: "suspense",
     id: 31,
     imageUrl:
-      "https://res.cloudinary.com/milito/image/upload/v1662749428/netflix/residentevil_cxg0or.webp",
+      "https://res.cloudinary.com/milito/image/upload/v1662749428/netflix/residentevil_cxg0or.png",
     videoId: "USGM73rw9H4",
   },
   {
@@ -244,7 +244,7 @@ export const data2 = [
     genre: "comedy",
     id: 32,
     imageUrl:
-      "https://res.cloudinary.com/milito/image/upload/v1662749428/netflix/nostrings_exyxsc.webp",
+      "https://res.cloudinary.com/milito/image/upload/v1662749428/netflix/nostrings_exyxsc.png",
     videoId: "XGmsRMvQ2AM",
   },
   {
@@ -268,7 +268,7 @@ export const data2 = [
     genre: "show",
     id: 35,
     imageUrl:
-      "https://res.cloudinary.com/milito/image/upload/v1662749427/netflix/greys_p5pkva.webp",
+      "https://res.cloudinary.com/milito/image/upload/v1662749427/netflix/greys_p5pkva.png",
     videoId: "4FC8krII948",
   },
   {
@@ -276,7 +276,7 @@ export const data2 = [
     genre: "reality",
     id: 36,
     imageUrl:
-      "https://res.cloudinary.com/milito/image/upload/v1662749427/netflix/mirey_qjfjpq.webp",
+      "https://res.cloudinary.com/milito/image/upload/v1662749427/netflix/mirey_qjfjpq.png",
     videoId: "WireIYL-U6Y",
   },
   {
@@ -308,7 +308,7 @@ export const data2 = [
     genre: "heroes",
     id: 40,
     imageUrl:
-      "https://res.cloudinary.com/milito/image/upload/v1662749427/netflix/morbius_n38hzh.webp",
+      "https://res.cloudinary.com/milito/image/upload/v1662749427/netflix/morbius_n38hzh.png",
     videoId: "jLMBLuGJTsA",
   },
 ];
@@ -507,9 +507,9 @@ const heroMaterial = [
       "He's an alluring famouse driver. She's a rising star. Their love is as deep as the ocean and just as dangerous once she comes for his world record.",
     rating: "TV-MA",
     heroImage:
-      "https://res.cloudinary.com/milito/image/upload/v1662756497/netflix/nolimit_wallpaper.webp",
+      "https://res.cloudinary.com/milito/image/upload/v1662756497/netflix/nolimit_wallpaper.png",
     heroTitleImage:
-      "https://res.cloudinary.com/milito/image/upload/v1662756497/netflix/nolimit_title.webp",
+      "https://res.cloudinary.com/milito/image/upload/v1662756497/netflix/nolimit_title.png",
   },
   {
     title: "El Rey",
@@ -519,9 +519,9 @@ const heroMaterial = [
       "In this captivating period series, the life and career of Mexican singer Vicente Fernández is dramatized like never before.",
     rating: "TV-MA",
     heroImage:
-      "https://res.cloudinary.com/milito/image/upload/v1663199107/netflix/elrey_ztmg2e.webp",
+      "https://res.cloudinary.com/milito/image/upload/v1663199107/netflix/elrey_ztmg2e.png",
     heroTitleImage:
-      "https://res.cloudinary.com/milito/image/upload/v1663199107/netflix/elreyTitleImage_cqcsuc.webp",
+      "https://res.cloudinary.com/milito/image/upload/v1663199107/netflix/elreyTitleImage_cqcsuc.png",
   },
   {
     title: "The Catholic School",
@@ -531,9 +531,9 @@ const heroMaterial = [
     description:
       "In this unsettling drama, a student at an all-male Catholic high school in 1970s Rome observes the violence his classmates endure and inflict on others.",
     heroImage:
-      "https://res.cloudinary.com/milito/image/upload/v1663211943/netflix/catholicHero_stfzfe.webp",
+      "https://res.cloudinary.com/milito/image/upload/v1663211943/netflix/catholicHero_stfzfe.png",
     heroTitleImage:
-      "https://res.cloudinary.com/milito/image/upload/v1663211943/netflix/catholicHeroTitle_ayda8h.webp",
+      "https://res.cloudinary.com/milito/image/upload/v1663211943/netflix/catholicHeroTitle_ayda8h.png",
   },
   {
     title: "Heart Break High",
@@ -543,9 +543,9 @@ const heroMaterial = [
     description:
       "Somewhere at Hartley High, there is a mysterious sex map charts out everyone's dirty secrets: the good, the bad, and the ugly. No one is aware of its existence — until the new term begins.",
     heroImage:
-      "https://res.cloudinary.com/milito/image/upload/v1663225252/netflix/heartbrakeHero_bdrh9a.webp",
+      "https://res.cloudinary.com/milito/image/upload/v1663225252/netflix/heartbrakeHero_bdrh9a.png",
     heroTitleImage:
-      "https://res.cloudinary.com/milito/image/upload/v1663225251/netflix/heartbreakHeroTitle_lbtm5q.webp",
+      "https://res.cloudinary.com/milito/image/upload/v1663225251/netflix/heartbreakHeroTitle_lbtm5q.png",
   },
   {
     title: "Good Girls",
@@ -555,9 +555,9 @@ const heroMaterial = [
     description:
       "Three suburban moms orchestrate a local grocery store heist to escape financial ruin and establish independence -- together.",
     heroImage:
-      "https://res.cloudinary.com/milito/image/upload/v1663225714/netflix/goodgirlsHero_fr7c3s.webp",
+      "https://res.cloudinary.com/milito/image/upload/v1663225714/netflix/goodgirlsHero_fr7c3s.png",
     heroTitleImage:
-      "https://res.cloudinary.com/milito/image/upload/v1663225714/netflix/goodgirlsHeroTitle_dkhi8g.webp",
+      "https://res.cloudinary.com/milito/image/upload/v1663225714/netflix/goodgirlsHeroTitle_dkhi8g.png",
   },
   {
     title: "Bastard",
@@ -567,9 +567,9 @@ const heroMaterial = [
     description:
       "When evil forces threaten to resurrect Anthrasax, the God of Destruction, the Kingdom of Meta-llicana calls on a volatile dark wizard for help.",
     heroImage:
-      "https://res.cloudinary.com/milito/image/upload/v1663266054/netflix/bastardHero_jclvvp.webp",
+      "https://res.cloudinary.com/milito/image/upload/v1663266054/netflix/bastardHero_jclvvp.png",
     heroTitleImage:
-      "https://res.cloudinary.com/milito/image/upload/v1663266054/netflix/bastardHeroTitle_wx3ztj.webp",
+      "https://res.cloudinary.com/milito/image/upload/v1663266054/netflix/bastardHeroTitle_wx3ztj.png",
   },
   {
     title: "Bastard",
@@ -579,9 +579,9 @@ const heroMaterial = [
     description:
       "He was known as the emperor. Before Fatih Terim became manager of Turkey's Galatasaray, they had never won a UEFA Cup. That was about to change.",
     heroImage:
-      "https://res.cloudinary.com/milito/image/upload/v1663266529/netflix/terimHero_pqxipu.webp",
+      "https://res.cloudinary.com/milito/image/upload/v1663266529/netflix/terimHero_pqxipu.png",
     heroTitleImage:
-      "https://res.cloudinary.com/milito/image/upload/v1663266528/netflix/terimHeroTitle_jrydgr.webp",
+      "https://res.cloudinary.com/milito/image/upload/v1663266528/netflix/terimHeroTitle_jrydgr.png",
   },
 ];
 export function getRandomMaterial() {

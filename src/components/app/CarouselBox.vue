@@ -103,7 +103,7 @@ export default {
       this.liked = false;
       this.$store.dispatch("removeFromMyList", {
         profile: this.identifier,
-        movieId: this.theMovie.id,
+        videoId: this.theMovie.id,
       })
 
     },
@@ -114,7 +114,7 @@ export default {
       } else {
         this.$store.dispatch("addMyList", {
           profile: this.identifier,
-          movieId: this.theMovie.id,
+          videoId: this.theMovie.id,
         });
       }
     },

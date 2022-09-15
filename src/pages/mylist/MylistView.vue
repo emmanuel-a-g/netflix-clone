@@ -3,21 +3,19 @@
     <TheBrowseNav class="navbar"></TheBrowseNav>
     <div :class="{ openSelection: open, closeSelection: !open }">
       <div class="insideSelection">
-        <h2>Movie Title</h2>
+        <h2>{{ selectedMovie.title || "" }}</h2>
         <div class="movieView">
           <div>
-            <p>Current</p>
-          </div>
-          <div>
-            <p>arrow</p>
-          </div>
-          <div>
-            <p>New</p>
+            <img
+            @click="watchNow(selectedMovie.videoId)"            
+              :src="selectedMovie.imageUrl || ''"
+              :alt="selectedMovie.title || ''"
+            />
           </div>
         </div>
         <div class="buttons">
-          <button @click="addToMyList" class="buttonOne">Watch</button>
-          <button @click="toggleCancel" class="buttonTwo">Remove</button>
+          <button @click="removeFromList" class="buttonTwo">Remove</button>
+          <button @click="toggleCancel" class="buttonOne">Cancel</button>
         </div>
       </div>
     </div>
@@ -35,7 +33,7 @@
             :style="{ visibility: mov.id ? 'visible' : 'hidden' }"
           >
             <img
-              @click="toggleOpen(mov.id)"
+              @click="toggleOpen(mov)"
               :src="`${mov.imageUrl ? mov.imageUrl : ''}`"
               alt="profile image"
             />
@@ -50,6 +48,11 @@
 import { getMyListMovies } from "../../store/data";
 import { divideMylist } from "../../utils/index";
 import TheBrowseNav from "../browse/TheBrowseNav.vue";
+let breakpointSix = 1200;
+let breakpointFive = 1000;
+let breakpointFour = 700;
+let breakpointThree = 635;
+let breakpointTwo = 500;
 export default {
   components: {
     TheBrowseNav,
@@ -60,17 +63,25 @@ export default {
       myList: [],
       bigList: [],
       open: false,
-      selectedImage: "",
+      selectedMovie: "",
       identifier: "",
-      profile: "",
-      imageId: "",
+      cardsNum: 6,
     };
   },
-  computed: {},
+  watch: {
+    cardsNum() {
+      if (this.myListIds) {
+        this.setMyList();
+      }
+    },
+  },
   methods: {
-    toggleOpen(id) {
+    watchNow(movieId) {
+      this.$router.push(`/watch/${movieId}`);
+    },
+    toggleOpen(mov) {
       this.open = true;
-      this.selectedMovie = id;
+      this.selectedMovie = mov;
     },
     goBack() {
       this.$router.back();
@@ -80,26 +91,82 @@ export default {
       this.selectedMovie = "";
     },
     addToMyList() {
-      //CHANGE ADD/REMOVE FROM MY LIST
-      this.$store.dispatch("addProfileImageId", {
+      this.$store.dispatch("addMyList", {
         profile: this.identifier,
-        imageId: this.selectedMovie,
+        videoId: this.selectedMovie.id,
       });
+    },
+    removeFromList() {
+      this.$store.dispatch("removeFromMyList", {
+        profile: this.identifier,
+        videoId: this.selectedMovie.id,
+      });
+      this.fetchMyList();
+      this.toggleCancel();
+    },
+    setMargins() {
+      let width = window.innerWidth;
+      if (width > breakpointSix && this.cardsNum === 6) {
+        return;
+      } else if (
+        width < breakpointSix &&
+        width > breakpointFive &&
+        this.cardsNum !== 5
+      ) {
+        this.cardsNum = 5;
+      } else if (
+        width < breakpointFive &&
+        width > breakpointFour &&
+        this.cardsNum !== 4
+      ) {
+        this.cardsNum = 4;
+      } else if (
+        width < breakpointFour &&
+        width > breakpointThree &&
+        this.cardsNum !== 3
+      ) {
+        this.cardsNum = 3;
+      } else if (
+        width < breakpointThree &&
+        width > breakpointTwo &&
+        this.cardsNum !== 2
+      ) {
+        this.cardsNum = 2;
+      } else if (width > breakpointSix && this.cardsNum !== 6) {
+        this.cardsNum = 6;
+      } else if (width < breakpointTwo && this.cardsNum !== 2) {
+        this.cardsNum = 2;
+      }
+    },
+    setMyList(list) {
+      if (!list) {
+        this.bigList = divideMylist(this.myList, this.cardsNum);
+      } else {
+        this.bigList = divideMylist(list, this.cardsNum);
+      }
+    },
+    fetchMyList() {
+      this.$store
+        .dispatch("fetchMyList")
+        .then((res) => {
+          const mylist = res.mylist[this.identifier];
+          this.myListIds = mylist;
+          if (mylist.length) {
+            const myListMovies = getMyListMovies(mylist);
+            this.myList = myListMovies;
+            this.setMyList(myListMovies);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
   },
   mounted() {
     this.identifier = this.$route.query.identifier;
-    this.$store
-      .dispatch("fetchMyList")
-      .then((res) => {
-        this.myListIds = res.mylist[this.identifier];
-        const myListMovies = getMyListMovies(res.mylist[this.identifier]);
-        this.myList = myListMovies;
-        this.bigList = divideMylist(myListMovies, 5);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    this.fetchMyList();
+    window.addEventListener("resize", this.setMargins);
+    this.setMargins();
   },
 };
 </script>
@@ -130,7 +197,7 @@ export default {
   margin-top: -14px;
 }
 .card {
-  flex: 1;
+  /* flex: 1; */
 }
 
 .mainContent {
@@ -141,15 +208,17 @@ export default {
 }
 .train {
   display: flex;
-  justify-content: space-around;
+  gap: 5px;
   border: 1px solid transparent;
+  width: 100%;
 }
 .wagon {
   width: 100%;
-  height: 180px;
+  border: 1px solid transparent;
+  height: 170px;
 }
 .wagon img {
-  width: 100%;
+  width: 98%;
   height: auto;
   border-radius: 5px;
   border: 2.5px solid transparent;
@@ -192,13 +261,9 @@ export default {
   border-bottom: 0.5px solid rgb(79, 79, 79);
   border-top: 0.5px solid rgb(79, 79, 79);
 }
-.movieView p {
-  margin: 10px 0;
-  font-size: 0.9rem;
-}
 .movieView img {
-  width: 140px;
-  height: 140px;
+  width: 100%;
+  height: auto;
   border-radius: 5px;
   border: 2.5px solid transparent;
 }
@@ -297,6 +362,11 @@ export default {
     width: 60px;
     height: auto;
     border-radius: 5px;
+  }
+}
+@media only screen and (max-width: 1000px) {
+  .wagon {
+    height: 125px;
   }
 }
 @media only screen and (max-width: 350px) {
