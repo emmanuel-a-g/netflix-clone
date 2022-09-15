@@ -1,16 +1,13 @@
 <template>
   <div class="heroImageWrapper">
     <div class="vingete" :style="{ height: idealHeight }"></div>
-    <img
-      ref="imageRef"
-      src="https://res.cloudinary.com/milito/image/upload/v1662756497/netflix/nolimit_wallpaper.webp"
-      alt="hero image"
-    />
+    <img ref="imageRef" :src="getHeroImage" alt="hero image" />
   </div>
 </template>
 
 <script>
 export default {
+  props: ["hero"],
   data() {
     return {
       wallpaperRef: null,
@@ -30,6 +27,9 @@ export default {
       } else {
         return this.vingetteHeight;
       }
+    },
+    getHeroImage() {
+      return this.hero ? this.hero.heroImage : "";
     },
   },
   mounted() {

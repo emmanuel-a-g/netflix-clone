@@ -1,4 +1,3 @@
-//ttps://res.cloudinary.com/milito/image/upload/v1662708770/netflix/spiderman3.webp,
 const baseUrl =
   "https://res.cloudinary.com/milito/image/upload/v1662708770/netflix/";
 export const data = [
@@ -468,10 +467,40 @@ export const profileImages = [
   {
     id: 26,
     name: "classic one",
-    imageUrl: "https://res.cloudinary.com/milito/image/upload/v1663140262/profiles/classicOne_pfwjtj.png",
-  }
+    imageUrl:
+      "https://res.cloudinary.com/milito/image/upload/v1663140262/profiles/classicOne_pfwjtj.png",
+  },
 ];
-
 export function getProfileImage(id) {
   return profileImages.find((obj) => obj.id === id);
+}
+
+const heroMaterial = [
+  {
+    title: "No Limit",
+    id: 1,
+    description:
+      "He's an alluring famouse driver. She's a rising star. Their love is as deep as the ocean and just as dangerous once she comes for his world record.",
+    rating: "TV-MA",
+    heroImage:
+      "https://res.cloudinary.com/milito/image/upload/v1662756497/netflix/nolimit_wallpaper.webp",
+    heroTitleImage:
+      "https://res.cloudinary.com/milito/image/upload/v1662756497/netflix/nolimit_title.webp",
+  },
+  {
+    title: "El Rey",
+    id: 2,
+    description:
+      "In this captivating period series, the life and career of Mexican singer Vicente Fernández is dramatized like never before.",
+    rating: "TV-MA",
+    heroImage:
+      "https://res.cloudinary.com/milito/image/upload/v1663199107/netflix/elrey_ztmg2e.webp",
+    heroTitleImage:
+      "https://res.cloudinary.com/milito/image/upload/v1663199107/netflix/elreyTitleImage_cqcsuc.webp",
+  },
+];
+export function getRandomMaterial() {
+  const total = heroMaterial.length;
+  let random = Math.floor( Math.random() * total);
+  return heroMaterial[random];
 }

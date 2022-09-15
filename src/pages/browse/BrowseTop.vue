@@ -2,16 +2,8 @@
   <div class="wrapper">
     <div class="fillContainer">
       <div class="fillContent">
-        <img
-          id="heroTitle"
-          src="https://res.cloudinary.com/milito/image/upload/v1662756497/netflix/nolimit_title.webp"
-          alt="hero title"
-        />
-        <p>
-          He's an alluring famouse driver. She's a rising star. Their love is as
-          deep as the ocean - and just as dangerous once she comes for his world
-          record.
-        </p>
+        <img id="heroTitle" :src="getHeroTitleImage" alt="hero title image" />
+        <p>{{ getHeroDescription }}</p>
         <div id="buttonDiv">
           <button id="playButton">
             <img :src="play" alt="play icon" /> Play
@@ -20,7 +12,7 @@
             <img :src="info" alt="info icon" />More Info
           </button>
         </div>
-        <span id="rating">TV-MA</span>
+        <span id="rating">{{ getHeroRating }}</span>
       </div>
     </div>
   </div>
@@ -30,11 +22,23 @@
 import play from "../../assets/play.png";
 import info from "../../assets/info.png";
 export default {
+  props: ["hero"],
   data() {
     return {
       play,
       info,
     };
+  },
+  computed: {
+    getHeroTitleImage() {
+      return this.hero ? this.hero.heroTitleImage : "";
+    },
+    getHeroDescription() {
+      return this.hero ? this.hero.description : "";
+    },
+    getHeroRating() {
+      return this.hero ? this.hero.rating : "";
+    },
   },
 };
 </script>
@@ -172,6 +176,9 @@ export default {
   #rating {
     font-size: 0.9rem;
   }
+  #buttonDiv {
+    min-width: 20.5vw;
+  }
 }
 @media only screen and (max-width: 850px) {
   #buttonDiv {
@@ -214,7 +221,7 @@ export default {
   }
 }
 @media only screen and (max-width: 450px) {
-   #rating {
+  #rating {
     font-size: 0.5rem;
   }
   .fillContainer {

@@ -1,5 +1,5 @@
 <template>
-  <div class="theBox" :class="{ visibleClass: show, hiddenClass: !show }">
+  <div class="theBox" :class="{ visibleClass: false, hiddenClass: true }">
     <ul>
       <li class="action">alert one</li>
       <li class="action">alert two</li>
@@ -13,6 +13,7 @@
 </template>
 
 <script>
+// SET FALSE CLASS AS DEFAULT
 export default {
   props: ["show", "width", "height"],
   methods: {

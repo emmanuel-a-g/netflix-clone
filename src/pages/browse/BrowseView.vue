@@ -1,9 +1,9 @@
 <template>
   <div class="browseDiv">
     <TheBrowseNav></TheBrowseNav>
-    <BrowseHero></BrowseHero>
+    <BrowseHero :hero="hero"></BrowseHero>
     <div class="inner">
-      <BrowseTop></BrowseTop>
+      <BrowseTop :hero="hero">></BrowseTop>
       <div class="wrapperCarousel">
         <TheCarouselComp
           title="Recently Added"
@@ -38,7 +38,7 @@ export default {
   },
   data() {
     return {
-      //DEFAULT
+      hero: {},
       cardsNum: 6,
     };
   },
@@ -48,13 +48,29 @@ export default {
       let width = window.innerWidth;
       if (width > breakpointSix && this.cardsNum === 6) {
         return;
-      } else if (width < breakpointSix && width > breakpointFive && this.cardsNum !== 5) {
+      } else if (
+        width < breakpointSix &&
+        width > breakpointFive &&
+        this.cardsNum !== 5
+      ) {
         this.cardsNum = 5;
-      } else if (width < breakpointFive && width > breakpointFour && this.cardsNum !== 4) {
+      } else if (
+        width < breakpointFive &&
+        width > breakpointFour &&
+        this.cardsNum !== 4
+      ) {
         this.cardsNum = 4;
-      } else if (width < breakpointFour && width > breakpointThree && this.cardsNum !== 3) {
+      } else if (
+        width < breakpointFour &&
+        width > breakpointThree &&
+        this.cardsNum !== 3
+      ) {
         this.cardsNum = 3;
-      } else if (width < breakpointThree && width > breakpointTwo && this.cardsNum !== 2) {
+      } else if (
+        width < breakpointThree &&
+        width > breakpointTwo &&
+        this.cardsNum !== 2
+      ) {
         this.cardsNum = 2;
       } else if (width > breakpointSix && this.cardsNum !== 6) {
         this.cardsNum = 6;
@@ -66,6 +82,12 @@ export default {
   beforeMount() {
     window.addEventListener("resize", this.setMargins);
     this.setMargins();
+    this.hero = this.$store.getters.getHeroMaterial;
+  },
+  mounted() {
+    if (!this.hero) {
+      this.hero = this.$store.getters.getHeroMaterial;
+    }
   },
 };
 </script>
@@ -105,5 +127,4 @@ export default {
   padding-top: 50px;
   /* making space for box popover */
 }
-
 </style>

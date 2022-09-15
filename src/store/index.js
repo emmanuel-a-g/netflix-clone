@@ -37,6 +37,7 @@ const store = createStore({
       notification: "",
       profiles: null,
       profileImages: { one: 1, two: 1, three: 1, four: 1, five: 1 },
+      heroMaterial: {},
     };
   },
   mutations: {
@@ -75,6 +76,9 @@ const store = createStore({
         state.redirectAuth = payload;
       }
     },
+    setHeroMaterial(state, payload) {
+      state.heroMaterial = payload;
+    }
   },
   getters: {
     userId(state) {
@@ -101,6 +105,9 @@ const store = createStore({
     getRedirectAuth(state) {
       return state.redirectAuth;
     },
+    getHeroMaterial(state) {
+      return state.heroMaterial;
+    }
   },
   actions: {
     async deleteTheAccount(context) {
@@ -323,6 +330,9 @@ const store = createStore({
     redirectUserToAccount(context, payload) {
       context.commit("setRedirectAuth", payload);
     },
+    putHeroMaterial(context, payload) {
+      context.commit("setHeroMaterial", payload);
+    }
   },
 });
 //***********FREE FUNCTIONS***************

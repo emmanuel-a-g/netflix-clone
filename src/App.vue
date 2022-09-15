@@ -5,8 +5,9 @@
 </template>
 
 <script>
-import { auth } from "./firebase";
 import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "./firebase";
+import { getRandomMaterial } from "./store/data";
 export default {
   name: "App",
   data() {
@@ -25,10 +26,13 @@ export default {
       }
     });
   },
+  beforeMount() {
+    const hero = getRandomMaterial();
+    this.$store.dispatch("putHeroMaterial", hero);
+  },
   // mounted() {},
   // beforeUpdate() {},
   // updated() {},
-  // beforeUnmount(){},
   // unmounted() {}
 };
 </script>
