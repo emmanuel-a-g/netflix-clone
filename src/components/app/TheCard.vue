@@ -50,6 +50,12 @@ export default {
       }
     },
   },
+  beforeUnmount() {
+    if (this.timer) {
+      clearTimeout(this.timer);
+      this.timer = null;
+    }
+  },
 };
 </script>
 

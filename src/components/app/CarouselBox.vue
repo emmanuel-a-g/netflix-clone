@@ -17,7 +17,7 @@
       >
         <img :src="theMovie ? theMovie.imageUrl : ''" alt="hover image" />
       </div>
-      <div v-if="showMovie" class="iframeContainer" >
+      <div v-if="showMovie" class="iframeContainer">
         <iframe
           :src="`https://www.youtube-nocookie.com/embed/${theMovieId}?start=5&end=38&autoplay=1&loop=1&modestbranding=1&autohide=1&showinfo=0rel=0&iv_load_policy=3&fs=0&color=white&controls=0&disablekb=1${muteControl}`"
           height="500"
@@ -129,6 +129,13 @@ export default {
         this.videoTimer = null;
       }
     },
+  },
+  beforeUnmount() {
+    if (this.videoTimer) {
+      this.showMovie = false;
+      clearTimeout(this.videoTimer);
+      this.videoTimer = null;
+    }
   },
 };
 </script>
