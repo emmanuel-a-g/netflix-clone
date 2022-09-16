@@ -18,6 +18,7 @@
       @updateIdx="updateIdx"
       @mouseenter="show"
       @mouseleave="unshow"
+      :mobileDetected="mobileDetected"
     ></TheCarousel>
   </div>
 </template>
@@ -27,7 +28,7 @@ import TheCarousel from "../../components/ui/TheCarousel.vue";
 import { divideListEquallyBy, combineNew } from "../../utils/index";
 import { data, data2 } from "../../store/data";
 export default {
-  props: ["listNumber", "title", "cards"],
+  props: ["listNumber", "title", "cards", "mobileDetected"],
   components: {
     TheCarousel,
   },
@@ -72,6 +73,8 @@ export default {
     const dividedList = divideListEquallyBy(list, divisor);
     this.bigList = dividedList;
   },
+  mounted() {
+  }
 };
 </script>
 

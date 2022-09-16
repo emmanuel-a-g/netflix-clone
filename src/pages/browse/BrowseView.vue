@@ -10,53 +10,71 @@
           title="Trending Now"
           :listNumber="1"
           :cards="cardsNum"
+          :mobileDetected="mobileDetected"
         ></TheCarouselComp>
         <TheCarouselCompList
           v-if="identifier.name && showMyList"
           :identifier="identifier"
           :cards="cardsNum"
           @hideMyList="hideList"
+          :mobileDetected="mobileDetected"
         >
         </TheCarouselCompList>
         <TheCarouselComp
           title="Recently Added"
           :listNumber="2"
           :cards="cardsNum"
+          :mobileDetected="mobileDetected"
         >
         </TheCarouselComp>
-        <TheCarouselComp title="New Releases" :listNumber="1" :cards="cardsNum">
+        <TheCarouselComp
+          title="New Releases"
+          :listNumber="1"
+          :cards="cardsNum"
+          :mobileDetected="mobileDetected"
+        >
         </TheCarouselComp>
         <TheCarouselComp
           title="Popular on Netflix"
           :listNumber="2"
           :cards="cardsNum"
+          :mobileDetected="mobileDetected"
         >
         </TheCarouselComp>
-        <TheCarouselComp title="Bingeworthy" :listNumber="1" :cards="cardsNum">
+        <TheCarouselComp
+          title="Bingeworthy"
+          :listNumber="1"
+          :cards="cardsNum"
+          :mobileDetected="mobileDetected"
+        >
         </TheCarouselComp>
         <div class="moreContent">
           <TheCarouselComp
             title="Exciting Movies"
             :listNumber="2"
             :cards="cardsNum"
+            :mobileDetected="mobileDetected"
           >
           </TheCarouselComp>
           <TheCarouselComp
             title="Blockbuster Movies"
             :listNumber="1"
             :cards="cardsNum"
+            :mobileDetected="mobileDetected"
           >
           </TheCarouselComp>
           <TheCarouselComp
             title="Acclaimed Writers"
             :listNumber="2"
             :cards="cardsNum"
+            :mobileDetected="mobileDetected"
           >
           </TheCarouselComp>
           <TheCarouselComp
             title="Familiar Favorites"
             :listNumber="1"
             :cards="cardsNum"
+            :mobileDetected="mobileDetected"
           >
           </TheCarouselComp>
         </div>
@@ -94,6 +112,7 @@ export default {
       cardsNum: 6,
       identifier: undefined,
       showMyList: true,
+      mobileDetected: false,
     };
   },
   methods: {
@@ -148,6 +167,13 @@ export default {
     }
     if (!this.identifier) {
       this.identifier = this.$store.getters.getCurrentProfile.name;
+    }
+    if (
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+      )
+    ) {
+      this.mobileDetected = true;
     }
   },
   beforeUnmount() {

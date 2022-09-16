@@ -15,6 +15,7 @@
       :show="show"
       :total="total"
       :identifier="identifier"
+      :mobileDetected="mobileDetected"
     ></CarouselBox>
   </div>
 </template>
@@ -25,7 +26,7 @@ export default {
   components: {
     CarouselBox,
   },
-  props: ["mov", "index", "total", "identifier"],
+  props: ["mov", "index", "total", "identifier", "mobileDetected"],
   data() {
     return {
       show: false,

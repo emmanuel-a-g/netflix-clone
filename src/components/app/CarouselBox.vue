@@ -12,8 +12,8 @@
       <div
         class="movieDiv"
         v-if="!showMovie"
-        @mouseover="startTimer"
-        @mouseout="cancelTimer"
+        @mouseover="startTimer && mobileDetected === false"
+        @mouseout="cancelTimer && mobileDetected === false"
       >
         <img :src="theMovie ? theMovie.imageUrl : ''" alt="hover image" />
       </div>
@@ -78,7 +78,14 @@ import plus from "../../assets/plus.png";
 import downArr from "../../assets/downArr.png";
 import whiteCheckmark from "../../assets/whiteCheckmark.png";
 export default {
-  props: ["show", "theIdx", "theMovie", "total", "identifier"],
+  props: [
+    "show",
+    "theIdx",
+    "theMovie",
+    "total",
+    "identifier",
+    "mobileDetected",
+  ],
   emits: ["closeCard"],
   data() {
     return {
@@ -383,5 +390,10 @@ export default {
 }
 #redHover:hover {
   border-color: grey;
+}
+@media only screen and (max-width: 400px) {
+  .tags {
+    visibility: hidden;
+  }
 }
 </style>

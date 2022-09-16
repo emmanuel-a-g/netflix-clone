@@ -10,6 +10,7 @@
             :mov="mov"
             :total="item.length"
             :identifier="identifier"
+            :mobileDetected="mobileDetected"
           >
           </TheCard>
         </div>
@@ -35,7 +36,7 @@ export default {
     TheCard,
   },
   emits: ["updateIdx"],
-  props: ["showIndicators", "indicators", "bigList"],
+  props: ["showIndicators", "indicators", "bigList", "mobileDetected"],
   data() {
     return {
       identifier: 1,
