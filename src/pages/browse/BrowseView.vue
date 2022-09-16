@@ -168,9 +168,9 @@ export default {
     if (!this.identifier) {
       this.identifier = this.$store.getters.getCurrentProfile.name;
     }
-    if (typeof screen.orientation !== "undefined") {
-      //desktop
-    } else {
+
+    const isMobile = window.matchMedia('only screen and (max-width: 400px)').matches;
+    if (isMobile) {
       this.mobileDetected = true;
     }
   },

@@ -12,8 +12,8 @@
       <div
         class="movieDiv"
         v-if="!showMovie"
-        @mouseover="startTimer && mobileDetected === false"
-        @mouseout="cancelTimer && mobileDetected === false"
+        @mouseover="startTimer"
+        @mouseout="cancelTimer"
       >
         <img :src="theMovie ? theMovie.imageUrl : ''" alt="hover image" />
       </div>
@@ -145,6 +145,9 @@ export default {
       }
     },
     cancelTimer() {
+      if (this.mobileDetected) {
+        return;
+      }
       if (this.timer && !this.showMovie) {
         clearTimeout(this.timer);
         this.timer = null;
@@ -155,6 +158,9 @@ export default {
       this.startVideoTimer();
     },
     startTimer() {
+      if (this.mobileDetected) {
+        return;
+      }
       if (!this.showMovie && !this.timer) {
         this.timer = setTimeout(() => {
           this.handleOpen();
