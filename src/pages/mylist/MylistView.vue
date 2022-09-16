@@ -151,10 +151,15 @@ export default {
         .then((res) => {
           const mylist = res.mylist[this.identifier];
           this.myListIds = mylist;
+          console.log(mylist);
           if (mylist && mylist.length) {
             const myListMovies = getMyListMovies(mylist);
             this.myList = myListMovies;
             this.setMyList(myListMovies);
+          } else {
+            this.myListIds = [];
+            this.mylist = [];
+            this.bigList = [];
           }
         })
         .catch((err) => {

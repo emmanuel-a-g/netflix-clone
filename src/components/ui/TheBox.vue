@@ -7,6 +7,8 @@
           class="profileImage"
           :src="profileImages.one"
           alt="profile"
+          width="26px"
+          height="26px"
         />
         {{ profiles.one || "+ profile" }}
       </li>
@@ -16,6 +18,8 @@
           class="profileImage"
           :src="profileImages.two"
           alt="profile"
+          width="26px"
+          height="26px"
         />
         {{ profiles.two || "+ profile" }}
       </li>
@@ -25,6 +29,8 @@
           class="profileImage"
           :src="profileImages.three"
           alt="profile"
+          width="26px"
+          height="26px"
         />
         {{ profiles.three || "+ profile" }}
       </li>
@@ -34,6 +40,8 @@
           class="profileImage"
           :src="profileImages.four"
           alt="profile"
+          width="26px"
+          height="26px"
         />
         {{ profiles.four || "+ profile" }}
       </li>
@@ -43,18 +51,20 @@
           class="profileImage"
           :src="profileImages.five"
           alt="profile"
+          width="26px"
+          height="26px"
         />
         {{ profiles.five || "+ profile" }}
       </li>
       <li class="action" @click="handleSelectuser">
-        <img width="16px" height="16px" :src="pencil" alt="edit logo" />Manage
+        <img width="18px" height="18px" :src="pencil" alt="edit logo" />Manage
         profiles
       </li>
       <li class="action" @click="handleAccount">
-        <img width="16px" height="16px" :src="user" alt="user logo" />Account
+        <img width="18px" height="18px" :src="user" alt="user logo" />Account
       </li>
       <li class="action">
-        <img width="16px" height="16px" :src="help" alt="help logo" />Help
+        <img width="18px" height="18px" :src="help" alt="help logo" />Help
         Center
       </li>
       <li class="signout" @click="handleLogout">Sign out of Netflix</li>
@@ -116,6 +126,7 @@ export default {
 .profile {
   width: 82%;
   text-align: left;
+  display: flex;
 }
 .action {
   width: 82%;
@@ -164,8 +175,8 @@ export default {
   visibility: hidden;
 }
 .action img {
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   margin: 0px 10px 0px 0px;
 }
 .signout {
@@ -173,9 +184,9 @@ export default {
   border-top: 1px solid rgb(148, 148, 148);
 }
 .profileImage {
-  width: 16px;
-  height: 16px;
-  margin-right: 5px;
+  width: 26px;
+  height: 26px;
+  margin-right: 8px;
   border-radius: 4px;
 }
 @media only screen and (max-width: 800px) {
