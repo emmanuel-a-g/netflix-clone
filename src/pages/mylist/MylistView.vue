@@ -23,7 +23,7 @@
       <div class="header">
         <h1>My List</h1>
       </div>
-      <div v-if="bigList[0].length">
+      <div v-if="bigList[0].length === 0">
         <h4>Nothing Added to My List</h4>
       </div>
       <div v-if="bigList[0].length > 1">
