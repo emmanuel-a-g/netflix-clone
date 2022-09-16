@@ -12,7 +12,7 @@
           :cards="cardsNum"
         ></TheCarouselComp>
         <TheCarouselCompList
-          v-if="identifier.name"
+          v-if="identifier.name && showMyList"
           :identifier="identifier"
           :cards="cardsNum"
           @hideMyList="hideList"

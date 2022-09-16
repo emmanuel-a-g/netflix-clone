@@ -23,20 +23,22 @@
       <div class="header">
         <h1>My List</h1>
       </div>
-      <div v-if="bigList.length === 0">
+      <div v-if="bigList[0].length">
         <h4>Nothing Added to My List</h4>
       </div>
-      <div class="train" v-for="(list, index) in bigList" :key="index">
-        <div class="wagon" v-for="(mov, idx) in list" :key="idx">
-          <div
-            class="card"
-            :style="{ visibility: mov.id ? 'visible' : 'hidden' }"
-          >
-            <img
-              @click="toggleOpen(mov)"
-              :src="`${mov.imageUrl ? mov.imageUrl : ''}`"
-              alt="profile image"
-            />
+      <div v-if="bigList[0].length > 1">
+        <div class="train" v-for="(list, index) in bigList" :key="index">
+          <div class="wagon" v-for="(mov, idx) in list" :key="idx">
+            <div
+              class="card"
+              :style="{ visibility: mov.id ? 'visible' : 'hidden' }"
+            >
+              <img
+                @click="toggleOpen(mov)"
+                :src="`${mov.imageUrl ? mov.imageUrl : ''}`"
+                alt="profile image"
+              />
+            </div>
           </div>
         </div>
       </div>
