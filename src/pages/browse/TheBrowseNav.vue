@@ -3,13 +3,17 @@
     class="content"
     :style="{ 'background-color': atTop ? 'transparent' : 'black' }"
   >
-    <div class="imgDiv">
+    <div class="imgDiv" @mouseleave="hideBrowseBox">
       <div class="netflix">
         <img @click="handleHome" class="logo" :src="logo" alt="netflix logo" />
       </div>
-      <p v-if="mobileView && showBrowse">
+      <p v-if="mobileView && show" @mouseenter="showBrowseBox">
         <span>Browse</span>
         <span id="down">&#9660;</span>
+        <MobileBrowse
+          @handleClose="hideBrowseBox"
+          :show="showBrowse"
+        ></MobileBrowse>
       </p>
     </div>
     <div class="middleMenu" v-if="!mobileView">
@@ -92,12 +96,14 @@ import bell from "../../assets/bellWhite.png";
 import TheBox from "../../components/ui/TheBox.vue";
 import arrow from "../../assets/arrow.png";
 import TheNotifications from "../../components/ui/TheNotifications.vue";
+import MobileBrowse from "../../pages/browse/MobileBrowse.vue";
 import { getProfileImage } from "../../store/data";
 export default {
-  props: ["showBrowse"],
+  props: ["show"],
   components: {
     TheBox,
     TheNotifications,
+    MobileBrowse,
   },
   data() {
     return {
@@ -118,6 +124,7 @@ export default {
       superSmall: false,
       bell,
       arrow,
+      showBrowse: false,
     };
   },
   computed: {
@@ -149,6 +156,12 @@ export default {
     },
   },
   methods: {
+    showBrowseBox() {
+      this.showBrowse = true;
+    },
+    hideBrowseBox() {
+      this.showBrowse = false;
+    },
     toAccount() {
       this.$router.push("/account");
     },
@@ -201,9 +214,12 @@ export default {
     handleMylist() {
       const currPath = this.$route.path.includes("mylist");
       if (!this.identifier) {
-        this.$router.push({path: "/selectuser", query: {
-          redirect: "mylist"
-        }});
+        this.$router.push({
+          path: "/selectuser",
+          query: {
+            redirect: "mylist",
+          },
+        });
       } else if (this.identifier && !currPath) {
         this.$router.push({
           path: "/mylist",

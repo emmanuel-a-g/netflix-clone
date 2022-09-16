@@ -1,6 +1,6 @@
 <template>
   <div class="browseDiv">
-    <TheBrowseNav :showBrowse="true"></TheBrowseNav>
+    <TheBrowseNav :show="true"></TheBrowseNav>
     <BrowseHero :hero="hero"></BrowseHero>
     <div class="inner">
       <BrowseTop :hero="hero"></BrowseTop>

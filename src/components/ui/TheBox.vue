@@ -1,7 +1,7 @@
 <template>
   <div class="theBox" :class="{ visibleClass: show, hiddenClass: !show }">
     <ul>
-      <li class="profile">
+      <li class="profile" @click="handleSelectuser">
         <img
           v-if="profileImages"
           class="profileImage"
@@ -10,9 +10,9 @@
           width="26px"
           height="26px"
         />
-        {{ profiles.one || "+ profile" }}
+        {{ profiles.one || "new" }}
       </li>
-      <li class="profile">
+      <li class="profile" @click="handleSelectuser">
         <img
           v-if="profileImages"
           class="profileImage"
@@ -21,9 +21,9 @@
           width="26px"
           height="26px"
         />
-        {{ profiles.two || "+ profile" }}
+        {{ profiles.two || "new" }}
       </li>
-      <li class="profile">
+      <li class="profile" @click="handleSelectuser">
         <img
           v-if="profileImages"
           class="profileImage"
@@ -32,9 +32,9 @@
           width="26px"
           height="26px"
         />
-        {{ profiles.three || "+ profile" }}
+        {{ profiles.three || "new" }}
       </li>
-      <li class="profile">
+      <li class="profile" @click="handleSelectuser">
         <img
           v-if="profileImages"
           class="profileImage"
@@ -43,9 +43,9 @@
           width="26px"
           height="26px"
         />
-        {{ profiles.four || "+ profile" }}
+        {{ profiles.four || "new" }}
       </li>
-      <li class="profile">
+      <li class="profile" @click="handleSelectuser">
         <img
           v-if="profileImages"
           class="profileImage"
@@ -54,7 +54,7 @@
           width="26px"
           height="26px"
         />
-        {{ profiles.five || "+ profile" }}
+        {{ profiles.five || "new" }}
       </li>
       <li class="action" @click="handleSelectuser">
         <img width="18px" height="18px" :src="pencil" alt="edit logo" />Manage

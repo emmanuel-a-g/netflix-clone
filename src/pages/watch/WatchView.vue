@@ -117,8 +117,8 @@ export default {
   z-index: 24;
   top: 3%;
   left: 3%;
-  height: 50px;
-  width: 50px;
+  height: 40px;
+  width: 40px;
 }
 .arrow:hover {
   cursor: pointer;
