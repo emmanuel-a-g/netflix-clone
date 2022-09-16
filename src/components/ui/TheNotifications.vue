@@ -1,11 +1,11 @@
 <template>
   <div class="theBox" :class="{ visibleClass: show, hiddenClass: !show }">
     <ul>
-      <li class="action">alert one</li>
-      <li class="action">alert two</li>
-      <li class="action">alert three</li>
-      <li class="action">alert four</li>
-      <li class="action">alert five</li>
+      <li class="action">New Arrival Diary of Gigolo</li>
+      <li class="action">New Arrival Buy My House</li>
+      <li class="action">What's Leaving Last Chance</li>
+      <li class="action">Last: Don't Blame Karma</li>
+      <li class="action">New Arrival Gray Man</li>
     </ul>
   </div>
 </template>
@@ -29,8 +29,12 @@ export default {
   text-indent: 20px;
   text-align: left;
 }
+.action:hover {
+  background-color: rgba(0, 0, 0, 0.941);
+}
 .theBox ul {
   border: 1px solid rgb(47, 47, 47);
+  border-top: 2px solid white;
   list-style: none;
   background-color: rgba(0, 0, 0, 0.85);
   margin: 0;
@@ -38,14 +42,14 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  min-height: 440px;
+  min-height: 350px;
   width: 100%;
-  overflow-y: scroll;
 }
 .theBox li {
   list-style: none;
   margin: 0;
   padding: 5px 0px;
+  flex: 1;
 }
 .visibleClass {
   position: absolute;
@@ -73,10 +77,11 @@ export default {
   }
 }
 @media only screen and (max-width: 500px) {
-  .visibleClass {
+  .visibleClass,
+  .hiddenClass {
     right: 13vw;
-    height: 400px;
-    width: 300px;
+    height: 250px;
+    width: 250px;
   }
 }
 </style>

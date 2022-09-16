@@ -173,6 +173,8 @@ export default {
       const small = 550;
       this.mobileView = window.innerWidth < breakpoint;
       this.superSmall = window.innerWidth < small;
+      this.showBrowse = false; 
+
     },
     setScroll() {
       this.scrollPosition = window.top.scrollY;

@@ -134,7 +134,7 @@ export default {
 }
 .theBox ul {
   list-style: none;
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: rgba(0, 0, 0, 0.82);
   margin: 0;
   padding: 0;
   display: flex;
@@ -155,7 +155,7 @@ export default {
 }
 .visibleClass {
   position: absolute;
-  background-color: rgba(0, 0, 0, 0.95);
+  background-color: rgba(0, 0, 0, 0.82);
   height: 340px;
   width: 220px;
   top: 8.5vh;
