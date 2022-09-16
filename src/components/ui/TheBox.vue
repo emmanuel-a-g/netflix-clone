@@ -1,11 +1,51 @@
 <template>
   <div class="theBox" :class="{ visibleClass: show, hiddenClass: !show }">
     <ul>
-      <li class="profile">{{ profiles.one || "+ profile" }}</li>
-      <li class="profile">{{ profiles.two || "+ profile" }}</li>
-      <li class="profile">{{ profiles.three || "+ profile" }}</li>
-      <li class="profile">{{ profiles.four || "+ profile" }}</li>
-      <li class="profile">{{ profiles.five || "+ profile" }}</li>
+      <li class="profile">
+        <img
+          v-if="profileImages"
+          class="profileImage"
+          :src="profileImages.one"
+          alt="profile"
+        />
+        {{ profiles.one || "+ profile" }}
+      </li>
+      <li class="profile">
+        <img
+          v-if="profileImages"
+          class="profileImage"
+          :src="profileImages.two"
+          alt="profile"
+        />
+        {{ profiles.two || "+ profile" }}
+      </li>
+      <li class="profile">
+        <img
+          v-if="profileImages"
+          class="profileImage"
+          :src="profileImages.three"
+          alt="profile"
+        />
+        {{ profiles.three || "+ profile" }}
+      </li>
+      <li class="profile">
+        <img
+          v-if="profileImages"
+          class="profileImage"
+          :src="profileImages.four"
+          alt="profile"
+        />
+        {{ profiles.four || "+ profile" }}
+      </li>
+      <li class="profile">
+        <img
+          v-if="profileImages"
+          class="profileImage"
+          :src="profileImages.five"
+          alt="profile"
+        />
+        {{ profiles.five || "+ profile" }}
+      </li>
       <li class="action" @click="handleSelectuser">
         <img width="16px" height="16px" :src="pencil" alt="edit logo" />Manage
         profiles
@@ -26,16 +66,12 @@
 import user from "../../assets/user.png";
 import help from "../../assets/help.png";
 import pencil from "../../assets/pencil.png";
+import { getProfileImage } from "../../store/data";
 export default {
   data() {
     return {
-      profiles: {
-        one: "",
-        two: "",
-        three: "",
-        four: "",
-        five: "",
-      },
+      profiles: {},
+      profileImages: {},
       user,
       help,
       pencil,
@@ -59,12 +95,19 @@ export default {
     if (profiles) {
       this.profiles = profiles;
     }
-  },
-  beforeUpdate() {
-    const profiles = this.$store.getters.getProfiles;
-    if (profiles) {
-      this.profiles = profiles;
-    }
+    this.$store
+      .dispatch("profileNames")
+      .then((res) => {
+        const imagesId = res.images;
+        let obj = {};
+        for (let key in imagesId) {
+          obj[key] = getProfileImage(imagesId[key]).imageUrl;
+        }
+        this.profileImages = obj;
+      })
+      .catch((err) => {
+        console.log("Profile names error", err);
+      });
   },
 };
 </script>
@@ -128,6 +171,12 @@ export default {
 .signout {
   width: 100%;
   border-top: 1px solid rgb(148, 148, 148);
+}
+.profileImage {
+  width: 16px;
+  height: 16px;
+  margin-right: 5px;
+  border-radius: 4px;
 }
 @media only screen and (max-width: 800px) {
   .visibleClass {

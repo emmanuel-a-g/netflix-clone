@@ -31,8 +31,9 @@
         <div class="actions">
           <div class="actionsLeft">
             <p
-              :style="{ 'background-color': 'white', 'border-color': 'white' }"
+              :style="{ 'background-color': 'white'}"
               @click="toWatch"
+              id="redHover"
             >
               <img id="play" :src="play" alt="play button" />
             </p>
@@ -358,5 +359,11 @@ export default {
 .iframeContainer iframe:hover {
   /* MOBILE REQUIRED */
   pointer-events: none !important;
+}
+#redHover {
+  border-color: white;
+}
+#redHover:hover {
+  border-color: grey;
 }
 </style>

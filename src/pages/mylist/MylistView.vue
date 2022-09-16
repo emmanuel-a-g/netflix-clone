@@ -7,7 +7,7 @@
         <div class="movieView">
           <div>
             <img
-            @click="watchNow(selectedMovie.videoId)"            
+              @click="watchNow(selectedMovie.videoId)"
               :src="selectedMovie.imageUrl || ''"
               :alt="selectedMovie.title || ''"
             />
@@ -70,7 +70,7 @@ export default {
   },
   watch: {
     cardsNum() {
-      if (this.myListIds) {
+      if (this.myListIds && this.myListIds.length) {
         this.setMyList();
       }
     },
@@ -151,7 +151,7 @@ export default {
         .then((res) => {
           const mylist = res.mylist[this.identifier];
           this.myListIds = mylist;
-          if (mylist.length) {
+          if (mylist && mylist.length) {
             const myListMovies = getMyListMovies(mylist);
             this.myList = myListMovies;
             this.setMyList(myListMovies);
@@ -195,9 +195,6 @@ export default {
   width: 130px;
   height: auto;
   margin-top: -14px;
-}
-.card {
-  /* flex: 1; */
 }
 
 .mainContent {

@@ -3,7 +3,7 @@
     <TheBrowseNav :showBrowse="true"></TheBrowseNav>
     <BrowseHero :hero="hero"></BrowseHero>
     <div class="inner">
-      <BrowseTop :hero="hero">></BrowseTop>
+      <BrowseTop :hero="hero"></BrowseTop>
       <div class="wrapperCarousel">
         <TheCarouselComp
           title="Recently Added"
@@ -91,7 +91,7 @@ export default {
   },
   beforeUnmount() {
     window.removeEventListener("resize", this.setMargins);
-  }
+  },
 };
 </script>
 
