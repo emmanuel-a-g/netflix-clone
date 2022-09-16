@@ -168,11 +168,9 @@ export default {
     if (!this.identifier) {
       this.identifier = this.$store.getters.getCurrentProfile.name;
     }
-    if (
-      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-        navigator.userAgent
-      )
-    ) {
+    if (typeof screen.orientation !== "undefined") {
+      //desktop
+    } else {
       this.mobileDetected = true;
     }
   },
