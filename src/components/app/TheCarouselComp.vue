@@ -73,8 +73,6 @@ export default {
     const dividedList = divideListEquallyBy(list, divisor);
     this.bigList = dividedList;
   },
-  mounted() {
-  }
 };
 </script>
 

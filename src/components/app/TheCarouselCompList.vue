@@ -75,6 +75,7 @@ export default {
             this.indicators = indicatorsList;
             const myListMovies = getMyListMovies(mylist);
             this.myList = myListMovies;
+            console.log("setting my list in fetch; ", this.myList);
             this.setMyList(myListMovies);
           } else {
             this.$emit("hideMyList");
@@ -91,7 +92,7 @@ export default {
   watch: {
     cards(newDivisor) {
       let totalMovies = this.myList;
-      let lists = Math.ceil(totalMovies / newDivisor);
+      let lists = Math.ceil(totalMovies.length / newDivisor);
       this.indicators = new Array(lists).fill(0);
       this.bigList = combineNew(this.bigList, newDivisor);
     },
