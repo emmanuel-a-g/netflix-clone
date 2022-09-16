@@ -83,7 +83,7 @@ function mixUpMovies(list) {
 }
 
 export function divide(list, desired) {
-  if (typeof desired !== "number") {
+  if (!list || !list.length) {
     return list;
   }
   let result = [];

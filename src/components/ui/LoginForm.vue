@@ -19,7 +19,7 @@
           type="password"
           v-model="password"
           placeholder="Password"
-          v-on:keydown="validatePassword"
+          v-on:keyup="validatePassword"
           :class="{ highlight: alertPassword ? true : false }"
         />
         <span class="alert" v-if="alertPassword">

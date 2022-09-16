@@ -5,6 +5,7 @@ export const data = [
     title: "Spider Man 3",
     genre: "action",
     id: 1,
+    tags: ["Sequel", "Superhero", "City"],
     imageUrl: `${baseUrl}/spiderman3.png`,
     videoId: "wPosLpgMtTY",
   },
@@ -12,6 +13,7 @@ export const data = [
     title: "Better Call Saul",
     genre: "show",
     id: 2,
+    tags: ["Lawyer", "Money", "Cops"],
     imageUrl: `${baseUrl}/saul_S.png`,
     videoId: "9q4qzYrHVmI",
   },
@@ -19,6 +21,7 @@ export const data = [
     title: "Spider Man",
     genre: "hereo",
     id: 3,
+    tags: ["Superhero", "Family", "Hero"],
     imageUrl: `${baseUrl}/spiderman_S.png`,
     videoId: "t06RUxPbp_c",
   },
@@ -26,6 +29,7 @@ export const data = [
     title: "Troy",
     genre: "war",
     id: 4,
+    tags: ["War", "History", "Classic"],
     imageUrl: `${baseUrl}/troy_S.png`,
     videoId: "6FG3BfPuwBA",
   },
@@ -33,6 +37,7 @@ export const data = [
     title: "Squid Game",
     genre: "show",
     id: 5,
+    tags: ["Show", "Makebelieve", "Thriller"],
     imageUrl: `${baseUrl}/squidgame_S.jpg`,
     videoId: "oqxAJKy0ii4",
   },
@@ -40,6 +45,7 @@ export const data = [
     title: "I am Legend",
     genre: "suspense",
     id: 6,
+    tags: ["Action", "Thriller", "World"],
     imageUrl: `${baseUrl}/legend_S.png`,
     videoId: "dtKMEAXyPkg",
   },
@@ -47,6 +53,7 @@ export const data = [
     title: "Me time",
     genre: "comedy",
     id: 7,
+    tags: ["Funny", "Family", "Feelgood"],
     imageUrl: `${baseUrl}/metime_S.jpg`,
     videoId: "Mmq_NVwLN_g",
   },
@@ -54,6 +61,7 @@ export const data = [
     title: "Scarface",
     genre: "crime",
     id: 8,
+    tags: ["Drugs", "Retro", "Power"],
     imageUrl: `${baseUrl}/scarface_S.png`,
     videoId: "7pQQHnqBa2E",
   },
@@ -61,6 +69,7 @@ export const data = [
     title: "Breaking Bad",
     genre: "show",
     id: 9,
+    tags: ["Crime", "Money", "Cops"],
     imageUrl: `${baseUrl}/breaking_S.png`,
     videoId: "HhesaQXLuRY",
   },
@@ -68,6 +77,7 @@ export const data = [
     title: "Insidious 2",
     genre: "horror",
     id: 10,
+    tags: ["Horror", "Sequel", "Scary"],
     imageUrl: `${baseUrl}/insidious_S.png`,
     videoId: "5hvNMXh1GWw",
   },
@@ -75,6 +85,7 @@ export const data = [
     title: "Snow White & Huntsman",
     genre: "family",
     id: 11,
+    tags: ["Dark", "Family", "Hunt"],
     imageUrl: `${baseUrl}/huntsman_S.png`,
     videoId: "V4SQ9xBXMX0",
   },
@@ -82,6 +93,7 @@ export const data = [
     title: "Despicable Me",
     genre: "kids",
     id: 12,
+    tags: ["Family", "Kids", "Comedy"],
     imageUrl: `${baseUrl}/despicable_S.png`,
     videoId: "zzCZ1W_CUoI",
   },
@@ -89,12 +101,14 @@ export const data = [
     title: "8 Mile",
     genre: "documentary",
     id: 13,
+    tags: ["History", "Money", "Fame"],
     imageUrl: `${baseUrl}/8mile_S.png`,
     videoId: "TRZXaEl9fPo",
   },
   {
     title: "Mind Hunter",
     genre: "crime",
+    tags: ["Crime", "Blood", "History"],
     id: 14,
     imageUrl:
       "https://res.cloudinary.com/milito/image/upload/v1662743230/netflix/mindhunter.jpg",
@@ -104,6 +118,7 @@ export const data = [
     title: "Quantum of Solace: 007",
     genre: "movie",
     id: 15,
+    tags: ["Action", "Spy", "Feelgood"],
     imageUrl:
       "https://res.cloudinary.com/milito/image/upload/v1662743230/netflix/quantum.png",
     videoId: "mkLcEGMkGMs",
@@ -112,6 +127,7 @@ export const data = [
     title: "Hyperdrive",
     genre: "show",
     id: 16,
+    tags: ["Race", "Reality", "Cars"],
     imageUrl:
       "https://res.cloudinary.com/milito/image/upload/v1662743229/netflix/hyperdrive.jpg",
     videoId: "saXM2VOBI0M",
@@ -119,6 +135,7 @@ export const data = [
   {
     title: "Love is Blind 2",
     genre: "romance",
+    tags: ["Reality", "Love", "Competition"],
     id: 17,
     imageUrl:
       "https://res.cloudinary.com/milito/image/upload/v1662743229/netflix/loveisblind.jpg",
@@ -127,6 +144,7 @@ export const data = [
   {
     title: "House of Cards",
     genre: "show",
+    tags: ["Politics", "Power", "USA"],
     id: 18,
     imageUrl:
       "https://res.cloudinary.com/milito/image/upload/v1662743229/netflix/house.jpg",
@@ -136,6 +154,7 @@ export const data = [
     title: "Constantine",
     genre: "horror",
     id: 19,
+    tags: ["Suspense", "Horror", "Dark"],
     imageUrl:
       "https://res.cloudinary.com/milito/image/upload/v1662743229/netflix/constantine.png",
     videoId: "DEa508Xmmio",
@@ -144,6 +163,7 @@ export const data = [
     title: "The Perfect Date",
     genre: "romance",
     id: 20,
+    tags: ["Romance", "Funny", "Feelgood"],
     imageUrl:
       "https://res.cloudinary.com/milito/image/upload/v1662743229/netflix/perfectdate.jpg",
     videoId: "Hld-7oBn3Rk",
@@ -155,6 +175,7 @@ export const data2 = [
     title: "The Bucket List",
     genre: "feelgood",
     id: 21,
+    tags: ["Funny", "Comedy", "Feelgood"],
     imageUrl:
       "https://res.cloudinary.com/milito/image/upload/v1662749445/netflix/bucketlist_bcqu1j.png",
     videoId: "vc3mkG21ob4",
@@ -163,6 +184,7 @@ export const data2 = [
     title: "Blow",
     genre: "crime",
     id: 22,
+    tags: ["Money", "Drugs", "History"],
     imageUrl:
       "https://res.cloudinary.com/milito/image/upload/v1662749445/netflix/blow_gz7gt7.png",
     videoId: "scWkP1GdnuU",
@@ -171,6 +193,7 @@ export const data2 = [
     title: "Despicable Me 2",
     genre: "family",
     id: 23,
+    tags: ["Family", "Feelgood", "Kids"],
     imageUrl:
       "https://res.cloudinary.com/milito/image/upload/v1662749445/netflix/despicable2_ktaxie.png",
     videoId: "6qsH_LFRr6k",
@@ -178,6 +201,7 @@ export const data2 = [
   {
     title: "The Age of Adaline",
     genre: "romance",
+    tags: ["Love", "Story", "Romance"],
     id: 24,
     imageUrl:
       "https://res.cloudinary.com/milito/image/upload/v1662749445/netflix/ageofadeline_otx8ek.png",
@@ -186,6 +210,7 @@ export const data2 = [
   {
     title: "6 Underground",
     genre: "action",
+    tags: ["Action", "Crime", "Suspense"],
     id: 25,
     imageUrl:
       "https://res.cloudinary.com/milito/image/upload/v1662749445/netflix/6_underground_ocwt6h.jpg",
@@ -194,6 +219,7 @@ export const data2 = [
   {
     title: "Stranger Things",
     genre: "scifi",
+    tags: ["Sci-Fi", "Suspense", "Retro"],
     imageUrl:
       "https://res.cloudinary.com/milito/image/upload/v1662749429/netflix/strangerthings_qkaxio.jpg",
     id: 26,
@@ -203,6 +229,7 @@ export const data2 = [
     title: "Spoiled Brats",
     genre: "comedy",
     id: 27,
+    tags: ["Funny", "Spanish", "Comedy"],
     imageUrl:
       "https://res.cloudinary.com/milito/image/upload/v1662749429/netflix/spoiled_hbw8ps.jpg",
     videoId: "tpfVdCz2RNg",
@@ -211,6 +238,7 @@ export const data2 = [
     title: "Seinfield",
     genre: "comedy",
     id: 28,
+    tags: ["Comedy", "Show", "Funny"],
     imageUrl:
       "https://res.cloudinary.com/milito/image/upload/v1662749428/netflix/seinfield_hqhkre.png",
     videoId: "hQXKyIG_NS4",
@@ -218,14 +246,16 @@ export const data2 = [
   {
     title: "Peaky Blinders",
     genre: "show",
+    id: 29,
+    tags: ["Show", "Money", "Power"],
     imageUrl:
       "https://res.cloudinary.com/milito/image/upload/v1662749428/netflix/peaky_xqhzlm.jpg",
-    id: 29,
     videoId: "Ruyl8_PT_y8",
   },
   {
     title: "Skyfall",
     genre: "action",
+    tags: ["Spy", "Action", "Suspense"],
     id: 30,
     imageUrl:
       "https://res.cloudinary.com/milito/image/upload/v1662749428/netflix/skyfall_igfb4p.png",
@@ -234,6 +264,7 @@ export const data2 = [
   {
     title: "Resident Evil Retribution",
     genre: "suspense",
+    tags: ["Sci-Fi", "World", "Thriller"],
     id: 31,
     imageUrl:
       "https://res.cloudinary.com/milito/image/upload/v1662749428/netflix/residentevil_cxg0or.png",
@@ -242,6 +273,7 @@ export const data2 = [
   {
     title: "No Strings Attached",
     genre: "comedy",
+    tags: ["Sci-Fi", "Show", "Suspense"],
     id: 32,
     imageUrl:
       "https://res.cloudinary.com/milito/image/upload/v1662749428/netflix/nostrings_exyxsc.png",
@@ -250,6 +282,7 @@ export const data2 = [
   {
     title: "Narcos Mexico",
     genre: "show",
+    tags: ["Drugs", "Money", "History"],
     id: 33,
     imageUrl:
       "https://res.cloudinary.com/milito/image/upload/v1662749428/netflix/narcosmexico_ut9jku.jpg",
@@ -258,6 +291,7 @@ export const data2 = [
   {
     title: "Night Stalker",
     genre: "crime",
+    tags: ["Crime", "Documentary", "Cops"],
     id: 34,
     imageUrl:
       "https://res.cloudinary.com/milito/image/upload/v1662749428/netflix/nightstalker_lf3fsx.jpg",
@@ -266,6 +300,7 @@ export const data2 = [
   {
     title: "Grey's Anatomy",
     genre: "show",
+    tags: ["Health", "Feelgood", "Show"],
     id: 35,
     imageUrl:
       "https://res.cloudinary.com/milito/image/upload/v1662749427/netflix/greys_p5pkva.png",
@@ -274,6 +309,7 @@ export const data2 = [
   {
     title: "Mi Rey Palazuelos",
     genre: "reality",
+    tags: ["Reality", "Show", "Funny"],
     id: 36,
     imageUrl:
       "https://res.cloudinary.com/milito/image/upload/v1662749427/netflix/mirey_qjfjpq.png",
@@ -282,6 +318,7 @@ export const data2 = [
   {
     title: "Money Heist",
     genre: "show",
+    tags: ["Money", "Crime", "Puzzle"],
     id: 37,
     imageUrl:
       "https://res.cloudinary.com/milito/image/upload/v1662749427/netflix/moneyheist_dmep4g.jpg",
@@ -290,6 +327,7 @@ export const data2 = [
   {
     title: "El Camino",
     genre: "suspense",
+    tags: ["Crime", "Money", "Goodguy"],
     id: 38,
     imageUrl:
       "https://res.cloudinary.com/milito/image/upload/v1662749427/netflix/elcamino_og84g0.jpg",
@@ -298,6 +336,7 @@ export const data2 = [
   {
     title: "Kate",
     genre: "action",
+    tags: ["Action", "Sci-Fi", "Thriller"],
     id: 39,
     imageUrl:
       "https://res.cloudinary.com/milito/image/upload/v1662749427/netflix/kate_gt14l7.jpg",
@@ -306,6 +345,7 @@ export const data2 = [
   {
     title: "Morbius",
     genre: "heroes",
+    tags: ["Superhero", "Suspense", "Dark"],
     id: 40,
     imageUrl:
       "https://res.cloudinary.com/milito/image/upload/v1662749427/netflix/morbius_n38hzh.png",

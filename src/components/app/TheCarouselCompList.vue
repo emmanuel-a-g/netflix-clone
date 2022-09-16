@@ -28,6 +28,7 @@ import { getMyListMovies } from "../../store/data";
 import { divide, combineNew } from "../../utils/index";
 export default {
   props: ["cards", "identifier"],
+  emits: ["hideMyList"],
   components: {
     TheCarousel,
   },
@@ -76,6 +77,7 @@ export default {
             this.myList = myListMovies;
             this.setMyList(myListMovies);
           } else {
+            this.$emit("hideMyList");
             this.myListIds = [];
             this.mylist = [];
             this.bigList = [];

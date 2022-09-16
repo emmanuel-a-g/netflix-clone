@@ -31,7 +31,7 @@
         <div class="actions">
           <div class="actionsLeft">
             <p
-              :style="{ 'background-color': 'white'}"
+              :style="{ 'background-color': 'white' }"
               @click="toWatch"
               id="redHover"
             >
@@ -60,11 +60,11 @@
           <p class="hd">HD</p>
         </div>
         <div class="tags">
-          <p>Exciting</p>
+          <p>{{ computeTag(1) }}</p>
           &#8226;
-          <p>Fun</p>
+          <p>{{ computeTag(2) }}</p>
           &#8226;
-          <p>Suspense</p>
+          <p>{{ computeTag(3) }}</p>
         </div>
       </div>
     </div>
@@ -100,13 +100,31 @@ export default {
     },
   },
   methods: {
+    computeTag(pos) {
+      if (this.theMovie.tags) {
+        if (pos === 1) {
+          return this.theMovie.tags[0];
+        } else if (pos === 2) {
+          return this.theMovie.tags[1];
+        } else {
+          return this.theMovie.tags[2];
+        }
+      } else {
+        if (pos == 1) {
+          return "New";
+        } else if (pos === 2) {
+          return "Action";
+        } else {
+          return "Family";
+        }
+      }
+    },
     removeFromMyList() {
       this.liked = false;
       this.$store.dispatch("removeFromMyList", {
         profile: this.identifier,
         videoId: this.theMovie.id,
-      })
-
+      });
     },
     addToMylist() {
       this.liked = true;

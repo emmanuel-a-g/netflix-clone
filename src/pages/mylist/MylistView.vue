@@ -61,7 +61,7 @@ export default {
     return {
       myListIds: [],
       myList: [],
-      bigList: [],
+      bigList: [[]],
       open: false,
       selectedMovie: "",
       identifier: "",
@@ -70,7 +70,7 @@ export default {
   },
   watch: {
     cardsNum() {
-      if (this.myListIds && this.myListIds.length) {
+      if (this.bigList[0].length > 1) {
         this.setMyList();
       }
     },
@@ -158,7 +158,7 @@ export default {
           } else {
             this.myListIds = [];
             this.mylist = [];
-            this.bigList = [];
+            this.bigList = [[]];
           }
         })
         .catch((err) => {
@@ -200,7 +200,6 @@ export default {
   height: auto;
   margin-top: -14px;
 }
-
 .mainContent {
   width: 85%;
   margin-top: 8vh;
@@ -209,7 +208,7 @@ export default {
 }
 .train {
   display: flex;
-  gap: 5px;
+  gap: 10px;
   border: 1px solid transparent;
   width: 100%;
 }
@@ -218,13 +217,17 @@ export default {
   border: 1px solid transparent;
   height: 170px;
 }
-.wagon img {
-  width: 98%;
+.card {
+  flex: 1;
+  width: 100%;
+}
+.card img {
+  width: 90%;
   height: auto;
   border-radius: 5px;
   border: 2.5px solid transparent;
 }
-.wagon img:hover {
+.card img:hover {
   border: 2.5px solid white;
 }
 .openSelection {
@@ -305,21 +308,10 @@ export default {
   border: 1px solid grey;
 }
 @media only screen and (max-width: 700px) {
-  .wagon img {
-    width: 100px;
-    height: 100px;
-    border-radius: 5px;
-    border: 2.5px solid transparent;
-  }
   .headerLeft h1,
   .headerLeft h4,
   .headerRight p {
     font-size: 1rem;
-  }
-  .headerRight img {
-    width: 60px;
-    height: auto;
-    border-radius: 5px;
   }
 }
 @media only screen and (max-width: 550px) {
@@ -329,17 +321,6 @@ export default {
   .insideSelection {
     width: 100%;
   }
-  .wagon img {
-    width: 80px;
-    height: 80px;
-    border-radius: 5px;
-    border: 2.5px solid transparent;
-  }
-  .headerLeft h1,
-  .headerLeft h4,
-  .headerRight p {
-    font-size: 0.7rem;
-  }
 }
 @media only screen and (max-width: 450px) {
   .movieView {
@@ -347,22 +328,6 @@ export default {
   }
   .insideSelection {
     width: 100%;
-  }
-  .wagon img {
-    width: 60px;
-    height: 60px;
-    border-radius: 5px;
-    border: 2.5px solid transparent;
-  }
-  .headerLeft h1,
-  .headerLeft h4,
-  .headerRight p {
-    font-size: 0.5rem;
-  }
-  .headerRight img {
-    width: 60px;
-    height: auto;
-    border-radius: 5px;
   }
 }
 @media only screen and (max-width: 1000px) {

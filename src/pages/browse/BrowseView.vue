@@ -6,22 +6,61 @@
       <BrowseTop :hero="hero"></BrowseTop>
       <div class="wrapperCarousel">
         <!-- identifier.name important -->
+        <TheCarouselComp
+          title="Trending Now"
+          :listNumber="1"
+          :cards="cardsNum"
+        ></TheCarouselComp>
         <TheCarouselCompList
           v-if="identifier.name"
           :identifier="identifier"
           :cards="cardsNum"
+          @hideMyList="hideList"
         >
         </TheCarouselCompList>
         <TheCarouselComp
           title="Recently Added"
-          :listNumber="1"
+          :listNumber="2"
           :cards="cardsNum"
-        ></TheCarouselComp>
-        <TheCarouselComp title="Trending Now" :listNumber="2" :cards="cardsNum">
+        >
         </TheCarouselComp>
-        <TheCarouselComp title="Trending Now" :listNumber="2" :cards="cardsNum">
+        <TheCarouselComp title="New Releases" :listNumber="1" :cards="cardsNum">
         </TheCarouselComp>
-        <div class="moreContent"></div>
+        <TheCarouselComp
+          title="Popular on Netflix"
+          :listNumber="2"
+          :cards="cardsNum"
+        >
+        </TheCarouselComp>
+        <TheCarouselComp title="Bingeworthy" :listNumber="1" :cards="cardsNum">
+        </TheCarouselComp>
+        <div class="moreContent">
+          <TheCarouselComp
+            title="Exciting Movies"
+            :listNumber="2"
+            :cards="cardsNum"
+          >
+          </TheCarouselComp>
+          <TheCarouselComp
+            title="Blockbuster Movies"
+            :listNumber="1"
+            :cards="cardsNum"
+          >
+          </TheCarouselComp>
+          <TheCarouselComp
+            title="Acclaimed Writers"
+            :listNumber="2"
+            :cards="cardsNum"
+          >
+          </TheCarouselComp>
+          <TheCarouselComp
+            title="Familiar Favorites"
+            :listNumber="1"
+            :cards="cardsNum"
+          >
+          </TheCarouselComp>
+        </div>
+        <TheFooter color="#141414" position="relative"></TheFooter>
       </div>
     </div>
   </div>
@@ -39,6 +78,7 @@ import TheCarouselComp from "../../components/app/TheCarouselComp.vue";
 import TheBrowseNav from "./TheBrowseNav.vue";
 import BrowseHero from "./BrowseHero.vue";
 import BrowseTop from "./BrowseTop.vue";
+import TheFooter from "../../components/ui/TheFooter.vue";
 export default {
   components: {
     TheCarouselCompList,
@@ -46,15 +86,20 @@ export default {
     TheCarouselComp,
     BrowseHero,
     BrowseTop,
+    TheFooter,
   },
   data() {
     return {
       hero: {},
       cardsNum: 6,
       identifier: undefined,
+      showMyList: true,
     };
   },
   methods: {
+    hideList() {
+      this.showMyList = false;
+    },
     setMargins() {
       //we dont change margins unless we have to!
       let width = window.innerWidth;
@@ -123,7 +168,7 @@ export default {
 }
 .moreContent {
   background-color: #141414;
-  min-height: 100vh;
+  min-height: 5vh;
 }
 .browseDiv {
   min-height: 100vh;
