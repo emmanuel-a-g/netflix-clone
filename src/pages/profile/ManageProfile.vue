@@ -15,11 +15,13 @@
       </div>
       <div class="cardOne">
         <input
+          class="nameInput"
           type="text"
           placeholder="Name"
           ref="name"
           @keyup="setName"
           maxlength="15"
+          :class="{ highlight: highlightInput }"
         />
         <p>Language:</p>
         <button>English &#8681;</button>
@@ -64,6 +66,9 @@ export default {
       profileIdentifier: "",
       netflix,
       pencil,
+      highlightInput: false,
+      currentName: "",
+      wantedToChangeProfile: false,
     };
   },
   computed: {
@@ -78,6 +83,12 @@ export default {
   },
   methods: {
     profileSelect() {
+      //MODIFY TO WHERE YOU CANT CHANGE IMAGE UNLESS THERE IS A CLEAR NAME
+      if (this.currentName === "New") {
+        this.highlightInput = true;
+        this.wantedToChangeProfile = true;
+        return;
+      }
       const profile = this.$route.params.profile;
       this.$router.push({
         path: "/select",
@@ -100,7 +111,18 @@ export default {
         profile: this.profile,
         name: this.name,
       });
-      this.$router.push("/selectuser");
+      if (this.wantedToChangeProfile) {
+        this.$router.push({
+          path: "/select",
+          query: {
+            profile: this.profile,
+            name: this.name,
+            id: this.imageId,
+          },
+        });
+      } else {
+        this.$router.push("/selectuser");
+      }
     },
     cancelAndGoBack() {
       this.$router.replace("/selectuser");
@@ -108,11 +130,12 @@ export default {
   },
   beforeMount() {
     this.imageId = +this.$route.query.id;
-    this.profileIdentifier = this.$route.params.name;
+    this.profileIdentifier = this.$route.params.profile;
   },
   mounted() {
     const profile = this.$route.params.profile;
     const name = this.$route.params.name;
+    this.currentName = name;
     if (profile) {
       this.$refs.name.value = name;
       this.nameProvided = true;
@@ -197,18 +220,21 @@ button {
   flex-direction: column;
   justify-content: space-evenly;
 }
-.cardOne input {
+.nameInput {
   width: 95%;
   padding: 0;
   height: 35px;
   background-color: rgb(98, 98, 98);
-  border: none;
   color: white;
   font-size: 16px;
   text-indent: 10px;
+  border: 1px solid transparent;
 }
-.cardOne input::placeholder {
+.nameInput::placeholder {
   color: rgb(175, 175, 175);
+}
+.highlight {
+  background-color: red;
 }
 .cardTwo {
   border-top: 0.25px grey solid;
@@ -262,6 +288,9 @@ button {
   .form {
     min-width: none;
     max-width: none;
+    width: 100%;
+  }
+  .buttons {
     width: 100%;
   }
 }

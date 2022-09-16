@@ -6,7 +6,7 @@
           v-if="profileImages"
           class="profileImage"
           :src="profileImages.one"
-          alt="profile"
+          alt="img"
           width="26px"
           height="26px"
         />
@@ -17,7 +17,7 @@
           v-if="profileImages"
           class="profileImage"
           :src="profileImages.two"
-          alt="profile"
+          alt="img"
           width="26px"
           height="26px"
         />
@@ -28,7 +28,7 @@
           v-if="profileImages"
           class="profileImage"
           :src="profileImages.three"
-          alt="profile"
+          alt="img"
           width="26px"
           height="26px"
         />
@@ -39,7 +39,7 @@
           v-if="profileImages"
           class="profileImage"
           :src="profileImages.four"
-          alt="profile"
+          alt="img"
           width="26px"
           height="26px"
         />
@@ -50,7 +50,7 @@
           v-if="profileImages"
           class="profileImage"
           :src="profileImages.five"
-          alt="profile"
+          alt="img"
           width="26px"
           height="26px"
         />
