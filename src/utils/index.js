@@ -1,6 +1,6 @@
 function divideListEquallyNoMix(list, desired) {
   //filter the blank ones
-  list = list.filter(item => item !== "blank");
+  list = list.filter((item) => item !== "blank");
   let result = [];
   let temp = [];
   let currIdx = 0;
@@ -83,7 +83,7 @@ function mixUpMovies(list) {
 }
 
 export function divide(list, desired) {
-  if (!desired) {
+  if (typeof desired !== "number") {
     return list;
   }
   let result = [];
@@ -108,7 +108,7 @@ export function divide(list, desired) {
 }
 
 export function divideMylist(list, desired) {
-  if (!desired) {
+  if (typeof desired !== "number") {
     return list;
   }
   let result = [];

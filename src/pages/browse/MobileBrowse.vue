@@ -12,7 +12,7 @@
       >
         Home
       </li>
-      <li class="realAction" @click="moveTo('mylist')">My List</li>
+      <li class="realAction" @click="moveToList">My List</li>
       <li class="action">TV Shows</li>
       <li class="action">Movies</li>
       <li class="action">New & Popular</li>
@@ -24,7 +24,7 @@
 <script>
 // SET FALSE CLASS AS DEFAULT
 export default {
-  emits: ["handleClose"],
+  emits: ["handleClose", "handleToList"],
   props: ["show"],
   data() {
     return {
@@ -37,6 +37,9 @@ export default {
     },
     moveTo(to) {
       this.$router.push(`/${to}`);
+    },
+    moveToList() {
+      this.$emit("handleToList");
     },
   },
   mounted() {

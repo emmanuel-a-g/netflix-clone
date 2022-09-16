@@ -5,12 +5,21 @@
     <div class="inner">
       <BrowseTop :hero="hero"></BrowseTop>
       <div class="wrapperCarousel">
+        <!-- identifier.name important -->
+        <TheCarouselCompList
+          v-if="identifier.name"
+          :identifier="identifier"
+          :cards="cardsNum"
+        >
+        </TheCarouselCompList>
         <TheCarouselComp
           title="Recently Added"
           :listNumber="1"
           :cards="cardsNum"
         ></TheCarouselComp>
-        <TheCarouselComp title="My List" :listNumber="2" :cards="cardsNum">
+        <TheCarouselComp title="Trending Now" :listNumber="2" :cards="cardsNum">
+        </TheCarouselComp>
+        <TheCarouselComp title="Trending Now" :listNumber="2" :cards="cardsNum">
         </TheCarouselComp>
         <div class="moreContent"></div>
       </div>
@@ -25,12 +34,14 @@ let breakpointFour = 700;
 let breakpointThree = 635;
 let breakpointTwo = 500;
 //DON'T SHOW video <330px
+import TheCarouselCompList from "../../components/app/TheCarouselCompList.vue";
 import TheCarouselComp from "../../components/app/TheCarouselComp.vue";
 import TheBrowseNav from "./TheBrowseNav.vue";
 import BrowseHero from "./BrowseHero.vue";
 import BrowseTop from "./BrowseTop.vue";
 export default {
   components: {
+    TheCarouselCompList,
     TheBrowseNav,
     TheCarouselComp,
     BrowseHero,
@@ -40,6 +51,7 @@ export default {
     return {
       hero: {},
       cardsNum: 6,
+      identifier: undefined,
     };
   },
   methods: {
@@ -83,10 +95,14 @@ export default {
     window.addEventListener("resize", this.setMargins);
     this.setMargins();
     this.hero = this.$store.getters.getHeroMaterial;
+    this.identifier = this.$store.getters.getCurrentProfile;
   },
   mounted() {
     if (!this.hero) {
       this.hero = this.$store.getters.getHeroMaterial;
+    }
+    if (!this.identifier) {
+      this.identifier = this.$store.getters.getCurrentProfile.name;
     }
   },
   beforeUnmount() {

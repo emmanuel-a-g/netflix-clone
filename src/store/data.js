@@ -529,7 +529,7 @@ const heroMaterial = [
     videoId: "6AczGC7NEig",
     rating: "TV-MA",
     description:
-      "In this unsettling drama, a student at an all-male Catholic high school in 1970s Rome observes the violence his classmates endure and inflict on others.",
+      "In this unsettling drama, a student at an all-male Catholic high school in 1970s Rome observes the violence his classmates endure.",
     heroImage:
       "https://res.cloudinary.com/milito/image/upload/v1663211943/netflix/catholicHero_stfzfe.png",
     heroTitleImage:
@@ -541,7 +541,7 @@ const heroMaterial = [
     rating: "TV-MA",
     videoId: "dXpa5PrtuP0",
     description:
-      "Somewhere at Hartley High, there is a mysterious sex map charts out everyone's dirty secrets: the good, the bad, and the ugly. No one is aware of its existence — until the new term begins.",
+      "Somewhere at Hartley High, there is a mysterious sex map charts out everyone's dirty secrets: the good, the bad, and the ugly.",
     heroImage:
       "https://res.cloudinary.com/milito/image/upload/v1663225252/netflix/heartbrakeHero_bdrh9a.png",
     heroTitleImage:

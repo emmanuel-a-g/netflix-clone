@@ -13,6 +13,7 @@
         <MobileBrowse
           @handleClose="hideBrowseBox"
           :show="showBrowse"
+          @handleToList="handleMylist"
         ></MobileBrowse>
       </p>
     </div>
