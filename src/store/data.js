@@ -623,6 +623,18 @@ const heroMaterial = [
     heroTitleImage:
       "https://res.cloudinary.com/milito/image/upload/v1663266528/netflix/terimHeroTitle_jrydgr.png",
   },
+  {
+    title: "This is The End",
+    id: 8,
+    rating: "R",
+    videoId: "kliQSsD_npo",
+    description:
+      "A group of Hollywood celebrities stuck together at a party grapple with cataclysmic danger — and each other — as the apocalypse dawns.",
+    heroImage:
+      "https://res.cloudinary.com/milito/image/upload/v1663393534/netflix/theendHero_wlnzge.webp",
+    heroTitleImage:
+      "https://res.cloudinary.com/milito/image/upload/v1663393534/netflix/theendHeroTitle_qd4u6p.webp",
+  },
 ];
 export function getRandomMaterial() {
   const total = heroMaterial.length;

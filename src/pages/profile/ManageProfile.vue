@@ -93,7 +93,7 @@ export default {
       this.$router.push({
         path: "/select",
         query: {
-          name: this.profileIdentifier,
+          name: this.$route.params.name,
           profile: profile,
           id: this.imageId,
         },
