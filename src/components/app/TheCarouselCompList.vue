@@ -75,7 +75,6 @@ export default {
             this.indicators = indicatorsList;
             const myListMovies = getMyListMovies(mylist);
             this.myList = myListMovies;
-            console.log("setting my list in fetch; ", this.myList);
             this.setMyList(myListMovies);
           } else {
             this.$emit("hideMyList");
