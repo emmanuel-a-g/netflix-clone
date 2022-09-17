@@ -40,7 +40,7 @@ export default {
       this.$store
         .dispatch("loginAsVisitor")
         .then(() => {
-          this.$router.replace("/browse");
+          this.$router.replace("/selectuser");
         })
         .catch((err) => {
           this.error = err.code;
