@@ -77,13 +77,13 @@ export default {
       if (id) {
         return getProfileImage(id).imageUrl;
       } else {
-        return getProfileImage(1).imageUrl;
+        return getProfileImage(21).imageUrl;
       }
     },
   },
   methods: {
     profileSelect() {
-      //MODIFY TO WHERE YOU CANT CHANGE IMAGE UNLESS THERE IS A CLEAR NAME
+      //NAME FIRST, IMAGE SECOND
       if (this.currentName === "New") {
         this.highlightInput = true;
         this.wantedToChangeProfile = true;
@@ -118,10 +118,11 @@ export default {
             profile: this.profile,
             name: this.name,
             id: this.imageId,
+            update: true,
           },
         });
       } else {
-        this.$router.push("/selectuser");
+        this.$router.push({ path: "/selectuser", query: { update: true } });
       }
     },
     cancelAndGoBack() {
@@ -228,13 +229,13 @@ button {
   color: white;
   font-size: 16px;
   text-indent: 10px;
-  border: 1px solid transparent;
+  border: 2px solid transparent;
 }
 .nameInput::placeholder {
   color: rgb(175, 175, 175);
 }
 .highlight {
-  background-color: red;
+  border-color: white;
 }
 .cardTwo {
   border-top: 0.25px grey solid;
@@ -266,8 +267,8 @@ button {
 }
 #editImage {
   position: absolute;
-  top: 48%;
-  left: 10%;
+  top: 42%;
+  left: 22%;
   border-radius: 50%;
   height: 30px;
   width: 30px;

@@ -119,8 +119,8 @@ export default {
       this.$store.dispatch("addProfileImageId", {
         profile: this.identifier,
         imageId: this.selectedImage,
-      })
-      this.$router.replace("/selectuser");
+      });
+      this.$router.replace({ path: "/selectuser", query: { update: true } });
     },
   },
   beforeMount() {

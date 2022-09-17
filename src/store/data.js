@@ -327,7 +327,7 @@ export const data2 = [
   {
     title: "El Camino",
     genre: "suspense",
-    tags: ["Crime", "Money", "Goodguy"],
+    tags: ["Crime", "Money", "Sequel"],
     id: 38,
     imageUrl:
       "https://res.cloudinary.com/milito/image/upload/v1662749427/netflix/elcamino_og84g0.jpg",

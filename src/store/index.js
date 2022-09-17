@@ -262,11 +262,11 @@ const store = createStore({
             five: [],
           },
           profileImages: {
-            one: 1,
-            two: 1,
-            three: 1,
-            four: 1,
-            five: 1,
+            one: 21,
+            two: 21,
+            three: 21,
+            four: 21,
+            five: 21,
           },
         });
       } catch (e) {
@@ -293,6 +293,7 @@ const store = createStore({
         await updateDoc(usersProfileDoc, {
           [dbPath]: payload.name,
         });
+        context.dispatch("profileNames");
       } catch (e) {
         console.log("error: ", e);
       }

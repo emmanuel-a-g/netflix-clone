@@ -2,11 +2,12 @@
   <div class="selectUserDiv">
     <img @click="toBrowse" :src="image" alt="netflix logo" />
     <SelectProfile
-      @edit-user="editThisUser"
+      @editUser="editThisUser"
       @manage="manageMode"
       :editMode="editMode"
       :profiles="data"
       :profileImages="profileImages"
+      @fetchUpdated="fetchNewProfileNames"
     ></SelectProfile>
   </div>
 </template>
@@ -33,7 +34,7 @@ export default {
     manageMode() {
       this.editMode = !this.editMode;
     },
-    editThisUser(name, displayName, imageId) {
+    editThisUser(name, displayName, imageId = 21) {
       if (displayName) {
         this.$router.push({
           path: `/manageprofiles/${name}/${displayName}`,
@@ -56,25 +57,27 @@ export default {
     },
   },
   mounted() {
-    const profiles = this.$store.getters.getProfiles;
-    const images = this.$store.getters.getProfileImages;
-    if (profiles && images) {
-      this.data = profiles;
-      this.profileImages = images;
+    const update = this.$route.query.update;
+    if (update) {
+      this.fetchNewProfileNames();
     } else {
-      this.$store
-        .dispatch("profileNames")
-        .then((res) => {
-          this.data = res.profiles;
-          this.profileImages = res.images;
-        })
-        .catch((err) => {
-          console.log("Profile names error", err);
-        });
+      const profiles = this.$store.getters.getProfiles;
+      const images = this.$store.getters.getProfileImages;
+      if (profiles && images) {
+        this.data = profiles;
+        this.profileImages = images;
+      } else {
+        this.$store
+          .dispatch("profileNames")
+          .then((res) => {
+            this.data = res.profiles;
+            this.profileImages = res.images;
+          })
+          .catch((err) => {
+            console.log("Profile names error", err);
+          });
+      }
     }
-  },
-  updated() {
-    this.fetchNewProfileNames();
   },
 };
 </script>

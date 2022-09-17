@@ -3,6 +3,7 @@
     <h1>{{ editMode ? "Manage profiles:" : "Who's watching?" }}</h1>
     <div class="profiles">
       <div
+        v-if="totalProfiles >= 1"
         class="card"
         name="one"
         @click="handle('one', nameOne)"
@@ -15,6 +16,7 @@
         <p>{{ nameOne }}</p>
       </div>
       <div
+        v-if="totalProfiles >= 2"
         class="card"
         name="two"
         @click="handle('two', nameTwo)"
@@ -27,6 +29,7 @@
         <p>{{ nameTwo }}</p>
       </div>
       <div
+        v-if="totalProfiles >= 3"
         class="card"
         name="three"
         @click="handle('three', nameThree)"
@@ -39,6 +42,7 @@
         <p>{{ nameThree }}</p>
       </div>
       <div
+        v-if="totalProfiles >= 4"
         class="card"
         name="four"
         @click="handle('four', nameFour)"
@@ -51,6 +55,7 @@
         <p>{{ nameFour }}</p>
       </div>
       <div
+        v-if="totalProfiles >= 5"
         class="card"
         name="five"
         @click="handle('five', nameFive)"
@@ -62,6 +67,11 @@
         /></span>
         <p>{{ nameFive }}</p>
       </div>
+      <div v-if="totalProfiles <= 4" class="cardSpecial" @click="handleAdd">
+        <p class="addCard">
+          <img :src="add" alt="add logo" class="add" />
+        </p>
+      </div>
     </div>
     <button :class="{ highlightButton: editMode }" @click="manageToggle">
       {{ editMode ? "Done" : "Manage Profiles" }}
@@ -71,14 +81,22 @@
 
 <script>
 import pencil from "../../assets/pencil.png";
+import add from "../../assets/add.png";
 import { getProfileImage } from "../../store/data";
 export default {
   props: ["editMode", "profiles", "profileImages"],
-  emits: ["manage", "editUser"],
+  emits: ["manage", "editUser", "fetchUpdated"],
   data() {
     return {
+      totalProfiles: 0,
       pencil,
+      add,
     };
+  },
+  watch: {
+    profiles() {
+      this.updateTotalProfiles();
+    },
   },
   computed: {
     nameOne() {
@@ -125,13 +143,13 @@ export default {
       this.$router.replace("/browse");
     },
     handle(name, displayName) {
-      //check for redirect query?
       const redirectQuery = this.$route.query.redirect;
       const imageId = this.profileImages[name];
       if (this.editMode) {
         this.$emit("editUser", name, displayName, imageId);
       } else {
         this.$store.dispatch("currentProfile", { name, displayName });
+        this.$emit("fetchUpdated");
         if (redirectQuery === "mylist") {
           this.$router.push("/mylist");
         } else {
@@ -139,6 +157,23 @@ export default {
         }
       }
     },
+    handleAdd() {
+      let matcher = { 1: "one", 2: "two", 3: "three", 4: "four", 5: "five" };
+      const profileToAdd = matcher[this.totalProfiles + 1];
+      this.$emit("editUser", profileToAdd, "New");
+    },
+    updateTotalProfiles() {
+      let total = 0;
+      for (let key in this.profiles) {
+        if (this.profiles[key].length > 1) {
+          total = total + 1;
+        }
+      }
+      this.totalProfiles = total;
+    },
+  },
+  mounted() {
+    this.updateTotalProfiles();
   },
 };
 </script>
@@ -162,6 +197,8 @@ export default {
   align-items: center;
   margin-bottom: 30px;
   min-height: 160px;
+  justify-content: center;
+  gap: 30px;
 }
 button {
   width: 180px;
@@ -176,23 +213,51 @@ button:hover {
   border: 1px solid white;
   color: white;
 }
+.addCard {
+  margin-top: -14%;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: rgb(141, 140, 140);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid transparent;
+}
+.addCard img {
+  width: 45px;
+  height: 45px;
+}
+.addCard:hover {
+  border: 2px solid white;
+}
 .card {
   flex: 1;
   min-height: 140px;
-  color: grey;
+  width: 105px;
+  max-width: 110px;
   text-align: center;
-  width: 100px;
+  color: grey;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
   font-size: 1.2rem;
 }
 .card:hover {
   color: white;
 }
+.cardSpecial {
+  flex: 1;
+  min-height: 140px;
+  width: 105px;
+  max-width: 110px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
 .profile {
-  width: 120px;
+  width: 100%;
   height: auto;
   border-radius: 5px;
   /* life saver prevents border movement */
@@ -239,6 +304,11 @@ button:hover {
     height: auto;
     border-radius: 5px;
     border: 1px solid transparent;
+  }
+  .addCard {
+    width: 80px;
+    height: 80px;
+    margin-top: 0%;
   }
   button {
     font-size: 0.9rem;
