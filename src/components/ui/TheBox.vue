@@ -189,9 +189,10 @@ export default {
   margin-right: 8px;
   border-radius: 4px;
 }
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 1000px) {
   .visibleClass {
     right: 2vw;
+    top: 8.2vh;
   }
 }
 </style>

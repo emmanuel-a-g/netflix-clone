@@ -17,7 +17,7 @@
 
 <script>
 export default {
-  props: ["position", "color", "topBorder"],
+  props: ["position", "color", "topBorder", "bottom", "left"],
 };
 </script>
 

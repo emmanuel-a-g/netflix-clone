@@ -5,7 +5,6 @@
     <div class="inner">
       <BrowseTop :hero="hero"></BrowseTop>
       <div class="wrapperCarousel">
-        <!-- identifier.name important -->
         <TheCarouselComp
           title="Trending Now"
           :listNumber="1"
@@ -13,10 +12,10 @@
           :mobileDetected="mobileDetected"
         ></TheCarouselComp>
         <TheCarouselCompList
-          v-if="identifier.name && showMyList"
+          v-if="showMyList"
           :identifier="identifier"
           :cards="cardsNum"
-          @hideMyList="hideList"
+          @showMyList="showList"
           :mobileDetected="mobileDetected"
         >
         </TheCarouselCompList>
@@ -110,14 +109,14 @@ export default {
     return {
       hero: {},
       cardsNum: 6,
-      identifier: undefined,
-      showMyList: true,
+      identifier: "",
+      showMyList: false,
       mobileDetected: false,
     };
   },
   methods: {
-    hideList() {
-      this.showMyList = false;
+    showList() {
+      this.showMyList = true;
     },
     setMargins() {
       //we dont change margins unless we have to!
@@ -169,7 +168,9 @@ export default {
       this.identifier = this.$store.getters.getCurrentProfile.name;
     }
 
-    const isMobile = window.matchMedia('only screen and (max-width: 400px)').matches;
+    const isMobile = window.matchMedia(
+      "only screen and (max-width: 400px)"
+    ).matches;
     if (isMobile) {
       this.mobileDetected = true;
     }

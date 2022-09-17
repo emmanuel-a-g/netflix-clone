@@ -142,6 +142,10 @@ export default {
       }
     },
     logout() {
+      if (this.name === "visitor") {
+        this.$store.dispatch("logOutVisitor");
+        return this.$router.replace("/login");
+      }
       this.$store.dispatch("logOut");
       this.$router.replace("/login");
     },
@@ -149,15 +153,29 @@ export default {
       this.$router.replace("/browse");
     },
     toEmail() {
+      if (this.name === "visitor") {
+        return (this.message = "Sorry, visitor account can't change email.");
+      }
       this.$router.push("/email");
     },
     toName() {
+      if (this.name === "visitor") {
+        return (this.message = "Sorry, visitor account can't change name.");
+      }
       this.$router.push("/name");
     },
     toPassword() {
+      if (this.name === "visitor") {
+        return (this.message = "Sorry, visitor account can't change password.");
+      }
       this.$router.push("/password");
     },
     deleteAccount() {
+      if (this.name === "visitor") {
+        this.message = "Sorry, visitor account can't delete account.";
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        return;
+      }
       this.$store
         .dispatch("deleteTheAccount")
         .then(() => {

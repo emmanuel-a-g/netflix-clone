@@ -152,7 +152,7 @@ export default {
         let id = imagesId[this.identifier];
         return getProfileImage(+id).imageUrl;
       } else {
-        return getProfileImage(1).imageUrl;
+        return getProfileImage(21).imageUrl;
       }
     },
   },
@@ -174,8 +174,7 @@ export default {
       const small = 550;
       this.mobileView = window.innerWidth < breakpoint;
       this.superSmall = window.innerWidth < small;
-      this.showBrowse = false; 
-
+      this.showBrowse = false;
     },
     setScroll() {
       this.scrollPosition = window.top.scrollY;

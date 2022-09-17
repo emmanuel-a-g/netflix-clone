@@ -3,9 +3,14 @@
     <div class="imageDiv">
       <img @click="goWelcome" :src="image" alt="netflix logo" />
       <div class="contentDiv" @click="resetError">
-        <LoginForm :error="error" @submit-login="handleLogin"></LoginForm>
+        <LoginForm
+          :error="error"
+          @submit-login="handleLogin"
+          @login-visitor="handleLoginVisitor"
+        ></LoginForm>
       </div>
       <the-footer
+        class="theFooter"
         position="absolute"
         color="#0000008e"
         topBorder="#8c8c8c"
@@ -31,6 +36,17 @@ export default {
     };
   },
   methods: {
+    handleLoginVisitor() {
+      this.$store
+        .dispatch("loginAsVisitor")
+        .then(() => {
+          this.$router.replace("/browse");
+        })
+        .catch((err) => {
+          this.error = err.code;
+          console.log("login failed: ", err.code);
+        });
+    },
     handleLogin({ email, password, remember }) {
       this.$store
         .dispatch("login", {
@@ -57,7 +73,7 @@ export default {
       if (this.error) {
         this.error = "";
       }
-    }
+    },
   },
   mounted() {
     const query = this.$route.query;
@@ -83,14 +99,13 @@ export default {
   position: relative;
 }
 .imageDiv {
-  height: 140vh;
+  min-height: 140vh;
   background: url("~@/assets/netflix_home.jpeg") no-repeat left;
   background-size: cover;
   position: relative;
   text-align: center;
   display: flex;
   justify-content: center;
-  overflow-y: hidden;
   width: 100%;
   box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.655);
 }
@@ -132,15 +147,15 @@ p {
   }
 }
 @media only screen and (max-height: 550px) {
-  .imageDiv {
-    overflow-y: scroll;
-  }
   .imageDiv img {
     width: 100px;
     height: auto;
     top: 5vh;
     left: 5vw;
     margin-top: 0;
+  }
+  .theFooter {
+    visibility: hidden;
   }
 }
 </style>

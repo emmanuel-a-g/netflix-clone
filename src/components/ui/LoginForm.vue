@@ -26,6 +26,7 @@
           Your password must contain between 6 and 60 characters.
         </span>
         <button class="theButton">Sign In</button>
+        <button @click.prevent="loginAsVisitor" class="theButtonVisitor">Login as Visitor</button>
         <div class="help">
           <p>
             <input type="checkbox" v-model="rememberMe" />
@@ -53,7 +54,7 @@
 // v-on:blur="reset('password')"
 export default {
   props: ["error"],
-  emits: ["submit-login"],
+  emits: ["submit-login", "login-visitor"],
   data() {
     return {
       email: "",
@@ -98,6 +99,9 @@ export default {
     signUpForward() {
       this.$router.replace("/");
     },
+    loginAsVisitor() {
+      this.$emit("login-visitor");
+    }
   },
 };
 </script>
@@ -192,6 +196,19 @@ h2 {
   color: white;
   margin: 0;
   justify-self: center;
+  border: 1px solid transparent;
+}
+.theButtonVisitor {
+  padding: 0;
+  background-color: transparent;
+  height: 45px;
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  margin: 0;
+  justify-self: center;
+  border: 1px solid orange;
 }
 input {
   width: 100%;

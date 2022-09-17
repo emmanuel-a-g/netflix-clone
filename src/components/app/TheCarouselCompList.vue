@@ -28,7 +28,7 @@ import { getMyListMovies } from "../../store/data";
 import { divide, combineNew } from "../../utils/index";
 export default {
   props: ["cards", "identifier"],
-  emits: ["hideMyList"],
+  emits: ["showMyList"],
   components: {
     TheCarousel,
   },
@@ -76,8 +76,8 @@ export default {
             const myListMovies = getMyListMovies(mylist);
             this.myList = myListMovies;
             this.setMyList(myListMovies);
+            this.$emit("showMyList");
           } else {
-            this.$emit("hideMyList");
             this.myListIds = [];
             this.mylist = [];
             this.bigList = [];
@@ -94,6 +94,11 @@ export default {
       let lists = Math.ceil(totalMovies.length / newDivisor);
       this.indicators = new Array(lists).fill(0);
       this.bigList = combineNew(this.bigList, newDivisor);
+    },
+    identifier() {
+      if (this.identifier.name.length) {
+        this.fetchMyList();
+      }
     },
   },
   mounted() {

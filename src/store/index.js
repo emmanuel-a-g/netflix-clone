@@ -22,8 +22,31 @@ import {
   getDoc,
   deleteDoc,
   arrayUnion,
-  arrayRemove
+  arrayRemove,
 } from "firebase/firestore";
+const theObj = {
+  profiles: {
+    one: "",
+    two: "",
+    three: "",
+    four: "",
+    five: "",
+  },
+  mylist: {
+    one: [],
+    two: [],
+    three: [],
+    four: [],
+    five: [],
+  },
+  profileImages: {
+    one: 21,
+    two: 21,
+    three: 21,
+    four: 21,
+    five: 21,
+  },
+};
 const store = createStore({
   state() {
     return {
@@ -193,6 +216,20 @@ const store = createStore({
           });
       });
     },
+    async logOutVisitor(context) {
+      const user = context.getters.userId;
+      return new Promise((resolve, reject) => {
+        signOut(auth)
+          .then(() => {
+            context.commit("logOut");
+            const usersRef = doc(db, "users", user);
+            updateDoc(usersRef, theObj)
+          })
+          .catch((err) => {
+            reject(`Failed logout: ${err}`);
+          });
+      });
+    },
     authenticate(context, payload) {
       return new Promise((resolve, reject) => {
         if (payload.user) {
@@ -246,29 +283,7 @@ const store = createStore({
     },
     async addProfileUsers(_, payload) {
       try {
-        await setDoc(doc(db, "users", payload), {
-          profiles: {
-            one: "",
-            two: "",
-            three: "",
-            four: "",
-            five: "",
-          },
-          mylist: {
-            one: [],
-            two: [],
-            three: [],
-            four: [],
-            five: [],
-          },
-          profileImages: {
-            one: 21,
-            two: 21,
-            three: 21,
-            four: 21,
-            five: 21,
-          },
-        });
+        await setDoc(doc(db, "users", payload), theObj);
       } catch (e) {
         console.log("did not add users", e);
       }
@@ -372,6 +387,26 @@ const store = createStore({
     },
     putHeroMaterial(context, payload) {
       context.commit("setHeroMaterial", payload);
+    },
+    async loginAsVisitor(context) {
+      return new Promise((resolve, reject) => {
+        setPersistence(auth, browserSessionPersistence)
+          .then(() => {
+            //MYOWNEMAIL&PASSWORD
+            return signInWithEmailAndPassword(
+              auth,
+              "example@gmail.com",
+              "@12345"
+            );
+          })
+          .then((userCredential) => {
+            context.commit("authenticate", userCredential);
+            resolve(true);
+          })
+          .catch((err) => {
+            reject(err);
+          });
+      });
     },
   },
 });
