@@ -11,6 +11,7 @@
             :total="item.length"
             :identifier="identifier"
             :mobileDetected="mobileDetected"
+            :mylist="mylist"
           >
           </TheCard>
         </div>
@@ -36,7 +37,13 @@ export default {
     TheCard,
   },
   emits: ["updateIdx"],
-  props: ["showIndicators", "indicators", "bigList", "mobileDetected"],
+  props: [
+    "showIndicators",
+    "indicators",
+    "bigList",
+    "mobileDetected",
+    "mylist",
+  ],
   data() {
     return {
       identifier: 1,

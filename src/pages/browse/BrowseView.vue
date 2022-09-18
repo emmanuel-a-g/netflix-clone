@@ -12,10 +12,10 @@
           :mobileDetected="mobileDetected"
         ></TheCarouselComp>
         <TheCarouselCompList
-          v-if="showMyList"
+          v-if="identifier && showMyList"
           :identifier="identifier"
           :cards="cardsNum"
-          @showMyList="showList"
+          @hideList="hideList"
           :mobileDetected="mobileDetected"
         >
         </TheCarouselCompList>
@@ -110,13 +110,13 @@ export default {
       hero: {},
       cardsNum: 6,
       identifier: "",
-      showMyList: false,
+      showMyList: true,
       mobileDetected: false,
     };
   },
   methods: {
-    showList() {
-      this.showMyList = true;
+    hideList() {
+      this.showMyList = false;
     },
     setMargins() {
       //we dont change margins unless we have to!
@@ -158,7 +158,7 @@ export default {
     window.addEventListener("resize", this.setMargins);
     this.setMargins();
     this.hero = this.$store.getters.getHeroMaterial;
-    this.identifier = this.$store.getters.getCurrentProfile;
+    this.identifier = this.$store.getters.getCurrentProfile.name;
   },
   mounted() {
     if (!this.hero) {

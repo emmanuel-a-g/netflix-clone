@@ -154,25 +154,25 @@ export default {
     },
     toEmail() {
       if (this.name === "visitor") {
-        return (this.message = "Sorry, visitor account can't change email.");
+        return (this.message = "Sorry, you cannot change the visitor email.");
       }
       this.$router.push("/email");
     },
     toName() {
       if (this.name === "visitor") {
-        return (this.message = "Sorry, visitor account can't change name.");
+        return (this.message = "Sorry, you cannot change the vistor name.");
       }
       this.$router.push("/name");
     },
     toPassword() {
       if (this.name === "visitor") {
-        return (this.message = "Sorry, visitor account can't change password.");
+        return (this.message = "Sorry, you cannot change the password as visitor.");
       }
       this.$router.push("/password");
     },
     deleteAccount() {
       if (this.name === "visitor") {
-        this.message = "Sorry, visitor account can't delete account.";
+        this.message = "Sorry, you can't delete the visitor account.";
         window.scrollTo({ top: 0, behavior: "smooth" });
         return;
       }

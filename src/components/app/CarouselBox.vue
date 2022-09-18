@@ -85,6 +85,7 @@ export default {
     "total",
     "identifier",
     "mobileDetected",
+    "mylist"
   ],
   emits: ["closeCard"],
   data() {
@@ -198,6 +199,11 @@ export default {
       this.showMovie = false;
       clearTimeout(this.videoTimer);
       this.videoTimer = null;
+    }
+  },
+  mounted() {
+    if (this.mylist) {
+      this.liked = true;
     }
   },
 };

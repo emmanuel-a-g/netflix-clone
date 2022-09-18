@@ -18,6 +18,7 @@
       @updateIdx="updateIdx"
       @mouseenter="show"
       @mouseleave="unshow"
+      :mylist="true"
     ></TheCarousel>
   </div>
 </template>
@@ -28,7 +29,7 @@ import { getMyListMovies } from "../../store/data";
 import { divide, combineNew } from "../../utils/index";
 export default {
   props: ["cards", "identifier"],
-  emits: ["showMyList"],
+  emits: ["hideList"],
   components: {
     TheCarousel,
   },
@@ -66,7 +67,7 @@ export default {
       this.$store
         .dispatch("fetchMyList")
         .then((res) => {
-          const mylist = res.mylist[this.identifier.name];
+          const mylist = res.mylist[this.identifier];
           this.myListIds = mylist;
           if (mylist && mylist.length) {
             let divisor = this.cards;
@@ -76,8 +77,8 @@ export default {
             const myListMovies = getMyListMovies(mylist);
             this.myList = myListMovies;
             this.setMyList(myListMovies);
-            this.$emit("showMyList");
           } else {
+            this.$emit("hideList");
             this.myListIds = [];
             this.mylist = [];
             this.bigList = [];
@@ -95,14 +96,10 @@ export default {
       this.indicators = new Array(lists).fill(0);
       this.bigList = combineNew(this.bigList, newDivisor);
     },
-    identifier() {
-      if (this.identifier.name.length) {
-        this.fetchMyList();
-      }
-    },
   },
   mounted() {
-    if (this.identifier.name.length) {
+    if (this.identifier) {
+      console.log("mounted with length: ", this.identifier);
       this.fetchMyList();
     }
   },
