@@ -99,7 +99,6 @@ export default {
   },
   mounted() {
     if (this.identifier) {
-      console.log("mounted with length: ", this.identifier);
       this.fetchMyList();
     }
   },

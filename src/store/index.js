@@ -23,6 +23,7 @@ import {
   deleteDoc,
   arrayUnion,
   arrayRemove,
+  deleteField,
 } from "firebase/firestore";
 const theObj = {
   profiles: {
@@ -217,17 +218,28 @@ const store = createStore({
       });
     },
     async logOutVisitor(context) {
-      const user = context.getters.userId;
       return new Promise((resolve, reject) => {
         signOut(auth)
           .then(() => {
             context.commit("logOut");
-            const usersRef = doc(db, "users", user);
-            updateDoc(usersRef, theObj)
           })
           .catch((err) => {
             reject(`Failed logout: ${err}`);
           });
+      });
+    },
+    async deleteProfile(context, profile) {
+      const user = context.getters.userId;
+      const usersRef = doc(db, "users", user);
+      let dbNamePath = `profiles.${profile}`;
+      let dbListPath = `mylist.${profile}`;
+      let dbImagePath = `profileImages.${profile}`;
+      await updateDoc(usersRef, {
+        [dbNamePath]: deleteField(),
+        [dbListPath]: deleteField(),
+        [dbImagePath]: 21,
+      }).catch((err) => {
+        console.log("Error deleting profile: ", err);
       });
     },
     authenticate(context, payload) {

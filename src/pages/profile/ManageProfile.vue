@@ -44,10 +44,15 @@
       </div>
     </div>
     <div class="buttons">
-      <button @click="saveAndGoBack" :style="{ 'background-color': 'white' }">
-        Save
-      </button>
+      <button class="saveButton" @click="saveAndGoBack">Save</button>
       <button @click="cancelAndGoBack">Cancel</button>
+      <button
+        @click="deleteProfile"
+        class="deleteProfile"
+        v-if="currentName !== 'New'"
+      >
+        Delete Profile
+      </button>
     </div>
   </div>
 </template>
@@ -82,6 +87,16 @@ export default {
     },
   },
   methods: {
+    deleteProfile() {
+      this.$store
+        .dispatch("deleteProfile", this.profileIdentifier)
+        .then(() => {
+          this.$router.push({ path: "/selectuser", query: { update: true } });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
     profileSelect() {
       //NAME FIRST, IMAGE SECOND
       if (this.currentName === "New") {
@@ -281,6 +296,26 @@ button {
 #editImage img {
   height: 20px;
   width: 20px;
+}
+.deleteProfile {
+  width: 110px;
+  height: 35px;
+  background-color: transparent;
+  border: none;
+  color: grey;
+  border: 1px solid grey;
+  margin-right: 25px;
+}
+.saveButton {
+  background-color: white;
+}
+.saveButton:hover {
+  background-color: var(--red);
+  border-color: var(--red);
+  color: white;
+}
+button:hover {
+  border-color: white;
 }
 @media only screen and (max-width: 700px) {
   .wrapper h1 {
