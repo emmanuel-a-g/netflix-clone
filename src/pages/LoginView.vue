@@ -58,7 +58,7 @@ export default {
           if (this.redirect) {
             this.$router.replace(`/${this.redirect}`);
           } else {
-            this.$router.replace("/browse");
+            this.$router.replace("/selectuser");
           }
         })
         .catch((err) => {

@@ -24,15 +24,15 @@
       >
         Home
       </li>
-      <li>TV Shows</li>
-      <li>Movies</li>
-      <li>New & Popular</li>
       <li
         @click="handleMylist"
         :style="{ 'font-weight': currPath === 'mylist' ? 'bold' : 'normal' }"
       >
         My List
       </li>
+      <li>TV Shows</li>
+      <li>Movies</li>
+      <li>New & Popular</li>
       <li>Browse by Languages</li>
     </div>
     <div class="navBar">
