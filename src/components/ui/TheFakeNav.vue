@@ -1,5 +1,11 @@
 <template>
-  <div class="top" :style="{ 'background-color': color ? color : 'white' }">
+  <div
+    class="top"
+    :style="{
+      'background-color': color ? color : 'white',
+      'border-color': borderColor ? borderColor : '#e4e1e1',
+    }"
+  >
     <nav>
       <!-- v-bind:src="require('images/rails.png')"  -->
       <img @click="goHome" :src="image" alt="netflix logo" />
@@ -15,7 +21,7 @@
 import { mapGetters } from "vuex";
 import image from "../../assets/netflix.png";
 export default {
-  props: ["title", "color", "textColor"],
+  props: ["title", "color", "textColor", "borderColor"],
   data() {
     return {
       image,
@@ -52,7 +58,7 @@ export default {
 .top {
   height: 13vh;
   /* color determine on top */
-  border-bottom: 1px rgb(228, 225, 225) solid;
+  border-bottom: 1px solid;
 }
 .top img {
   width: 210px;

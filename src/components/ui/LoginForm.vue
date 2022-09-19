@@ -32,7 +32,7 @@
             <input type="checkbox" v-model="rememberMe" />
             Remember me
           </p>
-          <p>Need Help?</p>
+          <p @click="forwardHelp">Forgot password?</p>
         </div>
         <div class="info">
           <p>New to Netflix?&nbsp;</p>
@@ -66,6 +66,9 @@ export default {
     };
   },
   methods: {
+    forwardHelp() {
+      this.$router.push("/loginhelp");
+    },
     reset(toReset) {
       if (toReset === "email" && this.alertEmail) {
         this.email = "";

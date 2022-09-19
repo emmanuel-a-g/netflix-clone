@@ -13,6 +13,7 @@ import {
   onAuthStateChanged,
   updatePassword,
   deleteUser,
+  sendPasswordResetEmail,
 } from "firebase/auth";
 import { db } from "../firebase";
 import {
@@ -150,6 +151,21 @@ const store = createStore({
               });
           })
           .catch((err) => {
+            reject(err.code);
+          });
+      });
+    },
+    async resetPassword(context, payload) {
+      return new Promise((resolve, reject) => {
+        sendPasswordResetEmail(auth, payload)
+          .then((res) => {
+            console.log(res);
+            resolve(
+              "Success, send reset password instructions to email! Check both spam and primary inbox."
+            );
+          })
+          .catch((err) => {
+            console.log(err);
             reject(err.code);
           });
       });

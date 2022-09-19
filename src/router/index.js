@@ -21,6 +21,7 @@ const ThePassword = () => import("../pages/account/ThePassword.vue");
 const WatchView = () => import("../pages/watch/WatchView.vue");
 const ProfileImage = () => import("../pages/profile/ProfileImage.vue");
 const MylistView = () => import("../pages/mylist/MylistView.vue");
+const LoginHelp = () => import("../pages/LoginHelp.vue");
 
 const router = createRouter({
   history: createWebHistory(),
@@ -35,6 +36,11 @@ const router = createRouter({
       path: "/login",
       name: "Login",
       component: LoginView,
+    },
+    {
+      path: "/loginhelp",
+      name: "Login Help",
+      component: LoginHelp,
     },
     {
       path: "/signup",
@@ -64,6 +70,7 @@ const router = createRouter({
       path: "/select",
       name: "Select Profile",
       component: ProfileImage,
+      meta: { requiresAuth: true },
     },
     {
       path: "/browse",
