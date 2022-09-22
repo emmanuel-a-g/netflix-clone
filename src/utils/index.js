@@ -1,3 +1,4 @@
+import { data, data2, heroMaterial } from "../store/data";
 function divideListEquallyNoMix(list, desired) {
   //filter the blank ones
   list = list.filter((item) => item !== "blank");
@@ -130,4 +131,17 @@ export function divideMylist(list, desired) {
     }
   }
   return result;
+}
+
+export function searchMovie(search) {
+  if (typeof(search) !== "string") {
+    return;
+  }
+  const allMovies = data.concat(data2, heroMaterial);
+  const lowerSearch = search.toLowerCase();
+
+  const filtered = allMovies.filter((mov) => {
+    return mov.title.toLowerCase().includes(lowerSearch);
+  })
+  return filtered;
 }

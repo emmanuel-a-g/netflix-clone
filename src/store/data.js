@@ -538,10 +538,12 @@ export function getProfileImage(id) {
   return profileImages.find((obj) => obj.id === id);
 }
 
-const heroMaterial = [
+export const heroMaterial = [
   {
     title: "No Limit",
-    id: 1,
+    id: 101,
+    tags: ["Romance", "Sport", "Feelgood"],
+    genre: "comedy",
     videoId: "mY7W7AY7GXk",
     description:
       "He's an alluring famouse driver. She's a rising star. Their love is as deep as the ocean and just as dangerous once she comes for his world record.",
@@ -550,10 +552,14 @@ const heroMaterial = [
       "https://res.cloudinary.com/milito/image/upload/v1662756497/netflix/nolimit_wallpaper.png",
     heroTitleImage:
       "https://res.cloudinary.com/milito/image/upload/v1662756497/netflix/nolimit_title.png",
+    imageUrl:
+      "https://res.cloudinary.com/milito/image/upload/v1663878215/netflix/nolimit_wallpaperSmall_np3eap.png",
   },
   {
     title: "El Rey",
-    id: 2,
+    id: 102,
+    tags: ["History", "Mariachi", "Fun"],
+    genre: "novela",
     videoId: "DeCJyzCv55g",
     description:
       "In this captivating period series, the life and career of Mexican singer Vicente Fernández is dramatized like never before.",
@@ -562,10 +568,14 @@ const heroMaterial = [
       "https://res.cloudinary.com/milito/image/upload/v1663199107/netflix/elrey_ztmg2e.png",
     heroTitleImage:
       "https://res.cloudinary.com/milito/image/upload/v1663199107/netflix/elreyTitleImage_cqcsuc.png",
+    imageUrl:
+      "https://res.cloudinary.com/milito/image/upload/v1663877473/netflix/elreySmall_nkj1bd.png",
   },
   {
     title: "The Catholic School",
-    id: 3,
+    id: 103,
+    tags: ["Dark", "School", "Drama"],
+    genre: "school",
     videoId: "6AczGC7NEig",
     rating: "TV-MA",
     description:
@@ -574,10 +584,14 @@ const heroMaterial = [
       "https://res.cloudinary.com/milito/image/upload/v1663211943/netflix/catholicHero_stfzfe.png",
     heroTitleImage:
       "https://res.cloudinary.com/milito/image/upload/v1663211943/netflix/catholicHeroTitle_ayda8h.png",
+    imageUrl:
+      "https://res.cloudinary.com/milito/image/upload/v1663877653/netflix/catholicHeroSmall_a6wtei.png",
   },
   {
     title: "Heart Break High",
-    id: 4,
+    id: 104,
+    tags: ["School", "Drama", "Heartbreak"],
+    genre: "show",
     rating: "TV-MA",
     videoId: "dXpa5PrtuP0",
     description:
@@ -586,10 +600,14 @@ const heroMaterial = [
       "https://res.cloudinary.com/milito/image/upload/v1663225252/netflix/heartbrakeHero_bdrh9a.png",
     heroTitleImage:
       "https://res.cloudinary.com/milito/image/upload/v1663225251/netflix/heartbreakHeroTitle_lbtm5q.png",
+    imageUrl:
+      "https://res.cloudinary.com/milito/image/upload/v1663877807/netflix/heartbrakeHeroSmall_mruieg.png",
   },
   {
     title: "Good Girls",
-    id: 5,
+    id: 105,
+    tags: ["Comedy", "Crime", "Family"],
+    genre: "comedy",
     rating: "TV-MA",
     videoId: "kesFgp_vNSc",
     description:
@@ -598,10 +616,14 @@ const heroMaterial = [
       "https://res.cloudinary.com/milito/image/upload/v1663225714/netflix/goodgirlsHero_fr7c3s.png",
     heroTitleImage:
       "https://res.cloudinary.com/milito/image/upload/v1663225714/netflix/goodgirlsHeroTitle_dkhi8g.png",
+    imageUrl:
+      "https://res.cloudinary.com/milito/image/upload/v1663877903/netflix/goodgirlsHeroSmall_btkt4x.png",
   },
   {
     title: "Bastard",
-    id: 6,
+    id: 106,
+    tags: ["Anime", "Drama", "Dark"],
+    genre: "anime",
     rating: "TV-MA",
     videoId: "_Iqc-dG8peA",
     description:
@@ -610,10 +632,14 @@ const heroMaterial = [
       "https://res.cloudinary.com/milito/image/upload/v1663266054/netflix/bastardHero_jclvvp.png",
     heroTitleImage:
       "https://res.cloudinary.com/milito/image/upload/v1663266054/netflix/bastardHeroTitle_wx3ztj.png",
+    imageUrl:
+      "https://res.cloudinary.com/milito/image/upload/v1663878021/netflix/bastardHeroSmall_1_josokr.png",
   },
   {
-    title: "Bastard",
-    id: 7,
+    title: "Terim",
+    id: 107,
+    tags: ["Sport", "Documentary", "Perseverance"],
+    genre: "documentary",
     rating: "TV-MA",
     videoId: "27dMicaie5E",
     description:
@@ -622,18 +648,24 @@ const heroMaterial = [
       "https://res.cloudinary.com/milito/image/upload/v1663266529/netflix/terimHero_pqxipu.png",
     heroTitleImage:
       "https://res.cloudinary.com/milito/image/upload/v1663266528/netflix/terimHeroTitle_jrydgr.png",
+    imageUrl:
+      "https://res.cloudinary.com/milito/image/upload/v1663878105/netflix/terimHeroSmall_feqclt.png",
   },
   {
     title: "This is The End",
-    id: 8,
+    id: 108,
+    tags: ["Apocalyptic", "Comedy", "Feelgood"],
     rating: "R",
+    genre: "comedy",
     videoId: "kliQSsD_npo",
     description:
       "A group of Hollywood celebrities stuck together at a party grapple with cataclysmic danger — and each other — as the apocalypse dawns.",
     heroImage:
-      "https://res.cloudinary.com/milito/image/upload/v1663393534/netflix/theendHero_wlnzge.webp",
+      "https://res.cloudinary.com/milito/image/upload/v1663393534/netflix/theendHero_wlnzge.png",
     heroTitleImage:
-      "https://res.cloudinary.com/milito/image/upload/v1663393534/netflix/theendHeroTitle_qd4u6p.webp",
+      "https://res.cloudinary.com/milito/image/upload/v1663393534/netflix/theendHeroTitle_qd4u6p.png",
+    imageUrl:
+      "https://res.cloudinary.com/milito/image/upload/v1663877371/netflix/theendSmall_cwqkpv.png",
   },
 ];
 export function getRandomMaterial() {

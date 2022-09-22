@@ -99,6 +99,7 @@ import arrow from "../../assets/arrow.png";
 import TheNotifications from "../../components/ui/TheNotifications.vue";
 import MobileBrowse from "../../pages/browse/MobileBrowse.vue";
 import { getProfileImage } from "../../store/data";
+import { searchMovie } from "../../utils/index";
 export default {
   props: ["show"],
   components: {
@@ -191,7 +192,8 @@ export default {
       this.search = "";
     },
     handleSearch() {
-      console.log(this.search);
+      const result = searchMovie(this.search);
+      console.log("Result: ", result);
     },
     toggleAccount() {
       if (!this.showAlert) {
