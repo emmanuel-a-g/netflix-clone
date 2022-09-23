@@ -54,6 +54,7 @@
               v-model="search"
               @keyup.prevent="handleSearch"
               :class="{ invisible: !searchInput, visible: searchInput }"
+              spellcheck="false"
             />
             <span @click="closeSearch" v-if="searchInput"> &#10005; </span>
           </div>
