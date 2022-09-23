@@ -110,12 +110,12 @@ export default {
   box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.655);
 }
 .imageDiv img {
-  width: 200px;
+  width: 170px;
   height: auto;
   position: absolute;
-  left: 1.2vw;
+  left: 3.1vw;
   top: 0;
-  margin-top: -15px;
+  margin-top: 18px;
 }
 .imageDiv img:hover {
   cursor: pointer;

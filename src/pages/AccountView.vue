@@ -172,7 +172,7 @@ export default {
     },
     deleteAccount() {
       if (this.name === "visitor") {
-        this.message = "Sorry, you can't delete the visitor account.";
+        this.message = "Sorry, you cannot delete the visitor account.";
         window.scrollTo({ top: 0, behavior: "smooth" });
         return;
       }

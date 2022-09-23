@@ -211,7 +211,7 @@ h2 {
   color: white;
   margin: 0;
   justify-self: center;
-  border: 1px solid orange;
+  border: 1px solid rgb(255, 0, 0);
 }
 input {
   width: 100%;

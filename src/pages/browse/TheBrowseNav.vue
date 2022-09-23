@@ -4,10 +4,12 @@
     :style="{ 'background-color': atTop ? 'transparent' : 'black' }"
   >
     <div class="imgDiv" @mouseleave="hideBrowseBox">
-      <div class="netflix">
-        <img @click="handleHome" class="logo" :src="logo" alt="netflix logo" />
-      </div>
-      <p v-if="mobileView && show" @mouseenter="showBrowseBox">
+      <img @click="handleHome" class="logo" :src="logo" alt="netflix logo" />
+      <div
+        class="browseDiv"
+        v-if="mobileView && show"
+        @mouseenter="showBrowseBox"
+      >
         <span>Browse</span>
         <span id="down">&#9660;</span>
         <MobileBrowse
@@ -15,7 +17,7 @@
           :show="showBrowse"
           @handleToList="handleMylist"
         ></MobileBrowse>
-      </p>
+      </div>
     </div>
     <div class="middleMenu" v-if="!mobileView">
       <li
@@ -301,7 +303,7 @@ export default {
   min-height: 8vh;
   width: 100%;
   display: grid;
-  grid-template-columns: 15% auto 35%;
+  grid-template-columns: 13% auto 35%;
   grid-template-rows: 1pt;
   transition: 500ms;
 }
@@ -376,22 +378,27 @@ export default {
 }
 .imgDiv {
   grid-column: 1 / span 1;
+  min-height: 8vh;
+  margin: 0;
+  padding: 0;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
 }
-.imgDiv span {
+.browseDiv {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+.browseDiv span {
   font-size: 0.75rem;
   color: white;
   font-weight: bold;
 }
-.netflix {
-  height: 100%;
-}
 .logo {
-  width: 130px;
+  width: 100px;
   height: auto;
-  margin-top: -14px;
+  margin-right: 5px;
 }
 .menu {
   width: 20px;
@@ -399,6 +406,7 @@ export default {
 }
 #down {
   font-size: 0.7rem;
+  margin-top: 2px;
 }
 #search {
   width: 20px;
@@ -455,29 +463,32 @@ export default {
   width: 12px;
   height: 12px;
 }
-@media only screen and (max-width: 800px) {
-  .content {
-    display: flex;
-    justify-content: space-between;
-  }
-  .logo {
-    width: 100px;
-    height: auto;
-  }
-  .imgDiv {
-    margin-left: 15px;
-  }
-  .navBar {
-    padding-right: 0px;
-  }
-}
 @media only screen and (max-width: 550px) {
   .openDiv {
     width: 110px;
     height: 4.5vh;
   }
   #down {
-    font-size: 0.55rem;
+    font-size: 0.5rem;
+  }
+  .logo {
+    width: 70px;
+    height: auto;
+  }
+  .profileImage {
+    width: 28px;
+  }
+}
+@media only screen and (max-width: 800px) {
+  .content {
+    display: flex;
+    justify-content: space-between;
+  }
+  .imgDiv {
+    margin-left: 15px;
+  }
+  .navBar {
+    padding-right: 0px;
   }
 }
 @media only screen and (max-width: 950px) {
@@ -496,29 +507,16 @@ export default {
   .navBar {
     padding-right: 5px;
   }
-  .logo {
-    width: 80px;
-    height: auto;
-    margin-top: 3px;
-  }
 }
 @media only screen and (max-width: 1150px) {
   .middleMenu {
     width: 100%;
   }
 }
-@media only screen and (max-height: 650px) {
-  .logo {
-    width: 120px;
-    height: auto;
-    margin-top: -12px;
-    /* background-color: red; */
-  }
-}
 @media only screen and (max-height: 550px) {
   .logo {
-    width: 100px;
-    margin-top: -15px;
+    width: 60px;
+    height: auto;
   }
 }
 </style>

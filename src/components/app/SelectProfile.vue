@@ -293,7 +293,7 @@ button:hover {
     font-size: 1.7rem;
   }
   .profiles {
-    width: 92%;
+    width: 93%;
   }
   .card {
     width: 85px;
@@ -319,7 +319,7 @@ button:hover {
 }
 @media only screen and (max-width: 500px) {
   .profiles {
-    width: 100%;
+    width: 90%;
     flex-wrap: wrap;
   }
   .wrapper h1 {

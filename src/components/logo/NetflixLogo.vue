@@ -18,8 +18,8 @@ export default {
 <style scoped>
 .logoDiv {
   position: absolute;
-  top: -15px;
-  left: 10px;
+  top: 10px;
+  left: 40px;
 }
 .logoDiv img {
   width: 140px;

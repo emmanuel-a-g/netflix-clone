@@ -7,7 +7,6 @@
     }"
   >
     <nav>
-      <!-- v-bind:src="require('images/rails.png')"  -->
       <img @click="goHome" :src="image" alt="netflix logo" />
       <h2 :style="{ color: textColor ? textColor : 'black' }" @click="logInOut">
         {{ theTitle }}
@@ -61,18 +60,20 @@ export default {
   border-bottom: 1px solid;
 }
 .top img {
-  width: 210px;
+  width: 170px;
   height: auto;
-  margin-top: -3vh;
+  margin-left: 38px;
 }
 .top h2 {
+  padding: 0;
+  margin: 0;
   color: black;
   padding-right: 30px;
-  padding-bottom: 20px;
 }
 .top nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 100%;
 }
 </style>

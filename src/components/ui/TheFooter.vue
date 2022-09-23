@@ -10,8 +10,8 @@
     <div>Questions? Call 1-123-456-789</div>
     <p><span>FAQ</span><span>Cookie Preferences</span></p>
     <p><span>Help Center</span><span>Corporate Information</span></p>
-    <p><span>Terms of Use</span></p>
-    <p><span>Privacy</span></p>
+    <p><span>Terms of Use</span><span class="invis">.</span></p>
+    <p><span>Privacy</span><span class="invis">.</span></p>
   </div>
 </template>
 
@@ -23,8 +23,6 @@ export default {
 
 <style scoped>
 .loginFooter {
-  /* position: absolute; */
-  /* background-color: #0000008e; */
   bottom: 0;
   /* Z-INDEX PLACEMENT */
   z-index: 4;
@@ -53,6 +51,9 @@ export default {
   left: 15%;
   top: 15%;
   color: var(--greyish);
+}
+.invis {
+  color: transparent;
 }
 @media only screen and (max-width: 740px) {
   .loginFooter {

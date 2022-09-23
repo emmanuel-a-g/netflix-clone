@@ -155,12 +155,12 @@ export default {
   padding: 0;
   margin: 0;
   display: grid;
-  grid-template-columns: 20% auto 25%;
+  grid-template-columns: 18% auto 25%;
   grid-template-rows: 1pt;
   z-index: 13;
 }
 .navDiv img {
-  width: 180px;
+  width: 140px;
   height: auto;
 }
 .leftNav {
