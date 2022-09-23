@@ -53,7 +53,7 @@
               type="text"
               placeholder="Titles, genres"
               maxlength="15"
-              v-model="search"
+              v-model.trim="search"
               @keyup.prevent="handleSearch"
               :class="{ invisible: !searchInput, visible: searchInput }"
               spellcheck="false"

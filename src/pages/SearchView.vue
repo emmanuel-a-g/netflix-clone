@@ -16,10 +16,14 @@
               :style="{ visibility: mov.id ? 'visible' : 'hidden' }"
             >
               <img
-                @click="openMovie(mov)"
+                class="imgLogo"
                 :src="`${mov.imageUrl ? mov.imageUrl : ''}`"
                 alt="profile image"
+                @click="openMovie(mov)"
               />
+              <span class="play" @click="openMovie(mov)"
+                ><img :src="playWhite" alt="play"
+              /></span>
               <p>{{ mov.title }}</p>
             </div>
           </div>
@@ -31,6 +35,7 @@
 
 <script>
 import TheBrowseNav from "../pages/browse/TheBrowseNav.vue";
+import playWhite from "../assets/playWhite.png";
 import { searchMovie, divideMylist } from "../utils/index";
 let breakpointSix = 1200;
 let breakpointFive = 1000;
@@ -45,10 +50,10 @@ export default {
     return {
       myList: [],
       bigList: [[]],
-      selectedMovie: "",
       identifier: "",
       cardsNum: 6,
       query: "",
+      playWhite,
     };
   },
   watch: {
@@ -163,6 +168,7 @@ export default {
   display: flex;
   flex-direction: column;
   height: 100%;
+  color: grey;
 }
 .train {
   display: flex;
@@ -177,14 +183,16 @@ export default {
   flex: 1;
   width: 100%;
   overflow: hidden;
+  position: relative;
 }
-.card img {
+.imgLogo {
   width: 97%;
   height: 122px;
   border-radius: 5px;
   border: 2.5px solid transparent;
+  cursor: pointer;
 }
-.card img:hover {
+.imgLogo:hover {
   border: 2.5px solid white;
 }
 .card p {
@@ -194,5 +202,24 @@ export default {
 .theTrainWrapper {
   padding: 0;
   margin: 0;
+}
+.play {
+  position: absolute;
+  top: 29%;
+  left: 43%;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.3);
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
+  padding: 0 0 0 2px;
+}
+.play img {
+  width: 13px;
+  height: 13px;
 }
 </style>

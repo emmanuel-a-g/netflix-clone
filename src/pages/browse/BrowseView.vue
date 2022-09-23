@@ -125,19 +125,19 @@ export default {
         return;
       } else if (
         width < breakpointSix &&
-        width > breakpointFive &&
+        width >= breakpointFive &&
         this.cardsNum !== 5
       ) {
         this.cardsNum = 5;
       } else if (
         width < breakpointFive &&
-        width > breakpointFour &&
+        width >= breakpointFour &&
         this.cardsNum !== 4
       ) {
         this.cardsNum = 4;
       } else if (
         width < breakpointFour &&
-        width > breakpointThree &&
+        width >= breakpointThree &&
         this.cardsNum !== 3
       ) {
         this.cardsNum = 3;
@@ -149,7 +149,7 @@ export default {
         this.cardsNum = 2;
       } else if (width > breakpointSix && this.cardsNum !== 6) {
         this.cardsNum = 6;
-      } else if (width < breakpointTwo && this.cardsNum !== 2) {
+      } else if (width <= breakpointTwo && this.cardsNum !== 2) {
         this.cardsNum = 2;
       }
     },

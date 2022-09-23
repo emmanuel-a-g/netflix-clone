@@ -48,7 +48,7 @@
                 :src="returnImageUrl('one')"
                 alt="user image"
               />
-              {{ profiles.one || "..." }}
+              {{ profiles.one || "" }}
             </p>
             <p>
               <img
@@ -56,7 +56,7 @@
                 :src="returnImageUrl('two')"
                 alt="user image"
               />
-              {{ profiles.two || "..." }}
+              {{ profiles.two || "" }}
             </p>
             <p>
               <img
@@ -64,7 +64,7 @@
                 :src="returnImageUrl('three')"
                 alt="user image"
               />
-              {{ profiles.three || "..." }}
+              {{ profiles.three || "" }}
             </p>
             <p>
               <img
@@ -72,7 +72,7 @@
                 :src="returnImageUrl('four')"
                 alt="user image"
               />
-              {{ profiles.four || "..." }}
+              {{ profiles.four || "" }}
             </p>
             <p>
               <img
@@ -80,7 +80,7 @@
                 :src="returnImageUrl('five')"
                 alt="user image"
               />
-              {{ profiles.five || "..." }}
+              {{ profiles.five || "" }}
             </p>
           </div>
         </div>

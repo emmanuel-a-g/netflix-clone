@@ -10,7 +10,7 @@
           width="26px"
           height="26px"
         />
-        {{ profiles.one || "new" }}
+        {{ profiles.one || "" }}
       </li>
       <li class="profile" @click="handleSelectuser">
         <img
@@ -21,7 +21,7 @@
           width="26px"
           height="26px"
         />
-        {{ profiles.two || "new" }}
+        {{ profiles.two || "" }}
       </li>
       <li class="profile" @click="handleSelectuser">
         <img
@@ -32,7 +32,7 @@
           width="26px"
           height="26px"
         />
-        {{ profiles.three || "new" }}
+        {{ profiles.three || "" }}
       </li>
       <li class="profile" @click="handleSelectuser">
         <img
@@ -43,7 +43,7 @@
           width="26px"
           height="26px"
         />
-        {{ profiles.four || "new" }}
+        {{ profiles.four || "" }}
       </li>
       <li class="profile" @click="handleSelectuser">
         <img
@@ -54,7 +54,7 @@
           width="26px"
           height="26px"
         />
-        {{ profiles.five || "new" }}
+        {{ profiles.five || "" }}
       </li>
       <li class="action" @click="handleSelectuser">
         <img width="18px" height="18px" :src="pencil" alt="edit logo" />Manage
