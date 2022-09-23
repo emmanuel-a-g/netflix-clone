@@ -52,9 +52,10 @@
               placeholder="Titles, genres"
               maxlength="15"
               v-model="search"
-              @keypress.enter="handleSearch"
+              @keyup.prevent="handleSearch"
               :class="{ invisible: !searchInput, visible: searchInput }"
             />
+            <span @click="closeSearch" v-if="searchInput"> &#10005; </span>
           </div>
         </li>
         <li>Kids</li>
@@ -99,8 +100,8 @@ import arrow from "../../assets/arrow.png";
 import TheNotifications from "../../components/ui/TheNotifications.vue";
 import MobileBrowse from "../../pages/browse/MobileBrowse.vue";
 import { getProfileImage } from "../../store/data";
-import { searchMovie } from "../../utils/index";
 export default {
+  emits: ["closeTheSearch"],
   props: ["show"],
   components: {
     TheBox,
@@ -158,6 +159,9 @@ export default {
     },
   },
   methods: {
+    closeSearch() {
+      this.$emit("closeTheSearch");
+    },
     showBrowseBox() {
       this.showBrowse = true;
     },
@@ -188,12 +192,23 @@ export default {
       }
     },
     closeInput() {
-      this.searchInput = false;
-      this.search = "";
+      if (this.$route.path !== "/search") {
+        this.searchInput = false;
+        this.search = "";
+      }
     },
     handleSearch() {
-      const result = searchMovie(this.search);
-      console.log("Result: ", result);
+      if (this.$route.path === "/browse") {
+        this.$router.push({
+          path: "/search",
+          query: { q: this.search, focus: true },
+        });
+      } else {
+        this.$router.push({
+          path: "/search",
+          query: { q: this.search },
+        });
+      }
     },
     toggleAccount() {
       if (!this.showAlert) {
@@ -265,13 +280,15 @@ export default {
     this.handleResize = () => this.setWidth();
     window.addEventListener("resize", this.handleResize);
     this.checkCurrentPath();
+    if (this.$route.query.focus === "true") {
+      this.searchInput = true;
+      this.$refs.searchRef.focus();
+      this.search = this.$route.query.q;
+    }
   },
   beforeUnmount() {
     window.removeEventListener("resize", this.handleResize);
     window.removeEventListener("scroll", this.setScroll);
-  },
-  updated() {
-    this.checkCurrentPath();
   },
 };
 </script>
@@ -487,6 +504,20 @@ export default {
 @media only screen and (max-width: 1150px) {
   .middleMenu {
     width: 100%;
+  }
+}
+@media only screen and (max-height: 650px) {
+  .logo {
+    width: 120px;
+    height: auto;
+    margin-top: -12px;
+    /* background-color: red; */
+  }
+}
+@media only screen and (max-height: 550px) {
+  .logo {
+    width: 100px;
+    margin-top: -15px;
   }
 }
 </style>

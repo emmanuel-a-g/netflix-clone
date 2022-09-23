@@ -134,7 +134,7 @@ export function divideMylist(list, desired) {
 }
 
 export function searchMovie(search) {
-  if (typeof(search) !== "string") {
+  if (typeof search !== "string") {
     return;
   }
   const allMovies = data.concat(data2, heroMaterial);
@@ -142,6 +142,6 @@ export function searchMovie(search) {
 
   const filtered = allMovies.filter((mov) => {
     return mov.title.toLowerCase().includes(lowerSearch);
-  })
+  });
   return filtered;
 }

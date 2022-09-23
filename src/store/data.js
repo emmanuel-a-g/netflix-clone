@@ -652,7 +652,7 @@ export const heroMaterial = [
       "https://res.cloudinary.com/milito/image/upload/v1663878105/netflix/terimHeroSmall_feqclt.png",
   },
   {
-    title: "This is The End",
+    title: "This Is The End",
     id: 108,
     tags: ["Apocalyptic", "Comedy", "Feelgood"],
     rating: "R",

@@ -143,7 +143,7 @@ export default {
         this.cardsNum = 3;
       } else if (
         width < breakpointThree &&
-        width > breakpointTwo &&
+        width >= breakpointTwo &&
         this.cardsNum !== 2
       ) {
         this.cardsNum = 2;

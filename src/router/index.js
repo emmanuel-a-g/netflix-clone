@@ -22,6 +22,7 @@ const WatchView = () => import("../pages/watch/WatchView.vue");
 const ProfileImage = () => import("../pages/profile/ProfileImage.vue");
 const MylistView = () => import("../pages/mylist/MylistView.vue");
 const LoginHelp = () => import("../pages/LoginHelp.vue");
+const SearchView = () => import("../pages/SearchView.vue");
 
 const router = createRouter({
   history: createWebHistory(),
@@ -76,6 +77,11 @@ const router = createRouter({
       path: "/browse",
       name: "Home",
       component: BrowseView,
+      meta: { requiresAuth: true },
+    },
+    {
+      path: "/search",
+      component: SearchView,
       meta: { requiresAuth: true },
     },
     {

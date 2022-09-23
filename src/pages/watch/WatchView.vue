@@ -50,7 +50,8 @@ export default {
     startVideoTimer() {
       this.videoTimer = setTimeout(() => {
         this.cancelVideoTimer();
-      }, 60500);
+        //60500
+      }, 55500);
     },
     cancelVideoTimer() {
       if (this.videoTimer) {
