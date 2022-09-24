@@ -2,7 +2,7 @@
   <div class="wrapper">
     <TheBrowseNav @closeTheSearch="goBackHome" class="navbar"></TheBrowseNav>
     <div class="mainContent">
-      <div>
+      <div class="middle">
         <p>Search: {{ query }}</p>
       </div>
       <div v-if="bigList[0].length === 0">
@@ -21,9 +21,6 @@
                 alt="profile image"
                 @click="openMovie(mov)"
               />
-              <span class="play" @click="openMovie(mov)"
-                ><img :src="playWhite" alt="play"
-              /></span>
               <p>{{ mov.title }}</p>
             </div>
           </div>
@@ -195,6 +192,9 @@ export default {
 .imgLogo:hover {
   border: 2.5px solid white;
 }
+.card:hover {
+  color: white;
+}
 .card p {
   text-align: center;
   font-size: 0.8rem;
@@ -203,23 +203,12 @@ export default {
   padding: 0;
   margin: 0;
 }
-.play {
-  position: absolute;
-  top: 29%;
-  left: 43%;
-  z-index: 2;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.3);
-  width: 26px;
-  height: 26px;
-  cursor: pointer;
-  padding: 0 0 0 2px;
+.middle img {
+  width: 10px;
+  height: 10px;
 }
-.play img {
-  width: 13px;
-  height: 13px;
+.middle {
+  display: flex;
+  justify-content: flex-start;
 }
 </style>
