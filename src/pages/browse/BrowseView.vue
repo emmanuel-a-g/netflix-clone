@@ -216,4 +216,9 @@ export default {
   padding-top: 50px;
   /* making space for box popover */
 }
+@media only screen and (max-width: 400px) {
+  .wrapperCarousel {
+    padding-top: 0px;
+  }
+}
 </style>
