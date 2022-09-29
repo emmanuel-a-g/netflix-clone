@@ -83,6 +83,7 @@
 import pencil from "../../assets/pencil.png";
 import add from "../../assets/add.png";
 import { getProfileImage } from "../../store/data";
+const matcher = { one: 1, two: 2, three: 3, four: 4, five: 5 };
 export default {
   props: ["editMode", "profiles", "profileImages"],
   emits: ["manage", "editUser", "fetchUpdated"],
@@ -145,8 +146,9 @@ export default {
     handle(name, displayName) {
       const redirectQuery = this.$route.query.redirect;
       const imageId = this.profileImages[name];
+      const last = this.totalProfiles === matcher[name];
       if (this.editMode) {
-        this.$emit("editUser", name, displayName, imageId);
+        this.$emit("editUser", name, displayName, imageId, last);
       } else {
         this.$store.dispatch("currentProfile", { name, displayName });
         this.$emit("fetchUpdated");

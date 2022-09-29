@@ -49,7 +49,7 @@
       <button
         @click="deleteProfile"
         class="deleteProfile"
-        v-if="currentName !== 'New'"
+        v-if="currentName !== 'New' && last === 'true'"
       >
         Delete Profile
       </button>
@@ -74,6 +74,7 @@ export default {
       highlightInput: false,
       currentName: "",
       wantedToChangeProfile: false,
+      last: undefined,
     };
   },
   computed: {
@@ -88,14 +89,16 @@ export default {
   },
   methods: {
     deleteProfile() {
-      this.$store
-        .dispatch("deleteProfile", this.profileIdentifier)
-        .then(() => {
-          this.$router.push({ path: "/selectuser", query: { update: true } });
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      if (this.last) {
+        this.$store
+          .dispatch("deleteProfile", this.profileIdentifier)
+          .then(() => {
+            this.$router.push({ path: "/selectuser", query: { update: true } });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
     },
     profileSelect() {
       //NAME FIRST, IMAGE SECOND
@@ -151,6 +154,7 @@ export default {
   mounted() {
     const profile = this.$route.params.profile;
     const name = this.$route.params.name;
+    this.last = this.$route.query.last;
     this.currentName = name;
     if (profile) {
       this.$refs.name.value = name;

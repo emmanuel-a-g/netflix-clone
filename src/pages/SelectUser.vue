@@ -34,11 +34,11 @@ export default {
     manageMode() {
       this.editMode = !this.editMode;
     },
-    editThisUser(name, displayName, imageId = 21) {
+    editThisUser(name, displayName, imageId = 21, last) {
       if (displayName) {
         this.$router.push({
           path: `/manageprofiles/${name}/${displayName}`,
-          query: { id: imageId },
+          query: { id: imageId, last: last },
         });
       } else {
         this.$router.push(`/manageprofiles/${name}/visitor`);

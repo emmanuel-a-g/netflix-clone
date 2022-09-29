@@ -24,7 +24,6 @@ import {
   deleteDoc,
   arrayUnion,
   arrayRemove,
-  deleteField,
 } from "firebase/firestore";
 const theObj = {
   profiles: {
@@ -251,8 +250,8 @@ const store = createStore({
       let dbListPath = `mylist.${profile}`;
       let dbImagePath = `profileImages.${profile}`;
       await updateDoc(usersRef, {
-        [dbNamePath]: deleteField(),
-        [dbListPath]: deleteField(),
+        [dbNamePath]: "",
+        [dbListPath]: [],
         [dbImagePath]: 21,
       }).catch((err) => {
         console.log("Error deleting profile: ", err);

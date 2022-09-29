@@ -1,60 +1,21 @@
 <template>
   <div class="theBox" :class="{ visibleClass: show, hiddenClass: !show }">
     <ul>
-      <li class="profile" @click="handleSelectuser">
+      <li
+        v-for="(prof, idx) in live"
+        :key="idx"
+        class="profile"
+        @click="handleSelectuser"
+      >
         <img
           v-if="profileImages"
           class="profileImage"
-          :src="profileImages.one"
+          :src="profileImages[prof]"
           alt="img"
           width="26px"
           height="26px"
         />
-        {{ profiles.one || "" }}
-      </li>
-      <li class="profile" @click="handleSelectuser">
-        <img
-          v-if="profileImages"
-          class="profileImage"
-          :src="profileImages.two"
-          alt="img"
-          width="26px"
-          height="26px"
-        />
-        {{ profiles.two || "" }}
-      </li>
-      <li class="profile" @click="handleSelectuser">
-        <img
-          v-if="profileImages"
-          class="profileImage"
-          :src="profileImages.three"
-          alt="img"
-          width="26px"
-          height="26px"
-        />
-        {{ profiles.three || "" }}
-      </li>
-      <li class="profile" @click="handleSelectuser">
-        <img
-          v-if="profileImages"
-          class="profileImage"
-          :src="profileImages.four"
-          alt="img"
-          width="26px"
-          height="26px"
-        />
-        {{ profiles.four || "" }}
-      </li>
-      <li class="profile" @click="handleSelectuser">
-        <img
-          v-if="profileImages"
-          class="profileImage"
-          :src="profileImages.five"
-          alt="img"
-          width="26px"
-          height="26px"
-        />
-        {{ profiles.five || "" }}
+        {{ profiles[prof] || "" }}
       </li>
       <li class="action" @click="handleSelectuser">
         <img width="18px" height="18px" :src="pencil" alt="edit logo" />Manage
@@ -82,6 +43,7 @@ export default {
     return {
       profiles: {},
       profileImages: {},
+      live: [],
       user,
       help,
       pencil,
@@ -99,16 +61,29 @@ export default {
     handleSelectuser() {
       this.$router.push("/selectuser");
     },
+    makeProfileList(profiles) {
+      let filtered = [];
+      for (let key in profiles) {
+        if (profiles[key]) {
+          filtered.push([key]);
+        }
+      }
+      this.live = filtered;
+    },
   },
   mounted() {
     const profiles = this.$store.getters.getProfiles;
     if (profiles) {
       this.profiles = profiles;
+      this.makeProfileList(profiles);
     }
     this.$store
       .dispatch("profileNames")
       .then((res) => {
         const imagesId = res.images;
+        const profiles = res.profiles;
+        this.makeProfileList(profiles);
+        this.profiles = profiles;
         let obj = {};
         for (let key in imagesId) {
           obj[key] = getProfileImage(imagesId[key]).imageUrl;
