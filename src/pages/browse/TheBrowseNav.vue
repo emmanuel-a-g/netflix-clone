@@ -18,6 +18,9 @@
           @handleToList="handleMylist"
         ></MobileBrowse>
       </div>
+      <div v-else>
+        &nbsp;
+      </div>
     </div>
     <div class="middleMenu" v-if="!mobileView">
       <li
