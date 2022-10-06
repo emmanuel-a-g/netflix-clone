@@ -323,6 +323,10 @@ export default {
   .insideSelection {
     width: 100%;
   }
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+  }
 }
 @media only screen and (max-width: 450px) {
   .movieView {

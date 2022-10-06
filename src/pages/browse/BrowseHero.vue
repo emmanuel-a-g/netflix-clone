@@ -6,6 +6,7 @@
 </template>
 
 <script>
+// const mobileBreakpoint = 400;
 export default {
   props: ["hero"],
   data() {
@@ -18,6 +19,7 @@ export default {
     setHeightImage() {
       let idealHeight = this.wallpaperRef.clientHeight;
       this.vingetteHeight = idealHeight + "px";
+      console.log(idealHeight);
     },
   },
   computed: {
@@ -35,6 +37,9 @@ export default {
   mounted() {
     window.addEventListener("resize", this.setHeightImage);
     this.wallpaperRef = this.$refs.imageRef;
+    if (this.wallpaperRef) {
+      this.setHeightImage();
+    }
   },
 };
 </script>
