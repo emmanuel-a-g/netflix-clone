@@ -2,7 +2,7 @@
   <div
     class="theBox"
     :style="{
-      left: theIdx === 0 ? '0%' : theIdx === total - 1 ? 'unset' : '-15%',
+      left: theIdx === 0 ? '0%' : theIdx === total - 1 ? 'unset' : '-20%',
       right: theIdx === total - 1 ? '0' : 'unset',
     }"
     :class="{ visibleClass: show, hiddenClass: !show }"
@@ -14,6 +14,7 @@
         v-if="!showMovie"
         @mouseover="startTimer"
         @mouseout="cancelTimer"
+        :class="{ gridClass: showMovie }"
       >
         <img :src="theMovie ? theMovie.imageUrl : ''" alt="hover image" />
       </div>
@@ -85,7 +86,7 @@ export default {
     "total",
     "identifier",
     "mobileDetected",
-    "mylist"
+    "mylist",
   ],
   emits: ["closeCard"],
   data() {
@@ -217,9 +218,11 @@ export default {
   position: absolute;
   background-color: #0f0f0f;
   visibility: visible;
-  top: -70%;
-  width: 282px;
-  height: 285px;
+  top: -20%;
+  /* width: 282px; */
+  width: 140%;
+  /* height: 285px; */
+  height: 140%;
   transition: all 300ms ease;
   /* Z INDEX PLACEMENT */
   z-index: 20;
@@ -228,8 +231,10 @@ export default {
 .hiddenClass {
   position: absolute;
   top: 0%;
-  width: 270px;
-  height: 220px;
+  /* width: 270px; */
+  width: 100%;
+  /* height: 220px; */
+  height: 100%;
   left: 5%;
   background-color: #141414;
   visibility: hidden;
@@ -237,7 +242,8 @@ export default {
 }
 .contentDiv {
   top: 158px;
-  width: 282px;
+  /* width: 282px; */
+  width: 100%;
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -355,12 +361,14 @@ export default {
   width: 100%;
   height: auto;
 }
+.gridClass {
+  display: grid;
+  grid-template-rows: 65% 35%;
+}
 /* IFRAME CSS */
 .iframeContainer {
-  /* background-color: aquamarine; */
-  /* border: 1px solid white; */
   position: relative;
-  width: 282px;
+  width: 100%;
   height: 158px;
   overflow: hidden;
   padding: 0;
@@ -368,26 +376,14 @@ export default {
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
 }
-/* .touchableOverlay {
-  padding: 0;
-  margin: 0;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 4px;
-} */
 .iframeContainer iframe {
   position: absolute;
   padding: 0;
   margin: 0;
   bottom: -168px;
-  left: -21%;
-  /* width: 100%;
-  height: 100%; */
+  left: 0%;
   height: 500px;
-  width: 400px;
+  width: 100%;
   border-radius: 4px;
   /* MOBILE REQUIRED */
   pointer-events: none;

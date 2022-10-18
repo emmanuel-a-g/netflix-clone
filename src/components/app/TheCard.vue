@@ -70,7 +70,8 @@ export default {
   background-size: cover;
   background-repeat: no-repeat;
   flex: 1;
-  height: 126px;
+  /* height: 126px; */
+  height: 100%;
   padding: 0;
   margin: 0;
   border-radius: 4px;

@@ -91,7 +91,8 @@ export default {
 .carousel {
   position: relative;
   background-color: transparent;
-  height: 165px;
+  /* height: 165px; */
+  height: 200px;
 }
 .inner {
   white-space: nowrap;
@@ -99,7 +100,8 @@ export default {
   margin: 0;
   margin-left: 60px;
   background-color: transparent;
-  height: 128px;
+  /* height: 128px; */
+  height: 100%;
 }
 .active {
   color: white;
@@ -109,7 +111,8 @@ export default {
   position: absolute;
   left: 0;
   top: 0;
-  height: 126px;
+  /* height: 126px; */
+  height: 100%;
   width: 60px;
   background-color: rgba(0, 0, 0, 0.438);
   display: flex;
@@ -135,7 +138,8 @@ export default {
   position: absolute;
   right: 0;
   top: 0;
-  height: 126px;
+  /* height: 126px; */
+  height: 100%;
   width: 60px;
   background-color: rgba(0, 0, 0, 0.438);
   display: flex;
@@ -157,7 +161,8 @@ export default {
   display: flex;
   justify-content: space-evenly;
   width: 100%;
-  height: 128px;
+  /* height: 128px; */
+  height: 100%;
   text-align: center;
 }
 @media only screen and (max-width: 700px) {
