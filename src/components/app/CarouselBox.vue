@@ -14,7 +14,6 @@
         v-if="!showMovie"
         @mouseover="startTimer"
         @mouseout="cancelTimer"
-        :class="{ gridClass: showMovie }"
       >
         <img :src="theMovie ? theMovie.imageUrl : ''" alt="hover image" />
       </div>
@@ -220,25 +219,30 @@ export default {
   visibility: visible;
   top: -20%;
   /* width: 282px; */
-  width: 140%;
+  /* width: 150%; */
   /* height: 285px; */
-  height: 140%;
-  transition: all 300ms ease;
+  /* height: 150%; */
+  -webkit-transform: scale(1.5);
+  transform: scale(1.5);
+  /* -webkit-transition: -webkit-transform 300ms;
+  transition: all 300ms ease; */
   /* Z INDEX PLACEMENT */
   z-index: 20;
   border-radius: 4px;
 }
 .hiddenClass {
   position: absolute;
-  top: 0%;
+  top: 50%;
   /* width: 270px; */
-  width: 100%;
+  width: 0%;
   /* height: 220px; */
-  height: 100%;
-  left: 5%;
+  height: 0%;
+  left: 50%;
   background-color: #141414;
   visibility: hidden;
   border-radius: 4px;
+  /* -webkit-transition: -webkit-transform 300ms;
+  transition: all 300ms ease; */
 }
 .contentDiv {
   top: 158px;
