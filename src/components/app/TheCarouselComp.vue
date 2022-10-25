@@ -78,7 +78,8 @@ export default {
 
 <style scoped>
 .noWrap {
-  margin: 0;
+  margin: 1.5% 0;
+  /* Space for bigger carouselBox */
   padding: 0;
   height: 100%;
   width: 100%;

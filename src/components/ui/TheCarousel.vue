@@ -100,7 +100,6 @@ export default {
   margin: 0;
   margin-left: 60px;
   background-color: transparent;
-  /* height: 128px; */
   height: 100%;
 }
 .active {
@@ -138,7 +137,6 @@ export default {
   position: absolute;
   right: 0;
   top: 0;
-  /* height: 126px; */
   height: 100%;
   width: 60px;
   background-color: rgba(0, 0, 0, 0.438);

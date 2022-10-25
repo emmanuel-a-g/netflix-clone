@@ -17,7 +17,7 @@
       >
         <img :src="theMovie ? theMovie.imageUrl : ''" alt="hover image" />
       </div>
-      <div v-if="showMovie" class="iframeContainer">
+      <div v-else class="iframeContainer">
         <iframe
           :src="`https://www.youtube-nocookie.com/embed/${theMovieId}?start=5&end=38&autoplay=1&loop=1&modestbranding=1&autohide=1&showinfo=0rel=0&iv_load_policy=3&fs=0&color=white&controls=0&disablekb=1${muteControl}`"
           height="500"
@@ -218,42 +218,29 @@ export default {
   background-color: #0f0f0f;
   visibility: visible;
   top: -20%;
-  /* width: 282px; */
-  /* width: 150%; */
-  /* height: 285px; */
-  /* height: 150%; */
-  -webkit-transform: scale(1.5);
-  transform: scale(1.5);
-  /* -webkit-transition: -webkit-transform 300ms;
-  transition: all 300ms ease; */
+  width: 140%;
+  height: 140%;
+  -webkit-transition: -webkit-transform 300ms;
+  transition: all 300ms ease;
   /* Z INDEX PLACEMENT */
-  z-index: 20;
+  z-index: 21;
   border-radius: 4px;
 }
 .hiddenClass {
   position: absolute;
   top: 50%;
-  /* width: 270px; */
-  width: 0%;
-  /* height: 220px; */
+  left: 100%;
+  width: 100%;
   height: 0%;
-  left: 50%;
   background-color: #141414;
   visibility: hidden;
   border-radius: 4px;
-  /* -webkit-transition: -webkit-transform 300ms;
-  transition: all 300ms ease; */
 }
 .contentDiv {
-  top: 158px;
-  /* width: 282px; */
+  grid-row: 2 / span 1;
   width: 100%;
-  position: absolute;
   display: flex;
   flex-direction: column;
-  z-index: 15;
-  height: 120px;
-  padding-top: 5px;
   background-color: #0f0f0f;
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
@@ -282,6 +269,7 @@ export default {
   align-items: center;
   width: 90%;
   margin-left: 12px;
+  margin-top: 5px;
 }
 .actionsLeft {
   display: flex;
@@ -345,35 +333,35 @@ export default {
   margin: 0;
 }
 .insideBox {
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
   height: 100%;
   padding: 0;
   margin: 0;
   width: 100%;
   border-radius: 4px;
   position: relative;
+  display: grid;
+  grid-template-rows: 60% 40%;
 }
 .movieDiv img {
   width: 100%;
-  height: 100%;
+  height: auto;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
 }
 .movieDiv {
+  grid-row: 1 / span 1;
   width: 100%;
-  height: auto;
-}
-.gridClass {
-  display: grid;
-  grid-template-rows: 65% 35%;
+  height: 100%;
+  background-color: #0f0f0f;
+  overflow: hidden;
 }
 /* IFRAME CSS */
 .iframeContainer {
   position: relative;
   width: 100%;
-  height: 158px;
+  grid-row: 1 / span 1;
+  height: 100%;
+  /* height: 158px; */
   overflow: hidden;
   padding: 0;
   margin: 0;
@@ -385,12 +373,12 @@ export default {
   padding: 0;
   margin: 0;
   bottom: -168px;
-  left: 0%;
-  height: 500px;
-  width: 100%;
+  left: -10%;
+  height: 520px;
+  width: 110%;
   border-radius: 4px;
   /* MOBILE REQUIRED */
-  pointer-events: none;
+  /* pointer-events: none; */
   z-index: 14;
 }
 .iframeContainer iframe:hover {

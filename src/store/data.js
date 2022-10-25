@@ -286,7 +286,7 @@ export const data2 = [
     id: 33,
     imageUrl:
       "https://res.cloudinary.com/milito/image/upload/v1662749428/netflix/narcosmexico_ut9jku.jpg",
-    videoId: "hhZBDO0CKJo",
+    videoId: "3k0WCZgsgCQ",
   },
   {
     title: "Night Stalker",

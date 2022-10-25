@@ -19,7 +19,6 @@ export default {
     setHeightImage() {
       let idealHeight = this.wallpaperRef.clientHeight;
       this.vingetteHeight = idealHeight + "px";
-      console.log(idealHeight);
     },
   },
   computed: {
