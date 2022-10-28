@@ -91,8 +91,7 @@ export default {
 .carousel {
   position: relative;
   background-color: transparent;
-  /* height: 165px; */
-  height: 200px;
+  height: 155px;
 }
 .inner {
   white-space: nowrap;
@@ -179,8 +178,22 @@ export default {
 }
 @media only screen and (max-width: 500px) {
   .carousel {
-    /* changes text and sliders height only */
     height: 136px;
+  }
+}
+@media only screen and (min-width: 1400px) {
+  .carousel {
+    height: 170px;
+  }
+}
+@media only screen and (min-width: 2000px) {
+  .carousel {
+    height: 200px;
+  }
+}
+@media only screen and (min-width: 2600px) {
+  .carousel {
+    height: 220px;
   }
 }
 </style>
