@@ -224,7 +224,7 @@ export default {
   transition: all 300ms ease;
   /* Z INDEX PLACEMENT */
   z-index: 21;
-  border-radius: 4px;
+  border-radius: 8px;
 }
 .hiddenClass {
   position: absolute;
@@ -234,7 +234,7 @@ export default {
   height: 0%;
   background-color: #141414;
   visibility: hidden;
-  border-radius: 4px;
+  border-radius: 8px;
 }
 .contentDiv {
   grid-row: 2 / span 1;
@@ -337,7 +337,7 @@ export default {
   padding: 0;
   margin: 0;
   width: 100%;
-  border-radius: 4px;
+  border-radius: 8px;
   position: relative;
   display: grid;
   grid-template-rows: 60% 40%;
@@ -354,6 +354,7 @@ export default {
   height: 100%;
   background-color: #0f0f0f;
   overflow: hidden;
+  border-radius: 8px;
 }
 /* IFRAME CSS */
 .iframeContainer {
@@ -365,8 +366,8 @@ export default {
   overflow: hidden;
   padding: 0;
   margin: 0;
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
 }
 .iframeContainer iframe {
   position: absolute;
@@ -376,7 +377,7 @@ export default {
   left: -10%;
   height: 520px;
   width: 110%;
-  border-radius: 4px;
+  border-radius: 8px;
   /* MOBILE REQUIRED */
   /* pointer-events: none; */
   z-index: 14;
