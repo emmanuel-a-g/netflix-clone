@@ -1,7 +1,7 @@
 <template>
   <div class="carousel">
     <div class="inner" :style="{ transform: `translateX(-${index * 96}%)` }">
-      <ItemCarousel v-for="item in bigList" :key="item" width="96%">
+      <ItemCarousel v-for="(item, inx) in bigList" :key="inx" width="96%">
         <div class="line">
           <TheCard
             v-for="(mov, idx) in item"

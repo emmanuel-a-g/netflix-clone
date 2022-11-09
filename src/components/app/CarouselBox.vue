@@ -33,7 +33,7 @@
             <p
               :style="{ 'background-color': 'white' }"
               @click="toWatch"
-              id="redHover"
+              id="greyHover"
             >
               <img id="play" :src="play" alt="play button" />
             </p>
@@ -110,12 +110,13 @@ export default {
   methods: {
     computeTag(pos) {
       if (this.theMovie.tags) {
+        let movieTags = this.theMovie.tags;
         if (pos === 1) {
-          return this.theMovie.tags[0];
+          return movieTags[0];
         } else if (pos === 2) {
-          return this.theMovie.tags[1];
+          return movieTags[1];
         } else {
-          return this.theMovie.tags[2];
+          return movieTags[2];
         }
       } else {
         if (pos == 1) {
@@ -212,6 +213,7 @@ export default {
 <style scoped>
 .theBox {
   height: 100%;
+  font-size: 18px;
 }
 .visibleClass {
   position: absolute;
@@ -244,22 +246,23 @@ export default {
   background-color: #0f0f0f;
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
+  font-size: 1em;
 }
 #play {
-  width: 17px;
-  height: 17px;
+  width: 0.9em;
+  height: 0.9em;
 }
 #like {
-  width: 17px;
-  height: 17px;
+  width: 0.9em;
+  height: 0.9em;
 }
 #more {
-  width: 17px;
-  height: 17px;
+  width: 0.9em;
+  height: 0.9em;
 }
 #down {
-  width: 17px;
-  height: 17px;
+  width: 0.9em;
+  height: 0.9em;
 }
 .actions {
   flex: 1;
@@ -277,13 +280,13 @@ export default {
 }
 .actions p {
   border-radius: 50%;
-  width: 34px;
-  height: 34px;
+  width: 1.5em;
+  height: 1.5em;
+  padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #141414;
-  padding: 0;
   margin: 0;
   border: 2px solid rgb(140, 139, 139);
 }
@@ -297,13 +300,13 @@ export default {
   justify-content: space-around;
   align-items: center;
   margin-left: 3px;
+  font-size: .9em;
 }
 .information p {
   padding: 0;
   margin: 0;
 }
 .green {
-  font-size: 1rem;
   color: rgb(19, 185, 19);
 }
 .information .rating {
@@ -314,7 +317,7 @@ export default {
 }
 .information .hd {
   border: 1px solid grey;
-  font-size: 0.8rem;
+  font-size: 0.8em;
   padding: 0px 5px;
   margin: 0;
   border-radius: 5px;
@@ -327,6 +330,7 @@ export default {
   align-items: center;
   width: 75%;
   margin-left: 12.5px;
+  font-size: .9em;
 }
 .tags p {
   padding: 0;
@@ -386,15 +390,15 @@ export default {
   /* MOBILE REQUIRED */
   pointer-events: none !important;
 }
-#redHover {
+#greyHover {
   border-color: white;
 }
-#redHover:hover {
+#greyHover:hover {
   border-color: grey;
 }
 @media only screen and (max-width: 400px) {
   .tags {
-    visibility: hidden;
+    display: none;
   }
 }
 </style>
