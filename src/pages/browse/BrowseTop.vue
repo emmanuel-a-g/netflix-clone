@@ -1,8 +1,8 @@
 <template>
   <div class="wrapper">
     <div class="fillContainer">
+      <img id="heroTitle" :src="getHeroTitleImage" alt="hero title image" />
       <div class="fillContent">
-        <img id="heroTitle" :src="getHeroTitleImage" alt="hero title image" />
         <p>{{ getHeroDescription }}</p>
         <div id="buttonDiv">
           <button id="playButton" @click="toWatch">
@@ -12,7 +12,9 @@
             <img :src="info" alt="info icon" />More Info
           </button>
         </div>
-        <span id="rating">{{ getHeroRating }}</span>
+        <div class="ratingDiv">
+          <span id="rating">{{ getHeroRating }}</span>
+        </div>
       </div>
     </div>
   </div>
@@ -57,6 +59,8 @@ export default {
 .wrapper {
   height: 100%;
   width: 100%;
+  position: relative;
+  font-size: 18px;
 }
 #heroTitle {
   position: absolute;
@@ -67,62 +71,53 @@ export default {
 }
 .fillContainer {
   /* smaller for inner padding */
-  /* min-height: 43vw; */
-  min-height: 39vw;
-  /* max-height: 46vw; */
-  max-height: 40vw;
+  margin-top: 26.5%;
+  max-height: 20vw;
   /* smaller for inner padding */
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
+  flex-direction: column;
   width: 100%;
 }
 .fillContent {
   margin-left: 3vw;
+  font-size: inherit;
 }
 .fillContent p {
-  position: absolute;
-  /* top: 22vh; */
-  top: 26.5vw;
-  left: 60px;
-  /* width: 460px; */
-  min-width: 32vw;
-  max-width: 34vw;
+  width: 30%;
   word-wrap: normal;
-  font-size: 1rem;
+  font-size: 1.1em;
   margin: 0;
+  margin-top: 3px;
   padding: 0;
 }
 #buttonDiv {
-  position: absolute;
-  top: 33vw;
-  left: 60px;
   display: flex;
   background-color: transparent;
-  justify-content: space-between;
-  min-width: 19.5vw;
+  margin-top: 1em;
+  font-size: 18px;
 }
 #buttonDiv button {
   border: none;
   border-radius: 5px;
-  font-size: 1rem;
-  min-height: 3vw;
+  font-size: 1em;
   font-weight: bold;
+  min-height: 1em;
 }
 #playButton {
-  min-width: 8.5vw;
+  width: 6em;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   padding: 8px;
   color: black;
+  margin-right: 1.5em;
 }
 #playButton img {
-  width: 1.4vw;
+  width: 1em;
   height: auto;
 }
 #infoButton {
-  min-width: 10vw;
+  width: 8em;
   color: white;
   display: flex;
   justify-content: space-evenly;
@@ -131,22 +126,22 @@ export default {
   background-color: rgba(100, 100, 100, 0.364);
 }
 #infoButton img {
-  width: 1.6vw;
+  width: 1em;
   height: auto;
   margin-right: 2px;
 }
+.ratingDiv {
+  display: flex;
+  justify-content: flex-end;
+}
 #rating {
-  position: absolute;
-  top: 34vw;
-  right: 0px;
-  min-width: 7.5vw;
-  height: 2vw;
-  font-size: 0.9rem;
+  min-width: 8vw;
+  min-height: 3vw;
+  font-size: 1em;
   color: white;
   border-left: 1.5px white solid;
   background-color: rgba(31, 31, 31, 0.25);
   display: flex;
-  margin-left: 10px;
   justify-content: center;
   align-items: center;
   font-weight: bold;
@@ -180,83 +175,51 @@ export default {
 }
 @media only screen and (max-width: 1000px) {
   .fillContent p {
-    font-size: 0.8rem;
-  }
-  #rating {
-    font-size: 0.9rem;
-  }
-  #buttonDiv {
-    min-width: 20.5vw;
-  }
-}
-@media only screen and (max-width: 850px) {
-  #buttonDiv {
-    top: 38vw;
-    left: 60px;
+    font-size: 0.8em;
   }
   #buttonDiv button {
-    font-size: 0.7rem;
-    min-height: 2vw;
+    height: 2em;
+  }
+  #rating {
+    font-size: 0.8em;
   }
 }
 @media only screen and (max-width: 700px) {
   #rating {
-    font-size: 0.7rem;
-  }
-  .fillContainer {
-    min-height: 48vw;
-    max-height: 50vw;
+    font-size: 0.5em;
   }
   .fillContent p {
-    font-size: 0.6rem;
-    /* IMPORTATNT */
-    left: 25px;
-  }
-  #buttonDiv {
-    top: 38vw;
-    left: 25px;
-    min-width: 160px;
+    font-size: 0.6em;
+    width: 40%;
   }
   #heroTitle {
     left: 25px;
   }
+  #buttonDiv {
+    margin-top: 5px;
+  }
   #buttonDiv button {
-    font-size: 0.7rem;
-    min-height: 1.7vw;
-    min-width: 60px;
+    height: 1.5em;
+    font-size: .8em;
+  }
+  #playButton {
+    min-width: 2em;
   }
   #infoButton {
-    width: 90px;
+    min-width: 2em;
   }
 }
 @media only screen and (max-width: 450px) {
-  #rating {
-    font-size: 0.5rem;
-  }
-  .fillContainer {
-    min-height: 58vw;
-    max-height: 65vw;
-  }
   .fillContent p {
-    font-size: 0.5rem;
-    left: 25px;
+    font-size: 0.5em;
+    width: 50%;
   }
-  #buttonDiv {
-    top: 45vw;
-    left: 25px;
-    min-width: 130px;
-  }
-  #heroTitle {
-    left: 25px;
+  #rating {
+    font-size: 0.4em;
   }
   #buttonDiv button {
-    font-size: 0.5rem;
-    height: 1.8vw;
-    min-width: 50px;
-    padding: 10px 0;
-  }
-  #infoButton {
-    width: 70px;
+    height: 0.8em;
+    font-size: .6em;
   }
 }
 </style>
