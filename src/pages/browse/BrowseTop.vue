@@ -219,7 +219,7 @@ export default {
   }
   #buttonDiv button {
     height: 0.8em;
-    font-size: .6em;
+    font-size: .4em;
   }
 }
 </style>

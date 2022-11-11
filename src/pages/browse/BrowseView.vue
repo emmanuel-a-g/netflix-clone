@@ -218,7 +218,7 @@ export default {
 }
 @media only screen and (max-width: 400px) {
   .wrapperCarousel {
-    padding-top: 0px;
+    padding-top: 16px;
   }
 }
 </style>
