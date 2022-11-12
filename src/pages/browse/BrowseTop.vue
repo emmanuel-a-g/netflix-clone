@@ -83,11 +83,11 @@ export default {
   font-size: inherit;
 }
 .fillContent p {
-  width: 30%;
+  width: 33%;
   word-wrap: normal;
   font-size: 1.1em;
   margin: 0;
-  margin-top: 3px;
+  margin-top: 5px;
   padding: 0;
 }
 #buttonDiv {

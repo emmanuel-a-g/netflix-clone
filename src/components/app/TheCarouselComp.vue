@@ -116,5 +116,8 @@ export default {
   .headerCarousel h2 {
     font-size: 0.8rem;
   }
+   .headerCarousel {
+    margin: 0px 25px;
+  }
 }
 </style>

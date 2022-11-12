@@ -55,15 +55,26 @@ export default {
 .invis {
   color: transparent;
 }
-@media only screen and (max-width: 740px) {
+@media only screen and (max-width: 450px) {
+  .loginFooter, .loginFooter p {
+    font-size: 10px;
+  }
+  .loginFooter div {
+    left: 5%;
+  }
+}
+@media only screen and (min-width: 740px) {
   .loginFooter {
     position: relative;
     border-top-style: solid;
     border-top-width: 1px;
-    /* border-top-color: 1px var(--greyish) solid; */
+    font-size: 16px;
+  }
+  .loginFooter p {
+    font-size: 16px;
   }
   .loginFooter div {
-    left: 8%;
+    left: 13.5%;
   }
 }
 @media only screen and (max-height: 550px) {
