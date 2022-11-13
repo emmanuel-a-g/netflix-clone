@@ -290,6 +290,36 @@ button:hover {
   background-color: #cc0000;
   color: white;
 }
+@media only screen and (min-width: 1300px) {
+  .profiles {
+    width: 100%;
+    max-width: 1000px;
+    margin-bottom: 30px;
+    min-height: 160px;
+    gap: 40px;
+  }
+  .card {
+    min-height: 160px;
+    width: 125px;
+    max-width: 130px;
+    font-size: 1.3rem;
+  }
+  .addCard {
+    margin-top: -27%;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+  }
+  .addCard img {
+    width: 50px;
+    height: 50px;
+  }
+  button {
+    width: 190px;
+    height: 48px;
+    font-size: 1.2em;
+  }
+}
 @media only screen and (max-width: 700px) {
   .wrapper h1 {
     font-size: 1.7rem;
