@@ -422,8 +422,8 @@ const store = createStore({
             //MYOWNEMAIL&PASSWORD
             return signInWithEmailAndPassword(
               auth,
-              "example@gmail.com",
-              "@12345"
+              "militoarturo@gmail.com",
+              "@123456"
             );
           })
           .then((userCredential) => {
