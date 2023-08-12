@@ -38,7 +38,7 @@ export function divideListEquallyBy(list, desired) {
   if (!desired) {
     return list;
   }
-  list = mixUpMovies(list);
+  list = shuffle(list);
   let result = [];
   let temp = [];
   let currIdx = 0;
@@ -59,29 +59,49 @@ export function divideListEquallyBy(list, desired) {
   return result;
 }
 
-function mixUpMovies(list) {
-  const mix = Math.floor(Math.random() * 5);
-  if (mix === 0) {
-    list.sort((a, b) =>
-      a.genre !== b.genre ? (a.genre < b.genre ? -1 : 1) : 0
-    );
-  } else if (mix === 1) {
-    list.sort((a, b) =>
-      a.genre !== b.genre ? (a.genre < b.genre ? 1 : -1) : 0
-    );
-  } else if (mix === 2) {
-    list.sort((a, b) =>
-      a.title !== b.title ? (a.title < b.title ? 1 : -1) : 0
-    );
-  } else if (mix === 3) {
-    list.sort((a, b) =>
-      a.title !== b.title ? (a.title < b.title ? -1 : 1) : 0
-    );
-  } else {
-    //do nothing
+//Fisher–Yates Shuffle
+function shuffle(movies) {
+  let m = movies.length,
+    t,
+    i;
+  // While there remain elements to shuffle…
+  while (m) {
+    // Pick a remaining element…
+    i = Math.floor(Math.random() * m--);
+
+    // And swap it with the current element.
+    t = movies[m];
+    movies[m] = movies[i];
+    movies[i] = t;
   }
-  return list;
+
+  return movies;
 }
+
+// deprecated
+// function mixUpMovies(list) {
+//   const mix = Math.floor(Math.random() * 5);
+//   if (mix === 0) {
+//     list.sort((a, b) =>
+//       a.genre !== b.genre ? (a.genre < b.genre ? -1 : 1) : 0
+//     );
+//   } else if (mix === 1) {
+//     list.sort((a, b) =>
+//       a.genre !== b.genre ? (a.genre < b.genre ? 1 : -1) : 0
+//     );
+//   } else if (mix === 2) {
+//     list.sort((a, b) =>
+//       a.title !== b.title ? (a.title < b.title ? 1 : -1) : 0
+//     );
+//   } else if (mix === 3) {
+//     list.sort((a, b) =>
+//       a.title !== b.title ? (a.title < b.title ? -1 : 1) : 0
+//     );
+//   } else {
+//     //do nothing
+//   }
+//   return list;
+// }
 
 export function divide(list, desired) {
   if (!list || !list.length) {
