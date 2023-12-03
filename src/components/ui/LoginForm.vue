@@ -26,7 +26,9 @@
           Your password must contain between 6 and 60 characters.
         </span>
         <button class="theButton">Sign In</button>
-        <button @click.prevent="loginAsVisitor" class="theButtonVisitor">Login as Visitor</button>
+        <button @click.prevent="handleLoginAsVisitor" class="theButtonVisitor">
+          Login as Visitor
+        </button>
         <div class="help">
           <p>
             <input type="checkbox" v-model="rememberMe" />
@@ -102,9 +104,9 @@ export default {
     signUpForward() {
       this.$router.replace("/");
     },
-    loginAsVisitor() {
+    handleLoginAsVisitor() {
       this.$emit("login-visitor");
-    }
+    },
   },
 };
 </script>

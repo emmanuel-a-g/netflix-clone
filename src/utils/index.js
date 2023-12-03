@@ -1,3 +1,4 @@
+/* eslint-disable no-unreachable */
 import { data, data2, heroMaterial } from "../store/data";
 function divideListEquallyNoMix(list, desired) {
   //filter the blank ones

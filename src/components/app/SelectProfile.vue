@@ -6,66 +6,66 @@
         v-if="totalProfiles >= 1"
         class="card"
         name="one"
-        @click="handle('one', nameOne)"
+        @click="handleProfile('one')"
         :class="{ highlight: editMode }"
       >
-        <img class="profile" :src="imageOne" alt="user image" />
+        <img class="profile" :src="handleGetImage('one')" alt="user image" />
         <span v-if="editMode"
           ><img :src="pencil" alt="edit logo" class="pencil"
         /></span>
-        <p>{{ nameOne }}</p>
+        <p>{{ handleGetName("one") }}</p>
       </div>
       <div
         v-if="totalProfiles >= 2"
         class="card"
         name="two"
-        @click="handle('two', nameTwo)"
+        @click="handleProfile('two')"
         :class="{ highlight: editMode }"
       >
-        <img class="profile" :src="imageTwo" alt="user image" />
+        <img class="profile" :src="handleGetImage('two')" alt="user image" />
         <span v-if="editMode"
           ><img :src="pencil" alt="edit logo" class="pencil"
         /></span>
-        <p>{{ nameTwo }}</p>
+        <p>{{ handleGetName("two") }}</p>
       </div>
       <div
         v-if="totalProfiles >= 3"
         class="card"
         name="three"
-        @click="handle('three', nameThree)"
+        @click="handleProfile('three')"
         :class="{ highlight: editMode }"
       >
-        <img class="profile" :src="imageThree" alt="user image" />
+        <img class="profile" :src="handleGetImage('three')" alt="user image" />
         <span v-if="editMode"
           ><img :src="pencil" alt="edit logo" class="pencil"
         /></span>
-        <p>{{ nameThree }}</p>
+        <p>{{ handleGetName("three") }}</p>
       </div>
       <div
         v-if="totalProfiles >= 4"
         class="card"
         name="four"
-        @click="handle('four', nameFour)"
+        @click="handleProfile('four')"
         :class="{ highlight: editMode }"
       >
-        <img class="profile" :src="imageFour" alt="user image" />
+        <img class="profile" :src="handleGetImage('four')" alt="user image" />
         <span v-if="editMode"
           ><img :src="pencil" alt="edit logo" class="pencil"
         /></span>
-        <p>{{ nameFour }}</p>
+        <p>{{ handleGetName("four") }}</p>
       </div>
       <div
         v-if="totalProfiles >= 5"
         class="card"
         name="five"
-        @click="handle('five', nameFive)"
+        @click="handleProfile('five')"
         :class="{ highlight: editMode }"
       >
-        <img class="profile" :src="imageFive" alt="user image" />
+        <img class="profile" :src="handleGetImage('five')" alt="user image" />
         <span v-if="editMode"
           ><img :src="pencil" alt="edit logo" class="pencil"
         /></span>
-        <p>{{ nameFive }}</p>
+        <p>{{ handleGetName("five") }}</p>
       </div>
       <div v-if="totalProfiles <= 4" class="cardSpecial" @click="handleAdd">
         <p class="addCard">
@@ -86,72 +86,53 @@ import { getProfileImage } from "../../store/data";
 const matcher = { one: 1, two: 2, three: 3, four: 4, five: 5 };
 export default {
   props: ["editMode", "profiles", "profileImages"],
-  emits: ["manage", "editUser", "fetchUpdated"],
+  emits: ["manage", "editUser"],
   data() {
     return {
-      totalProfiles: 0,
       pencil,
       add,
     };
   },
-  watch: {
-    profiles() {
-      this.updateTotalProfiles();
-    },
-  },
+
   computed: {
-    nameOne() {
-      return this.profiles["one"] || "New";
-    },
-    nameTwo() {
-      return this.profiles["two"] || "New";
-    },
-    nameThree() {
-      return this.profiles["three"] || "New";
-    },
-    nameFour() {
-      return this.profiles["four"] || "New";
-    },
-    nameFive() {
-      return this.profiles["five"] || "New";
-    },
-    imageOne() {
-      let id = this.profileImages["one"];
-      return getProfileImage(id).imageUrl;
-    },
-    imageTwo() {
-      let id = this.profileImages["two"];
-      return getProfileImage(id).imageUrl;
-    },
-    imageThree() {
-      let id = this.profileImages["three"];
-      return getProfileImage(id).imageUrl;
-    },
-    imageFour() {
-      let id = this.profileImages["four"];
-      return getProfileImage(id).imageUrl;
-    },
-    imageFive() {
-      let id = this.profileImages["five"];
-      return getProfileImage(id).imageUrl;
+    totalProfiles() {
+      let total = 0;
+      for (let key in this.profiles) {
+        if (this.profiles[key].length > 1) {
+          total++;
+        }
+      }
+      return total;
     },
   },
+
   methods: {
+    handleGetName(identifier) {
+      return this.profiles[identifier] || "New";
+    },
+
+    handleGetImage(identifier) {
+      let id = this.profileImages[identifier];
+      return getProfileImage(id).imageUrl;
+    },
+
     manageToggle() {
       this.$emit("manage");
     },
+
     moveToBrowse() {
       this.$router.replace("/browse");
     },
-    handle(name, displayName) {
-      const redirectQuery = this.$route.query.redirect;
+
+    handleProfile(name) {
+      const displayName = this.handleGetName(name);
+      const redirectQuery = (this.$route.query || {}).redirect;
       const imageId = this.profileImages[name];
       const last = this.totalProfiles === matcher[name];
       if (this.editMode) {
         this.$emit("editUser", name, displayName, imageId, last);
       } else {
-        this.$store.dispatch("currentProfile", { name, displayName });
-        this.$emit("fetchUpdated");
+        this.$store.dispatch("currentIndentifier", name);
         if (redirectQuery === "mylist") {
           this.$router.push("/mylist");
         } else {
@@ -159,23 +140,12 @@ export default {
         }
       }
     },
+
     handleAdd() {
       let matcher = { 1: "one", 2: "two", 3: "three", 4: "four", 5: "five" };
       const profileToAdd = matcher[this.totalProfiles + 1];
       this.$emit("editUser", profileToAdd, "New");
     },
-    updateTotalProfiles() {
-      let total = 0;
-      for (let key in this.profiles) {
-        if (this.profiles[key].length > 1) {
-          total = total + 1;
-        }
-      }
-      this.totalProfiles = total;
-    },
-  },
-  mounted() {
-    this.updateTotalProfiles();
   },
 };
 </script>

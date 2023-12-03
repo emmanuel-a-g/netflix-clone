@@ -31,10 +31,17 @@ export default {
   data() {
     return {
       image,
-      redirect: false,
       error: "",
     };
   },
+
+  computed: {
+    redirect() {
+      const { redirect } = (this.$route || {}).query || {};
+      return redirect || null;
+    },
+  },
+
   methods: {
     handleLoginVisitor() {
       this.$store
@@ -74,18 +81,6 @@ export default {
         this.error = "";
       }
     },
-  },
-  mounted() {
-    const query = this.$route.query;
-    if (query.redirect) {
-      this.redirect = query.redirect;
-    }
-  },
-  beforeUpdate() {
-    const query = this.$route.query;
-    if (query.redirect) {
-      this.redirect = query.redirect;
-    }
   },
 };
 </script>

@@ -96,7 +96,7 @@ export default {
     },
   },
   mounted() {
-    const email = this.$store.getters.returnEmail;
+    const email = this.$store.getters.getEmail;
     if (email) {
       this.email = email;
       this.forwardEmail = true;

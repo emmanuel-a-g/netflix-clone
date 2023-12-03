@@ -129,9 +129,13 @@ export default {
       }
     },
     removeFromMyList() {
+      if (!this.identifier) {
+        console.log("Cannot remove from unset profile");
+        return;
+      }
       this.liked = false;
       this.$store.dispatch("removeFromMyList", {
-        profile: this.identifier,
+        identifier: this.identifier,
         videoId: this.theMovie.id,
       });
     },
@@ -141,7 +145,7 @@ export default {
         this.$router.replace("/selectuser");
       } else {
         this.$store.dispatch("addMyList", {
-          profile: this.identifier,
+          identifier: this.identifier,
           videoId: this.theMovie.id,
         });
       }
@@ -300,7 +304,7 @@ export default {
   justify-content: space-around;
   align-items: center;
   margin-left: 3px;
-  font-size: .9em;
+  font-size: 0.9em;
 }
 .information p {
   padding: 0;
@@ -330,7 +334,7 @@ export default {
   align-items: center;
   width: 75%;
   margin-left: 12.5px;
-  font-size: .9em;
+  font-size: 0.9em;
 }
 .tags p {
   padding: 0;

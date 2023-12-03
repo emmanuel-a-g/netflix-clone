@@ -54,45 +54,60 @@ const store = createStore({
       user: "",
       userId: null,
       email: "",
+      displayName: "",
       name: "",
-      currentProfile: { name: "", displayName: "" },
+      identifier: null,
       redirectAuth: false,
       notification: "",
+      heroMaterial: {},
       profiles: null,
       profileImages: { one: 1, two: 1, three: 1, four: 1, five: 1 },
-      heroMaterial: {},
       mylist: { one: [], two: [], three: [], four: [], five: [] },
     };
   },
+
   mutations: {
     authenticate(state, payload) {
       state.user = payload.user ? payload.user : false;
       state.userId = payload.user.uid;
       state.email = payload.user.email;
-      state.name = payload.user.displayName;
+      state.displayName = payload.user.displayName;
     },
+
     logOut(state) {
       state.user = null;
       state.userId = null;
       state.email = null;
       state.name = null;
-      state.currentProfile = "";
+      state.displayName = "";
       state.notification = "";
       state.profiles = null;
     },
+
     changeName(state, payload) {
       state.name = payload.name;
     },
+
     emailChange(state, payload) {
       state.email = payload;
     },
-    setProfiles(state, payload) {
-      state.profiles = payload.profiles;
-      state.profileImages = payload.images;
+
+    setData(state, payload) {
+      state.profiles = {
+        ...(payload.profiles || {}),
+      };
+      state.profileImages = {
+        ...(payload.profileImages || {}),
+      };
+      state.mylist = {
+        ...(payload.mylist || {}),
+      };
     },
-    setCurrentProfile(state, payload) {
-      state.currentProfile = payload;
+
+    setCurrentIdentifier(state, payload) {
+      state.identifier = payload;
     },
+
     setRedirectAuth(state, payload = null) {
       if (payload) {
         state.redirectAuth = false;
@@ -100,6 +115,7 @@ const store = createStore({
         state.redirectAuth = payload;
       }
     },
+
     setHeroMaterial(state, payload) {
       state.heroMaterial = payload;
     },
@@ -111,11 +127,17 @@ const store = createStore({
     loggedIn(state) {
       return !!state.user;
     },
-    returnEmail(state) {
+    getEmail(state) {
       return state.email;
     },
     getName(state) {
       return state.name;
+    },
+    getIdentifier(state) {
+      return state.identifier;
+    },
+    getDisplayName(state) {
+      return state.displayName;
     },
     getProfiles(state) {
       return state.profiles;
@@ -123,8 +145,8 @@ const store = createStore({
     getProfileImages(state) {
       return state.profileImages;
     },
-    getCurrentProfile(state) {
-      return state.currentProfile;
+    getMyList(state) {
+      return state.mylist;
     },
     getRedirectAuth(state) {
       return state.redirectAuth;
@@ -133,6 +155,7 @@ const store = createStore({
       return state.heroMaterial;
     },
   },
+
   actions: {
     async deleteTheAccount(context) {
       const user = context.getters.userId;
@@ -141,34 +164,31 @@ const store = createStore({
           .then((res) => {
             resolve(res);
             //dispatch delete document
-            deleteDoc(doc(db, "users", user))
-              .then(() => {
-                console.log("deleted document");
-              })
-              .catch((err) => {
-                console.log("error document delete: ", err);
-              });
+            deleteDoc(doc(db, "users", user)).catch((err) => {
+              console.error("error document delete: ", err);
+            });
           })
           .catch((err) => {
             reject(err.code);
           });
       });
     },
+
     async resetPassword(context, payload) {
       return new Promise((resolve, reject) => {
         sendPasswordResetEmail(auth, payload)
-          .then((res) => {
-            console.log(res);
+          .then(() => {
             resolve(
               "Success, send reset password instructions to email! Check both spam and primary inbox."
             );
           })
           .catch((err) => {
-            console.log(err);
+            console.error(err);
             reject(err.code);
           });
       });
     },
+
     async signUp(context, payload) {
       return new Promise((resolve, reject) => {
         createUserWithEmailAndPassword(auth, payload.email, payload.password)
@@ -183,6 +203,7 @@ const store = createStore({
           });
       });
     },
+
     async login(context, payload) {
       return new Promise((resolve, reject) => {
         if (payload.remember) {
@@ -220,6 +241,7 @@ const store = createStore({
         }
       });
     },
+
     async logOut(context) {
       return new Promise((resolve, reject) => {
         signOut(auth)
@@ -232,6 +254,7 @@ const store = createStore({
           });
       });
     },
+
     async logOutVisitor(context) {
       return new Promise((resolve, reject) => {
         signOut(auth)
@@ -243,6 +266,7 @@ const store = createStore({
           });
       });
     },
+
     async deleteProfile(context, profile) {
       const user = context.getters.userId;
       const usersRef = doc(db, "users", user);
@@ -254,22 +278,26 @@ const store = createStore({
         [dbListPath]: [],
         [dbImagePath]: 21,
       }).catch((err) => {
-        console.log("Error deleting profile: ", err);
+        console.error("Error deleting profile: ", err);
       });
     },
+
     authenticate(context, payload) {
       return new Promise((resolve, reject) => {
         if (payload.user) {
           context.commit("authenticate", { user: payload.user });
+          context.dispatch("fetchMyList");
           resolve("Sucess auth");
         } else {
           reject("Error in auth");
         }
       });
     },
+
     actionEmail(context, payload) {
       context.commit("emailChange", payload);
     },
+
     async updateProfileName(context, payload) {
       return new Promise((resolve, reject) => {
         updateProfile(context.state.user, {
@@ -285,6 +313,7 @@ const store = createStore({
           });
       });
     },
+
     async updateEmail(context, payload) {
       return new Promise((resolve, reject) => {
         updateEmail(context.state.user, payload.email)
@@ -297,6 +326,7 @@ const store = createStore({
           });
       });
     },
+
     async updateThePassword(context, payload) {
       return new Promise((resolve, reject) => {
         updatePassword(context.state.user, payload)
@@ -308,25 +338,28 @@ const store = createStore({
           });
       });
     },
+
     async addProfileUsers(_, payload) {
       try {
         await setDoc(doc(db, "users", payload), theObj);
       } catch (e) {
-        console.log("did not add users", e);
+        console.error("did not add users", e);
       }
     },
-    async addNameToProfile(context, payload) {
+
+    async addNameToProfile(context, { identifier, name }) {
       const id = context.getters.userId;
       try {
         const usersProfileDoc = doc(db, "users", id);
-        let dbPath = `profiles.${payload.profile}`;
+        let dbPath = `profiles.${identifier}`;
         await updateDoc(usersProfileDoc, {
-          [dbPath]: payload.name,
+          [dbPath]: name,
         });
       } catch (e) {
-        console.log("error: ", e);
+        console.error("error: ", e);
       }
     },
+
     async addProfile(context, payload) {
       const id = context.getters.userId;
       try {
@@ -335,11 +368,11 @@ const store = createStore({
         await updateDoc(usersProfileDoc, {
           [dbPath]: payload.name,
         });
-        context.dispatch("profileNames");
       } catch (e) {
-        console.log("error: ", e);
+        console.error("error: ", e);
       }
     },
+
     async addProfileImageId(context, payload) {
       const id = context.getters.userId;
       try {
@@ -349,72 +382,69 @@ const store = createStore({
           [dbPath]: payload.imageId,
         });
       } catch (e) {
-        console.log("error: ", e);
+        console.error("error: ", e);
       }
     },
-    async profileNames(context) {
-      const id = context.getters.userId;
-      const usersRef = doc(db, "users", id);
-      const docSnap = await getDoc(usersRef);
-      if (docSnap.exists()) {
-        let data = docSnap.data();
-        context.commit("setProfiles", {
-          profiles: data.profiles,
-          images: data.profileImages,
-        });
-        return { profiles: data.profiles, images: data.profileImages };
-      } else {
-        return new Error("db error fetching profiles.");
-      }
-    },
+
     async addMyList(context, payload) {
       const id = context.getters.userId;
       try {
         const usersProfileDoc = doc(db, "users", id);
-        let dbPath = `mylist.${payload.profile}`;
+        let dbPath = `mylist.${payload.identifier}`;
         await updateDoc(usersProfileDoc, {
           [dbPath]: arrayUnion(payload.videoId),
         });
       } catch (e) {
-        console.log("error: ", e);
+        console.error("error: ", e);
       }
     },
+
     async removeFromMyList(context, payload) {
       const id = context.getters.userId;
       try {
         const usersProfileDoc = doc(db, "users", id);
-        let dbPath = `mylist.${payload.profile}`;
+        let dbPath = `mylist.${payload.identifier}`;
         await updateDoc(usersProfileDoc, {
           [dbPath]: arrayRemove(payload.videoId),
         });
       } catch (e) {
-        console.log("error: ", e);
+        console.error("error: ", e);
       }
     },
+
     async fetchMyList(context) {
-      //CALLED EVERY TIME I CLICK ON MY LIST
       const id = context.getters.userId;
       const usersRef = doc(db, "users", id);
       const docSnap = await getDoc(usersRef);
       if (docSnap.exists()) {
         let data = docSnap.data();
-        // context.commit("setMylist", {
-        //   mylist: data.mylist,
-        // });
-        return { profiles: data.profiles, mylist: data.mylist };
+        context.commit("setData", {
+          profiles: data.profiles,
+          profileImages: data.profileImages,
+          mylist: data.mylist,
+        });
+        return {
+          profiles: data.profiles,
+          mylist: data.mylist,
+          profileImages: data.profileImages,
+        };
       } else {
-        return new Error("db error fetching profiles.");
+        console.error("db error fetching profiles.");
       }
     },
-    currentProfile(context, payload) {
-      context.commit("setCurrentProfile", payload);
+
+    currentIndentifier(context, payload) {
+      context.commit("setCurrentIdentifier", payload);
     },
+
     redirectUserToAccount(context, payload) {
       context.commit("setRedirectAuth", payload);
     },
+
     putHeroMaterial(context, payload) {
       context.commit("setHeroMaterial", payload);
     },
+
     async loginAsVisitor(context) {
       return new Promise((resolve, reject) => {
         setPersistence(auth, browserSessionPersistence)
@@ -444,7 +474,7 @@ export async function checkAuth() {
       if (user) {
         resolve(true);
       } else {
-        console.log("no-user");
+        console.error("no-user");
         reject(false);
       }
     });

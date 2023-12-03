@@ -8,6 +8,7 @@
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase";
 import { getRandomMaterial } from "./store/data";
+import { mapGetters } from "vuex";
 export default {
   name: "App",
   data() {
@@ -15,17 +16,41 @@ export default {
       user: "",
     };
   },
+
+  watch: {
+    isLoggedIn(next) {
+      if (next) {
+        this.handleFetchData();
+      }
+    },
+  },
+
+  computed: {
+    ...mapGetters({
+      isLoggedIn: "loggedIn",
+      myList: "getMyList",
+    }),
+  },
+
+  methods: {
+    handleFetchData() {
+      this.$store.dispatch("fetchMyList").catch((err) => {
+        console.error(err);
+      });
+    },
+  },
+
   beforeCreate() {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         this.user = user.uid;
         this.$store.dispatch("authenticate", { user: user });
-        this.$store.dispatch("profileNames");
       } else {
         console.log("app: no-user");
       }
     });
   },
+
   beforeMount() {
     const hero = getRandomMaterial();
     this.$store.dispatch("putHeroMaterial", hero);

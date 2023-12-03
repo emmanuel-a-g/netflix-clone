@@ -96,6 +96,7 @@ import TheBrowseNav from "./TheBrowseNav.vue";
 import BrowseHero from "./BrowseHero.vue";
 import BrowseTop from "./BrowseTop.vue";
 import TheFooter from "../../components/ui/TheFooter.vue";
+import { mapGetters } from "vuex";
 export default {
   components: {
     TheCarouselCompList,
@@ -105,76 +106,86 @@ export default {
     BrowseTop,
     TheFooter,
   },
+
   data() {
     return {
-      hero: {},
       cardsNum: 6,
-      identifier: "",
       showMyList: true,
       mobileDetected: false,
     };
   },
+
+  computed: {
+    ...mapGetters({
+      heroMaterial: "getHeroMaterial",
+      identifier: "getIdentifier",
+    }),
+
+    hero() {
+      return this.heroMaterial || null;
+    },
+  },
+
   methods: {
     hideList() {
       this.showMyList = false;
     },
+
     setMargins() {
       //we dont change margins unless we have to!
       let width = window.innerWidth;
-      if (width > breakpointSix && this.cardsNum === 6) {
+      const cardsNum = this.cardsNum;
+      if (width > breakpointSix && cardsNum === 6) {
         return;
       } else if (
         width < breakpointSix &&
         width >= breakpointFive &&
-        this.cardsNum !== 5
+        cardsNum !== 5
       ) {
         this.cardsNum = 5;
       } else if (
         width < breakpointFive &&
         width >= breakpointFour &&
-        this.cardsNum !== 4
+        cardsNum !== 4
       ) {
         this.cardsNum = 4;
       } else if (
         width < breakpointFour &&
         width >= breakpointThree &&
-        this.cardsNum !== 3
+        cardsNum !== 3
       ) {
         this.cardsNum = 3;
       } else if (
         width < breakpointThree &&
         width >= breakpointTwo &&
-        this.cardsNum !== 2
+        cardsNum !== 2
       ) {
         this.cardsNum = 2;
-      } else if (width > breakpointSix && this.cardsNum !== 6) {
+      } else if (width > breakpointSix && cardsNum !== 6) {
         this.cardsNum = 6;
-      } else if (width <= breakpointTwo && this.cardsNum !== 2) {
+      } else if (width <= breakpointTwo && cardsNum !== 2) {
         this.cardsNum = 2;
       }
     },
   },
+
   beforeMount() {
+    // console.time("before");
     window.addEventListener("resize", this.setMargins);
     this.setMargins();
-    this.hero = this.$store.getters.getHeroMaterial;
-    this.identifier = this.$store.getters.getCurrentProfile.name;
+    // console.timeEnd("before");
   },
-  mounted() {
-    if (!this.hero) {
-      this.hero = this.$store.getters.getHeroMaterial;
-    }
-    if (!this.identifier) {
-      this.identifier = this.$store.getters.getCurrentProfile.name;
-    }
 
+  mounted() {
     const isMobile = window.matchMedia(
       "only screen and (max-width: 400px)"
     ).matches;
+
     if (isMobile) {
       this.mobileDetected = true;
     }
   },
+
   beforeUnmount() {
     window.removeEventListener("resize", this.setMargins);
   },

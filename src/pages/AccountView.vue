@@ -1,7 +1,7 @@
 <template>
   <div class="accountDiv">
     <div class="nav">
-      <NetflixLogo @click="moveHome"> </NetflixLogo>
+      <NetflixLogo @click="moveHome" />
     </div>
     <div class="content">
       <div class="header">
@@ -15,9 +15,9 @@
           <p>MEMBERSHIP & BILLING</p>
           <div>
             <p>
-              <strong>{{ email }}</strong>
+              <strong>{{ email || "" }}</strong>
             </p>
-            <p v-if="name">{{ name }}</p>
+            <p v-if="name">{{ name || "" }}</p>
             <p>Password: *********</p>
             <!-- <p>Phone: 123456789</p> -->
           </div>
@@ -48,7 +48,7 @@
                 :src="returnImageUrl('one')"
                 alt="user image"
               />
-              {{ profiles.one || "" }}
+              {{ theProfiles.one || "" }}
             </p>
             <p>
               <img
@@ -56,7 +56,7 @@
                 :src="returnImageUrl('two')"
                 alt="user image"
               />
-              {{ profiles.two || "" }}
+              {{ theProfiles.two || "" }}
             </p>
             <p>
               <img
@@ -64,7 +64,7 @@
                 :src="returnImageUrl('three')"
                 alt="user image"
               />
-              {{ profiles.three || "" }}
+              {{ theProfiles.three || "" }}
             </p>
             <p>
               <img
@@ -72,7 +72,7 @@
                 :src="returnImageUrl('four')"
                 alt="user image"
               />
-              {{ profiles.four || "" }}
+              {{ theProfiles.four || "" }}
             </p>
             <p>
               <img
@@ -80,7 +80,7 @@
                 :src="returnImageUrl('five')"
                 alt="user image"
               />
-              {{ profiles.five || "" }}
+              {{ theProfiles.five || "" }}
             </p>
           </div>
         </div>
@@ -110,27 +110,34 @@
 import NetflixLogo from "../components/logo/NetflixLogo.vue";
 import TheFooter from "../components/ui/TheFooter.vue";
 import { getProfileImage } from "../store/data";
+import { mapGetters } from "vuex";
+
 export default {
   components: {
     NetflixLogo,
     TheFooter,
   },
+
   data() {
     return {
-      email: "",
-      name: "",
       alert: null,
       message: null,
-      profileImages: {},
-      profiles: {
-        one: "",
-        two: "",
-        three: "",
-        four: "",
-        five: "",
-      },
     };
   },
+
+  computed: {
+    ...mapGetters({
+      name: "getName",
+      email: "getEmail",
+      profileImages: "getProfileImages",
+      profiles: "getProfiles",
+    }),
+
+    theProfiles() {
+      return this.profiles || {};
+    },
+  },
+
   methods: {
     returnImageUrl(identifier) {
       let imagesId = this.profileImages;
@@ -141,7 +148,9 @@ export default {
         return getProfileImage(1).imageUrl;
       }
     },
+
     logout() {
+      // better method for checking if user account...
       if (this.name === "visitor") {
         this.$store.dispatch("logOutVisitor");
         return this.$router.replace("/login");
@@ -149,27 +158,33 @@ export default {
       this.$store.dispatch("logOut");
       this.$router.replace("/login");
     },
+
     moveHome() {
       this.$router.replace("/browse");
     },
+
     toEmail() {
       if (this.name === "visitor") {
         return (this.message = "Sorry, you cannot change the visitor email.");
       }
       this.$router.push("/email");
     },
+
     toName() {
       if (this.name === "visitor") {
         return (this.message = "Sorry, you cannot change the vistor name.");
       }
       this.$router.push("/name");
     },
+
     toPassword() {
       if (this.name === "visitor") {
-        return (this.message = "Sorry, you cannot change the password as visitor.");
+        return (this.message =
+          "Sorry, you cannot change the visitor password.");
       }
       this.$router.push("/password");
     },
+
     deleteAccount() {
       if (this.name === "visitor") {
         this.message = "Sorry, you cannot delete the visitor account.";
@@ -206,23 +221,11 @@ export default {
         });
     },
   },
+
   beforeMount() {
-    this.email = this.$store.getters.returnEmail;
-    this.name = this.$store.getters.getName;
-    this.profileImages = this.$store.getters.getProfileImages;
-    const profiles = this.$store.getters.getProfiles;
-    if (profiles) {
-      this.profiles = profiles;
-    }
     if (this.$store.getters.getRedirectAuth) {
       this.message = "Successfully re-authenticated";
       this.$store.dispatch("redirectUserToAccount");
-    }
-  },
-  updated() {
-    const profiles = this.$store.getters.getProfiles;
-    if (profiles) {
-      this.profiles = profiles;
     }
   },
 };

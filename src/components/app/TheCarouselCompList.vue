@@ -27,68 +27,80 @@
 import TheCarousel from "../../components/ui/TheCarousel.vue";
 import { getMyListMovies } from "../../store/data";
 import { divide, combineNew } from "../../utils/index";
+import { mapGetters } from "vuex";
+
 export default {
   props: ["cards", "identifier"],
   emits: ["hideList"],
   components: {
     TheCarousel,
   },
+
   data() {
     return {
       index: 0,
       showIndicators: false,
       indicators: [],
       bigList: [],
-      myList: [],
       myListIds: [],
     };
   },
+
+  computed: {
+    ...mapGetters({
+      myList: "getMyList",
+    }),
+  },
+
   methods: {
     updateIdx(newIndex) {
       this.index = newIndex;
     },
+
     show() {
       this.showIndicators = true;
     },
+
     unshow() {
       this.showIndicators = false;
     },
+
     setMyList(list) {
-      let bigList;
       if (!list) {
-        bigList = divide(this.myList, this.cards);
-        this.bigList = bigList;
+        return;
+      }
+      const bigList = divide(list, this.cards);
+      this.bigList = bigList;
+    },
+
+    handleMyList() {
+      const allLists = this.myList || [];
+      const mylist = allLists[this.identifier];
+      if (mylist && mylist.length) {
+        this.myListIds = mylist;
+        let divisor = this.cards;
+        let lists = Math.ceil(mylist.length / divisor);
+        const indicatorsList = new Array(lists).fill(0);
+        this.indicators = indicatorsList;
+        const myListMovies = getMyListMovies(mylist);
+        this.setMyList(myListMovies);
       } else {
-        bigList = divide(list, this.cards);
-        this.bigList = bigList;
+        this.$emit("hideList");
       }
     },
-    fetchMyList() {
+
+    fetchIt() {
       this.$store
         .dispatch("fetchMyList")
-        .then((res) => {
-          const mylist = res.mylist[this.identifier];
-          this.myListIds = mylist;
-          if (mylist && mylist.length) {
-            let divisor = this.cards;
-            let lists = Math.ceil(mylist.length / divisor);
-            const indicatorsList = new Array(lists).fill(0);
-            this.indicators = indicatorsList;
-            const myListMovies = getMyListMovies(mylist);
-            this.myList = myListMovies;
-            this.setMyList(myListMovies);
-          } else {
-            this.$emit("hideList");
-            this.myListIds = [];
-            this.mylist = [];
-            this.bigList = [];
-          }
-        })
         .catch((err) => {
-          console.log(err);
+          console.error(err);
+        })
+        .then(() => {
+          this.handleMyList();
         });
     },
   },
+
   watch: {
     cards(newDivisor) {
       let totalMovies = this.myList;
@@ -97,10 +109,9 @@ export default {
       this.bigList = combineNew(this.bigList, newDivisor);
     },
   },
+
   mounted() {
-    if (this.identifier) {
-      this.fetchMyList();
-    }
+    this.fetchIt();
   },
 };
 </script>

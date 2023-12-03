@@ -18,9 +18,7 @@
           @handleToList="handleMylist"
         ></MobileBrowse>
       </div>
-      <div v-else>
-        &nbsp;
-      </div>
+      <div v-else>&nbsp;</div>
     </div>
     <div class="middleMenu" v-if="!mobileView">
       <li
@@ -79,7 +77,7 @@
           <span @click="toAccount">
             <img
               class="profileImage"
-              :src="determineImage"
+              :src="srcProfileImage"
               alt="profile image"
             />
           </span>
@@ -106,6 +104,7 @@ import arrow from "../../assets/arrow.png";
 import TheNotifications from "../../components/ui/TheNotifications.vue";
 import MobileBrowse from "../../pages/browse/MobileBrowse.vue";
 import { getProfileImage } from "../../store/data";
+import { mapGetters } from "vuex";
 export default {
   emits: ["closeTheSearch"],
   props: ["show"],
@@ -116,8 +115,6 @@ export default {
   },
   data() {
     return {
-      name: "",
-      identifier: "",
       currPath: "",
       mobileView: false,
       openMenu: false,
@@ -137,16 +134,11 @@ export default {
     };
   },
   computed: {
-    theName() {
-      const name = this.$store.getters.getName;
-      if (this.name !== "New" && this.name.length > 1) {
-        return this.name;
-      } else if (name !== null && name.length > 1) {
-        return name;
-      } else {
-        return "visitor";
-      }
-    },
+    ...mapGetters({
+      profileImages: "getProfileImages",
+      identifier: "getIdentifier",
+    }),
+
     atTop() {
       if (this.scrollPosition === 0) {
         return true;
@@ -154,32 +146,40 @@ export default {
         return false;
       }
     },
-    determineImage() {
-      const imagesId = this.$store.getters.getProfileImages;
-      if (this.identifier) {
-        let id = imagesId[this.identifier];
+
+    srcProfileImage() {
+      const imagesId = this.profileImages;
+      const identifier = this.identifier;
+      if (identifier) {
+        let id = imagesId[identifier];
         return getProfileImage(+id).imageUrl;
       } else {
         return getProfileImage(21).imageUrl;
       }
     },
   },
+
   methods: {
     closeSearch() {
       this.$emit("closeTheSearch");
     },
+
     showBrowseBox() {
       this.showBrowse = true;
     },
+
     hideBrowseBox() {
       this.showBrowse = false;
     },
+
     toAccount() {
       this.$router.push("/account");
     },
+
     toggleMenu() {
       this.openMenu = !this.openMenu;
     },
+
     setWidth() {
       const breakpoint = 800;
       const small = 550;
@@ -187,9 +187,11 @@ export default {
       this.superSmall = window.innerWidth < small;
       this.showBrowse = false;
     },
+
     setScroll() {
       this.scrollPosition = window.top.scrollY;
     },
+
     openInput() {
       if (!this.searchInput) {
         this.searchInput = true;
@@ -197,12 +199,14 @@ export default {
         this.handleCloseToggles();
       }
     },
+
     closeInput() {
       if (this.$route.path !== "/search") {
         this.searchInput = false;
         this.search = "";
       }
     },
+
     handleSearch() {
       if (this.$route.path === "/browse") {
         this.$router.push({
@@ -216,6 +220,7 @@ export default {
         });
       }
     },
+
     toggleAccount() {
       if (!this.showAlert) {
         this.showAccount = true;
@@ -224,6 +229,7 @@ export default {
         this.showAccount = true;
       }
     },
+
     toggleAlert() {
       if (!this.showAccount) {
         this.showAlert = true;
@@ -232,10 +238,12 @@ export default {
         this.showAlert = true;
       }
     },
+
     handleCloseToggles() {
       this.showAccount = false;
       this.showAlert = false;
     },
+
     handleMylist() {
       const currPath = this.$route.path.includes("mylist");
       if (!this.identifier) {
@@ -250,10 +258,9 @@ export default {
           path: "/mylist",
           query: { identifier: this.identifier },
         });
-      } else {
-        //do nothing.
       }
     },
+
     handleHome() {
       if (this.$route.path.includes("browse")) {
         //donothing
@@ -261,6 +268,7 @@ export default {
         this.$router.push("/browse");
       }
     },
+
     checkCurrentPath() {
       const currPath = this.$route.path;
       if (currPath.includes("browse")) {
@@ -270,13 +278,7 @@ export default {
       }
     },
   },
-  beforeMount() {
-    const currentProfile = this.$store.getters.getCurrentProfile;
-    if (currentProfile.displayName) {
-      this.name = currentProfile.displayName;
-      this.identifier = currentProfile.name;
-    }
-  },
+
   mounted() {
     window.addEventListener("scroll", this.setScroll);
     const breakpoint = 800;
@@ -292,6 +294,7 @@ export default {
       this.search = this.$route.query.q;
     }
   },
+
   beforeUnmount() {
     window.removeEventListener("resize", this.handleResize);
     window.removeEventListener("scroll", this.setScroll);
@@ -401,7 +404,6 @@ export default {
 .logo {
   width: 100px;
   height: auto;
-  margin-right: 5px;
 }
 .menu {
   width: 20px;
@@ -522,4 +524,5 @@ export default {
     height: auto;
   }
 }
+/* @media only screen and (max-width: 350px) {} */
 </style>

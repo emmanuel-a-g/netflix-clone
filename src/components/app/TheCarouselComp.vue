@@ -40,6 +40,7 @@ export default {
       bigList: [],
     };
   },
+
   methods: {
     updateIdx(newIndex) {
       this.index = newIndex;
@@ -51,6 +52,7 @@ export default {
       this.showIndicators = false;
     },
   },
+
   watch: {
     cards(newDivisor) {
       let totalMovies = 20;
@@ -59,6 +61,7 @@ export default {
       this.bigList = combineNew(this.bigList, newDivisor);
     },
   },
+
   beforeMount() {
     let list;
     if (!this.listNumber || this.listNumber === 1) {
@@ -116,7 +119,7 @@ export default {
   .headerCarousel h2 {
     font-size: 0.8rem;
   }
-   .headerCarousel {
+  .headerCarousel {
     margin: 0px 25px;
   }
 }

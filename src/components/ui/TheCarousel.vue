@@ -31,6 +31,8 @@ import ItemCarousel from "./ItemCarousel.vue";
 import TheCard from "../app/TheCard.vue";
 import right from "../../assets/rightArr.png";
 import left from "../../assets/leftArr.png";
+import { mapGetters } from "vuex";
+
 export default {
   components: {
     ItemCarousel,
@@ -44,15 +46,22 @@ export default {
     "mobileDetected",
     "mylist",
   ],
+
   data() {
     return {
-      identifier: 1,
       index: 0,
       leftArrow: false,
       left,
       right,
     };
   },
+
+  computed: {
+    ...mapGetters({
+      identifier: "getIdentifier",
+    }),
+  },
+
   methods: {
     prev() {
       this.updateIndex(this.index - 1);
@@ -73,14 +82,11 @@ export default {
       this.$emit("updateIdx", newIndex);
     },
   },
+
   watch: {
     bigList() {
       this.index = 0;
     },
-  },
-  beforeMount() {
-    const { name } = this.$store.getters.getCurrentProfile;
-    this.identifier = name;
   },
 };
 </script>

@@ -3,13 +3,13 @@
     <TheBrowseNav class="navbar"></TheBrowseNav>
     <div :class="{ openSelection: open, closeSelection: !open }">
       <div class="insideSelection">
-        <h2>{{ selectedMovie.title || "" }}</h2>
+        <h2>{{ (selectedMovie && selectedMovie.title) || "" }}</h2>
         <div class="movieView">
           <div>
             <img
               @click="watchNow(selectedMovie.videoId)"
-              :src="selectedMovie.imageUrl || ''"
-              :alt="selectedMovie.title || ''"
+              :src="(selectedMovie && selectedMovie.imageUrl) || ''"
+              :alt="(selectedMovie && selectedMovie.title) || ''"
             />
           </div>
         </div>
@@ -23,10 +23,10 @@
       <div class="header">
         <h1>My List</h1>
       </div>
-      <div v-if="bigList[0].length === 0">
+      <div v-if="!doesListHaveMovies">
         <h4>Nothing Added to My List</h4>
       </div>
-      <div v-if="bigList[0].length > 1">
+      <div v-if="doesListHaveMovies">
         <div class="train" v-for="(list, index) in bigList" :key="index">
           <div class="wagon" v-for="(mov, idx) in list" :key="idx">
             <div
@@ -50,6 +50,7 @@
 import { getMyListMovies } from "../../store/data";
 import { divideMylist } from "../../utils/index";
 import TheBrowseNav from "../browse/TheBrowseNav.vue";
+import { mapGetters } from "vuex";
 let breakpointSix = 1200;
 let breakpointFive = 1000;
 let breakpointFour = 700;
@@ -59,118 +60,131 @@ export default {
   components: {
     TheBrowseNav,
   },
+
   data() {
     return {
-      myListIds: [],
-      myList: [],
-      bigList: [[]],
       open: false,
-      selectedMovie: "",
-      identifier: "",
+      selectedMovie: null,
       cardsNum: 6,
     };
   },
-  watch: {
-    cardsNum() {
-      if (this.bigList[0].length > 1) {
-        this.setMyList();
+
+  computed: {
+    ...mapGetters({
+      myList: "getMyList",
+      inheritedIdentifier: "getIdentifier",
+    }),
+
+    identifier() {
+      return (
+        ((this.$route || {}).query || {}).identifier ||
+        this.inheritedIdentifier ||
+        null
+      );
+    },
+
+    doesListHaveMovies() {
+      return (this.bigList || [[]])[0].length >= 1;
+    },
+
+    bigList() {
+      const identifier = this.identifier;
+      const allLists = this.myList;
+      const def = [[]];
+      if (!identifier || !allLists) {
+        return def;
       }
+
+      const mylist = allLists[identifier];
+      if (!mylist || !(mylist || []).length) {
+        return def;
+      }
+
+      const myListMovies = getMyListMovies(mylist);
+      return divideMylist(myListMovies, this.cardsNum);
     },
   },
+
   methods: {
     watchNow(movieId) {
       this.$router.push(`/watch/${movieId}`);
     },
+
     toggleOpen(mov) {
       this.open = true;
       this.selectedMovie = mov;
     },
+
     goBack() {
       this.$router.back();
     },
+
     toggleCancel() {
       this.open = false;
-      this.selectedMovie = "";
+      this.selectedMovie = null;
     },
+
     addToMyList() {
       this.$store.dispatch("addMyList", {
         profile: this.identifier,
         videoId: this.selectedMovie.id,
       });
     },
+
     removeFromList() {
       this.$store.dispatch("removeFromMyList", {
-        profile: this.identifier,
+        identifier: this.identifier,
         videoId: this.selectedMovie.id,
       });
-      this.fetchMyList();
+
       this.toggleCancel();
     },
+
     setMargins() {
       let width = window.innerWidth;
-      if (width > breakpointSix && this.cardsNum === 6) {
+      const cardsNum = this.cardsNum;
+      if (width > breakpointSix && cardsNum === 6) {
         return;
       } else if (
         width < breakpointSix &&
         width > breakpointFive &&
-        this.cardsNum !== 5
+        cardsNum !== 5
       ) {
         this.cardsNum = 5;
       } else if (
         width < breakpointFive &&
         width > breakpointFour &&
-        this.cardsNum !== 4
+        cardsNum !== 4
       ) {
         this.cardsNum = 4;
       } else if (
         width < breakpointFour &&
         width > breakpointThree &&
-        this.cardsNum !== 3
+        cardsNum !== 3
       ) {
         this.cardsNum = 3;
       } else if (
         width < breakpointThree &&
         width >= breakpointTwo &&
-        this.cardsNum !== 2
+        cardsNum !== 2
       ) {
         this.cardsNum = 2;
-      } else if (width > breakpointSix && this.cardsNum !== 6) {
+      } else if (width > breakpointSix && cardsNum !== 6) {
         this.cardsNum = 6;
-      } else if (width < breakpointTwo && this.cardsNum !== 2) {
+      } else if (width < breakpointTwo && cardsNum !== 2) {
         this.cardsNum = 2;
       }
     },
-    setMyList(list) {
-      if (!list) {
-        this.bigList = divideMylist(this.myList, this.cardsNum);
-      } else {
-        this.bigList = divideMylist(list, this.cardsNum);
-      }
-    },
-    fetchMyList() {
-      this.$store
-        .dispatch("fetchMyList")
-        .then((res) => {
-          const mylist = res.mylist[this.identifier];
-          this.myListIds = mylist;
-          if (mylist && mylist.length) {
-            const myListMovies = getMyListMovies(mylist);
-            this.myList = myListMovies;
-            this.setMyList(myListMovies);
-          } else {
-            this.myListIds = [];
-            this.mylist = [];
-            this.bigList = [[]];
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+
+    fetchIt() {
+      this.$store.dispatch("fetchMyList").catch((err) => {
+        console.error(err);
+      });
     },
   },
+
   mounted() {
-    this.identifier = this.$route.query.identifier;
-    this.fetchMyList();
+    this.fetchIt();
     window.addEventListener("resize", this.setMargins);
     this.setMargins();
   },
@@ -343,7 +357,7 @@ export default {
 }
 @media only screen and (max-width: 350px) {
   .content {
-    overflow-x: scroll;
+    overflow-x: hidden;
   }
 }
 </style>

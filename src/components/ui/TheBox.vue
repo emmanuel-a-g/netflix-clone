@@ -2,15 +2,15 @@
   <div class="theBox" :class="{ visibleClass: show, hiddenClass: !show }">
     <ul>
       <li
-        v-for="(prof, idx) in live"
+        v-for="(prof, idx) in profilesWithUsers"
         :key="idx"
         class="profile"
         @click="handleSelectuser"
       >
         <img
-          v-if="profileImages"
+          v-if="profileImagesURL[prof]"
           class="profileImage"
-          :src="profileImages[prof]"
+          :src="profileImagesURL[prof]"
           alt="img"
           width="26px"
           height="26px"
@@ -38,61 +38,59 @@ import user from "../../assets/user.png";
 import help from "../../assets/help.png";
 import pencil from "../../assets/pencil.png";
 import { getProfileImage } from "../../store/data";
+import { mapGetters } from "vuex";
 export default {
+  props: ["show"],
   data() {
     return {
-      profiles: {},
-      profileImages: {},
-      live: [],
       user,
       help,
       pencil,
     };
   },
-  props: ["show"],
+
+  computed: {
+    ...mapGetters({
+      profiles: "getProfiles",
+      profileImages: "getProfileImages",
+    }),
+
+    profileImagesURL() {
+      const imagesId = this.profileImages;
+      let obj = {};
+      for (let key in imagesId) {
+        obj[key] = getProfileImage(imagesId[key]).imageUrl;
+      }
+
+      return obj;
+    },
+
+    profilesWithUsers() {
+      let filtered = [];
+      const profiles = this.profiles;
+      for (let key in profiles) {
+        const name = profiles[key];
+        if (name) {
+          filtered.push(key);
+        }
+      }
+      return filtered;
+    },
+  },
+
   methods: {
     handleAccount() {
       this.$router.push("/account");
     },
+
     handleLogout() {
       this.$store.dispatch("logOut");
       this.$router.replace("/login");
     },
+
     handleSelectuser() {
       this.$router.push("/selectuser");
     },
-    makeProfileList(profiles) {
-      let filtered = [];
-      for (let key in profiles) {
-        if (profiles[key]) {
-          filtered.push([key]);
-        }
-      }
-      this.live = filtered;
-    },
-  },
-  mounted() {
-    const profiles = this.$store.getters.getProfiles;
-    if (profiles) {
-      this.profiles = profiles;
-      this.makeProfileList(profiles);
-    }
-    this.$store
-      .dispatch("profileNames")
-      .then((res) => {
-        const imagesId = res.images;
-        const profiles = res.profiles;
-        this.makeProfileList(profiles);
-        this.profiles = profiles;
-        let obj = {};
-        for (let key in imagesId) {
-          obj[key] = getProfileImage(imagesId[key]).imageUrl;
-        }
-        this.profileImages = obj;
-      })
-      .catch((err) => {
-        console.log("Profile names error", err);
-      });
   },
 };
 </script>

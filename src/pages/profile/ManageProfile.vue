@@ -18,8 +18,7 @@
           class="nameInput"
           type="text"
           placeholder="Name"
-          ref="name"
-          @keyup="setName"
+          v-model="name"
           maxlength="15"
           :class="{ highlight: highlightInput }"
         />
@@ -61,23 +60,61 @@
 import netflix from "../../assets/netflix.png";
 import pencil from "../../assets/pencil.png";
 import { getProfileImage } from "../../store/data";
+import { mapGetters } from "vuex";
 export default {
   data() {
     return {
-      name: "",
-      profile: "",
-      nameProvided: false,
-      imageId: undefined,
-      profileIdentifier: "",
+      overrideName: null,
       netflix,
       pencil,
       highlightInput: false,
-      currentName: "",
       wantedToChangeProfile: false,
       last: undefined,
     };
   },
+
   computed: {
+    ...mapGetters({
+      identifier: "getIdentifier",
+    }),
+
+    profileIdentifier() {
+      return ((this.$route || {}).params || {}).profile || "one";
+    },
+
+    name: {
+      get() {
+        const overrideName = this.overrideName;
+        if (overrideName !== null) {
+          return overrideName;
+        }
+
+        const { name } = (this.$route || {}).params;
+        if (name) {
+          return name;
+        }
+
+        return "";
+      },
+      set(nextName) {
+        this.overrideName = nextName;
+      },
+    },
+
+    currentName() {
+      const { name } = (this.$route || {}).params;
+      return name || null;
+    },
+
+    nameProvided() {
+      return !!this.profileIdentifier;
+    },
+
+    imageId() {
+      const { id } = (this.$route || {}).query;
+      return +id || undefined;
+    },
+
     getImage() {
       const id = +this.$route.query.id;
       if (id) {
@@ -120,20 +157,23 @@ export default {
     setName() {
       this.name = this.$refs.name.value;
     },
+
     saveAndGoBack() {
       if (!this.name || this.name.length <= 1) {
         this.cancelAndGoBack();
         return;
       }
+
       this.$store.dispatch("addNameToProfile", {
-        profile: this.profile,
+        identifier: this.profileIdentifier,
         name: this.name,
       });
+
       if (this.wantedToChangeProfile) {
         this.$router.push({
           path: "/select",
           query: {
-            profile: this.profile,
+            profile: this.profileIdentifier,
             name: this.name,
             id: this.imageId,
             update: true,
@@ -146,24 +186,6 @@ export default {
     cancelAndGoBack() {
       this.$router.replace("/selectuser");
     },
-  },
-  beforeMount() {
-    this.imageId = +this.$route.query.id;
-    this.profileIdentifier = this.$route.params.profile;
-  },
-  mounted() {
-    const profile = this.$route.params.profile;
-    const name = this.$route.params.name;
-    this.last = this.$route.query.last;
-    this.currentName = name;
-    if (profile) {
-      this.$refs.name.value = name;
-      this.nameProvided = true;
-      this.profile = profile;
-    } else {
-      this.nameProvided = false;
-      this.profile = profile;
-    }
   },
 };
 </script>

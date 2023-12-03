@@ -99,15 +99,15 @@ export default {
       this.message = "Successfully re-authenticated";
       this.$store.dispatch("redirectUserToAccount");
     }
-    const email = this.$store.getters.returnEmail;
+    const email = this.$store.getters.getEmail;
     if (email) {
       this.email = email;
       this.newEmail = email;
     }
     if (!email) {
       setTimeout(() => {
-        this.email = this.$store.getters.returnEmail;
-        this.newEmail = this.$store.getters.returnEmail;
+        this.email = this.$store.getters.getEmail;
+        this.newEmail = this.$store.getters.getEmail;
       }, 1000);
     }
   },
