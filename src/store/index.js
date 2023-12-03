@@ -378,9 +378,10 @@ const store = createStore({
       try {
         const usersProfileDoc = doc(db, "users", id);
         let dbPath = `profileImages.${payload.profile}`;
-        await updateDoc(usersProfileDoc, {
+        const res = await updateDoc(usersProfileDoc, {
           [dbPath]: payload.imageId,
         });
+        console.log("Result", res);
       } catch (e) {
         console.error("error: ", e);
       }

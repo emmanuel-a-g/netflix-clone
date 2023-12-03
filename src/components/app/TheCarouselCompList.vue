@@ -88,17 +88,6 @@ export default {
         this.$emit("hideList");
       }
     },
-
-    fetchIt() {
-      this.$store
-        .dispatch("fetchMyList")
-        .catch((err) => {
-          console.error(err);
-        })
-        .then(() => {
-          this.handleMyList();
-        });
-    },
   },
 
   watch: {
@@ -111,7 +100,7 @@ export default {
   },
 
   mounted() {
-    this.fetchIt();
+    this.handleMyList();
   },
 };
 </script>

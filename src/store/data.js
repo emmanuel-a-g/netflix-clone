@@ -352,24 +352,27 @@ export const data2 = [
     videoId: "jLMBLuGJTsA",
   },
 ];
-export function getMyListMovies(listIds) {
-  if (!listIds.length) {
+
+export function getMyListMovies(listIds = []) {
+  const copyIds = [...listIds];
+
+  if (!copyIds.length) {
     return [];
   }
   const entireMovies = data.concat(data2);
   //best way to find the ids
-  //keep iterating while listIds has length
+  //keep iterating while copyIds has length
   let myList = [];
   //start with the first one
-  let currIdSearching = listIds[0];
-  while (listIds.length) {
+  let currIdSearching = copyIds[0];
+  while (copyIds.length) {
     for (let x = 0; x < entireMovies.length; x++) {
       //get the movie data
       let current = entireMovies[x];
       if (current.id === currIdSearching) {
         myList.push(current);
-        listIds.shift();
-        currIdSearching = listIds[0];
+        copyIds.shift();
+        currIdSearching = copyIds[0];
       }
     }
   }

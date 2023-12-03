@@ -3,7 +3,7 @@
     <TheBrowseNav @closeTheSearch="goBackHome" class="navbar"></TheBrowseNav>
     <div class="mainContent">
       <div class="middle">
-        <p>Search: {{ query }}</p>
+        <p>Search: {{ movieQuery }}</p>
       </div>
       <div v-if="bigList[0].length === 0">
         <p>0 results</p>
@@ -47,26 +47,41 @@ export default {
     return {
       myList: [],
       bigList: [[]],
-      identifier: "",
       cardsNum: 6,
-      query: "",
+      lastQuery: "",
       playWhite,
     };
   },
+
   watch: {
     cardsNum() {
       if (this.bigList[0].length > 1) {
         this.setMyList();
       }
     },
+
+    $route(next) {
+      const { q = "" } = next.query || {};
+      this.handleNewSearch(q);
+    },
   },
+
+  computed: {
+    movieQuery() {
+      const { q } = this.$route.query || {};
+      return q;
+    },
+  },
+
   methods: {
     goBackHome() {
       this.$router.push("/browse");
     },
+
     openMovie(mov) {
       this.$router.push({ path: `/watch/${mov.videoId}` });
     },
+
     setMargins() {
       let width = window.innerWidth;
       if (width > breakpointSix && this.cardsNum === 6) {
@@ -101,6 +116,7 @@ export default {
         this.cardsNum = 2;
       }
     },
+
     setMyList(list) {
       if (!list) {
         this.bigList = divideMylist(this.myList, this.cardsNum);
@@ -108,31 +124,29 @@ export default {
         this.bigList = divideMylist(list, this.cardsNum);
       }
     },
+
+    handleNewSearch(newQuery = this.movieQuery) {
+      if (newQuery === "") {
+        this.$router.push({ path: "/browse" });
+        return;
+      }
+
+      if (newQuery !== this.lastQuery) {
+        const theResult = searchMovie(newQuery);
+        if (!(theResult || []).length) {
+          return;
+        }
+        this.myList = theResult;
+        this.setMyList(theResult);
+        this.lastQuery = newQuery;
+      }
+    },
   },
-  beforeMount() {
-    this.query = this.$route.query.q;
-  },
+
   mounted() {
     window.addEventListener("resize", this.setMargins);
     this.setMargins();
-    const theResult = searchMovie(this.query);
-    if (theResult.length > 0) {
-      this.myList = theResult;
-      this.setMyList(theResult);
-    }
-  },
-  updated() {
-    const newQuery = this.$route.query.q;
-    const theResult = searchMovie(newQuery);
-    if (newQuery !== this.query && theResult.length >= 1) {
-      this.query = newQuery;
-      this.myList = theResult;
-      this.setMyList(theResult);
-    } else if (newQuery === "") {
-      this.$router.push({ path: "/browse" });
-    } else {
-      this.query = newQuery;
-    }
+    this.handleNewSearch();
   },
 };
 </script>

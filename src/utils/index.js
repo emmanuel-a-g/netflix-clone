@@ -158,11 +158,18 @@ export function searchMovie(search) {
   if (typeof search !== "string") {
     return;
   }
-  const allMovies = data.concat(data2, heroMaterial);
-  const lowerSearch = search.toLowerCase();
 
-  const filtered = allMovies.filter((mov) => {
-    return mov.title.toLowerCase().includes(lowerSearch);
+  const allMovies = data.concat(data2, heroMaterial);
+  const broken = search.split("").join("\\s*");
+  const regex = new RegExp(`\\b${broken}\\b`, "i");
+  const regexTwo = new RegExp(search, "i");
+
+  const filtered = allMovies.filter(({ title = "" }) => {
+    if (regex.test(title) || regexTwo.test(title)) {
+      return true;
+    }
+    return false;
   });
+
   return filtered;
 }

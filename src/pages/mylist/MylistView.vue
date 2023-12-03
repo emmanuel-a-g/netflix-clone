@@ -175,16 +175,9 @@ export default {
         this.cardsNum = 2;
       }
     },
-
-    fetchIt() {
-      this.$store.dispatch("fetchMyList").catch((err) => {
-        console.error(err);
-      });
-    },
   },
 
   mounted() {
-    this.fetchIt();
     window.addEventListener("resize", this.setMargins);
     this.setMargins();
   },

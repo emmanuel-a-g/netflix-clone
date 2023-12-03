@@ -17,27 +17,11 @@ export default {
     };
   },
 
-  watch: {
-    isLoggedIn(next) {
-      if (next) {
-        this.handleFetchData();
-      }
-    },
-  },
-
   computed: {
     ...mapGetters({
       isLoggedIn: "loggedIn",
       myList: "getMyList",
     }),
-  },
-
-  methods: {
-    handleFetchData() {
-      this.$store.dispatch("fetchMyList").catch((err) => {
-        console.error(err);
-      });
-    },
   },
 
   beforeCreate() {

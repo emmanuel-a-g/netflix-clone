@@ -149,13 +149,18 @@ export default {
 
     srcProfileImage() {
       const imagesId = this.profileImages;
-      const identifier = this.identifier;
+      const identifier = this.identifier || this.queryIdentifier;
       if (identifier) {
         let id = imagesId[identifier];
         return getProfileImage(+id).imageUrl;
       } else {
         return getProfileImage(21).imageUrl;
       }
+    },
+
+    queryIdentifier() {
+      const { identifier } = (this.$route || {}).query || {};
+      return identifier;
     },
   },
 
